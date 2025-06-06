@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@barba/core": "^2.10.3",
-    "barba": "^1.0.0",
     "gsap": "^3.13.0",
     "highlight.js": "^11.11.1"
   }
