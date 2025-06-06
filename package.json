@@ -1,0 +1,20 @@
+{
+  "name": "pykraken-docs",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "@barba/core": "^2.10.3",
+    "barba": "^1.0.0",
+    "gsap": "^3.13.0",
+    "highlight.js": "^11.11.1"
+  }
+}
