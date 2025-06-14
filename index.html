@@ -2,18 +2,32 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home Page</title>
+  <title>Barba.js Starter</title>
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <link href="src/css/app.css" rel="stylesheet">
 </head>
 
-<body data-barba="wrapper">
-  <main data-barba="container" data-barba-namespace="home">
-    <h1>Welcome to the home page</h1>
-    <a href="about.html">About Page</a>
-  </main>
+<body data-barba="wrapper" data-barba-namespace="home">
 
-  <script type="module" src="src/main.js"></script>
+  <div data-barba="container">
+    <div id="icon-container">
+      <img src="images/kraken_engine_icon.png" id="bg-icon" />
+    </div>
+
+    <div id="hero-content">
+      <img src="images/kraken-engine-title.png" id="hero-title"/>
+      <h1><em>Documentation</em></h1>
+      <div class="buttons">
+        <a href="installation.html" class="btn">Installation</a>
+        <a href="contribute.html" class="btn">Contribute</a>
+      </div>
+    </div>
+  </div>
+
 </body>
+
+<script type="module" src="src/js/app.js"></script>
 
 </html>
