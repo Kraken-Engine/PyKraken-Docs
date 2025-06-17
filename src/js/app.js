@@ -1,3 +1,4 @@
+import "../css/app.css";
 import barba from '@barba/core';
 import { gsap } from "gsap";
 
