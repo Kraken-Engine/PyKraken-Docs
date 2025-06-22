@@ -11,7 +11,8 @@ export default function Image({
   height = 350,
   ...props
 }: ComponentProps<"img">) {
-  if (!src) return null;
+  // Only allow src to be string or StaticImport for NextImage
+  if (!src || typeof src !== "string") return null;
   return (
     <NextImage
       src={src}
