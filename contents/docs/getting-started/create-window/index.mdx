@@ -1,0 +1,38 @@
+---
+title: Creating a Window
+---
+
+Congratulations on getting Kraken Engine installed!
+
+This page aims to get you in the hang of launching your first window with in-depth descriptions of what each line means.
+
+## Starter Code Snippet
+
+```python:main.py showLineNumbers
+import pykraken as kn
+
+kn.init()
+kn.window.create("Kraken Example", True)
+
+while kn.window.is_open():
+    kn.event.poll()
+
+kn.quit()
+```
+
+### Breakdown
+
+This simple program serves as a basic skeleton for applications built with the Kraken Engine.
+Let's break down the key components that make this program function:
+
+1. **Initializing Kraken Engine**
+    - `kn.init()` prepares the underlying frameworks and features, ensuring the engine is ready to deliver everything it promises.
+2. **Creating the Window**
+    - `kn.window.create("Kraken Example", True)` creates the window with a size that fits the largest empty space on your screen.
+3. **Looping and Event Polling**
+    - The `while kn.window.is_open():` loop keeps the application running as long as the window is open.
+    Inside it, `kn.event.poll()` updates internal event states like keyboard, mouse, and controller user input.
+4. **Cleanly Quitting the Application**
+    - Once the window is closed, exiting the main loop, `kn.quit()` safely shuts down the engine and frees any resources in use.
+
+This template establishes a foundation for more advanced game logic and rendering.
