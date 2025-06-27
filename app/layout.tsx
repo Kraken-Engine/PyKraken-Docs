@@ -5,6 +5,8 @@ import { Space_Mono, Space_Grotesk } from "next/font/google";
 import { Footer } from "@/components/footer";
 import "@/styles/globals.css";
 
+import MainWrapper from "@/components/MainWrapper";
+
 const sansFont = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-geist-sans",
@@ -20,10 +22,7 @@ const monoFont = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AriaDocs - Template",
-  metadataBase: new URL("https://ariadocs.vercel.app/"),
-  description:
-    "This comprehensive documentation template, crafted with Next.js and available as open-source, delivers a sleek and responsive design, tailored to meet all your project documentation requirements.",
+  title: "Kraken Engine Docs",
 };
 
 export default function RootLayout({
@@ -51,9 +50,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          <main className="sm:container mx-auto w-[90vw] h-auto scroll-smooth">
-            {children}
-          </main>
+          <MainWrapper>{children}</MainWrapper>
           <Footer />
         </ThemeProvider>
       </body>
