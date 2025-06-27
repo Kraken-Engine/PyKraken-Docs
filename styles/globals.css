@@ -135,12 +135,12 @@ footer {
   background-color: hsl(var(--background));
 }
 
-.home-background {
+/* .home-background {
   position: relative;
   overflow: hidden;
-}
+} */
 
-.home-background::before {
+/* .home-background::before {
   content: "";
   position: fixed;
 
@@ -157,7 +157,7 @@ footer {
   opacity: 0.2;
   z-index: -1;
   pointer-events: none;
-}
+} */
 
 .code-line {
   padding: 0.75px 16px;
