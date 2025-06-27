@@ -137,7 +137,6 @@ footer {
 
 .home-background {
   position: relative;
-  z-index: -1;
   overflow: hidden;
 }
 
@@ -156,7 +155,7 @@ footer {
   background-position: center;
 
   opacity: 0.2;
-  z-index: -2;
+  z-index: -1;
   pointer-events: none;
 }
 
