@@ -1,0 +1,84 @@
+---
+title: Color
+description: Functions for creating and manipulating colors.
+---
+
+## from_hex
+---
+
+`from_hex(hex: str) → Color`
+
+Create a Color from a hex string (e.g. "#FF00FF" or "#FF00FF80").
+
+_**Parameters**_
+
+- `hex` : The color hex code to turn into an RGBA Color object.
+
+_**Returns**_
+
+`Color` : A color object containing RGBA values represented by the provided hex string.
+
+## from_hsv
+---
+
+`from_hsv(h: float, s: float, v: float, a: float = 1.0) → Color`
+
+Create a Color from HSV(A) values.
+
+_**Parameters**_
+
+- `h` : Hue angle [0-360].
+- `s` : Saturation [0-1].
+- `v` : Value/brightness [0-1].
+- `a` : Alpha [0-1]. Defaults to 1.0.
+
+_**Returns**_
+
+`Color` : A color object containing RGBA values represented by the provided HSV(A) values.
+
+## lerp
+---
+
+`lerp(a: Color, b: Color, t: float) → Color`
+
+Linearly interpolate between two colors.
+
+_**Parameters**_
+
+- `a` : Start color.
+- `b` : End color.
+- `t` : Blend factor (0.0 = a, 1.0 = b).
+
+_**Returns**_
+
+`Color` : The color at the current position in interpolation.
+
+## invert
+---
+
+`invert(color: Color) → Color`
+
+Return the inverse of a color (flips RGB channels).
+
+_**Parameters**_
+
+- `color` : The color to invert.
+
+_**Returns**_
+
+`Color` : The color with its RGB values inverted.
+
+## grayscale
+---
+
+`grayscale(color: Color) → Color`
+
+Convert a color to grayscale.
+
+_**Parameters**_
+
+- `color` : The color to convert.
+
+_**Returns**_
+
+`Color` : The grayscale version of the color.

@@ -23,19 +23,28 @@ export const ROUTES: EachRoute[] = [
     title: "Manual",
     href: "/manual",
     noLink: true,
-    items: [],
+    items: [
+      { title: "Constants", href: "/constants" },
+    ],
   },
   {
-    title: "Contributing",
-    href: "/contributing",
+    title: "Classes",
+    href: "/classes",
     noLink: true,
-    items: [],
+    items: [
+      { title: "Camera", href: "/camera" },
+    ],
   },
   {
-    title: "API Reference",
-    href: "/reference",
+    title: "Functions",
+    href: "/functions",
     noLink: true,
-    items: [],
+    items: [
+      { title: "Time", href: "/time" },
+      { title: "Mouse", href: "/mouse" },
+      { title: "Color", href: "/color" },
+      { title: "Ease", href: "/ease" },
+    ],
   },
 ];
 

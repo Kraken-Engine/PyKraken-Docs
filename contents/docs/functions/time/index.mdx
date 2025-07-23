@@ -1,0 +1,29 @@
+---
+title: Time
+---
+
+## get_elapsed
+---
+
+`get_elapsed() → float`
+
+Get the elapsed time since the program started.
+
+_**Returns**_
+
+`float` : The total elapsed time since program start, in seconds.
+
+## delay
+---
+
+`delay(milliseconds: int) → None`
+
+Delay the program execution for the specified duration.
+
+This function pauses execution for the given number of milliseconds.
+Useful for simple timing control, though using `Clock.tick` is generally
+preferred for frame rate control.
+
+_**Parameters**_
+
+- `milliseconds` : The number of milliseconds to delay.
