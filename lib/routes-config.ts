@@ -40,10 +40,14 @@ export const ROUTES: EachRoute[] = [
     href: "/functions",
     noLink: true,
     items: [
-      { title: "Time", href: "/time" },
-      { title: "Mouse", href: "/mouse" },
       { title: "Color", href: "/color" },
       { title: "Ease", href: "/ease" },
+      { title: "Event", href: "/event" },
+      { title: "Gamepad", href: "/gamepad" },
+      { title: "Input", href: "/input" },
+      { title: "Key", href: "/key" },
+      { title: "Mouse", href: "/mouse" },
+      { title: "Time", href: "/time" },
     ],
   },
 ];

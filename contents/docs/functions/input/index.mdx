@@ -1,0 +1,106 @@
+---
+title: Input
+description: Functions for handling input actions and bindings.
+---
+
+## bind
+---
+
+`bind(name: str, actions: list[InputAction]) → None`
+
+Bind a list of input actions to a name.
+
+_**Parameters**_
+
+- `name`: The name to bind the actions to.
+- `actions`: The list of input actions to bind.
+
+## unbind
+---
+
+`unbind(name: str) → None`
+
+Unbind all input actions associated with a name.
+
+_**Parameters**_
+
+- `name`: The name to unbind the actions from.
+
+## get_direction
+---
+
+`get_direction(up: str, right: str, down: str, left: str) → Vec2`
+
+Get the direction vector based on the input actions.
+
+_**Parameters**_
+
+- `up`: The name of the input action for moving up.
+- `right`: The name of the input action for moving right.
+- `down`: The name of the input action for moving down.
+- `left`: The name of the input action for moving left.
+
+_**Returns**_
+
+`Vec2` : A vector representing the direction based on the input actions.
+
+## get_axis
+---
+
+`get_axis(negative: str, positive: str) → float`
+
+Get the axis value based on the input actions.
+
+_**Parameters**_
+
+- `negative`: The name of the input action for moving in the negative direction.
+- `positive`: The name of the input action for moving in the positive direction.
+
+_**Returns**_
+
+`float` : A float representing the axis value based on the input actions.
+
+## is_pressed
+---
+
+`is_pressed(name: str) → bool`
+
+Check if an input action is currently pressed.
+
+_**Parameters**_
+
+- `name`: The name of the input action to check.
+
+_**Returns**_
+
+`bool` : A boolean indicating whether the input action is currently pressed.
+
+## is_just_pressed
+---
+
+`is_just_pressed(name: str) → bool`
+
+Check if an input action was just pressed.
+
+_**Parameters**_
+
+- `name`: The name of the input action to check.
+
+_**Returns**_
+
+`bool` : A boolean indicating whether the input action was just pressed.
+
+## is_just_released
+---
+
+`is_just_released(name: str) → bool`
+
+Check if an input action was just released.
+
+_**Parameters**_
+
+- `name`: The name of the input action to check.
+
+_**Returns**_
+
+`bool` : A boolean indicating whether the input action was just released.
