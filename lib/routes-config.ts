@@ -46,8 +46,11 @@ export const ROUTES: EachRoute[] = [
       { title: "Gamepad", href: "/gamepad" },
       { title: "Input", href: "/input" },
       { title: "Key", href: "/key" },
+      { title: "Math", href: "/math" },
       { title: "Mouse", href: "/mouse" },
+      { title: "Rect", href: "/rect" },
       { title: "Time", href: "/time" },
+      { title: "Transform", href: "/transform" },
     ],
   },
 ];

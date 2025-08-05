@@ -1,45 +1,212 @@
 ---
 title: Math
-description: Functions for mathematical operations and vector manipulations.
+description: Functions for mathematical operations.
 ---
 
-## scale_to_length
+## Scale To Length
 ---
 
 `scale_to_length(vec: Vec2, length: float) → Vec2`
 
-## from_polar
+Scale a vector to a specific length.
+
+_**Parameters**_
+
+- `vec` : The vector to scale.
+- `length` : The desired length of the vector.
+
+_**Returns**_
+
+`Vec2` : The scaled vector.
+
+## From Polar
 ---
 
-## from_polar
+`from_polar(angle: float, radius: float) → Vec2`
+
+Create a vector from polar coordinates.
+
+_**Parameters**_
+
+- `angle` : The angle in radians.
+- `radius` : The radius or length of the vector.
+
+_**Returns**_
+
+`Vec2` : The created vector.
+
 ---
 
-## normalize
+`from_polar(polar: PolarCoordinate) → Vec2`
+
+Create a vector from a polar coordinate object.
+
+_**Parameters**_
+
+- `polar` : The polar coordinate object.
+
+_**Returns**_
+
+`Vec2` : The created vector.
+
+## Normalize
 ---
 
-## clamp_vec
+`normalize(vec: Vec2) → Vec2`
+
+Normalize a vector to unit length.
+
+_**Parameters**_
+
+- `vec` : The vector to normalize.
+
+_**Returns**_
+
+`Vec2` : The normalized vector.
+
+## Clamp Vec
 ---
 
-## lerp
+`clamp_vec(vec: Vec2, min: Vec2, max: Vec2) → Vec2`
+
+Clamp a vector to a specified range.
+
+_**Parameters**_
+
+- `vec` : The vector to clamp.
+- `min` : The minimum allowed values for each component.
+- `max` : The maximum allowed values for each component.
+
+_**Returns**_
+
+`Vec2` : The clamped vector.
+
+## Lerp
 ---
 
-## lerp
+`lerp(a: Vec2, b: Vec2, t: float) → Vec2`
+
+Linearly interpolate between two vectors.
+
+_**Parameters**_
+
+- `a` : The starting vector.
+- `b` : The ending vector.
+- `t` : The interpolation factor (between 0 and 1).
+
+_**Returns**_
+
+`Vec2` : The interpolated vector.
+
 ---
 
-## remap
+`lerp(a: float, b: float, t: float) → float`
+
+Linearly interpolate between two floats.
+
+_**Parameters**_
+
+- `a` : The starting float.
+- `b` : The ending float.
+- `t` : The interpolation factor (between 0 and 1).
+
+_**Returns**_
+
+`float` : The interpolated float.
+
+## Remap
 ---
 
-## to_deg
+`remap(in_min: float, in_max: float, out_min: float, out_max: float, value: float) → float`
+
+Remap a value from one range to another.
+
+_**Parameters**_
+
+- `in_min` : The minimum of the input range.
+- `in_max` : The maximum of the input range.
+- `out_min` : The minimum of the output range.
+- `out_max` : The maximum of the output range.
+- `value` : The value to remap.
+
+_**Returns**_
+
+`float` : The remapped value.
+
+## To Deg
 ---
 
-## to_rad
+`to_deg(rad: float) → float`
+
+Convert radians to degrees.
+
+_**Parameters**_
+
+- `rad` : The angle in radians.
+
+_**Returns**_
+
+`float` : The angle in degrees.
+
+## To Rad
 ---
 
-## dot
+`to_rad(deg: float) → float`
+
+Convert degrees to radians.
+
+_**Parameters**_
+
+- `deg` : The angle in degrees.
+
+_**Returns**_
+
+`float` : The angle in radians.
+
+## Dot
 ---
 
-## cross
+`dot(a: Vec2, b: Vec2) → float`
+
+Calculate the dot product of two vectors.
+
+_**Parameters**_
+
+- `a` : The LHS vector.
+- `b` : The RHS vector.
+
+_**Returns**_
+
+`float` : The dot product of the two vectors.
+
+## Cross
 ---
 
-## angle_between
+`cross(a: Vec2, b: Vec2) → float`
+
+Calculate the cross product of two vectors.
+
+_**Parameters**_
+
+- `a` : The LHS vector.
+- `b` : The RHS vector.
+
+_**Returns**_
+
+`float` : The cross product of the two vectors.
+
+## Angle Between
 ---
+
+`angle_between(a: Vec2, b: Vec2) → float`
+
+Calculate the angle between two vectors in radians.
+
+_**Parameters**_
+
+- `a` : The LHS vector.
+- `b` : The RHS vector.
+
+_**Returns**_
+
+`float` : The angle between the two vectors in radians.

@@ -3,7 +3,7 @@ title: Gamepad
 description: Functions for interacting with gamepad inputs.
 ---
 
-## is_pressed
+## Is Pressed
 ---
 
 `is_pressed(button: GamepadButton, slot: int = 0) → bool`
@@ -19,7 +19,7 @@ _**Returns**_
 
 `bool` : True if the button is pressed, otherwise False.
 
-## is_just_pressed
+## Is Just Pressed
 ---
 
 `is_just_pressed(button: GamepadButton, slot: int = 0) → bool`
@@ -35,7 +35,7 @@ _**Returns**_
 
 `bool` : True if the button was just pressed, otherwise False.
 
-## is_just_released
+## Is Just Released
 ---
 
 `is_just_released(button: GamepadButton, slot: int = 0) → bool`
@@ -51,7 +51,7 @@ _**Returns**_
 
 `bool` : True if the button was just released, otherwise False.
 
-## get_left_stick
+## Get Left Stick
 ---
 
 `get_left_stick(slot: int = 0) → tuple[float, float]`
@@ -66,7 +66,7 @@ _**Returns**_
 
 `tuple[float, float]` : The current position of the left analog stick.
 
-## get_right_stick
+## Get Right Stick
 ---
 
 `get_right_stick(slot: int = 0) → tuple[float, float]`
@@ -81,7 +81,7 @@ _**Returns**_
 
 `tuple[float, float]` : The current position of the right analog stick.
 
-## get_left_trigger
+## Get Left Trigger
 ---
 
 `get_left_trigger(slot: int = 0) → float`
@@ -96,7 +96,7 @@ _**Returns**_
 
 `float` : The current pressure value of the left trigger.
 
-## get_right_trigger
+## Get Right Trigger
 ---
 
 `get_right_trigger(slot: int = 0) → float`
@@ -111,10 +111,10 @@ _**Returns**_
 
 `float` : The current pressure value of the right trigger.
 
-## set_deadzone
+## Set Deadzone
 ---
 
-`set_deadzone(deadzone: float, slot: int = 0) -> None`
+`set_deadzone(deadzone: float, slot: int = 0) → None`
 
 Set the dead zone threshold for a gamepad's analog sticks.
 
@@ -123,7 +123,7 @@ _**Parameters**_
 - `deadzone` : The dead zone value to set (between 0 and 1).
 - `slot` : The gamepad slot to modify (default is 0).
 
-## get_deadzone
+## Get Deadzone
 ---
 
 `get_deadzone(slot: int = 0) → float`
@@ -138,7 +138,7 @@ _**Returns**_
 
 `float` : The current dead zone value for the specified gamepad slot.
 
-## get_connected_slots
+## Get Connected Slots
 ---
 
 `get_connected_slots() → list[int]`

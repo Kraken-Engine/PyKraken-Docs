@@ -3,7 +3,7 @@ title: Input
 description: Functions for handling input actions and bindings.
 ---
 
-## bind
+## Bind
 ---
 
 `bind(name: str, actions: list[InputAction]) → None`
@@ -15,7 +15,7 @@ _**Parameters**_
 - `name`: The name to bind the actions to.
 - `actions`: The list of input actions to bind.
 
-## unbind
+## Unbind
 ---
 
 `unbind(name: str) → None`
@@ -26,7 +26,7 @@ _**Parameters**_
 
 - `name`: The name to unbind the actions from.
 
-## get_direction
+## Get Direction
 ---
 
 `get_direction(up: str, right: str, down: str, left: str) → Vec2`
@@ -44,7 +44,7 @@ _**Returns**_
 
 `Vec2` : A vector representing the direction based on the input actions.
 
-## get_axis
+## Get Axis
 ---
 
 `get_axis(negative: str, positive: str) → float`
@@ -60,7 +60,7 @@ _**Returns**_
 
 `float` : A float representing the axis value based on the input actions.
 
-## is_pressed
+## Is Pressed
 ---
 
 `is_pressed(name: str) → bool`
@@ -75,7 +75,7 @@ _**Returns**_
 
 `bool` : A boolean indicating whether the input action is currently pressed.
 
-## is_just_pressed
+## Is Just Pressed
 ---
 
 `is_just_pressed(name: str) → bool`
@@ -90,7 +90,7 @@ _**Returns**_
 
 `bool` : A boolean indicating whether the input action was just pressed.
 
-## is_just_released
+## Is Just Released
 ---
 
 `is_just_released(name: str) → bool`

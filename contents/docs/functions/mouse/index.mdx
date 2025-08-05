@@ -3,7 +3,7 @@ title: Mouse
 description: Functions for handling mouse input and cursor state.
 ---
 
-## get_pos
+## Get Pos
 ---
 
 `get_pos() → tuple[float, float]`
@@ -14,7 +14,7 @@ _**Returns**_
 
 `tuple[float, float]` : The current mouse position as (x, y) coordinates.
 
-## get_rel
+## Get Rel
 ---
 
 `get_rel() → tuple[float, float]`
@@ -25,7 +25,7 @@ _**Returns**_
 
 `tuple[float, float]` : The relative movement of the mouse as (dx, dy).
 
-## is_pressed
+## Is Pressed
 ---
 
 `is_pressed(button: MouseButton) → bool`
@@ -40,7 +40,7 @@ _**Returns**_
 
 `bool` : True if the button is currently pressed.
 
-## is_just_pressed
+## Is Just Pressed
 ---
 `is_just_pressed(button: MouseButton) → bool`
 
@@ -54,7 +54,7 @@ _**Returns**_
 
 `bool` : True if the button was just pressed.
 
-## is_just_released
+## Is Just Released
 ---
 
 `is_just_released(button: MouseButton) → bool`
@@ -69,7 +69,7 @@ _**Returns**_
 
 `bool` : True if the button is currently pressed.
 
-## lock
+## Lock
 ---
 
 `lock() → None`
@@ -79,14 +79,14 @@ Lock the mouse to the center of the window.
 Useful for first-person controls where you want to capture mouse movement
 without letting the cursor leave the window area.
 
-## unlock
+## Unlock
 ---
 
 `unlock() → None`
 
 Unlock the mouse from the window, allowing it to move freely.
 
-## is_locked
+## Is Locked
 ---
 
 `is_locked() → bool`
@@ -97,7 +97,7 @@ _**Returns**_
 
 `bool` : True if the mouse is locked.
 
-## hide
+## Hide
 ---
 
 `hide() → None`
@@ -106,14 +106,14 @@ Hide the mouse cursor from view.
 
 The cursor will be invisible but mouse input will still be tracked.
 
-## show
+## Show
 ---
 
 `show() → None`
 
 Show the mouse cursor if it was hidden.
 
-## is_hidden
+## Is Hidden
 ---
 
 `is_hidden() → bool`
