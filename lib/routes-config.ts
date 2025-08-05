@@ -1,5 +1,7 @@
 // for page navigation & to sort on leftbar
 
+import { Wind } from "lucide-react";
+
 export type EachRoute = {
   title: string;
   href: string;
@@ -51,6 +53,7 @@ export const ROUTES: EachRoute[] = [
       { title: "Rect", href: "/rect" },
       { title: "Time", href: "/time" },
       { title: "Transform", href: "/transform" },
+      { title: "Window", href: "/window" },
     ],
   },
 ];
