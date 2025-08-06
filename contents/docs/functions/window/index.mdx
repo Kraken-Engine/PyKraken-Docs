@@ -15,3 +15,146 @@ _**Parameters**_
 - `size` : A `Vec2` representing the window size.
 - `scaled` : Whether the window should use a scaled resolution.
 
+_**Raises**_
+- RuntimeError : If the window already exists or SDL fails to create the window.
+- Value Error: If the title is invalid or the size dimensions are nonpositive. 
+
+---
+
+## is_open
+---
+is_open() → bool
+
+Check whether the window is open.
+
+_**Returns**_
+
+-bool: True if the window is open.
+
+---
+
+##close 
+---
+
+close → None 
+
+Close the window.
+Marks the window as close—typically used to exit the main loop.
+
+---
+
+## get_size 
+
+---
+get_size() → tuple[float, float]
+
+Get the currnet window size.
+
+_**Returns**_
+
+-tuple[float, float]: Window dimensions (width, height).
+
+_**Raises**_
+
+-RuntimeError: If the window is not initialized.
+
+--- 
+## set_fullscreen
+---
+
+set_fullscreen(fullscreen: bool) → None
+
+Toggle fullscreen mode.
+
+_**Parameters**_
+
+- fullscreen : Whether to enable fullscreen.
+
+_**Raises**_
+
+- RuntimeError : If the window is not initialized.
+
+---
+
+## is_fullscreen
+---
+
+is_fullscreen() → bool
+
+Check whether the window is currently in fullscreen mode.
+
+_**Returns**_
+
+- bool : True if fullscreen is active.
+
+_**Raises**_
+
+- RuntimeError : If the window is not initialized.
+
+---
+
+## set_title
+---
+
+set_title(title: str) → None
+
+Set the window title.
+
+_**Parameters**_
+
+- title : The new title (must be non-empty and ≤ 255 characters).
+
+_**Raises**_
+
+- RuntimeError : If the window is not initialized or the title update fails.
+- ValueError : If the title is empty or too long.
+
+---
+
+## get_title
+---
+
+get_title() → str
+
+Get the current window title.
+
+_**Returns**_
+
+- str : The current title of the window.
+
+_**Raises**_
+
+- RuntimeError : If the window is not initialized.
+
+---
+
+## get_window (internal)
+---
+
+get_window() → SDL_Window*
+
+Get a pointer to the underlying SDL window.
+
+**Note**: This is an internal, low-level function meant for internal use.
+
+---
+
+## init
+---
+
+init() → None
+
+Initialize the SDL windowing system.
+
+_**Raises**_
+
+- RuntimeError : If SDL fails to initialize.
+
+---
+
+## quit
+---
+
+quit() → None
+
+Shut down the SDL system and destroy the window if it exists
