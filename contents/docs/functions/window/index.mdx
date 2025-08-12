@@ -1,160 +1,59 @@
 ---
 title: Window
+description: Functions for creating and managing an application window.
 ---
 
-# Create
+## Create
 ---
 
-`create(title: str, size: Vec2, scaled: bool) → None
+`create(title: str, size: Vec2, scaled: bool = False) → None`
 
-Create a window with the specified title and size.
-
-_**Parameters**_
-
-- `title` : The title of the window.
-- `size` : A `Vec2` representing the window size.
-- `scaled` : Whether the window should use a scaled resolution.
-
-_**Raises**_
-- RuntimeError : If the window already exists or SDL fails to create the window.
-- Value Error: If the title is invalid or the size dimensions are nonpositive. 
-
+## Is Open
 ---
 
-## is_open
----
-is_open() → bool
+`is_open() → bool`
 
-Check whether the window is open.
-
-_**Returns**_
-
--bool: True if the window is open.
-
+## Close
 ---
 
-##close 
+`close() → None`
+
+## Get Size
 ---
 
-close → None 
+`get_size() → tuple[float, float]`
 
-Close the window.
-Marks the window as close—typically used to exit the main loop.
-
+## Set Fullscreen
 ---
 
-## get_size 
+`set_fullscreen(fullscreen: bool) → None`
 
----
-get_size() → tuple[float, float]
-
-Get the currnet window size.
-
-_**Returns**_
-
--tuple[float, float]: Window dimensions (width, height).
-
-_**Raises**_
-
--RuntimeError: If the window is not initialized.
-
---- 
-## set_fullscreen
+## Is Fullscreen
 ---
 
-set_fullscreen(fullscreen: bool) → None
+`is_fullscreen() → bool`
 
-Toggle fullscreen mode.
-
-_**Parameters**_
-
-- fullscreen : Whether to enable fullscreen.
-
-_**Raises**_
-
-- RuntimeError : If the window is not initialized.
-
+## Set Title
 ---
 
-## is_fullscreen
+`set_title(title: str) → None`
+
+## Get Title
 ---
 
-is_fullscreen() → bool
+`get_title() → str`
 
-Check whether the window is currently in fullscreen mode.
-
-_**Returns**_
-
-- bool : True if fullscreen is active.
-
-_**Raises**_
-
-- RuntimeError : If the window is not initialized.
-
+## Init
 ---
 
-## set_title
+`init() → None`
+
+## Quit
 ---
 
-set_title(title: str) → None
+`quit() → None`
 
-Set the window title.
-
-_**Parameters**_
-
-- title : The new title (must be non-empty and ≤ 255 characters).
-
-_**Raises**_
-
-- RuntimeError : If the window is not initialized or the title update fails.
-- ValueError : If the title is empty or too long.
-
+## Get Window _(internal)_
 ---
 
-## get_title
----
-
-get_title() → str
-
-Get the current window title.
-
-_**Returns**_
-
-- str : The current title of the window.
-
-_**Raises**_
-
-- RuntimeError : If the window is not initialized.
-
----
-
-## get_window (internal)
----
-
-get_window() → SDL_Window*
-
-Get a pointer to the underlying SDL window.
-
-**Note**: This is an internal, low-level function meant for internal use.
-
----
-
-## init
----
-
-init() → None
-
-Initialize the SDL windowing system.
-
-_**Raises**_
-
-- RuntimeError : If SDL fails to initialize.
-
----
-
-## quit
----
-
-quit() → None
-
-Shut down the SDL system and destroy the window if it exists
+`get_window() → SDL_Window*`
