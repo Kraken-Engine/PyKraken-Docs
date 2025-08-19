@@ -1,7 +1,5 @@
 // for page navigation & to sort on leftbar
 
-import { Wind } from "lucide-react";
-
 export type EachRoute = {
   title: string;
   href: string;
