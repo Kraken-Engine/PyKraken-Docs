@@ -1,5 +1,7 @@
 // for page navigation & to sort on leftbar
 
+import { Wind } from "lucide-react";
+
 export type EachRoute = {
   title: string;
   href: string;
@@ -23,19 +25,36 @@ export const ROUTES: EachRoute[] = [
     title: "Manual",
     href: "/manual",
     noLink: true,
-    items: [],
+    items: [
+      { title: "Constants", href: "/constants" },
+    ],
   },
   {
-    title: "Contributing",
-    href: "/contributing",
+    title: "Classes",
+    href: "/classes",
     noLink: true,
-    items: [],
+    items: [
+      { title: "Camera", href: "/camera" },
+    ],
   },
   {
-    title: "API Reference",
-    href: "/reference",
+    title: "Functions",
+    href: "/functions",
     noLink: true,
-    items: [],
+    items: [
+      { title: "Color", href: "/color" },
+      { title: "Ease", href: "/ease" },
+      { title: "Event", href: "/event" },
+      { title: "Gamepad", href: "/gamepad" },
+      { title: "Input", href: "/input" },
+      { title: "Key", href: "/key" },
+      { title: "Math", href: "/math" },
+      { title: "Mouse", href: "/mouse" },
+      { title: "Rect", href: "/rect" },
+      { title: "Time", href: "/time" },
+      { title: "Transform", href: "/transform" },
+      { title: "Window", href: "/window" },
+    ],
   },
 ];
 

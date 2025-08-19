@@ -1,0 +1,91 @@
+---
+title: Key
+description: Functions for interacting with keyboard inputs.
+---
+
+## Is Pressed
+---
+
+`is_pressed(scancode: Scancode) → bool`
+
+Check if a key is currently being held down.
+
+_**Parameters**_
+
+- `scancode` : The scancode of the key to check.
+
+_**Returns**_
+
+`bool` : True if the key is pressed, otherwise False.
+
+---
+
+`is_pressed(keycode: Keycode) → bool`
+
+Check if a key is currently being held down.
+
+_**Parameters**_
+
+- `keycode` : The keycode of the key to check.
+
+_**Returns**_
+
+`bool` : True if the key is pressed, otherwise False.
+
+## Is Just Pressed
+---
+
+`is_just_pressed(scancode: Scancode) → bool`
+
+Check if a key was just pressed.
+
+_**Parameters**_
+
+- `scancode` : The scancode of the key to check.
+
+_**Returns**_
+
+`bool` : True if the key was just pressed, otherwise False.
+
+---
+
+`is_just_pressed(keycode: Keycode) → bool`
+
+Check if a key was just pressed.
+
+_**Parameters**_
+
+- `keycode` : The keycode of the key to check.
+
+_**Returns**_
+
+`bool` : True if the key was just pressed, otherwise False.
+
+## Is Just Released
+---
+
+`is_just_released(scancode: Scancode) → bool`
+
+Check if a key was just released.
+
+_**Parameters**_
+
+- `scancode` : The scancode of the key to check.
+
+_**Returns**_
+
+`bool` : True if the key was just released, otherwise False.
+
+---
+
+`is_just_released(keycode: Keycode) → bool`
+
+Check if a key was just released.
+
+_**Parameters**_
+
+- `keycode` : The keycode of the key to check.
+
+_**Returns**_
+
+`bool` : True if the key was just released, otherwise False.

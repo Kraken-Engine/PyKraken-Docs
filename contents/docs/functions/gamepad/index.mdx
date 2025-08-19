@@ -1,0 +1,150 @@
+---
+title: Gamepad
+description: Functions for interacting with gamepad inputs.
+---
+
+## Is Pressed
+---
+
+`is_pressed(button: GamepadButton, slot: int = 0) → bool`
+
+Check if a gamepad button is currently being held down.
+
+_**Parameters**_
+
+- `button` : The gamepad button to check.
+- `slot` : The gamepad slot to check (default is 0).
+
+_**Returns**_
+
+`bool` : True if the button is pressed, otherwise False.
+
+## Is Just Pressed
+---
+
+`is_just_pressed(button: GamepadButton, slot: int = 0) → bool`
+
+Check if a gamepad button was just pressed.
+
+_**Parameters**_
+
+- `button` : The gamepad button to check.
+- `slot` : The gamepad slot to check (default is 0).
+
+_**Returns**_
+
+`bool` : True if the button was just pressed, otherwise False.
+
+## Is Just Released
+---
+
+`is_just_released(button: GamepadButton, slot: int = 0) → bool`
+
+Check if a gamepad button was just released.
+
+_**Parameters**_
+
+- `button` : The gamepad button to check.
+- `slot` : The gamepad slot to check (default is 0).
+
+_**Returns**_
+
+`bool` : True if the button was just released, otherwise False.
+
+## Get Left Stick
+---
+
+`get_left_stick(slot: int = 0) → tuple[float, float]`
+
+Get the left analog stick position.
+
+_**Parameters**_
+
+- `slot` : The gamepad slot to check (default is 0).
+
+_**Returns**_
+
+`tuple[float, float]` : The current position of the left analog stick.
+
+## Get Right Stick
+---
+
+`get_right_stick(slot: int = 0) → tuple[float, float]`
+
+Get the right analog stick position.
+
+_**Parameters**_
+
+- `slot` : The gamepad slot to check (default is 0).
+
+_**Returns**_
+
+`tuple[float, float]` : The current position of the right analog stick.
+
+## Get Left Trigger
+---
+
+`get_left_trigger(slot: int = 0) → float`
+
+Get the left trigger's current pressure value.
+
+_**Parameters**_
+
+- `slot` : The gamepad slot to check (default is 0).
+
+_**Returns**_
+
+`float` : The current pressure value of the left trigger.
+
+## Get Right Trigger
+---
+
+`get_right_trigger(slot: int = 0) → float`
+
+Get the right trigger's current pressure value.
+
+_**Parameters**_
+
+- `slot` : The gamepad slot to check (default is 0).
+
+_**Returns**_
+
+`float` : The current pressure value of the right trigger.
+
+## Set Deadzone
+---
+
+`set_deadzone(deadzone: float, slot: int = 0) → None`
+
+Set the dead zone threshold for a gamepad's analog sticks.
+
+_**Parameters**_
+
+- `deadzone` : The dead zone value to set (between 0 and 1).
+- `slot` : The gamepad slot to modify (default is 0).
+
+## Get Deadzone
+---
+
+`get_deadzone(slot: int = 0) → float`
+
+Get the dead zone threshold for a gamepad's analog sticks.
+
+_**Parameters**_
+
+- `slot` : The gamepad slot to check (default is 0).
+
+_**Returns**_
+
+`float` : The current dead zone value for the specified gamepad slot.
+
+## Get Connected Slots
+---
+
+`get_connected_slots() → list[int]`
+
+Get a list of currently connected gamepad slots.
+
+_**Returns**_
+
+`list[int]` : A list of integers representing the slots of connected gamepads.

@@ -1,0 +1,17 @@
+---
+title: Event
+description: Functions for handling user input events.
+---
+
+## Poll
+---
+
+`poll() → list[Event]`
+
+Poll for all pending user input events.
+
+This clears input states and returns a list of events that occurred since the last call.
+
+_**Returns**_
+
+`list[Event]` : A list of events that have occurred since the last call to `poll()`.

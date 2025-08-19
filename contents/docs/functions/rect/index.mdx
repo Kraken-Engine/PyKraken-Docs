@@ -1,0 +1,99 @@
+---
+title: Rect
+description: Functions for rectangle operations.
+---
+
+## Move
+---
+
+`move(rect: Rect, offset: Vec2) → Rect`
+
+Move a rectangle by a specified offset.
+
+_**Parameters**_
+
+- `rect` : The rectangle to move.
+- `offset` : The offset by which to move the rectangle.
+
+_**Returns**_
+
+`Rect` : The moved rectangle.
+
+## Clamp
+---
+
+`clamp(rect: Rect, min: Vec2, max: Vec2) → Rect`
+
+Clamp a rectangle to a specified range.
+
+_**Parameters**_
+
+- `rect` : The rectangle to clamp.
+- `min` : The minimum allowed values for each component.
+- `max` : The maximum allowed values for each component.
+
+_**Returns**_
+
+`Rect` : The clamped rectangle.
+
+---
+
+`clamp(rect: Rect, other: Rect) → Rect`
+
+Clamp a rectangle to another rectangle.
+
+_**Parameters**_
+
+- `rect` : The rectangle to clamp.
+- `other` : The rectangle to clamp to.
+
+_**Returns**_
+
+`Rect` : The clamped rectangle.
+
+## Scale By
+---
+
+`scale_by(rect: Rect, factor: float) → Rect`
+
+Scale a rectangle by a specified factor.
+
+_**Parameters**_
+
+- `rect` : The rectangle to scale.
+- `factor` : The scaling factor (uniform scaling).
+
+_**Returns**_
+
+`Rect` : The scaled rectangle.
+
+---
+
+`scale_by(rect: Rect, factor: Vec2) → Rect`
+
+Scale a rectangle by a specified factor for each component.
+
+_**Parameters**_
+
+- `rect` : The rectangle to scale.
+- `factor` : The scaling factor for each component.
+
+_**Returns**_
+
+`Rect` : The scaled rectangle.
+
+## Scale To
+---
+
+`scale_to(rect: Rect, size: Vec2) → Rect`
+
+Scale a rectangle to a specified size.
+
+_**Parameters**_
+
+- `rect` : The rectangle to scale.
+- `size` : The desired size of the rectangle.
+
+_**Returns**_
+
+`Rect` : The scaled rectangle.

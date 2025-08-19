@@ -1,0 +1,29 @@
+---
+title: Camera
+---
+
+Represents a 2D camera used for rendering.
+
+Controls the viewport's translation, allowing you to move the view of the world.
+
+## Properties
+| Name | Description | Type |
+| --- | --- | --- |
+| `pos` | Get or set the camera's position | `Vec2` |
+
+## Methods
+
+### init
+---
+Create a new camera instance.
+
+_**Parameters**_
+- `pos` (Optional) : The position of the camera. Defaults to (0, 0).
+
+### set
+---
+`set() → None`
+
+Set this camera as the active one for rendering.
+
+Only one camera can be active at a time.

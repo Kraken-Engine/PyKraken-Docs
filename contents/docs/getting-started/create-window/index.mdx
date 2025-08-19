@@ -12,7 +12,7 @@ This page aims to get you in the hang of launching your first window with in-dep
 import pykraken as kn
 
 kn.init()
-kn.window.create("Kraken Example", True)
+kn.window.create("Kraken Example", (900, 500))
 
 while kn.window.is_open():
     kn.event.poll()
@@ -28,7 +28,7 @@ Let's break down the key components that make this program function:
 1. **Initializing Kraken Engine**
     - `kn.init()` prepares the underlying frameworks and features, ensuring the engine is ready to deliver everything it promises.
 2. **Creating the Window**
-    - `kn.window.create("Kraken Example", True)` creates the window with a size that fits the largest empty space on your screen.
+    - `kn.window.create("Kraken Example", (900, 500))` creates the window with a size of 900x500 pixels and a title of "Kraken Example".
 3. **Looping and Event Polling**
     - The `while kn.window.is_open():` loop keeps the application running as long as the window is open.
     Inside it, `kn.event.poll()` updates internal event states like keyboard, mouse, and controller user input.

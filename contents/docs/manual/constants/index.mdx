@@ -1,0 +1,392 @@
+---
+title: Constants
+description: A comprehensive list of constants used in the Kraken Engine.
+---
+
+## Mouse
+| Name | Description | Type |
+| --- | --- | --- |
+| M_LEFT | Left mouse button | MouseButton |
+| M_MIDDLE | Middle mouse button | MouseButton |
+| M_RIGHT | Right mouse button | MouseButton |
+| M_SIDE1 | Back side mouse button | MouseButton |
+| M_SIDE2 | Front side mouse button | MouseButton |
+
+## Anchors
+| Name | Type |
+| --- | --- |
+| TOP_LEFT | Anchor |
+| TOP_MID | Anchor |
+| TOP_RIGHT | Anchor |
+| MID_LEFT | Anchor |
+| CENTER | Anchor |
+| MID_RIGHT | Anchor |
+| BOTTOM_LEFT | Anchor |
+| BOTTOM_MID | Anchor |
+| BOTTOM_RIGHT | Anchor |
+
+## Colors
+| Name | Value | Type |
+| --- | --- | --- |
+| BLACK | (0, 0, 0) | Color |
+| WHITE | (255, 255, 255) | Color |
+| RED | (255, 0, 0) | Color |
+| GREEN | (0, 255, 0) | Color |
+| BLUE | (0, 0, 255) | Color |
+| YELLOW | (255, 255, 0) | Color |
+| MAGENTA | (255, 0, 255) | Color |
+| CYAN | (0, 255, 255) | Color |
+| GRAY | (128, 128, 128) | Color |
+| DARK_GRAY | (64, 64, 64) | Color |
+| LIGHT_GRAY | (192, 192, 192) | Color |
+| ORANGE | (255, 165, 0) | Color |
+| BROWN | (139, 69, 19) | Color |
+| PINK | (255, 192, 203) | Color |
+| PURPLE | (128, 0, 128) | Color |
+| NAVY | (0, 0, 128) | Color |
+| TEAL | (0, 128, 128) | Color |
+| OLIVE | (128, 128, 0) | Color |
+| MAROON | (128, 0, 0) | Color |
+
+## Gamepad
+| Name | Type |
+| --- | --- |
+| C_SOUTH | GamepadButton |
+| C_EAST | GamepadButton |
+| C_WEST | GamepadButton |
+| C_NORTH | GamepadButton |
+| C_BACK | GamepadButton |
+| C_GUIDE | GamepadButton |
+| C_START | GamepadButton |
+| C_LSTICK | GamepadButton |
+| C_RSTICK | GamepadButton |
+| C_LSHOULDER | GamepadButton |
+| C_RSHOULDER | GamepadButton |
+| C_DPAD_UP | GamepadButton |
+| C_DPAD_DOWN | GamepadButton |
+| C_DPAD_LEFT | GamepadButton |
+| C_DPAD_RIGHT | GamepadButton |
+| C_LX | GamepadAxis |
+| C_LY | GamepadAxis |
+| C_RX | GamepadAxis |
+| C_RY | GamepadAxis |
+| C_LTRIGGER | GamepadAxis |
+| C_RTRIGGER | GamepadAxis |
+| C_STANDARD | GamepadType |
+| C_XBOX_360 | GamepadType |
+| C_XBOX_ONE | GamepadType |
+| C_PS3 | GamepadType |
+| C_PS4 | GamepadType |
+| C_PS5 | GamepadType |
+| C_SWITCH_PRO | GamepadType |
+| C_SWITCH_JOYCON_LEFT | GamepadType |
+| C_SWITCH_JOYCON_RIGHT | GamepadType |
+| C_SWITCH_JOYCON_PAIR | GamepadType |
+
+## Event Types
+| Name | Description | Type |
+| --- | --- | --- |
+| QUIT | User-requested quit | EventType |
+| WINDOW_SHOWN | Window became visible | EventType |
+| WINDOW_HIDDEN | Window was hidden | EventType |
+| WINDOW_EXPOSED | Window needs to be redrawn | EventType |
+| WINDOW_MOVED | Window was moved | EventType |
+| WINDOW_RESIZED | Window was resized | EventType |
+| WINDOW_MINIMIZED | Window was minimized | EventType |
+| WINDOW_MAXIMIZED | Window was maximized | EventType |
+| WINDOW_RESTORED | Window was restored | EventType |
+| WINDOW_MOUSE_ENTER | Mouse entered the window | EventType |
+| WINDOW_MOUSE_LEAVE | Mouse left the window | EventType |
+| WINDOW_FOCUS_GAINED | Window gained keyboard focus | EventType |
+| WINDOW_FOCUS_LOST | Window lost keyboard focus | EventType |
+| WINDOW_OCCLUDED | Window became occluded (covered) | EventType |
+| WINDOW_ENTER_FULLSCREEN | Window entered fullscreen mode | EventType |
+| WINDOW_LEAVE_FULLSCREEN | Window left fullscreen mode | EventType |
+| KEY_DOWN | Key was pressed | EventType |
+| KEY_UP | Key was released | EventType |
+| TEXT_EDITING | User is editing text (IME input) | EventType |
+| TEXT_INPUT | Text input event (e.g. typed character) | EventType |
+| KEYBOARD_ADDED | New keyboard device connected | EventType |
+| KEYBOARD_REMOVED | Keyboard device was removed | EventType |
+| MOUSE_MOTION | Mouse moved | EventType |
+| MOUSE_BUTTON_DOWN | Mouse button pressed | EventType |
+| MOUSE_BUTTON_UP | Mouse button released | EventType |
+| MOUSE_WHEEL | Mouse wheel was scrolled | EventType |
+| MOUSE_ADDED | Mouse device connected | EventType |
+| MOUSE_REMOVED | Mouse device removed | EventType |
+| GAMEPAD_AXIS_MOTION | Gamepad axis moved | EventType |
+| GAMEPAD_BUTTON_DOWN | Gamepad button pressed | EventType |
+| GAMEPAD_BUTTON_UP | Gamepad button released | EventType |
+| GAMEPAD_ADDED | Gamepad connected | EventType |
+| GAMEPAD_REMOVED | Gamepad disconnected | EventType |
+| GAMEPAD_TOUCHPAD_DOWN | Gamepad touchpad press | EventType |
+| GAMEPAD_TOUCHPAD_MOTION | Gamepad touchpad moved | EventType |
+| GAMEPAD_TOUCHPAD_UP | Gamepad touchpad released | EventType |
+| DROP_FILE | File dropped onto the window | EventType |
+| DROP_TEXT | Text dropped onto the window | EventType |
+| DROP_BEGIN | Start of drag-and-drop operation | EventType |
+| DROP_COMPLETE | End of drag-and-drop operation | EventType |
+| DROP_POSITION | Dragged item is moved within drop zone | EventType |
+| AUDIO_DEVICE_ADDED | Audio device connected | EventType |
+| AUDIO_DEVICE_REMOVED | Audio device removed | EventType |
+| PEN_PROXIMITY_IN | Pen moved close to tablet | EventType |
+| PEN_PROXIMITY_OUT | Pen moved away from tablet | EventType |
+| PEN_DOWN | Pen touched the surface | EventType |
+| PEN_UP | Pen lifted off the surface | EventType |
+| PEN_BUTTON_DOWN | Pen button pressed | EventType |
+| PEN_BUTTON_UP | Pen button released | EventType |
+| PEN_MOTION | Pen moved on the surface | EventType |
+| PEN_AXIS | Pen axis data changed (e.g. pressure, tilt) | EventType |
+| CAMERA_ADDED | Camera device connected | EventType |
+| CAMERA_REMOVED | Camera device removed | EventType |
+| CAMERA_APPROVED | Camera access granted | EventType |
+| CAMERA_DENIED | Camera access denied | EventType |
+
+## Keyboard
+| Name | Type |
+| --- | --- |
+| S_a | Scancode |
+| S_b | Scancode |
+| S_c | Scancode |
+| S_d | Scancode |
+| S_e | Scancode |
+| S_f | Scancode |
+| S_g | Scancode |
+| S_h | Scancode |
+| S_i | Scancode |
+| S_j | Scancode |
+| S_k | Scancode |
+| S_l | Scancode |
+| S_m | Scancode |
+| S_n | Scancode |
+| S_o | Scancode |
+| S_p | Scancode |
+| S_q | Scancode |
+| S_r | Scancode |
+| S_s | Scancode |
+| S_t | Scancode |
+| S_u | Scancode |
+| S_v | Scancode |
+| S_w | Scancode |
+| S_x | Scancode |
+| S_y | Scancode |
+| S_z | Scancode |
+| S_1 | Scancode |
+| S_2 | Scancode |
+| S_3 | Scancode |
+| S_4 | Scancode |
+| S_5 | Scancode |
+| S_6 | Scancode |
+| S_7 | Scancode |
+| S_8 | Scancode |
+| S_9 | Scancode |
+| S_0 | Scancode |
+| S_RETURN | Scancode |
+| S_ESC | Scancode |
+| S_BACKSPACE | Scancode |
+| S_TAB | Scancode |
+| S_SPACE | Scancode |
+| S_MINUS | Scancode |
+| S_EQ | Scancode |
+| S_LBRACKET | Scancode |
+| S_RBRACKET | Scancode |
+| S_BACKSLASH | Scancode |
+| S_SEMICOLON | Scancode |
+| S_APOSTROPHE | Scancode |
+| S_GRAVE | Scancode |
+| S_COMMA | Scancode |
+| S_PERIOD | Scancode |
+| S_SLASH | Scancode |
+| S_CAPS | Scancode |
+| S_F1 | Scancode |
+| S_F2 | Scancode |
+| S_F3 | Scancode |
+| S_F4 | Scancode |
+| S_F5 | Scancode |
+| S_F6 | Scancode |
+| S_F7 | Scancode |
+| S_F8 | Scancode |
+| S_F9 | Scancode |
+| S_F10 | Scancode |
+| S_F11 | Scancode |
+| S_F12 | Scancode |
+| S_PRTSCR | Scancode |
+| S_SCRLK | Scancode |
+| S_PAUSE | Scancode |
+| S_INS | Scancode |
+| S_HOME | Scancode |
+| S_PGUP | Scancode |
+| S_DEL | Scancode |
+| S_END | Scancode |
+| S_PGDOWN | Scancode |
+| S_RIGHT | Scancode |
+| S_LEFT | Scancode |
+| S_DOWN | Scancode |
+| S_UP | Scancode |
+| S_NUMLOCK | Scancode |
+| S_KP_DIV | Scancode |
+| S_KP_MULT | Scancode |
+| S_KP_MINUS | Scancode |
+| S_KP_PLUS | Scancode |
+| S_KP_ENTER | Scancode |
+| S_KP_1 | Scancode |
+| S_KP_2 | Scancode |
+| S_KP_3 | Scancode |
+| S_KP_4 | Scancode |
+| S_KP_5 | Scancode |
+| S_KP_6 | Scancode |
+| S_KP_7 | Scancode |
+| S_KP_8 | Scancode |
+| S_KP_9 | Scancode |
+| S_KP_0 | Scancode |
+| S_KP_PERIOD | Scancode |
+| S_AGAIN | Scancode |
+| S_UNDO | Scancode |
+| S_CUT | Scancode |
+| S_COPY | Scancode |
+| S_PASTE | Scancode |
+| S_FIND | Scancode |
+| S_MUTE | Scancode |
+| S_VOLUP | Scancode |
+| S_VOLDOWN | Scancode |
+| S_LCTRL | Scancode |
+| S_LSHIFT | Scancode |
+| S_LALT | Scancode |
+| S_LGUI | Scancode |
+| S_RCTRL | Scancode |
+| S_RSHIFT | Scancode |
+| S_RALT | Scancode |
+| S_RGUI | Scancode |
+| K_BACKSPACE | Keycode |
+| K_TAB | Keycode |
+| K_RETURN | Keycode |
+| K_ESC | Keycode |
+| K_SPACE | Keycode |
+| K_EXCLAIM | Keycode |
+| K_DBLQUOTE | Keycode |
+| K_HASH | Keycode |
+| K_DOLLAR | Keycode |
+| K_PERCENT | Keycode |
+| K_AMPERSAND | Keycode |
+| K_SGLQUOTE | Keycode |
+| K_ASTERISK | Keycode |
+| K_PLUS | Keycode |
+| K_COMMA | Keycode |
+| K_MINUS | Keycode |
+| K_PERIOD | Keycode |
+| K_SLASH | Keycode |
+| K_0 | Keycode |
+| K_1 | Keycode |
+| K_2 | Keycode |
+| K_3 | Keycode |
+| K_4 | Keycode |
+| K_5 | Keycode |
+| K_6 | Keycode |
+| K_7 | Keycode |
+| K_8 | Keycode |
+| K_9 | Keycode |
+| K_COLON | Keycode |
+| K_SEMICOLON | Keycode |
+| K_LT | Keycode |
+| K_EQ | Keycode |
+| K_GT | Keycode |
+| K_QUESTION | Keycode |
+| K_AT | Keycode |
+| K_LBRACKET | Keycode |
+| K_BACKSLASH | Keycode |
+| K_RBRACKET | Keycode |
+| K_CARET | Keycode |
+| K_UNDERSCORE | Keycode |
+| K_GRAVE | Keycode |
+| K_a | Keycode |
+| K_b | Keycode |
+| K_c | Keycode |
+| K_d | Keycode |
+| K_e | Keycode |
+| K_f | Keycode |
+| K_g | Keycode |
+| K_h | Keycode |
+| K_i | Keycode |
+| K_j | Keycode |
+| K_k | Keycode |
+| K_l | Keycode |
+| K_m | Keycode |
+| K_n | Keycode |
+| K_o | Keycode |
+| K_p | Keycode |
+| K_q | Keycode |
+| K_r | Keycode |
+| K_s | Keycode |
+| K_t | Keycode |
+| K_u | Keycode |
+| K_v | Keycode |
+| K_w | Keycode |
+| K_x | Keycode |
+| K_y | Keycode |
+| K_z | Keycode |
+| K_LBRACE | Keycode |
+| K_PIPE | Keycode |
+| K_RBRACE | Keycode |
+| K_TILDE | Keycode |
+| K_DEL | Keycode |
+| K_CAPS | Keycode |
+| K_F1 | Keycode |
+| K_F2 | Keycode |
+| K_F3 | Keycode |
+| K_F4 | Keycode |
+| K_F5 | Keycode |
+| K_F6 | Keycode |
+| K_F7 | Keycode |
+| K_F8 | Keycode |
+| K_F9 | Keycode |
+| K_F10 | Keycode |
+| K_F11 | Keycode |
+| K_F12 | Keycode |
+| K_PRTSCR | Keycode |
+| K_SCRLK | Keycode |
+| K_PAUSE | Keycode |
+| K_INS | Keycode |
+| K_HOME | Keycode |
+| K_PGUP | Keycode |
+| K_END | Keycode |
+| K_PGDOWN | Keycode |
+| K_RIGHT | Keycode |
+| K_LEFT | Keycode |
+| K_DOWN | Keycode |
+| K_UP | Keycode |
+| K_NUMLOCK | Keycode |
+| K_KP_DIV | Keycode |
+| K_KP_MULT | Keycode |
+| K_KP_MINUS | Keycode |
+| K_KP_PLUS | Keycode |
+| K_KP_ENTER | Keycode |
+| K_KP_1 | Keycode |
+| K_KP_2 | Keycode |
+| K_KP_3 | Keycode |
+| K_KP_4 | Keycode |
+| K_KP_5 | Keycode |
+| K_KP_6 | Keycode |
+| K_KP_7 | Keycode |
+| K_KP_8 | Keycode |
+| K_KP_9 | Keycode |
+| K_KP_0 | Keycode |
+| K_KP_PERIOD | Keycode |
+| K_AGAIN | Keycode |
+| K_UNDO | Keycode |
+| K_CUT | Keycode |
+| K_COPY | Keycode |
+| K_PASTE | Keycode |
+| K_FIND | Keycode |
+| K_MUTE | Keycode |
+| K_VOLUP | Keycode |
+| K_VOLDOWN | Keycode |
+| K_LPAREN | Keycode |
+| K_RPAREN | Keycode |
+| K_LCTRL | Keycode |
+| K_LSHIFT | Keycode |
+| K_LALT | Keycode |
+| K_LGUI | Keycode |
+| K_RCTRL | Keycode |
+| K_RSHIFT | Keycode |
+| K_RALT | Keycode |
+| K_RGUI | Keycode |
