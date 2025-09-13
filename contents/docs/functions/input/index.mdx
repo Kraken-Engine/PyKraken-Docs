@@ -3,8 +3,10 @@ title: Input
 description: Functions for handling input actions and bindings.
 ---
 
-## Bind
 ---
+
+## Bind
+<div className="api-card">
 
 `bind(name: str, actions: list[InputAction]) → None`
 
@@ -12,11 +14,13 @@ Bind a list of input actions to a name.
 
 _**Parameters**_
 
-- `name`: The name to bind the actions to.
-- `actions`: The list of input actions to bind.
+- `name` : The name to bind the actions to.
+- `actions` : The list of input actions to bind.
+
+</div>
 
 ## Unbind
----
+<div className="api-card">
 
 `unbind(name: str) → None`
 
@@ -24,10 +28,12 @@ Unbind all input actions associated with a name.
 
 _**Parameters**_
 
-- `name`: The name to unbind the actions from.
+- `name` : The name to unbind the actions from.
+
+</div>
 
 ## Get Direction
----
+<div className="api-card">
 
 `get_direction(up: str, right: str, down: str, left: str) → Vec2`
 
@@ -44,8 +50,10 @@ _**Returns**_
 
 `Vec2` : A vector representing the direction based on the input actions.
 
+</div>
+
 ## Get Axis
----
+<div className="api-card">
 
 `get_axis(negative: str, positive: str) → float`
 
@@ -60,8 +68,10 @@ _**Returns**_
 
 `float` : A float representing the axis value based on the input actions.
 
+</div>
+
 ## Is Pressed
----
+<div className="api-card">
 
 `is_pressed(name: str) → bool`
 
@@ -75,8 +85,10 @@ _**Returns**_
 
 `bool` : A boolean indicating whether the input action is currently pressed.
 
+</div>
+
 ## Is Just Pressed
----
+<div className="api-card">
 
 `is_just_pressed(name: str) → bool`
 
@@ -90,8 +102,10 @@ _**Returns**_
 
 `bool` : A boolean indicating whether the input action was just pressed.
 
+</div>
+
 ## Is Just Released
----
+<div className="api-card">
 
 `is_just_released(name: str) → bool`
 
@@ -104,3 +118,5 @@ _**Parameters**_
 _**Returns**_
 
 `bool` : A boolean indicating whether the input action was just released.
+
+</div>

@@ -1,0 +1,54 @@
+---
+title: Renderer
+description: Functions for managing rendering operations and the render target.
+---
+
+---
+
+## Clear
+<div className="api-card">
+
+`clear(color: Color = None) → None`
+
+Clear the current render target with the specified color.
+
+_**Parameters**_
+
+- `color` : The color to clear with. If omitted, black is used.
+
+---
+
+`clear(r: int, g: int, b: int, a: int = 255) → None`
+
+Clear the current render target with the specified RGBA color components.
+
+_**Parameters**_
+
+- `r` : Red component (0-255).
+- `g` : Green component (0-255).
+- `b` : Blue component (0-255).
+- `a` : Alpha component (0-255), defaults to 255 (opaque).
+
+</div>
+
+## Present
+<div className="api-card">
+
+`present() → None`
+
+Present the current render target to the display, swapping buffers.
+
+</div>
+
+## Get Res
+<div className="api-card">
+
+`get_res() → Vec2`
+
+Get the current resolution of the renderer's output target.
+
+_**Returns**_
+
+`Vec2` : The width and height of the render target in pixels.
+
+</div>

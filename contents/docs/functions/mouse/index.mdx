@@ -3,30 +3,36 @@ title: Mouse
 description: Functions for handling mouse input and cursor state.
 ---
 
-## Get Pos
 ---
 
-`get_pos() → tuple[float, float]`
+## Get Pos
+<div className="api-card">
+
+`get_pos() → Vec2`
 
 Get the current position of the mouse cursor.
 
 _**Returns**_
 
-`tuple[float, float]` : The current mouse position as (x, y) coordinates.
+`Vec2` : The current mouse position as a 2D vector.
+
+</div>
 
 ## Get Rel
----
+<div className="api-card">
 
-`get_rel() → tuple[float, float]`
+`get_rel() → Vec2`
 
 Get the relative mouse movement since the last frame.
 
 _**Returns**_
 
-`tuple[float, float]` : The relative movement of the mouse as (dx, dy).
+`Vec2` : The relative movement of the mouse as a 2D vector.
+
+</div>
 
 ## Is Pressed
----
+<div className="api-card">
 
 `is_pressed(button: MouseButton) → bool`
 
@@ -40,8 +46,11 @@ _**Returns**_
 
 `bool` : True if the button is currently pressed.
 
+</div>
+
 ## Is Just Pressed
----
+<div className="api-card">
+
 `is_just_pressed(button: MouseButton) → bool`
 
 Check if a mouse button was pressed this frame.
@@ -54,8 +63,10 @@ _**Returns**_
 
 `bool` : True if the button was just pressed.
 
+</div>
+
 ## Is Just Released
----
+<div className="api-card">
 
 `is_just_released(button: MouseButton) → bool`
 
@@ -69,8 +80,10 @@ _**Returns**_
 
 `bool` : True if the button is currently pressed.
 
+</div>
+
 ## Lock
----
+<div className="api-card">
 
 `lock() → None`
 
@@ -79,15 +92,19 @@ Lock the mouse to the center of the window.
 Useful for first-person controls where you want to capture mouse movement
 without letting the cursor leave the window area.
 
+</div>
+
 ## Unlock
----
+<div className="api-card">
 
 `unlock() → None`
 
 Unlock the mouse from the window, allowing it to move freely.
 
+</div>
+
 ## Is Locked
----
+<div className="api-card">
 
 `is_locked() → bool`
 
@@ -97,8 +114,10 @@ _**Returns**_
 
 `bool` : True if the mouse is locked.
 
+</div>
+
 ## Hide
----
+<div className="api-card">
 
 `hide() → None`
 
@@ -106,15 +125,19 @@ Hide the mouse cursor from view.
 
 The cursor will be invisible but mouse input will still be tracked.
 
+</div>
+
 ## Show
----
+<div className="api-card">
 
 `show() → None`
 
 Show the mouse cursor if it was hidden.
 
+</div>
+
 ## Is Hidden
----
+<div className="api-card">
 
 `is_hidden() → bool`
 
@@ -123,3 +146,5 @@ Check if the mouse cursor is currently hidden.
 _**Returns**_
 
 `bool` : True if the cursor is hidden.
+
+</div>

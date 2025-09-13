@@ -1,0 +1,123 @@
+---
+title: Draw
+description: Functions for drawing shapes and primitives on a canvas.
+---
+
+---
+
+## Point
+<div className="api-card">
+
+`point(point: Vec2, color: Color) → None`
+
+Draws a point at the specified coordinates with the given color.
+
+_**Parameters**_
+
+- `point` : The coordinates of the point to be drawn.
+- `color` : The color of the point.
+
+</div>
+
+## Points
+<div className="api-card">
+
+`points(points: Sequence[Vec2], color: Color) → None`
+
+Batch draws multiple points at the specified coordinates with the given color.
+
+_**Parameters**_
+
+- `points` : A sequence of coordinates where points will be drawn.
+- `color` : The color of the points.
+
+</div>
+
+## Points From NDArray
+<div className="api-card">
+
+`points_from_ndarray(points: numpy.ndarray, color: Color) → None`
+
+Batch draws multiple points from a NumPy ndarray of coordinates with the given color.
+
+_**Parameters**_
+
+- `points` : An ndarray of shape (N, 2) containing point coordinates.
+- `color` : The color of the points.
+
+</div>
+
+## Circle
+<div className="api-card">
+
+`circle(circle: Circle, color: Color, thickness = 0) → None`
+
+Draws a circle at the specified center with the given radius, color, and optional outline thickness.
+
+_**Parameters**_
+
+- `circle` : The circle to be drawn, including center and radius.
+- `color` : The color of the circle.
+- `thickness` : The thickness of the circle's outline. Defaults to 0 (filled).
+
+</div>
+
+## Line
+<div className="api-card">
+
+`line(line: Line, color: Color, thickness = 1) → None`
+
+Draws a line segment between two points with the given color and optional thickness.
+
+_**Parameters**_
+
+- `line` : The line segment to be drawn, including start and end points.
+- `color` : The color of the line.
+- `thickness` : The thickness of the line. Defaults to 1.
+
+</div>
+
+## Rect
+<div className="api-card">
+
+`rect(rect: Rect, color: Color, thickness = 0) → None`
+
+Draws a rectangle at the specified position with the given size, color, and optional outline thickness.
+
+_**Parameters**_
+
+- `rect` : The rectangle to be drawn, including position and size.
+- `color` : The color of the rectangle.
+- `thickness` : The thickness of the rectangle's outline. Defaults to 0 (filled).
+
+</div>
+
+## Rects
+<div className="api-card">
+
+`rects(rects: Sequence[Rect], color: Color, thickness = 0) → None`
+
+Batch draws multiple rectangles at the specified positions with the given sizes, color, and optional outline thickness.
+
+_**Parameters**_
+
+- `rects` : A sequence of rectangles to be drawn, each including position and size.
+- `color` : The color of the rectangles.
+- `thickness` : The thickness of the rectangles' outlines. Defaults to 0 (filled).
+
+</div>
+
+## Polygon
+<div className="api-card">
+
+`polygon(polygon: Polygon, color: Color, filled = false) → None`
+
+Draws a polygon defined by a sequence of points with the given color and optional fill.
+
+_**Parameters**_
+
+- `polygon` : The polygon to be drawn, defined by its vertices.
+- `color` : The color of the polygon.
+- `filled` : Whether to fill the polygon. Defaults to false (outline only).
+
+</div>

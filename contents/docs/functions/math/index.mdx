@@ -3,8 +3,10 @@ title: Math
 description: Functions for mathematical operations.
 ---
 
-## Scale To Length
 ---
+
+## Scale To Length
+<div className="api-card">
 
 `scale_to_length(vec: Vec2, length: float) → Vec2`
 
@@ -19,8 +21,10 @@ _**Returns**_
 
 `Vec2` : The scaled vector.
 
+</div>
+
 ## From Polar
----
+<div className="api-card">
 
 `from_polar(angle: float, radius: float) → Vec2`
 
@@ -49,12 +53,14 @@ _**Returns**_
 
 `Vec2` : The created vector.
 
+</div>
+
 ## Normalize
----
+<div className="api-card">
 
 `normalize(vec: Vec2) → Vec2`
 
-Normalize a vector to unit length.
+Normalize a vector to unit length. Will return a zero vector if the input vector has zero length.
 
 _**Parameters**_
 
@@ -64,10 +70,12 @@ _**Returns**_
 
 `Vec2` : The normalized vector.
 
-## Clamp Vec
----
+</div>
 
-`clamp_vec(vec: Vec2, min: Vec2, max: Vec2) → Vec2`
+## Clamp
+<div className="api-card">
+
+`clamp(vec: Vec2, min: Vec2, max: Vec2) → Vec2`
 
 Clamp a vector to a specified range.
 
@@ -81,8 +89,26 @@ _**Returns**_
 
 `Vec2` : The clamped vector.
 
-## Lerp
 ---
+
+`clamp(value: float, min: float, max: float) → float`
+
+Clamp a value to a specified range.
+
+_**Parameters**_
+
+- `value` : The value to clamp.
+- `min` : The minimum allowed value.
+- `max` : The maximum allowed value.
+
+_**Returns**_
+
+`float` : The clamped value.
+
+</div>
+
+## Lerp
+<div className="api-card">
 
 `lerp(a: Vec2, b: Vec2, t: float) → Vec2`
 
@@ -114,8 +140,10 @@ _**Returns**_
 
 `float` : The interpolated float.
 
+</div>
+
 ## Remap
----
+<div className="api-card">
 
 `remap(in_min: float, in_max: float, out_min: float, out_max: float, value: float) → float`
 
@@ -133,8 +161,10 @@ _**Returns**_
 
 `float` : The remapped value.
 
+</div>
+
 ## To Deg
----
+<div className="api-card">
 
 `to_deg(rad: float) → float`
 
@@ -148,8 +178,10 @@ _**Returns**_
 
 `float` : The angle in degrees.
 
+</div>
+
 ## To Rad
----
+<div className="api-card">
 
 `to_rad(deg: float) → float`
 
@@ -163,8 +195,10 @@ _**Returns**_
 
 `float` : The angle in radians.
 
+</div>
+
 ## Dot
----
+<div className="api-card">
 
 `dot(a: Vec2, b: Vec2) → float`
 
@@ -179,8 +213,10 @@ _**Returns**_
 
 `float` : The dot product of the two vectors.
 
+</div>
+
 ## Cross
----
+<div className="api-card">
 
 `cross(a: Vec2, b: Vec2) → float`
 
@@ -195,8 +231,10 @@ _**Returns**_
 
 `float` : The cross product of the two vectors.
 
+</div>
+
 ## Angle Between
----
+<div className="api-card">
 
 `angle_between(a: Vec2, b: Vec2) → float`
 
@@ -210,3 +248,5 @@ _**Parameters**_
 _**Returns**_
 
 `float` : The angle between the two vectors in radians.
+
+</div>

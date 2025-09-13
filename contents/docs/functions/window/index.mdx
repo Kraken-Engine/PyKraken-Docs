@@ -3,8 +3,10 @@ title: Window
 description: Functions for creating and managing an application window.
 ---
 
-## Create
 ---
+
+## Create
+<div className="api-card">
 
 `create(title: str, resolution: Vec2, scaled: bool = False) → None`
 
@@ -12,12 +14,14 @@ Create a new application window.
 
 _**Parameters**_
 
-- `title`: The title of the window.
-- `resolution`: The initial resolution of the window.
-- `scaled`: Whether the window should be automatically scaled up to fit into the display.
+- `title` : The title of the window.
+- `resolution` : The initial resolution of the window.
+- `scaled` : Whether the window should be automatically scaled up to fit into the display.
+
+</div>
 
 ## Is Open
----
+<div className="api-card">
 
 `is_open() → bool`
 
@@ -25,17 +29,21 @@ Check if the window is currently open.
 
 _**Returns**_
 
-- `bool`: True if the window is open, False otherwise.
+- `bool` : True if the window is open, False otherwise.
+
+</div>
 
 ## Close
----
+<div className="api-card">
 
 `close() → None`
 
 Close the application window.
 
+</div>
+
 ## Get Size
----
+<div className="api-card">
 
 `get_size() → Vec2`
 
@@ -43,10 +51,12 @@ Get the current size of the window. If scaled, the size will be adjusted to fit 
 
 _**Returns**_
 
-- `Vec2`: The current size of the window.
+- `Vec2` : The current size of the window.
+
+</div>
 
 ## Set Fullscreen
----
+<div className="api-card">
 
 `set_fullscreen(fullscreen: bool) → None`
 
@@ -54,10 +64,12 @@ Set the window to a fullscreen mode.
 
 _**Parameters**_
 
-- `fullscreen`: Whether to enable or disable fullscreen mode.
+- `fullscreen` : Whether to enable or disable fullscreen mode.
+
+</div>
 
 ## Is Fullscreen
----
+<div className="api-card">
 
 `is_fullscreen() → bool`
 
@@ -65,10 +77,12 @@ Check if the window is currently in fullscreen mode.
 
 _**Returns**_
 
-- `bool`: True if the window is in fullscreen mode, False otherwise.
+- `bool` : True if the window is in fullscreen mode, False otherwise.
+
+</div>
 
 ## Set Title
----
+<div className="api-card">
 
 `set_title(title: str) → None`
 
@@ -76,10 +90,12 @@ Set the title of the window.
 
 _**Parameters**_
 
-- `title`: The new title of the window.
+- `title` : The new title of the window.
+
+</div>
 
 ## Get Title
----
+<div className="api-card">
 
 `get_title() → str`
 
@@ -87,4 +103,19 @@ Get the current title of the window.
 
 _**Returns**_
 
-- `str`: The current title of the window.
+- `str` : The current title of the window.
+
+</div>
+
+## Get Scale
+<div className="api-card">
+
+`get_scale() → int`
+
+Get the scale of the window relative to the renderer resolution.
+
+_**Returns**_
+
+- `int` : The current scale factor of the window.
+
+</div>
