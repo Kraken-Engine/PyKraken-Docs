@@ -3,8 +3,10 @@ title: Color
 description: Functions for creating and manipulating colors.
 ---
 
-## From Hex
 ---
+
+## From Hex
+<div className="api-card">
 
 `from_hex(hex: str) → Color`
 
@@ -18,8 +20,10 @@ _**Returns**_
 
 `Color` : A color object containing RGBA values represented by the provided hex string.
 
+</div>
+
 ## From HSV
----
+<div className="api-card">
 
 `from_hsv(h: float, s: float, v: float, a: float = 1.0) → Color`
 
@@ -36,8 +40,10 @@ _**Returns**_
 
 `Color` : A color object containing RGBA values represented by the provided HSV(A) values.
 
+</div>
+
 ## Lerp
----
+<div className="api-card">
 
 `lerp(a: Color, b: Color, t: float) → Color`
 
@@ -53,8 +59,10 @@ _**Returns**_
 
 `Color` : The color at the current position in interpolation.
 
+</div>
+
 ## Invert
----
+<div className="api-card">
 
 `invert(color: Color) → Color`
 
@@ -68,8 +76,10 @@ _**Returns**_
 
 `Color` : The color with its RGB values inverted.
 
+</div>
+
 ## Grayscale
----
+<div className="api-card">
 
 `grayscale(color: Color) → Color`
 
@@ -82,3 +92,5 @@ _**Parameters**_
 _**Returns**_
 
 `Color` : The grayscale version of the color.
+
+</div>

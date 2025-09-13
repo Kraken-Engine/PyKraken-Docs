@@ -1,29 +1,80 @@
 ---
 title: Time
+description: Functions for managing time and frame rate.
 ---
 
-## Get Elapsed
 ---
 
-`get_elapsed() → float`
+## Get Delta
+<div className="api-card">
 
-Get the elapsed time since the program started.
+`get_delta() → float`
+
+Get the time elapsed since the last frame.
+
+For stability, the returned delta is clamped so it will not be
+smaller than 1/12 seconds (equivalent to capping at 12 FPS). This prevents
+unstable calculations that rely on delta when very small frame times are
+measured. This will not, however, clamp the value returned by `get_fps()`.
 
 _**Returns**_
 
-`float` : The total elapsed time since program start, in seconds.
+`float` : The delta time in seconds.
 
-## Delay
----
+</div>
 
-`delay(milliseconds: int) → None`
+## Get FPS
+<div className="api-card">
 
-Delay the program execution for the specified duration.
+`get_fps() → float`
 
-This function pauses execution for the given number of milliseconds.
-Useful for simple timing control, though using `Clock.tick` is generally
-preferred for frame rate control.
+Get the current frames per second (FPS) measurement.
+
+_**Returns**_
+
+`float` : The current FPS value.
+
+</div>
+
+## Set Target
+<div className="api-card">
+
+`set_target(frame_rate: int) → None`
+
+Set the target frame rate for the application.
 
 _**Parameters**_
 
-- `milliseconds` : The number of milliseconds to delay.
+- `frame_rate` : The desired frame rate in frames per second (FPS). Values &le; 0 disable frame rate limiting.
+
+</div>
+
+## Get Elapsed
+<div className="api-card">
+
+`get_elapsed() → float`
+
+Get the total elapsed time since the application started.
+
+_**Returns**_
+
+`float` : The elapsed time in seconds.
+
+</div>
+
+## Delay
+<div className="api-card">
+
+`delay(ms: float) → None`
+
+Pause the application for a specified duration.
+
+This function pauses execution for the given number of milliseconds.
+Useful for simple timing control, though using `time.set_target()` is generally
+preferred for precise frame rate control with nanosecond accuracy.
+
+_**Parameters**_
+
+- `ms` : The amount of time to delay in milliseconds.
+
+</div>

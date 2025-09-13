@@ -3,8 +3,10 @@ title: Gamepad
 description: Functions for interacting with gamepad inputs.
 ---
 
-## Is Pressed
 ---
+
+## Is Pressed
+<div className="api-card">
 
 `is_pressed(button: GamepadButton, slot: int = 0) → bool`
 
@@ -19,8 +21,10 @@ _**Returns**_
 
 `bool` : True if the button is pressed, otherwise False.
 
+</div>
+
 ## Is Just Pressed
----
+<div className="api-card">
 
 `is_just_pressed(button: GamepadButton, slot: int = 0) → bool`
 
@@ -35,8 +39,10 @@ _**Returns**_
 
 `bool` : True if the button was just pressed, otherwise False.
 
+</div>
+
 ## Is Just Released
----
+<div className="api-card">
 
 `is_just_released(button: GamepadButton, slot: int = 0) → bool`
 
@@ -51,10 +57,12 @@ _**Returns**_
 
 `bool` : True if the button was just released, otherwise False.
 
-## Get Left Stick
----
+</div>
 
-`get_left_stick(slot: int = 0) → tuple[float, float]`
+## Get Left Stick
+<div className="api-card">
+
+`get_left_stick(slot: int = 0) → Vec2`
 
 Get the left analog stick position.
 
@@ -64,12 +72,14 @@ _**Parameters**_
 
 _**Returns**_
 
-`tuple[float, float]` : The current position of the left analog stick.
+`Vec2` : The current position of the left analog stick.
+
+</div>
 
 ## Get Right Stick
----
+<div className="api-card">
 
-`get_right_stick(slot: int = 0) → tuple[float, float]`
+`get_right_stick(slot: int = 0) → Vec2`
 
 Get the right analog stick position.
 
@@ -79,10 +89,12 @@ _**Parameters**_
 
 _**Returns**_
 
-`tuple[float, float]` : The current position of the right analog stick.
+`Vec2` : The current position of the right analog stick.
+
+</div>
 
 ## Get Left Trigger
----
+<div className="api-card">
 
 `get_left_trigger(slot: int = 0) → float`
 
@@ -96,8 +108,10 @@ _**Returns**_
 
 `float` : The current pressure value of the left trigger.
 
+</div>
+
 ## Get Right Trigger
----
+<div className="api-card">
 
 `get_right_trigger(slot: int = 0) → float`
 
@@ -111,8 +125,10 @@ _**Returns**_
 
 `float` : The current pressure value of the right trigger.
 
+</div>
+
 ## Set Deadzone
----
+<div className="api-card">
 
 `set_deadzone(deadzone: float, slot: int = 0) → None`
 
@@ -123,8 +139,10 @@ _**Parameters**_
 - `deadzone` : The dead zone value to set (between 0 and 1).
 - `slot` : The gamepad slot to modify (default is 0).
 
+</div>
+
 ## Get Deadzone
----
+<div className="api-card">
 
 `get_deadzone(slot: int = 0) → float`
 
@@ -138,8 +156,10 @@ _**Returns**_
 
 `float` : The current dead zone value for the specified gamepad slot.
 
+</div>
+
 ## Get Connected Slots
----
+<div className="api-card">
 
 `get_connected_slots() → list[int]`
 
@@ -148,3 +168,5 @@ Get a list of currently connected gamepad slots.
 _**Returns**_
 
 `list[int]` : A list of integers representing the slots of connected gamepads.
+
+</div>

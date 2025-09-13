@@ -1,44 +1,144 @@
 ---
 title: Transform
-description: Functions for transforming surfaces.
+description: Functions for transforming pixel arrays.
+---
+
 ---
 
 ## Flip
----
+<div className="api-card">
 
-`flip(surface: Surface, flip_x: bool, flip_y: bool) → Surface`
+`flip(pixel_array: PixelArray, flip_x: bool, flip_y: bool) → PixelArray`
 
-## Scale
----
+Flip a pixel array horizontally and/or vertically.
 
-`scale(surface: Surface, size: Vec2) → Surface`
+_**Parameters**_
+
+- `pixel_array` : The pixel array to flip.
+- `flip_x` : Whether to flip the pixel array horizontally.
+- `flip_y` : Whether to flip the pixel array vertically.
+
+_**Returns**_
+
+`PixelArray` : The flipped pixel array.
+
+</div>
+
+## Scale To
+<div className="api-card">
+
+`scale_to(pixel_array: PixelArray, size: Vec2) → PixelArray`
+
+Scale a pixel array to a specific size.
+
+_**Parameters**_
+- `pixel_array` : The pixel array to scale.
+- `size` : The size to scale the pixel array to.
+
+_**Returns**_
+
+`PixelArray` : The scaled pixel array.
+
+</div>
 
 ## Scale By
----
+<div className="api-card">
 
-`scale_by(surface: Surface, factor: float) → Surface`
+`scale_by(pixel_array: PixelArray, factor: float) → PixelArray`
+
+Scale a pixel array by a specific factor.
+
+_**Parameters**_
+
+- `pixel_array` : The pixel array to scale.
+- `factor` : The factor by which to scale the pixel array.
+
+_**Returns**_
+
+`PixelArray` : The scaled pixel array.
+
+</div>
 
 ## Rotate
----
+<div className="api-card">
 
-`rotate(surface: Surface, angle: float) → Surface`
+`rotate(pixel_array: PixelArray, angle: float) → PixelArray`
+
+Rotate a pixel array by a specific angle.
+
+_**Parameters**_
+
+- `pixel_array` : The pixel array to rotate.
+- `angle` : The angle in degrees to rotate the pixel array.
+
+_**Returns**_
+
+`PixelArray` : The rotated pixel array.
+
+</div>
 
 ## Box Blur
----
+<div className="api-card">
 
-`box_blur(surface: Surface, radius: float, repeat_edge_pixels: bool = True) → Surface`
+`box_blur(pixel_array: PixelArray, radius: int, repeat_edge_pixels: bool = True) → PixelArray`
+
+_**Parameters**_
+
+- `pixel_array` : The pixel array to blur.
+- `radius` : The radius of the blur.
+- `repeat_edge_pixels` : Whether to repeat edge pixels when blurring.
+
+_**Returns**_
+
+`PixelArray` : The blurred pixel array.
+
+</div>
 
 ## Gaussian Blur
----
+<div className="api-card">
 
-`gaussian_blur(surface: Surface, radius: float, repeat_edge_pixels: float = True) → Surface`
+`gaussian_blur(pixel_array: PixelArray, radius: int, repeat_edge_pixels: bool = True) → PixelArray`
+
+_**Parameters**_
+
+- `pixel_array` : The pixel array to blur.
+- `radius` : The radius of the blur.
+- `repeat_edge_pixels` : Whether to repeat edge pixels when blurring.
+
+_**Returns**_
+
+`PixelArray` : The blurred pixel array.
+
+</div>
 
 ## Invert
----
+<div className="api-card">
 
-`invert(surface: Surface) → Surface`
+`invert(pixel_array: PixelArray) → PixelArray`
+
+Invert the colors of a pixel array.
+
+_**Parameters**_
+
+- `pixel_array` : The pixel array to invert.
+
+_**Returns**_
+
+`PixelArray` : The color-inverted pixel array.
+
+</div>
 
 ## Grayscale
----
+<div className="api-card">
 
-`grayscale(surface: Surface) → Surface`
+`grayscale(pixel_array: PixelArray) → PixelArray`
+
+Convert a pixel array to luma grayscale.
+
+_**Parameters**_
+- `pixel_array` : The pixel array to convert to grayscale.
+
+_**Returns**_
+`PixelArray` : The grayscale pixel array.
+
+</div>
