@@ -252,9 +252,12 @@ td>code {
 
 /* 1) Tokens (reuse your HSL palette & shadows) */
 :root {
-  --surface-1: var(--card);        /* box background */
-  --surface-2: var(--sidebar);     /* side rails */
-  --surface-3: var(--secondary);   /* active/hover */
+  --surface-1: var(--card);
+  /* box background */
+  --surface-2: var(--sidebar);
+  /* side rails */
+  --surface-3: var(--secondary);
+  /* active/hover */
   --link: var(--primary);
   --link-muted: var(--ring);
   --elev-1: var(--shadow-lg);
@@ -283,14 +286,19 @@ main .prose {
   box-shadow: var(--elev-2);
 
   /* center column sizing */
-  max-width: 75ch;                  /* comfy read width */
-  margin: 2rem auto !important;     /* center it */
-  padding: 2rem;                    /* internal spacing */
+  max-width: 75ch;
+  /* comfy read width */
+  margin: 2rem auto !important;
+  /* center it */
+  padding: 2rem;
+  /* internal spacing */
 }
 
 /* Optional: on very wide screens, give a touch more width */
 @media (min-width: 1440px) {
-  main .prose { max-width: 82ch; }
+  main .prose {
+    max-width: 82ch;
+  }
 }
 
 /* 4) Sidebar stays on its own plane (no layout changes) */
@@ -299,15 +307,18 @@ aside[aria-label="Sidebar"] {
   border-right: 1px solid hsl(var(--sidebar-border));
   box-shadow: var(--elev-1);
 }
+
 aside[aria-label="Sidebar"] nav a {
   color: hsl(var(--muted-foreground));
   border-left: 2px solid transparent;
   padding-left: .75rem;
 }
+
 aside[aria-label="Sidebar"] nav a:hover {
   background: color-mix(in oklab, hsl(var(--surface-2)) 78%, black);
   color: hsl(var(--foreground));
 }
+
 aside[aria-label="Sidebar"] nav a[aria-current="page"],
 aside[aria-label="Sidebar"] nav a[aria-current="true"],
 aside[aria-label="Sidebar"] nav .active {
@@ -318,27 +329,28 @@ aside[aria-label="Sidebar"] nav .active {
 
 /* 5) Headings: only affect docs content, not site title */
 /* .prose h1 { letter-spacing: .2px; line-height: 1.15; margin-top: 0; } */
-.prose h2 { padding-left: 0.25rem; }
+.prose h2 {
+  padding-left: 0.25rem;
+}
+
 /* .prose h3 { color: hsl(var(--muted-foreground)); margin-top: 1.6rem; } */
 
 /* 6) Links & focus (scoped where it matters) */
-.prose a { color: hsl(var(--link)); text-underline-offset: 2px; }
-.prose a:hover { color: color-mix(in oklab, hsl(var(--link)) 82%, white); }
+.prose a {
+  color: hsl(var(--link));
+  text-underline-offset: 2px;
+}
+
+.prose a:hover {
+  color: color-mix(in oklab, hsl(var(--link)) 82%, white);
+}
+
 .prose :focus-visible {
   outline: 2px solid hsl(var(--link));
   outline-offset: 2px;
   border-radius: 6px;
 }
 
-/* 7) Code blocks as mini cards inside the prose box */
-.prose pre {
-  background: color-mix(in oklab, hsl(var(--card)) 86%, black) !important;
-  border: 1px solid hsl(var(--border));
-  border-radius: calc(var(--radius) - 2px);
-  box-shadow: var(--elev-1);
-  padding: 1rem 1.1rem !important;
-  overflow-x: auto;
-}
 .prose code:not(pre code) {
   background: color-mix(in oklab, hsl(var(--card)) 80%, black);
   border: 1px solid hsl(var(--border));
@@ -347,7 +359,8 @@ aside[aria-label="Sidebar"] nav .active {
 }
 
 /* 8) Right-side TOC card, if present */
-aside[aria-label="On this page"], nav[aria-label="On this page"] {
+aside[aria-label="On this page"],
+nav[aria-label="On this page"] {
   background: hsl(var(--surface-2));
   border: 1px solid hsl(var(--border));
   border-radius: 10px;
@@ -356,18 +369,34 @@ aside[aria-label="On this page"], nav[aria-label="On this page"] {
 }
 
 /* 9) Tables/blockquote readability (inside prose only) */
-.prose table { border-collapse: separate; border-spacing: 0; width: 100%; }
-.prose td, .prose th { border-bottom: 1px solid hsl(var(--border)); padding: .6rem .7rem; }
+.prose table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+.prose td,
+.prose th {
+  border-bottom: 1px solid hsl(var(--border));
+  padding: .6rem .7rem;
+}
+
 .prose tbody tr:nth-child(odd) {
   background: color-mix(in oklab, hsl(var(--surface-1)) 92%, black);
 }
+
 .prose blockquote {
   border-left: 3px solid hsl(var(--link));
   background: color-mix(in oklab, hsl(var(--surface-1)) 88%, black);
   padding: .8rem 1rem;
   border-radius: 8px;
 }
-.prose hr { border: 0; border-top: 1px solid hsl(var(--border)); opacity: .7; }
+
+.prose hr {
+  border: 0;
+  border-top: 1px solid hsl(var(--border));
+  opacity: .7;
+}
 
 /* The card wrapper */
 .prose .api-card {
@@ -375,12 +404,14 @@ aside[aria-label="On this page"], nav[aria-label="On this page"] {
   border: 1px solid hsl(var(--border));
   border-radius: var(--radius);
   box-shadow: var(--elev-1);
-  padding: 1rem 1.25rem 0.25rem;
+  padding: 1.25rem 1.25rem 0.25rem;
   margin: 0.75rem 0 2rem;
 }
 
 /* Make the first paragraph (your short summary) breathe a bit less */
-.prose .api-card > p:first-child { margin-top: 0.25rem; }
+.prose .api-card>p:first-child {
+  margin-top: 0.25rem;
+}
 
 /* Signature “pill” if it’s the first inline code block in the card */
 /* .prose .api-card > p:first-child code {
@@ -394,7 +425,10 @@ aside[aria-label="On this page"], nav[aria-label="On this page"] {
 } */
 
 /* Lists/notes inside the card */
-.prose .api-card ul { margin-top: .5rem; }
+.prose .api-card ul {
+  margin-top: .5rem;
+}
+
 .prose .api-card blockquote {
   border-left: 3px solid hsl(var(--primary));
   background: color-mix(in oklab, hsl(var(--surface-1)) 88%, black);
@@ -403,8 +437,50 @@ aside[aria-label="On this page"], nav[aria-label="On this page"] {
 }
 
 /* Optional: compact “Parameters” heading look */
-.prose .api-card em strong { 
-  font-style: normal; 
-  color: hsl(var(--muted-foreground)); 
-  letter-spacing: .2px; 
+.prose .api-card em strong {
+  font-style: normal;
+  color: hsl(var(--muted-foreground));
+  letter-spacing: .2px;
+}
+
+.api-sig {
+  background: #282c34;
+  color: #abb2bf;
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-size: 0.95em;
+  /* white-space: nowrap; */
+}
+
+.api-sig .keyword {
+  color: #c678dd;
+}
+
+/* fn name (purple) */
+.api-sig .type {
+  color: #56b6c2;
+}
+
+/* types (cyan) */
+.api-sig .param {
+  color: #e5c07b;
+}
+
+/* whole param (yellow) */
+.api-sig .param-name {
+  color: #e5c07b;
+}
+
+.api-sig .literal {
+  color: #98c379;
+}
+
+/* defaults/values (green) */
+.api-sig .arrow {
+  color: #61afef;
+}
+
+/* → (blue) */
+.api-sig .punct {
+  color: #abb2bf;
 }

@@ -8,7 +8,7 @@ description: Functions for creating and managing an application window.
 ## Create
 <div className="api-card">
 
-`create(title: str, resolution: Vec2, scaled: bool = False) → None`
+<ApiSig name="create" params={[{ name: "title", type: "str" }, { name: "resolution", type: "Vec2" }, { name: "scaled", type: "bool", default: "False" }]} returns="None" />
 
 Create a new application window.
 
@@ -23,7 +23,7 @@ _**Parameters**_
 ## Is Open
 <div className="api-card">
 
-`is_open() → bool`
+<ApiSig name="is_open" returns="bool" />
 
 Check if the window is currently open.
 
@@ -36,7 +36,7 @@ _**Returns**_
 ## Close
 <div className="api-card">
 
-`close() → None`
+<ApiSig name="close" returns="None" />
 
 Close the application window.
 
@@ -45,7 +45,7 @@ Close the application window.
 ## Get Size
 <div className="api-card">
 
-`get_size() → Vec2`
+<ApiSig name="get_size" returns="Vec2" />
 
 Get the current size of the window. If scaled, the size will be adjusted to fit the display.
 
@@ -58,7 +58,7 @@ _**Returns**_
 ## Set Fullscreen
 <div className="api-card">
 
-`set_fullscreen(fullscreen: bool) → None`
+<ApiSig name="set_fullscreen" params={[{ name: "fullscreen", type: "bool" }]} returns="None" />
 
 Set the window to a fullscreen mode.
 
@@ -71,7 +71,7 @@ _**Parameters**_
 ## Is Fullscreen
 <div className="api-card">
 
-`is_fullscreen() → bool`
+<ApiSig name="is_fullscreen" returns="bool" />
 
 Check if the window is currently in fullscreen mode.
 
@@ -84,7 +84,7 @@ _**Returns**_
 ## Set Title
 <div className="api-card">
 
-`set_title(title: str) → None`
+<ApiSig name="set_title" params={[{ name: "title", type: "str" }]} returns="None" />
 
 Set the title of the window.
 
@@ -97,7 +97,7 @@ _**Parameters**_
 ## Get Title
 <div className="api-card">
 
-`get_title() → str`
+<ApiSig name="get_title" returns="str" />
 
 Get the current title of the window.
 
@@ -110,7 +110,7 @@ _**Returns**_
 ## Get Scale
 <div className="api-card">
 
-`get_scale() → int`
+<ApiSig name="get_scale" returns="int" />
 
 Get the scale of the window relative to the renderer resolution.
 

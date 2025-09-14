@@ -8,7 +8,7 @@ description: Functions for rectangle operations.
 ## Move
 <div className="api-card">
 
-`move(rect: Rect, offset: Vec2) → Rect`
+<ApiSig name="move" params={[{ name: "rect", type: "Rect" }, { name: "offset", type: "Vec2" }]} returns="Rect" />
 
 Move a rectangle by a specified offset.
 
@@ -26,7 +26,7 @@ _**Returns**_
 ## Clamp
 <div className="api-card">
 
-`clamp(rect: Rect, min: Vec2, max: Vec2) → Rect`
+<ApiSig name="clamp" params={[{ name: "rect", type: "Rect" }, { name: "min", type: "Vec2" }, { name: "max", type: "Vec2" }]} returns="Rect" />
 
 Clamp a rectangle to a specified range.
 
@@ -42,7 +42,7 @@ _**Returns**_
 
 ---
 
-`clamp(rect: Rect, other: Rect) → Rect`
+<ApiSig name="clamp" params={[{ name: "rect", type: "Rect" }, { name: "other", type: "Rect" }]} returns="Rect" />
 
 Clamp a rectangle to another rectangle.
 
@@ -60,7 +60,7 @@ _**Returns**_
 ## Scale By
 <div className="api-card">
 
-`scale_by(rect: Rect, factor: float) → Rect`
+<ApiSig name="scale_by" params={[{ name: "rect", type: "Rect" }, { name: "factor", type: "float" }]} returns="Rect" />
 
 Scale a rectangle by a specified factor.
 
@@ -75,7 +75,7 @@ _**Returns**_
 
 ---
 
-`scale_by(rect: Rect, factor: Vec2) → Rect`
+<ApiSig name="scale_by" params={[{ name: "rect", type: "Rect" }, { name: "factor", type: "Vec2" }]} returns="Rect" />
 
 Scale a rectangle by a specified factor for each component.
 
@@ -93,7 +93,7 @@ _**Returns**_
 ## Scale To
 <div className="api-card">
 
-`scale_to(rect: Rect, size: Vec2) → Rect`
+<ApiSig name="scale_to" params={[{ name: "rect", type: "Rect" }, { name: "size", type: "Vec2" }]} returns="Rect" />
 
 Scale a rectangle to a specified size.
 

@@ -8,7 +8,7 @@ description: Functions for creating and manipulating colors.
 ## From Hex
 <div className="api-card">
 
-`from_hex(hex: str) → Color`
+<ApiSig name="from_hex" params={[{ name: "hex", type: "str" }]} returns="Color" />
 
 Create a Color from a hex string (e.g. "#FF00FF" or "#FF00FF80").
 
@@ -25,7 +25,12 @@ _**Returns**_
 ## From HSV
 <div className="api-card">
 
-`from_hsv(h: float, s: float, v: float, a: float = 1.0) → Color`
+<ApiSig name="from_hsv" params={[
+  { name: "h", type: "float" },
+  { name: "s", type: "float" },
+  { name: "v", type: "float" },
+  { name: "a", type: "float", default: 1.0 }
+]} returns="Color" />
 
 Create a Color from HSV(A) values.
 
@@ -45,7 +50,11 @@ _**Returns**_
 ## Lerp
 <div className="api-card">
 
-`lerp(a: Color, b: Color, t: float) → Color`
+<ApiSig name="lerp" params={[
+  { name: "a", type: "Color" },
+  { name: "b", type: "Color" },
+  { name: "t", type: "float" }
+]} returns="Color" />
 
 Linearly interpolate between two colors.
 
@@ -64,7 +73,7 @@ _**Returns**_
 ## Invert
 <div className="api-card">
 
-`invert(color: Color) → Color`
+<ApiSig name="invert" params={[{ name: "color", type: "Color" }]} returns="Color" />
 
 Return the inverse of a color (flips RGB channels).
 
@@ -81,7 +90,7 @@ _**Returns**_
 ## Grayscale
 <div className="api-card">
 
-`grayscale(color: Color) → Color`
+<ApiSig name="grayscale" params={[{ name: "color", type: "Color" }]} returns="Color" />
 
 Convert a color to grayscale.
 

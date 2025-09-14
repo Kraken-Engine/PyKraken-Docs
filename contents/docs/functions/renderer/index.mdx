@@ -8,7 +8,7 @@ description: Functions for managing rendering operations and the render target.
 ## Clear
 <div className="api-card">
 
-`clear(color: Color = None) → None`
+<ApiSig name="clear" params={[{ name: "color", type: "Color", default: "None" }]} returns="None" />
 
 Clear the current render target with the specified color.
 
@@ -18,7 +18,7 @@ _**Parameters**_
 
 ---
 
-`clear(r: int, g: int, b: int, a: int = 255) → None`
+<ApiSig name="clear" params={[{ name: "r", type: "int" }, { name: "g", type: "int" }, { name: "b", type: "int" }, { name: "a", type: "int", default: "255" }]} returns="None" />
 
 Clear the current render target with the specified RGBA color components.
 
@@ -34,7 +34,7 @@ _**Parameters**_
 ## Present
 <div className="api-card">
 
-`present() → None`
+<ApiSig name="present" returns="None" />
 
 Present the current render target to the display, swapping buffers.
 
@@ -43,7 +43,7 @@ Present the current render target to the display, swapping buffers.
 ## Get Res
 <div className="api-card">
 
-`get_res() → Vec2`
+<ApiSig name="get_res" returns="Vec2" />
 
 Get the current resolution of the renderer's output target.
 

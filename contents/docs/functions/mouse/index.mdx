@@ -8,7 +8,7 @@ description: Functions for handling mouse input and cursor state.
 ## Get Pos
 <div className="api-card">
 
-`get_pos() → Vec2`
+<ApiSig name="get_pos" returns="Vec2" />
 
 Get the current position of the mouse cursor.
 
@@ -21,7 +21,7 @@ _**Returns**_
 ## Get Rel
 <div className="api-card">
 
-`get_rel() → Vec2`
+<ApiSig name="get_rel" returns="Vec2" />
 
 Get the relative mouse movement since the last frame.
 
@@ -34,7 +34,7 @@ _**Returns**_
 ## Is Pressed
 <div className="api-card">
 
-`is_pressed(button: MouseButton) → bool`
+<ApiSig name="is_pressed" params={[{ name: "button", type: "MouseButton" }]} returns="bool" />
 
 Check if a mouse button is currently pressed.
 
@@ -51,7 +51,7 @@ _**Returns**_
 ## Is Just Pressed
 <div className="api-card">
 
-`is_just_pressed(button: MouseButton) → bool`
+<ApiSig name="is_just_pressed" params={[{ name: "button", type: "MouseButton" }]} returns="bool" />
 
 Check if a mouse button was pressed this frame.
 
@@ -68,7 +68,7 @@ _**Returns**_
 ## Is Just Released
 <div className="api-card">
 
-`is_just_released(button: MouseButton) → bool`
+<ApiSig name="is_just_released" params={[{ name: "button", type: "MouseButton" }]} returns="bool" />
 
 Check if a mouse button was released this frame.
 
@@ -85,7 +85,7 @@ _**Returns**_
 ## Lock
 <div className="api-card">
 
-`lock() → None`
+<ApiSig name="lock" returns="None" />
 
 Lock the mouse to the center of the window.
 
@@ -97,7 +97,7 @@ without letting the cursor leave the window area.
 ## Unlock
 <div className="api-card">
 
-`unlock() → None`
+<ApiSig name="unlock" returns="None" />
 
 Unlock the mouse from the window, allowing it to move freely.
 
@@ -106,7 +106,7 @@ Unlock the mouse from the window, allowing it to move freely.
 ## Is Locked
 <div className="api-card">
 
-`is_locked() → bool`
+<ApiSig name="is_locked" returns="bool" />
 
 Check if the mouse is currently locked to the window.
 
@@ -119,7 +119,7 @@ _**Returns**_
 ## Hide
 <div className="api-card">
 
-`hide() → None`
+<ApiSig name="hide" returns="None" />
 
 Hide the mouse cursor from view.
 
@@ -130,7 +130,7 @@ The cursor will be invisible but mouse input will still be tracked.
 ## Show
 <div className="api-card">
 
-`show() → None`
+<ApiSig name="show" returns="None" />
 
 Show the mouse cursor if it was hidden.
 
@@ -139,7 +139,7 @@ Show the mouse cursor if it was hidden.
 ## Is Hidden
 <div className="api-card">
 
-`is_hidden() → bool`
+<ApiSig name="is_hidden" returns="bool" />
 
 Check if the mouse cursor is currently hidden.
 

@@ -8,7 +8,7 @@ description: Functions for mathematical operations.
 ## Scale To Length
 <div className="api-card">
 
-`scale_to_length(vec: Vec2, length: float) → Vec2`
+<ApiSig name="scale_to_length" params={[{ name: "vec", type: "Vec2" }, { name: "length", type: "float" }]} returns="Vec2" />
 
 Scale a vector to a specific length.
 
@@ -26,7 +26,7 @@ _**Returns**_
 ## From Polar
 <div className="api-card">
 
-`from_polar(angle: float, radius: float) → Vec2`
+<ApiSig name="from_polar" params={[{ name: "angle", type: "float" }, { name: "radius", type: "float" }]} returns="Vec2" />
 
 Create a vector from polar coordinates.
 
@@ -41,7 +41,7 @@ _**Returns**_
 
 ---
 
-`from_polar(polar: PolarCoordinate) → Vec2`
+<ApiSig name="from_polar" params={[{ name: "polar", type: "PolarCoordinate" }]} returns="Vec2" />
 
 Create a vector from a polar coordinate object.
 
@@ -58,7 +58,7 @@ _**Returns**_
 ## Normalize
 <div className="api-card">
 
-`normalize(vec: Vec2) → Vec2`
+<ApiSig name="normalize" params={[{ name: "vec", type: "Vec2" }]} returns="Vec2" />
 
 Normalize a vector to unit length. Will return a zero vector if the input vector has zero length.
 
@@ -75,7 +75,7 @@ _**Returns**_
 ## Clamp
 <div className="api-card">
 
-`clamp(vec: Vec2, min: Vec2, max: Vec2) → Vec2`
+<ApiSig name="clamp" params={[{ name: "vec", type: "Vec2" }, { name: "min", type: "Vec2" }, { name: "max", type: "Vec2" }]} returns="Vec2" />
 
 Clamp a vector to a specified range.
 
@@ -91,7 +91,7 @@ _**Returns**_
 
 ---
 
-`clamp(value: float, min: float, max: float) → float`
+<ApiSig name="clamp" params={[{ name: "value", type: "float" }, { name: "min", type: "float" }, { name: "max", type: "float" }]} returns="float" />
 
 Clamp a value to a specified range.
 
@@ -110,7 +110,7 @@ _**Returns**_
 ## Lerp
 <div className="api-card">
 
-`lerp(a: Vec2, b: Vec2, t: float) → Vec2`
+<ApiSig name="lerp" params={[{ name: "a", type: "Vec2" }, { name: "b", type: "Vec2" }, { name: "t", type: "float" }]} returns="Vec2" />
 
 Linearly interpolate between two vectors.
 
@@ -126,7 +126,7 @@ _**Returns**_
 
 ---
 
-`lerp(a: float, b: float, t: float) → float`
+<ApiSig name="lerp" params={[{ name: "a", type: "float" }, { name: "b", type: "float" }, { name: "t", type: "float" }]} returns="float" />
 
 Linearly interpolate between two floats.
 
@@ -145,7 +145,7 @@ _**Returns**_
 ## Remap
 <div className="api-card">
 
-`remap(in_min: float, in_max: float, out_min: float, out_max: float, value: float) → float`
+<ApiSig name="remap" params={[{ name: "in_min", type: "float" }, { name: "in_max", type: "float" }, { name: "out_min", type: "float" }, { name: "out_max", type: "float" }, { name: "value", type: "float" }]} returns="float" />
 
 Remap a value from one range to another.
 
@@ -166,7 +166,7 @@ _**Returns**_
 ## To Deg
 <div className="api-card">
 
-`to_deg(rad: float) → float`
+<ApiSig name="to_deg" params={[{ name: "rad", type: "float" }]} returns="float" />
 
 Convert radians to degrees.
 
@@ -183,7 +183,7 @@ _**Returns**_
 ## To Rad
 <div className="api-card">
 
-`to_rad(deg: float) → float`
+<ApiSig name="to_rad" params={[{ name: "deg", type: "float" }]} returns="float" />
 
 Convert degrees to radians.
 
@@ -200,7 +200,7 @@ _**Returns**_
 ## Dot
 <div className="api-card">
 
-`dot(a: Vec2, b: Vec2) → float`
+<ApiSig name="dot" params={[{ name: "a", type: "Vec2" }, { name: "b", type: "Vec2" }]} returns="float" />
 
 Calculate the dot product of two vectors.
 
@@ -218,7 +218,7 @@ _**Returns**_
 ## Cross
 <div className="api-card">
 
-`cross(a: Vec2, b: Vec2) → float`
+<ApiSig name="cross" params={[{ name: "a", type: "Vec2" }, { name: "b", type: "Vec2" }]} returns="float" />
 
 Calculate the cross product of two vectors.
 
@@ -236,7 +236,7 @@ _**Returns**_
 ## Angle Between
 <div className="api-card">
 
-`angle_between(a: Vec2, b: Vec2) → float`
+<ApiSig name="angle_between" params={[{ name: "a", type: "Vec2" }, { name: "b", type: "Vec2" }]} returns="float" />
 
 Calculate the angle between two vectors in radians.
 

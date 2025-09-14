@@ -8,7 +8,7 @@ description: Functions for transforming pixel arrays.
 ## Flip
 <div className="api-card">
 
-`flip(pixel_array: PixelArray, flip_x: bool, flip_y: bool) → PixelArray`
+<ApiSig name="flip" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "flip_x", type: "bool" }, { name: "flip_y", type: "bool" }]} returns="PixelArray" />
 
 Flip a pixel array horizontally and/or vertically.
 
@@ -27,7 +27,7 @@ _**Returns**_
 ## Scale To
 <div className="api-card">
 
-`scale_to(pixel_array: PixelArray, size: Vec2) → PixelArray`
+<ApiSig name="scale_to" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "size", type: "Vec2" }]} returns="PixelArray" />
 
 Scale a pixel array to a specific size.
 
@@ -44,7 +44,7 @@ _**Returns**_
 ## Scale By
 <div className="api-card">
 
-`scale_by(pixel_array: PixelArray, factor: float) → PixelArray`
+<ApiSig name="scale_by" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "factor", type: "float" }]} returns="PixelArray" />
 
 Scale a pixel array by a specific factor.
 
@@ -62,7 +62,7 @@ _**Returns**_
 ## Rotate
 <div className="api-card">
 
-`rotate(pixel_array: PixelArray, angle: float) → PixelArray`
+<ApiSig name="rotate" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "angle", type: "float" }]} returns="PixelArray" />
 
 Rotate a pixel array by a specific angle.
 
@@ -80,7 +80,7 @@ _**Returns**_
 ## Box Blur
 <div className="api-card">
 
-`box_blur(pixel_array: PixelArray, radius: int, repeat_edge_pixels: bool = True) → PixelArray`
+<ApiSig name="box_blur" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "radius", type: "int" }, { name: "repeat_edge_pixels", type: "bool", default: "True" }]} returns="PixelArray" />
 
 _**Parameters**_
 
@@ -97,7 +97,7 @@ _**Returns**_
 ## Gaussian Blur
 <div className="api-card">
 
-`gaussian_blur(pixel_array: PixelArray, radius: int, repeat_edge_pixels: bool = True) → PixelArray`
+<ApiSig name="gaussian_blur" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "radius", type: "int" }, { name: "repeat_edge_pixels", type: "bool", default: "True" }]} returns="PixelArray" />
 
 _**Parameters**_
 
@@ -114,7 +114,7 @@ _**Returns**_
 ## Invert
 <div className="api-card">
 
-`invert(pixel_array: PixelArray) → PixelArray`
+<ApiSig name="invert" params={[{ name: "pixel_array", type: "PixelArray" }]} returns="PixelArray" />
 
 Invert the colors of a pixel array.
 
@@ -131,7 +131,7 @@ _**Returns**_
 ## Grayscale
 <div className="api-card">
 
-`grayscale(pixel_array: PixelArray) → PixelArray`
+<ApiSig name="grayscale" params={[{ name: "pixel_array", type: "PixelArray" }]} returns="PixelArray" />
 
 Convert a pixel array to luma grayscale.
 

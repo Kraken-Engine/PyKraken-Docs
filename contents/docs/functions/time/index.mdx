@@ -8,7 +8,7 @@ description: Functions for managing time and frame rate.
 ## Get Delta
 <div className="api-card">
 
-`get_delta() → float`
+<ApiSig name="get_delta" returns="float" />
 
 Get the time elapsed since the last frame.
 
@@ -26,7 +26,7 @@ _**Returns**_
 ## Get FPS
 <div className="api-card">
 
-`get_fps() → float`
+<ApiSig name="get_fps" returns="float" />
 
 Get the current frames per second (FPS) measurement.
 
@@ -39,7 +39,7 @@ _**Returns**_
 ## Set Target
 <div className="api-card">
 
-`set_target(frame_rate: int) → None`
+<ApiSig name="set_target" params={[{ name: "frame_rate", type: "int" }]} returns="None" />
 
 Set the target frame rate for the application.
 
@@ -52,7 +52,7 @@ _**Parameters**_
 ## Get Elapsed
 <div className="api-card">
 
-`get_elapsed() → float`
+<ApiSig name="get_elapsed" returns="float" />
 
 Get the total elapsed time since the application started.
 
@@ -65,7 +65,7 @@ _**Returns**_
 ## Delay
 <div className="api-card">
 
-`delay(ms: float) → None`
+<ApiSig name="delay" params={[{ name: "ms", type: "float" }]} returns="None" />
 
 Pause the application for a specified duration.
 

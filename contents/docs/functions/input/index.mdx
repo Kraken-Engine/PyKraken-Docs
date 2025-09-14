@@ -8,7 +8,7 @@ description: Functions for handling input actions and bindings.
 ## Bind
 <div className="api-card">
 
-`bind(name: str, actions: list[InputAction]) → None`
+<ApiSig name="bind" params={[{ name: "name", type: "str" }, { name: "actions", type: "list[InputAction]" }]} returns="None" />
 
 Bind a list of input actions to a name.
 
@@ -22,7 +22,7 @@ _**Parameters**_
 ## Unbind
 <div className="api-card">
 
-`unbind(name: str) → None`
+<ApiSig name="unbind" params={[{ name: "name", type: "str" }]} returns="None" />
 
 Unbind all input actions associated with a name.
 
@@ -35,7 +35,7 @@ _**Parameters**_
 ## Get Direction
 <div className="api-card">
 
-`get_direction(up: str, right: str, down: str, left: str) → Vec2`
+<ApiSig name="get_direction" params={[{ name: "up", type: "str" }, { name: "right", type: "str" }, { name: "down", type: "str" }, { name: "left", type: "str" }]} returns="Vec2" />
 
 Get the direction vector based on the input actions.
 
@@ -55,7 +55,7 @@ _**Returns**_
 ## Get Axis
 <div className="api-card">
 
-`get_axis(negative: str, positive: str) → float`
+<ApiSig name="get_axis" params={[{ name: "negative", type: "str" }, { name: "positive", type: "str" }]} returns="float" />
 
 Get the axis value based on the input actions.
 
@@ -73,7 +73,7 @@ _**Returns**_
 ## Is Pressed
 <div className="api-card">
 
-`is_pressed(name: str) → bool`
+<ApiSig name="is_pressed" params={[{ name: "name", type: "str" }]} returns="bool" />
 
 Check if an input action is currently pressed.
 
@@ -90,7 +90,7 @@ _**Returns**_
 ## Is Just Pressed
 <div className="api-card">
 
-`is_just_pressed(name: str) → bool`
+<ApiSig name="is_just_pressed" params={[{ name: "name", type: "str" }]} returns="bool" />
 
 Check if an input action was just pressed.
 
@@ -107,7 +107,7 @@ _**Returns**_
 ## Is Just Released
 <div className="api-card">
 
-`is_just_released(name: str) → bool`
+<ApiSig name="is_just_released" params={[{ name: "name", type: "str" }]} returns="bool" />
 
 Check if an input action was just released.
 

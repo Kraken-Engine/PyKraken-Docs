@@ -28,6 +28,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import ApiSig from "@/components/ApiSig";
 
 // add custom components
 const components = {
@@ -49,6 +50,7 @@ const components = {
   tr: TableRow,
   tbody: TableBody,
   t: TableCell,
+  ApiSig,
 };
 
 // can be used for other pages like blogs, Guides etc
