@@ -23,7 +23,7 @@ export const NAVLINKS = [
   },
   {
     title: "Community",
-    href: "https://discord.gg/YOUR_DISCORD_INVITE", // Replace this!
+    href: "https://discord.gg/jMdx9UmqX8",
   },
 ];
 
