@@ -1,0 +1,41 @@
+---
+title: Line
+description: A representation of a line segment.
+---
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `a` | The starting point of the line | `Vec2` |
+| `b` | The ending point of the line | `Vec2` |
+| `ax` | The x-coordinate of the starting point | `float` |
+| `ay` | The y-coordinate of the starting point | `float` |
+| `bx` | The x-coordinate of the ending point | `float` |
+| `by` | The y-coordinate of the ending point | `float` |
+| `length` | The length of the line | `float` |
+
+## Methods
+---
+
+### Move
+<div className="api-card">
+
+<ApiSig name="move" params={[{ name: "offset", type: "Vec2" }]} returns="None" />
+
+Move the line by a specified offset.
+
+_**Parameters**_
+- `offset` : The offset to move the line by.
+
+</div>
+
+### Copy
+<div className="api-card">
+
+<ApiSig name="copy" returns="Line" />
+
+Create a copy of the line.
+
+</div>

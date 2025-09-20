@@ -1,0 +1,229 @@
+---
+title: Mask
+description: A 2D binary mask for pixel-perfect collision detection and pixel manipulation.
+---
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `width` | The width of the mask | `int` |
+| `height` | The height of the mask | `int` |
+| `size` | The size of the mask | `Vec2` |
+| `rect` | The rectangle defining the mask area | `Rect` |
+
+## Methods
+---
+
+### Clear
+<div className="api-card">
+
+<ApiSig name="clear" returns="None" />
+
+Clear the mask, setting all values to False.
+
+</div>
+
+### Fill
+<div className="api-card">
+
+<ApiSig name="fill" returns="None" />
+
+Fill the mask, setting all values to True.
+
+</div>
+
+### Add
+<div className="api-card">
+
+<ApiSig name="add" params={[{ name: "other", type: "Mask" }, { name: "offset", type: "Vec2", default: "None" }]} returns="None" />
+
+Add another mask to this mask.
+
+_**Parameters**_
+- `other` : The other mask to add.
+
+</div>
+
+### Subtract
+<div className="api-card">
+
+<ApiSig name="subtract" params={[{ name: "other", type: "Mask" }, { name: "offset", type: "Vec2", default: "None" }]} returns="None" />
+
+Subtract another mask from this mask.
+
+_**Parameters**_
+- `other` : The other mask to subtract.
+
+</div>
+
+### Invert
+<div className="api-card">
+
+<ApiSig name="invert" returns="None" />
+
+Invert the mask, flipping all values.
+
+</div>
+
+### Is Empty
+<div className="api-card">
+
+<ApiSig name="is_empty" returns="bool" />
+
+Check if the mask is empty (all values are False).
+
+_**Returns**_
+
+`bool` : True if the mask is empty, False otherwise.
+
+</div>
+
+### Set At
+<div className="api-card">
+
+<ApiSig name="set_at" params={[{ name: "pos", type: "Vec2" }, { name: "value", type: "bool" }]} returns="None" />
+
+Set the value at a specific position in the mask.
+
+_**Parameters**_
+
+- `pos` : The position to set the value at.
+- `value` : The value to set.
+
+</div>
+
+### Get At
+<div className="api-card">
+
+<ApiSig name="get_at" params={[{ name: "pos", type: "Vec2" }]} returns="bool" />
+
+Get the value at a specific position in the mask.
+
+_**Parameters**_
+
+- `pos` : The position to get the value from.
+
+_**Returns**_
+
+`bool` : The value at the specified position.
+
+</div>
+
+### Get Count
+<div className="api-card">
+
+<ApiSig name="get_count" returns="int" />
+
+Get the count of True values in the mask.
+
+_**Returns**_
+
+`int` : The number of True values in the mask.
+
+</div>
+
+### Get Bounding Rect
+<div className="api-card">
+
+<ApiSig name="get_bounding_rect" returns="Rect" />
+
+Get the bounding rectangle of the mask.
+
+_**Returns**_
+
+`Rect` : The bounding rectangle of the mask.
+
+</div>
+
+### Get Center of Mass
+<div className="api-card">
+
+<ApiSig name="get_center_of_mass" returns="Vec2" />
+
+Get the center of mass of the mask.
+
+_**Returns**_
+
+`Vec2` : The center of mass of the mask.
+
+</div>
+
+### Get Collision Points
+<div className="api-card">
+
+<ApiSig name="get_collision_points" params={[{ name: "other", type: "Mask" }, { name: "offset", type: "Vec2", default: "None" }]} returns="list[Vec2]" />
+
+Get the collision points between this mask and another mask.
+
+_**Returns**_
+
+`list[Vec2]` : The list of collision points.
+
+</div>
+
+### Get Outline
+<div className="api-card">
+
+<ApiSig name="get_outline" returns="list[Vec2]" />
+
+Get the outline points of the mask.
+
+_**Returns**_
+
+`list[Vec2]` : The list of outline points.
+
+</div>
+
+### Get Overlap Area
+<div className="api-card">
+
+<ApiSig name="get_overlap_area" params={[{ name: "other", type: "Mask" }, { name: "offset", type: "Vec2", default: "None" }]} returns="int" />
+
+Get the overlap area (number of pixels) between this mask and another mask.
+
+_**Returns**_
+
+`int` : The overlap area.
+
+</div>
+
+### Get Overlap Mask
+<div className="api-card">
+
+<ApiSig name="get_overlap_mask" params={[{ name: "other", type: "Mask" }, { name: "offset", type: "Vec2", default: "None" }]} returns="Mask" />
+
+Get the overlap mask between this mask and another mask.
+
+_**Returns**_
+
+`Mask` : The overlap mask.
+
+</div>
+
+### Get Pixel Array
+<div className="api-card">
+
+<ApiSig name="get_pixel_array" returns="PixelArray" />
+
+Create a pixel array out of the mask.
+
+_**Returns**_
+
+`PixelArray` : The pixel array from the mask.
+
+</div>
+
+### Copy
+<div className="api-card">
+
+<ApiSig name="copy" returns="Mask" />
+
+Create a copy of the mask.
+
+_**Returns**_
+
+`Mask` : The copied mask.
+
+</div>

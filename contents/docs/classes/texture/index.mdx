@@ -1,0 +1,137 @@
+---
+title: Texture
+description: A 2D texture that can be rendered to the screen.
+---
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `flip` | Whether the texture is flipped horizontally and/or vertically | `Flip` |
+| `angle` | The rotation angle of the texture in degrees | `float` |
+
+## Methods
+---
+
+### Get Size
+<div className="api-card">
+
+<ApiSig name="get_size" returns="Vec2" />
+
+Get the size of the texture.
+
+_**Returns**_
+`Vec2` : The size of the texture as a Vec2.
+
+</div>
+
+### Get Rect
+<div className="api-card">
+
+<ApiSig name="get_rect" returns="Rect" />
+
+Get the rectangle of the texture.
+
+_**Returns**_
+`Rect` : The dimensions of the texture as a Rect.
+
+</div>
+
+### Set Tint
+<div className="api-card">
+
+<ApiSig name="set_tint" params={[{name: 'color', type: 'Color'}]} returns="None" />
+
+Set the color tint applied to the texture during rendering.
+
+_**Parameters**_
+- `color` : The color to apply as a tint.
+
+</div>
+
+### Get Tint
+<div className="api-card">
+
+<ApiSig name="get_tint" returns="Color" />
+
+Get the current color tint applied to the texture.
+
+_**Returns**_
+`Color` : The current color tint of the texture.
+
+</div>
+
+### Set Alpha
+<div className="api-card">
+
+<ApiSig name="set_alpha" params={[{name: 'alpha', type: 'float'}]} returns="None" />
+
+Set the alpha modulation of the texture.
+
+_**Parameters**_
+- `alpha` : The alpha modulation value to set.
+
+</div>
+
+### Get Alpha
+<div className="api-card">
+
+<ApiSig name="get_alpha" returns="float" />
+
+Get the alpha modulation of the texture.
+
+_**Returns**_
+`float` : The alpha modulation value of the texture.
+
+</div>
+
+### Make Additive
+<div className="api-card">
+
+<ApiSig name="make_additive" returns="None" />
+
+Set the texture's blending mode to additive.
+
+</div>
+
+### Make Multiply
+<div className="api-card">
+
+<ApiSig name="make_multiply" returns="None" />
+
+Set the texture's blending mode to multiply.
+
+</div>
+
+### Make Normal
+<div className="api-card">
+
+<ApiSig name="make_normal" returns="None" />
+
+Set the texture's blending mode to normal.
+
+</div>
+
+### Render
+<div className="api-card">
+
+<ApiSig name="render" params={[{name: 'dst', type: 'Rect'}, {name: 'src', type: 'Rect', default: 'None'}]} returns="None" />
+
+Render the texture within the specified destination rectangle, optionally using a source rectangle to select a portion of the texture.
+
+_**Parameters**_
+- `dst` : The destination rectangle to render the texture into.
+- `src` : An optional source rectangle to select a portion of the texture.
+
+---
+
+<ApiSig name="render" params={[{name: 'pos', type: 'Vec2', default: 'None'}, {name: 'anchor', type: 'Anchor', default: 'CENTER'}]} returns="None" />
+
+Render the texture at the specified position, optionally using an anchor point to control the alignment.
+
+_**Parameters**_
+- `pos` : The position to render the texture.
+- `anchor` : The anchor point for alignment.
+
+</div>

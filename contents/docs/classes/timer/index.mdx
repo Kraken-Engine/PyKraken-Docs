@@ -1,0 +1,53 @@
+---
+title: Timer
+description: A simple countdown timer.
+---
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `done` | Whether the timer has completed | `bool` |
+| `time_remaining` | The remaining time on the timer in seconds | `float` |
+| `elapsed_time` | The elapsed time since the timer started in seconds | `float` |
+| `progress` | The progress of the timer as a float between 0.0 and 1.0 | `float` |
+
+## Methods
+---
+
+### Start
+<div className="api-card">
+
+<ApiSig name="start" returns="None" />
+
+Start the timer.
+
+</div>
+
+### Pause
+<div className="api-card">
+
+<ApiSig name="pause" returns="None" />
+
+Pause the timer.
+
+</div>
+
+### Resume
+<div className="api-card">
+
+<ApiSig name="resume" returns="None" />
+
+Resume the timer.
+
+</div>
+
+### Reset
+<div className="api-card">
+
+<ApiSig name="reset" returns="None" />
+
+Reset the timer to its initial state.
+
+</div>

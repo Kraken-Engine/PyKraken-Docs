@@ -1,0 +1,63 @@
+---
+title: EasingAnimation
+description: An animation for easing transitions between two points.
+---
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `is_done` | Indicates if the animation is complete | `bool` |
+
+## Methods
+---
+
+### Step
+<div className="api-card">
+
+<ApiSig name="step" returns="Vec2" />
+
+Advance the animation by one step.
+
+_**Returns**_
+
+`Vec2` : The current position of the animation.
+
+</div>
+
+### Pause
+<div className="api-card">
+
+<ApiSig name="pause" returns="None" />
+
+Pause the animation.
+
+</div>
+
+### Resume
+<div className="api-card">
+
+<ApiSig name="resume" returns="None" />
+
+Resume the animation.
+
+</div>
+
+### Restart
+<div className="api-card">
+
+<ApiSig name="restart" returns="None" />
+
+Restart the animation.
+
+</div>
+
+### Reverse
+<div className="api-card">
+
+<ApiSig name="reverse" returns="None" />
+
+Reverse the direction of the animation.
+
+</div>

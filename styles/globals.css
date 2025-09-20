@@ -329,9 +329,9 @@ aside[aria-label="Sidebar"] nav .active {
 
 /* 5) Headings: only affect docs content, not site title */
 /* .prose h1 { letter-spacing: .2px; line-height: 1.15; margin-top: 0; } */
-.prose h2 {
+/* .prose h2 {
   padding-left: 0.25rem;
-}
+} */
 
 /* .prose h3 { color: hsl(var(--muted-foreground)); margin-top: 1.6rem; } */
 
@@ -483,4 +483,8 @@ nav[aria-label="On this page"] {
 /* → (blue) */
 .api-sig .punct {
   color: #abb2bf;
+}
+
+aside>div>div>div>div>div>div>div>div {
+  padding-left: 1em;
 }

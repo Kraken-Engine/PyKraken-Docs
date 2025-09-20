@@ -1,0 +1,43 @@
+---
+title: TileMap
+description: A Tiled map containing multiple layers of tiles.
+---
+
+## Methods
+---
+
+### Get Layer
+<div className="api-card">
+
+<ApiSig name="get_layer" params={[{name: 'name', type: 'str'}, {name: 'type', type: 'Layer.Type', default: 'Layer.TILE'}]} returns="Layer" />
+
+Get a layer object from the tile map by name and type.
+
+_**Returns**_
+`Layer` : The layer object with the specified name and type.
+
+</div>
+
+### Get Layers
+<div className="api-card">
+
+<ApiSig name="get_layers" returns="list[Layer]" />
+
+Get all layers in the tile map.
+
+_**Returns**_
+`list[Layer]` : A list of all layers in the tile map.
+
+</div>
+
+### Get Tile Collection
+<div className="api-card">
+
+<ApiSig name="get_tile_collection" params={[{name: 'layers', type: 'Sequence[Layer]'}]} returns="list[Tile]" />
+
+Get all tiles from the specified layers.
+
+_**Returns**_
+`list[Tile]` : A list of all tiles from the specified layers.
+
+</div>

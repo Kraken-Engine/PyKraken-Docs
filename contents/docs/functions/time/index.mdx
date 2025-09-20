@@ -12,14 +12,16 @@ description: Functions for managing time and frame rate.
 
 Get the time elapsed since the last frame.
 
-For stability, the returned delta is clamped so it will not be
-smaller than 1/12 seconds (equivalent to capping at 12 FPS). This prevents
-unstable calculations that rely on delta when very small frame times are
-measured. This will not, however, clamp the value returned by `get_fps()`.
-
 _**Returns**_
 
 `float` : The delta time in seconds.
+
+<Note>
+    For stability, the returned delta is clamped so it will not be
+    smaller than 1/12 seconds (equivalent to capping at 12 FPS). This prevents
+    unstable calculations that rely on delta when very small frame times are
+    measured. This will not, however, clamp the value returned by `get_fps()`.
+</Note>
 
 </div>
 
@@ -69,12 +71,13 @@ _**Returns**_
 
 Pause the application for a specified duration.
 
-This function pauses execution for the given number of milliseconds.
-Useful for simple timing control, though using `time.set_target()` is generally
-preferred for precise frame rate control with nanosecond accuracy.
-
 _**Parameters**_
 
 - `ms` : The amount of time to delay in milliseconds.
+
+<Note>
+    This function pauses execution for the given number of milliseconds — useful for simple timing control.
+    Though, `set_target()` is generally preferred for precise frame rate control with nanosecond accuracy.
+</Note>
 
 </div>

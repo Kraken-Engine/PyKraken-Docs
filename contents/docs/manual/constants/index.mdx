@@ -83,6 +83,17 @@ description: A comprehensive list of constants used in the Kraken Engine.
 | C_SWITCH_JOYCON_RIGHT | GamepadType |
 | C_SWITCH_JOYCON_PAIR | GamepadType |
 
+## Pen
+| Name | Description | Type |
+| --- | --- | --- |
+| P_PRESSURE | Pen pressure | PenAxis |
+| P_TILT_X | Pen tilt X axis | PenAxis |
+| P_TILT_Y | Pen tilt Y axis | PenAxis |
+| P_DISTANCE | Distance from the surface | PenAxis |
+| P_ROTATION | Rotation angle | PenAxis |
+| P_SLIDER | Slider position | PenAxis |
+| P_TANGENTIAL_PRESSURE | Tangential pressure | PenAxis |
+
 ## Event Types
 | Name | Description | Type |
 | --- | --- | --- |
@@ -129,6 +140,7 @@ description: A comprehensive list of constants used in the Kraken Engine.
 | DROP_POSITION | Dragged item is moved within drop zone | EventType |
 | AUDIO_DEVICE_ADDED | Audio device connected | EventType |
 | AUDIO_DEVICE_REMOVED | Audio device removed | EventType |
+| AUDIO_DEVICE_FORMAT_CHANGED | Audio device format changed | EventType |
 | PEN_PROXIMITY_IN | Pen moved close to tablet | EventType |
 | PEN_PROXIMITY_OUT | Pen moved away from tablet | EventType |
 | PEN_DOWN | Pen touched the surface | EventType |

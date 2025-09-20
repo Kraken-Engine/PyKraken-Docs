@@ -1,0 +1,36 @@
+---
+title: Audio
+description: An audio buffer loaded completely in memory.
+---
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `volume` | The volume of the audio, from 0.0-1.0, with values above 1.0 allowed for amplification. | `float` |
+
+## Methods
+---
+
+### Play
+<div className="api-card">
+
+<ApiSig name="play" returns="None" />
+
+Play the audio.
+
+<Note>
+    Playing the audio again while it's already playing plays a separate sound instance, meaning multiple plays can overlap.
+</Note>
+
+</div>
+
+### Stop
+<div className="api-card">
+
+<ApiSig name="stop" returns="None" />
+
+Stop all instances of currently playing audio.
+
+</div>

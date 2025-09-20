@@ -1,42 +1,124 @@
 ---
 title: Circle
+description: A representation of a circle shape with basic geometric operations and collision detection.
 ---
-
-Represents a circle shape with position and radius.
-
-Supports collision detection with points, rectangles, other circles, and lines.
 
 ## Properties
+<hr style={{marginBottom: 0}} />
+
 | Name | Description | Type |
 | --- | --- | --- |
-| `pos` | The position of the circle's center | `Vec2` |
-| `radius` | The radius of the circle | `float` |
-| `area` | The area of the circle, calculated as πr² | `float` |
-| `circumference` | The circumference of the circle, calculated as 2πr | `float` |
+| `pos` | The circle's position | `Vec2` |
+| `radius` | The circle's radius | `float` |
+| `area` | The area of the circle | `float` |
+| `circumference` | The circumference of the circle | `float` |
 
 ## Methods
-
-### init
 ---
-Create a new Circle instance
 
 ### Collide Point
----
+<div className="api-card">
+
+<ApiSig name="collide_point" params={[{ name: "point", type: "Vec2" }]} returns="bool" />
+
+Check if a point is inside the circle.
+
+_**Parameters**_
+- `point` : The point to check.
+
+_**Returns**_
+
+`bool` : `True` if the point is inside the circle, otherwise `False`.
+
+</div>
 
 ### Collide Circle
----
+<div className="api-card">
+
+<ApiSig name="collide_circle" params={[{ name: "other", type: "Circle" }]} returns="bool" />
+
+Check if another circle intersects with this circle.
+
+_**Parameters**_
+- `other` : The other circle to check.
+
+_**Returns**_
+
+`bool` : `True` if the circles intersect, otherwise `False`.
+
+</div>
 
 ### Collide Rect
----
+<div className="api-card">
+
+<ApiSig name="collide_rect" params={[{ name: "rect", type: "Rect" }]} returns="bool" />
+
+Check if a rectangle intersects with this circle.
+
+_**Parameters**_
+- `rect` : The rectangle to check.
+
+_**Returns**_
+
+`bool` : `True` if the circle and rectangle intersect, otherwise `False`.
+
+</div>
 
 ### Collide Line
----
+<div className="api-card">
+
+<ApiSig name="collide_line" params={[{ name: "start", type: "Vec2" }, { name: "end", type: "Vec2" }]} returns="bool" />
+
+Check if a line segment intersects with this circle.
+
+_**Parameters**_
+- `start` : The start point of the line segment.
+- `end` : The end point of the line segment.
+
+_**Returns**_
+
+`bool` : `True` if the line segment intersects the circle, otherwise `False`.
+
+</div>
 
 ### Contains
----
+<div className="api-card">
+
+<ApiSig name="contains" params={[{ name: "shape", type: "Vec2 | Circle | Rect | Line" }]} returns="bool" />
+
+Check if a shape is completely contained within the circle.
+
+_**Parameters**_
+- `shape` : The shape to check.
+
+_**Returns**_
+
+`bool` : `True` if the shape is contained within the circle, otherwise `False`.
+
+</div>
 
 ### As Rect
----
+<div className="api-card">
+
+<ApiSig name="as_rect" returns="Rect" />
+
+Get the bounding rectangle of the circle.
+
+_**Returns**_
+
+`Rect` : The bounding rectangle of the circle.
+
+</div>
 
 ### Copy
----
+<div className="api-card">
+
+<ApiSig name="copy" returns="Circle" />
+
+Create a copy of the circle.
+
+_**Returns**_
+
+`Circle` : A new circle with the same properties.
+
+</div>

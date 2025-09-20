@@ -1,0 +1,86 @@
+---
+title: Vec2
+description: A 2D mathematical vector representation.
+---
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `x` | The x-component of the vector | `float` |
+| `y` | The y-component of the vector | `float` |
+| `length` | The length (magnitude) of the vector | `float` |
+| `angle` | The angle of the vector in radians | `float` |
+
+## Methods
+---
+
+### Rotate
+<div className="api-card">
+
+<ApiSig name="rotate" params={[{ name: "radians", type: "float" }]} returns="None" />
+
+Rotate the vector by a given angle in radians.
+
+_**Parameters**_
+
+- `radians` : The angle to rotate the vector by, in radians.
+
+</div>
+
+### Normalize
+<div className="api-card">
+
+<ApiSig name="normalize" returns="None" />
+
+Normalize the vector, making its length 1.
+
+<Note>
+    If the vector has zero length, it will remain unchanged.
+</Note>
+
+</div>
+
+### Scale To Length
+<div className="api-card">
+
+<ApiSig name="scale_to_length" params={[{ name: "length", type: "float" }]} returns="None" />
+
+Scale the vector to a specific length.
+
+_**Parameters**_
+
+- `length` : The length to scale the vector to.
+
+</div>
+
+### Distance To
+<div className="api-card">
+
+<ApiSig name="distance_to" params={[{ name: "other", type: "Vec2" }]} returns="float" />
+
+Calculate the distance to another vector.
+
+_**Parameters**_
+
+- `other` : The other vector to calculate the distance to.
+
+_**Returns**_
+
+`float` : The distance to the other vector.
+
+</div>
+
+### To Polar
+<div className="api-card">
+
+<ApiSig name="to_polar" returns="PolarCoordinate" />
+
+Convert the vector to polar coordinates.
+
+_**Returns**_
+
+`PolarCoordinate` : The polar coordinate object representation of the vector.
+
+</div>

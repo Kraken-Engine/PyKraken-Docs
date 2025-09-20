@@ -1,0 +1,168 @@
+---
+title: Rect
+description: An AABB object with a position and size.
+---
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `x` | The top left x-coordinate of the rectangle's position | `float` |
+| `y` | The top left y-coordinate of the rectangle's position | `float` |
+| `w` | The width of the rectangle | `float` |
+| `h` | The height of the rectangle | `float` |
+| `left` | The left edge x-coordinate of the rectangle | `float` |
+| `right` | The right edge x-coordinate of the rectangle | `float` |
+| `top` | The top edge y-coordinate of the rectangle | `float` |
+| `bottom` | The bottom edge y-coordinate of the rectangle | `float` |
+| `size` | The size of the rectangle as a Vec2 | `Vec2` |
+| `top_left` | The top left corner of the rectangle as a Vec2 | `Vec2` |
+| `top_mid` | The top middle point of the rectangle as a Vec2 | `Vec2` |
+| `top_right` | The top right corner of the rectangle as a Vec2 | `Vec2` |
+| `mid_left` | The middle left point of the rectangle as a Vec2 | `Vec2` |
+| `center` | The center point of the rectangle as a Vec2 | `Vec2` |
+| `mid_right` | The middle right point of the rectangle as a Vec2 | `Vec2` |
+| `bottom_left` | The bottom left corner of the rectangle as a Vec2 | `Vec2` |
+| `bottom_mid` | The bottom middle point of the rectangle as a Vec2 | `Vec2` |
+| `bottom_right` | The bottom right corner of the rectangle as a Vec2 | `Vec2` |
+
+## Methods
+---
+
+### Inflate
+<div className="api-card">
+
+<ApiSig name="inflate" params={[{name: 'offset', type: 'Vec2'}]} returns="None" />
+
+Inflate the rectangle from the center by the given offset.
+
+_**Parameters**_
+
+- `offset` : The amount to inflate the rectangle.
+
+</div>
+
+### Fit
+<div className="api-card">
+
+<ApiSig name="fit" params={[{name: 'other', type: 'Rect'}]} returns="None" />
+
+Fit the rectangle inside another rectangle while maintaining aspect ratio.
+
+_**Parameters**_
+
+- `other` : The other rectangle to fit inside.
+
+</div>
+
+### Contains
+<div className="api-card">
+
+<ApiSig name="contains" params={[{name: 'other', type: 'Rect'}]} returns="bool" />
+
+Check if the rectangle fully contains another rectangle.
+
+_**Parameters**_
+
+- `other` : The other rectangle to check.
+
+_**Returns**_
+
+`bool` : True if this rectangle contains the other, False otherwise.
+
+</div>
+
+### Collide Point
+<div className="api-card">
+
+<ApiSig name="collide_point" params={[{name: 'point', type: 'Vec2'}]} returns="bool" />
+
+Check if a point is colliding with the rectangle.
+
+_**Parameters**_
+
+- `point` : The point to check.
+
+_**Returns**_
+
+`bool` : True if the point is colliding with the rectangle, False otherwise.
+
+</div>
+
+### Collide Rect
+<div className="api-card">
+
+<ApiSig name="collide_rect" params={[{name: 'other', type: 'Rect'}]} returns="bool" />
+
+Check if the rectangle is colliding with another rectangle.
+
+_**Parameters**_
+
+- `other` : The other rectangle to check.
+
+_**Returns**_
+
+`bool` : True if the rectangles are colliding, False otherwise.
+
+</div>
+
+### Clamp
+<div className="api-card">
+
+<ApiSig name="clamp" params={[{name: 'other', type: 'Rect'}]} returns="None" />
+
+Clamp the rectangle inside another rectangle.
+
+_**Parameters**_
+
+- `other` : The other rectangle to clamp inside.
+
+---
+
+<ApiSig name="clamp" params={[{name: 'min', type: 'Vec2'}, {name: 'max', type: 'Vec2'}]} returns="None" />
+
+Clamp the rectangle inside the given min and max bounds.
+
+_**Parameters**_
+
+- `min` : The minimum bounds to clamp inside.
+- `max` : The maximum bounds to clamp inside.
+
+</div>
+
+### Scale By
+<div className="api-card">
+
+<ApiSig name="scale_by" params={[{name: 'factor', type: 'float'}]} returns="None" />
+
+Scale the rectangle by a given factor.
+
+_**Parameters**_
+
+- `factor` : The scale factor.
+
+---
+
+<ApiSig name="scale_by" params={[{name: 'factor', type: 'Vec2'}]} returns="None" />
+
+Scale the rectangle by different factors for width and height.
+
+_**Parameters**_
+
+- `factor` : The scale factors.
+
+</div>
+
+### Scale To
+<div className="api-card">
+
+<ApiSig name="scale_to" params={[{name: 'size', type: 'Vec2'}]} returns="None" />
+
+Scale the rectangle to the given size.
+
+_**Parameters**_
+
+- `size` : The new size of the rectangle.
+
+</div>

@@ -1,29 +1,23 @@
 ---
 title: Camera
+description: A class for managing the camera's position and view in the scene.
 ---
-
-Represents a 2D camera used for rendering.
-
-Controls the viewport's translation, allowing you to move the view of the world.
 
 ## Properties
+<hr style={{marginBottom: 0}} />
+
 | Name | Description | Type |
 | --- | --- | --- |
-| `pos` | Get or set the camera's position | `Vec2` |
+| `pos` | The camera's position | `Vec2` |
 
 ## Methods
-
-### init
 ---
-Create a new camera instance.
 
-_**Parameters**_
-- `pos` (Optional) : The position of the camera. Defaults to (0, 0).
+### Set
+<div className="api-card">
 
-### set
----
-`set() → None`
+<ApiSig name="set" returns="None" />
 
-Set this camera as the active one for rendering.
+Set the camera as the active camera.
 
-Only one camera can be active at a time.
+</div>

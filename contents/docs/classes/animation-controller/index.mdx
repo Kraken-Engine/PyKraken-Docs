@@ -1,0 +1,115 @@
+---
+title: AnimationController
+description: An sprite animation manager and controller.
+---
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `current_animation_name` | The current animation's name | `str` |
+| `current_frame` | The current animation's frame | `Frame` |
+| `playback_speed` | The playback speed multiplier | `float` |
+
+## Methods
+---
+
+### Load Sprite Sheet
+<div className="api-card">
+
+<ApiSig name="load_sprite_sheet" params={[{ name: "name", type: "str" }, { name: "file_path", type: "str" }, { name: "frame_size", type: "Vec2" }, { name: "fps", type: "int" }]} returns="None" />
+
+Load animation frames from a sprite sheet image.
+
+_**Parameters**_
+- `name` : The name to assign to the loaded animation.
+- `file_path` : The path to the sprite sheet image file.
+- `frame_size` : The size of each frame in the sprite sheet.
+- `fps` : The frames per second for the animation playback.
+
+</div>
+
+### Load Folder
+<div className="api-card">
+
+<ApiSig name="load_folder" params={[{ name: "name", type: "str" }, { name: "dir_path", type: "str" }, { name: "fps", type: "int" }]} returns="None" />
+
+Load animation frames from a folder.
+
+_**Parameters**_
+- `name` : The name to assign to the loaded animation.
+- `dir_path` : The path to the folder containing animation frames.
+- `fps` : The frames per second for the animation playback.
+
+</div>
+
+### Remove
+<div className="api-card">
+
+<ApiSig name="remove" params={[{ name: "name", type: "str" }]} returns="None" />
+
+Remove a loaded animation by name.
+
+_**Parameters**_
+- `name` : The name of the animation to remove.
+
+<Note>
+    If the removed animation is currently active, the controller will be left
+    without a current animation.
+</Note>
+
+</div>
+
+### Set
+<div className="api-card">
+
+<ApiSig name="set" params={[{ name: "name", type: "str" }, { name: "rewind", type: "bool", default: "False" }]} returns="None" />
+
+Set the current animation by name.
+
+_**Parameters**_
+- `name` : The name of the animation to set as current.
+- `rewind` : Whether to rewind the animation to the first frame.
+
+</div>
+
+### Is Finished
+<div className="api-card">
+
+<ApiSig name="is_finished" returns="bool" />
+
+Check if the current animation has finished a loop since the last frame update.
+
+_**Returns**_
+
+`bool` : `True` if the animation is finished, otherwise `False`.
+
+</div>
+
+### Rewind
+<div className="api-card">
+
+<ApiSig name="rewind" returns="None" />
+
+Rewind the current animation to the first frame.
+
+</div>
+
+### Pause
+<div className="api-card">
+
+<ApiSig name="pause" returns="None" />
+
+Pause the current animation.
+
+</div>
+
+### Resume
+<div className="api-card">
+
+<ApiSig name="resume" returns="None" />
+
+Resume the current animation.
+
+</div>
