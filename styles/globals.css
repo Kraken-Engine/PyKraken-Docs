@@ -488,3 +488,13 @@ nav[aria-label="On this page"] {
 aside>div>div>div>div>div>div>div>div {
   padding-left: 1em;
 }
+
+#kraken-banner {
+  margin-right: 1.25rem;
+}
+
+#kraken-banner>img {
+  height: 2.75rem;
+  border: 2px white solid;
+  border-radius: 50%;
+}
