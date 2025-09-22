@@ -1,5 +1,5 @@
 import { ModeToggle } from "@/components/theme-toggle";
-import { GithubIcon, CommandIcon } from "lucide-react";
+import { GithubIcon } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "./ui/button";
 import Anchor from "./anchor";
@@ -7,6 +7,7 @@ import { SheetLeftbar } from "./leftbar";
 import { page_routes } from "@/lib/routes-config";
 import { SheetClose } from "@/components/ui/sheet";
 import AlgoliaSearch from "./algolia-search";
+import Image from "next/image";
 
 export const NAVLINKS = [
   {
@@ -74,7 +75,7 @@ export function Navbar() {
 export function Logo() {
   return (
     <Link href="/" className="flex items-center gap-2.5" id="kraken-banner">
-      <img src="/images/faviconnekked.png" />
+      <Image src="/images/faviconnekked.png" alt="Kraken Logo" width={256} height={256} />
       <h2 className="text-md font-bold font-code">Kraken Engine</h2>
     </Link>
   );
