@@ -1,0 +1,98 @@
+---
+title: Font
+description: A typeface object for rendering text in different styles.
+---
+- <ApiSig name="Font" params={[{ name: "file_dir", type: "str" }, { name: "pt_size", type: "int" }]} />
+<Note>
+`file_dir` can be given "kraken-clean" or "kraken-retro" for preloaded fonts.
+If loaded "kraken-retro", `pt_size` will be rounded to the nearest multiple of 8.
+No matter the font, `pt_size` will be clamped to a minimum of 8.
+</Note>
+
+## Methods
+---
+
+### Draw
+<div className="api-card">
+
+<ApiSig name="draw" params={[{name: "text", type: "str"}, {name: "pos", type: "Vec2", default: "None"}, {name: "color", type: "Color", default: "None"}, {name: "wrap_width", type: "int", default: "0"}]} returns="None" />
+
+Draw text to the renderer.
+
+_**Parameters**_
+
+- `text` : The text to render.
+- `pos` : The position to draw the text at (from the top left). Defaults to (0, 0).
+- `color` : The color to render the text as. Defaults to (255, 255, 255).
+- `wrap_width` : Wrap the text at the given pixel width. 0 for no explicit wrapping. Defaults to 0.
+
+<Note>
+`\n` will write text on a new line.
+</Note>
+
+</div>
+
+### Set Bold
+<div className="api-card">
+
+<ApiSig name="set_bold" params={[{name: "on", type: "bool"}]} returns="None" />
+
+Set the text bold state.
+
+_**Parameters**_
+
+- `on` : Whether to enable or disable bold text.
+
+</div>
+
+### Set Italic
+<div className="api-card">
+
+<ApiSig name="set_italic" params={[{name: "on", type: "bool"}]} returns="None" />
+
+Set the text italic state.
+
+_**Parameters**_
+
+- `on` : Whether to enable or disable italic text.
+
+</div>
+
+### Set Underline
+<div className="api-card">
+
+<ApiSig name="set_underline" params={[{name: "on", type: "bool"}]} returns="None" />
+
+Set the text underline state.
+
+_**Parameters**_
+
+- `on` : Whether to enable or disable underline text.
+
+</div>
+
+### Set Strikethrough
+<div className="api-card">
+
+<ApiSig name="set_strikethrough" params={[{name: "on", type: "bool"}]} returns="None" />
+
+Set the text strikethrough state.
+
+_**Parameters**_
+
+- `on` : Whether to enable or disable strikethrough text.
+
+</div>
+
+### Set Pt Size
+<div className="api-card">
+
+<ApiSig name="set_pt_size" params={[{name: "pt", type: "int"}]} returns="None" />
+
+Set the text point size.
+
+_**Parameters**_
+
+- `pt` : The point size to set the text to. Values below 8 are clamped to 8.
+
+</div>

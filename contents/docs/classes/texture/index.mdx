@@ -114,26 +114,3 @@ Set the texture's blending mode to multiply.
 Set the texture's blending mode to normal.
 
 </div>
-
-### Render
-<div className="api-card">
-
-<ApiSig name="render" params={[{name: 'dst', type: 'Rect'}, {name: 'src', type: 'Rect', default: 'None'}]} returns="None" />
-
-Render the texture within the specified destination rectangle, optionally using a source rectangle to select a portion of the texture.
-
-_**Parameters**_
-- `dst` : The destination rectangle to render the texture into.
-- `src` : An optional source rectangle to select a portion of the texture.
-
----
-
-<ApiSig name="render" params={[{name: 'pos', type: 'Vec2', default: 'None'}, {name: 'anchor', type: 'Anchor', default: 'CENTER'}]} returns="None" />
-
-Render the texture at the specified position, optionally using an anchor point to control the alignment.
-
-_**Parameters**_
-- `pos` : The position to render the texture.
-- `anchor` : The anchor point for alignment.
-
-</div>

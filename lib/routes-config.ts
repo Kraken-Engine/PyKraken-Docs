@@ -39,6 +39,7 @@ export const ROUTES: EachRoute[] = [
       { title: "Circle", href: "/circle" },
       { title: "Color", href: "/color" },
       { title: "EasingAnimation", href: "/easing-animation" },
+      { title: "Font", href: "/font" },
       { title: "Line", href: "/line" },
       { title: "Mask", href: "/mask" },
       { title: "PixelArray", href: "/pixel-array" },
