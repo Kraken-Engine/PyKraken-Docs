@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="flex sm:min-h-[87.5vh] min-h-[82vh] flex-col sm:items-center justify-center text-center sm:py-8 py-14">
       <Link
-        href="https://github.com/yourusername/kraken-engine"
+        href="https://github.com/Kraken-Engine/PyKraken"
         target="_blank"
         className="mb-5 sm:text-lg flex items-center gap-2 underline underline-offset-4 sm:-mt-12"
       >
@@ -18,9 +18,8 @@ export default function Home() {
         Build powerful 2D games in Python using Kraken Engine.
       </h1>
       <p className="mb-8 md:text-lg text-base  max-w-[1200px] text-muted-foreground text-left sm:text-center">
-        Kraken is a modern, flexible game engine designed for rapid development
-        and creative freedom. With high-level utilities, low-level access, and a
-        clean API, it&apos;s ideal for solo devs, students, and indie studios.
+        A modern, flexible game engine designed for rapid development and creative control.
+        With high-level utilities and a clean API, it's the best pick for solo devs and hobbyists.
       </p>
       <div className="sm:flex sm:flex-row grid grid-cols-2 items-center sm:gap-5 gap-3 mb-8">
         <Link
@@ -30,14 +29,14 @@ export default function Home() {
           Read Docs
         </Link>
         <Link
-          href="/showcase"
+          href={`/guides${page_routes[0].href}`}
           className={buttonVariants({
             variant: "secondary",
             className: "px-6",
             size: "lg",
           })}
         >
-          View Showcase
+          Follow Guides
         </Link>
       </div>
       <span className="sm:flex hidden flex-row items-start sm:gap-2 gap-0.5 text-muted-foreground text-md mt-5 -mb-12 max-[800px]:mb-12 font-code sm:text-base text-sm font-medium">

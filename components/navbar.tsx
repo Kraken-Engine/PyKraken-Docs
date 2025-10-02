@@ -15,12 +15,12 @@ export const NAVLINKS = [
     href: `/docs${page_routes[0].href}`,
   },
   {
-    title: "Showcase",
-    href: "/showcase",
-  },
-  {
     title: "Guides",
     href: "/guides",
+  },
+  {
+    title: "Showcase",
+    href: "/showcase",
   },
   {
     title: "Community",
