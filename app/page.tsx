@@ -18,9 +18,8 @@ export default function Home() {
         Build powerful 2D games in Python using Kraken Engine.
       </h1>
       <p className="mb-8 md:text-lg text-base  max-w-[1200px] text-muted-foreground text-left sm:text-center">
-        Kraken is a modern, flexible game engine designed for rapid development
-        and creative freedom. With high-level utilities, low-level access, and a
-        clean API, it&apos;s ideal for solo devs, students, and indie studios.
+        A modern, flexible game engine designed for rapid development and creative control.
+        With high-level utilities and a clean API, it&apos;s the best pick for solo devs and hobbyists.
       </p>
       <div className="sm:flex sm:flex-row grid grid-cols-2 items-center sm:gap-5 gap-3 mb-8">
         <Link

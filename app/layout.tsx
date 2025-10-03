@@ -6,6 +6,8 @@ import { Footer } from "@/components/footer";
 import "@/styles/globals.css";
 
 import MainWrapper from "@/components/MainWrapper";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/app-sidebar"
 
 const sansFont = Space_Grotesk({
   subsets: ["latin"],

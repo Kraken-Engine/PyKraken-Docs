@@ -3,6 +3,9 @@
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/app-sidebar"
+
 export default function MainWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isHome = pathname === '/';
@@ -20,9 +23,13 @@ export default function MainWrapper({ children }: { children: React.ReactNode })
           <source src="/videos/doc-bg.mp4" type="video/mp4" />
         </video>
       )}
-      <main className="sm:container mx-auto w-[90vw] h-auto scroll-smooth">
-        {children}
-      </main>
+      <SidebarProvider>
+        <AppSidebar />
+        <main className="sm:container mx-auto w-[90vw] h-auto scroll-smooth">
+          <SidebarTrigger />
+          {children}
+        </main>
+      </SidebarProvider>
     </div>
   );
 }

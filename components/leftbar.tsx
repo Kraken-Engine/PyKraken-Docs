@@ -12,9 +12,15 @@ import { DialogTitle } from "./ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import DocsMenu from "./docs-menu";
 
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/app-sidebar"
+
 export function Leftbar() {
   return (
     <aside className="md:flex hidden w-[20rem] sticky top-16 flex-col h-[93.75vh] overflow-y-auto">
+      {/* <SidebarProvider>
+
+      </SidebarProvider> */}
       <ScrollArea className="py-4 px-2">
         <DocsMenu />
       </ScrollArea>
