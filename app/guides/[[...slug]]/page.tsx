@@ -1,9 +1,12 @@
 import DocsBreadcrumb from "@/components/docs-breadcrumb";
 import Pagination from "@/components/pagination";
 import Toc from "@/components/toc";
-import { docs_routes } from "@/lib/routes-config";
+import { guides_routes } from "@/lib/routes-config";
 import { notFound } from "next/navigation";
-import { getCompiledDocsForSlug, getDocFrontmatter } from "@/lib/markdown";
+import {
+  getCompiledGuidesForSlug,
+  getGuideFrontmatter,
+} from "@/lib/markdown";
 import { Typography } from "@/components/typography";
 
 type PageProps = {
@@ -15,14 +18,14 @@ export default async function DocsPage(props: PageProps) {
   const { slug = [] } = params;
 
   const pathName = slug.join("/");
-  const res = await getCompiledDocsForSlug(pathName);
+  const res = await getCompiledGuidesForSlug(pathName);
 
   if (!res) notFound();
   return (
     <div className="flex items-start gap-10">
       <div className="flex-[4.5] py-10 mx-auto">
         <div className="w-full mx-auto">
-          <DocsBreadcrumb paths={slug} />
+          <DocsBreadcrumb paths={slug} rootLabel="Guides" />
           <Typography>
             <h1 className="sm:text-3xl text-2xl !-mt-0.5">
               {res.frontmatter.title}
@@ -31,12 +34,12 @@ export default async function DocsPage(props: PageProps) {
               {res.frontmatter.description}
             </p>
             <div>{res.content}</div>
-            <Pagination pathname={pathName} />
+            <Pagination pathname={pathName} section="guides" />
           </Typography>
         </div>
       </div>
 
-      <Toc path={pathName} />
+      <Toc path={pathName} section="guides" />
     </div>
   );
 }
@@ -46,7 +49,7 @@ export async function generateMetadata(props: PageProps) {
   const { slug = [] } = params;
 
   const pathName = slug.join("/");
-  const res = await getDocFrontmatter(pathName);
+  const res = await getGuideFrontmatter(pathName);
   if (!res) return {};
   const { title, description } = res;
   return {
@@ -56,7 +59,7 @@ export async function generateMetadata(props: PageProps) {
 }
 
 export function generateStaticParams() {
-  return docs_routes.map((item) => ({
+  return guides_routes.map((item) => ({
     slug: item.href.split("/").slice(1),
   }));
 }

@@ -1,5 +1,5 @@
 import { buttonVariants } from "@/components/ui/button";
-import { page_routes } from "@/lib/routes-config";
+import { docs_routes, guides_routes } from "@/lib/routes-config";
 import { MoveUpRightIcon, TerminalSquareIcon } from "lucide-react";
 import Link from "next/link";
 
@@ -19,17 +19,17 @@ export default function Home() {
       </h1>
       <p className="mb-8 md:text-lg text-base  max-w-[1200px] text-muted-foreground text-left sm:text-center">
         A modern, flexible game engine designed for rapid development and creative control.
-        With high-level utilities and a clean API, it's the best pick for solo devs and hobbyists.
+        With high-level utilities and a clean API, it&apos;s the best pick for solo devs and hobbyists.
       </p>
       <div className="sm:flex sm:flex-row grid grid-cols-2 items-center sm:gap-5 gap-3 mb-8">
         <Link
-          href={`/docs${page_routes[0].href}`}
+          href={`/docs${docs_routes[0].href}`}
           className={buttonVariants({ className: "px-6", size: "lg" })}
         >
           Read Docs
         </Link>
         <Link
-          href={`/guides${page_routes[0].href}`}
+          href={`/guides${guides_routes[0].href}`}
           className={buttonVariants({
             variant: "secondary",
             className: "px-6",

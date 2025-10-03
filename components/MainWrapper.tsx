@@ -1,11 +1,15 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function MainWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isHome = pathname === '/';
+  const [isHome, setIsHome] = useState(false);
+
+  useEffect(() => {
+    setIsHome(pathname === '/');
+  }, [pathname]);
 
   return (
     <div className={`relative w-full ${isHome ? 'home-background' : ''}`}>

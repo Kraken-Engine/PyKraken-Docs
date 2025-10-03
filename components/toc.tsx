@@ -1,9 +1,14 @@
-import { getDocsTocs } from "@/lib/markdown";
+import { getContentTocs, type ContentSection } from "@/lib/markdown";
 import TocObserver from "./toc-observer";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-export default async function Toc({ path }: { path: string }) {
-  const tocs = await getDocsTocs(path);
+type TocProps = {
+  path: string;
+  section?: ContentSection;
+};
+
+export default async function Toc({ path, section = "docs" }: TocProps) {
+  const tocs = await getContentTocs(section, path);
 
   return (
     <div className="xl:flex toc hidden w-[20rem] py-9 sticky top-16 h-[96.95vh] pl-6">

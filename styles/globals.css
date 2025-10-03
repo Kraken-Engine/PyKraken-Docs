@@ -496,6 +496,20 @@ aside>div>div>div>div>div>div>div>div {
 #kraken-banner>img {
   height: 2.75rem;
   width: 2.75rem;
-  border: 2px white solid;
-  border-radius: 50%;
+}
+
+#dbuff {
+  background-color: hsl(35 80% 98%);
+  padding: 4% 10% 6% 4%;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 640px) {
+  #dbuff {
+    width: 100%;
+    padding-left: 4%;
+    padding-right: 12%;
+  }
 }

@@ -1,0 +1,51 @@
+---
+title: How It Works
+---
+
+## What is The Renderer?
+Imagine a personal stage crew for your game window.
+Each frame, you give them instructions:
+1. "Turn the background blue."
+1. "Draw two paddles on the left and right."
+1. "Draw this ball at the center."
+
+They rush behind the curtain, set the scene, and when you're ready to present, the curtain lifts and the player sees the finished frame.
+
+## The Two Buffers
+Games don't draw directly on the screen a player sees.
+That would be "single buffer" rendering, and you can see how that looks for yourself here:
+[Coding Challenge: 3D on Apple II](https://youtu.be/PHfKCxjsmos?t=530&si=aBDHqR8RBO9VQ1OK).
+
+Instead, we use "double buffer" rendering:
+<img src="/images/double buffering.png" alt="Diagram of Double Buffering" id="dbuff" />
+
+## Applying In Code
+When you create a window in Kraken, you also create a global renderer for that window:
+```py
+kn.window.create("Game Window", (800, 600))  # Also creates renderer
+```
+
+To use the renderer, there's a `renderer` submodule with functions for drawing textures, presenting to the screen, and clearing the back buffer.
+Since we want to see our new drawings every frame, we must present the back buffer in the main game loop, typically at the end:
+```py
+while kn.window.is_open():
+    ...
+    # Drawing operations here
+    ...
+    kn.renderer.present()
+```
+
+Now, the buffer won't clear itself. If you try drawing things now and moving them around, you'll see them smear.
+To clear the buffer's old pixels, use the renderer's `clear` function.
+It also optionally accepts a color argument, either as a `Color` object, or individual `r`, `g`, `b`, and `a` values.
+```py
+while kn.window.is_open():
+    ...
+    kn.renderer.clear(kn.color.PURPLE)
+    # Drawing operations here
+    ...
+    kn.renderer.present()
+```
+
+<p style={{marginBottom: 0}}><i>Result:</i></p>
+<img src="/images/rend-works-01.png" alt="The renderer filling the screen with purple" />

@@ -8,7 +8,7 @@ export type EachRoute = {
   tag?: string;
 };
 
-export const ROUTES: EachRoute[] = [
+export const DOC_ROUTES: EachRoute[] = [
   {
     title: "Getting Started",
     href: "/getting-started",
@@ -76,6 +76,19 @@ export const ROUTES: EachRoute[] = [
   },
 ];
 
+export const GUIDE_ROUTES: EachRoute[] = [
+  {
+    title: "Using The Renderer",
+    href: "/using-the-renderer",
+    noLink: true,
+    items: [
+      { title: "How It Works", href: "/how-it-works" },
+      { title: "Drawing Shapes", href: "/drawing-shapes" },
+      { title: "Rendering Textures", href: "/rendering-textures" },
+    ],
+  },
+];
+
 type Page = { title: string; href: string };
 
 function getRecurrsiveAllLinks(node: EachRoute) {
@@ -90,4 +103,5 @@ function getRecurrsiveAllLinks(node: EachRoute) {
   return ans;
 }
 
-export const page_routes = ROUTES.map((it) => getRecurrsiveAllLinks(it)).flat();
+export const docs_routes = DOC_ROUTES.map((it) => getRecurrsiveAllLinks(it)).flat();
+export const guides_routes = GUIDE_ROUTES.map((it) => getRecurrsiveAllLinks(it)).flat();

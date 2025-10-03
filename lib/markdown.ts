@@ -6,7 +6,12 @@ import rehypePrism from "rehype-prism-plus";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import rehypeCodeTitles from "rehype-code-titles";
-import { page_routes, ROUTES } from "./routes-config";
+import {
+  docs_routes,
+  guides_routes,
+  DOC_ROUTES,
+  GUIDE_ROUTES,
+} from "./routes-config";
 import { visit } from "unist-util-visit";
 import matter from "gray-matter";
 import { getIconName, hasSupportedExtension } from "./utils";
@@ -53,6 +58,33 @@ const components = {
   ApiSig,
 };
 
+const CONTENT_CONFIG = {
+  docs: {
+    baseDir: ["contents", "docs"] as const,
+    baseHref: "/docs",
+    routesTree: DOC_ROUTES,
+    flatRoutes: docs_routes,
+  },
+  guides: {
+    baseDir: ["contents", "guides"] as const,
+    baseHref: "/guides",
+    routesTree: GUIDE_ROUTES,
+    flatRoutes: guides_routes,
+  },
+} as const;
+
+export type ContentSection = keyof typeof CONTENT_CONFIG;
+
+function getSectionConfig(section: ContentSection) {
+  return CONTENT_CONFIG[section];
+}
+
+function getContentPath(section: ContentSection, slug: string) {
+  const config = getSectionConfig(section);
+  const segments = slug.split("/").filter(Boolean);
+  return path.join(process.cwd(), ...config.baseDir, ...segments, "index.mdx");
+}
+
 // can be used for other pages like blogs, Guides etc
 async function parseMdx<Frontmatter>(rawMdx: string) {
   return await compileMDX<Frontmatter>({
@@ -83,9 +115,12 @@ export type BaseMdxFrontmatter = {
   description: string;
 };
 
-export async function getCompiledDocsForSlug(slug: string) {
+export async function getCompiledContentForSlug(
+  section: ContentSection,
+  slug: string
+) {
   try {
-    const contentPath = getDocsContentPath(slug);
+    const contentPath = getContentPath(section, slug);
     const rawMdx = await fs.readFile(contentPath, "utf-8");
     return await parseMdx<BaseMdxFrontmatter>(rawMdx);
   } catch (err) {
@@ -93,10 +128,20 @@ export async function getCompiledDocsForSlug(slug: string) {
   }
 }
 
-export async function getDocsTocs(slug: string) {
-  const contentPath = getDocsContentPath(slug);
+export async function getCompiledDocsForSlug(slug: string) {
+  return await getCompiledContentForSlug("docs", slug);
+}
+
+export async function getCompiledGuidesForSlug(slug: string) {
+  return await getCompiledContentForSlug("guides", slug);
+}
+
+export async function getContentTocs(
+  section: ContentSection,
+  slug: string
+) {
+  const contentPath = getContentPath(section, slug);
   const rawMdx = await fs.readFile(contentPath, "utf-8");
-  // captures between ## - #### can modify accordingly
   const headingsRegex = /^(#{2,4})\s(.+)$/gm;
   let match;
   const extractedHeadings = [];
@@ -113,11 +158,23 @@ export async function getDocsTocs(slug: string) {
   return extractedHeadings;
 }
 
-export function getPreviousNext(path: string) {
-  const index = page_routes.findIndex(({ href }) => href == `/${path}`);
+export async function getDocsTocs(slug: string) {
+  return await getContentTocs("docs", slug);
+}
+
+export async function getGuidesTocs(slug: string) {
+  return await getContentTocs("guides", slug);
+}
+
+export function getPreviousNext(
+  path: string,
+  section: ContentSection = "docs"
+) {
+  const { flatRoutes } = getSectionConfig(section);
+  const index = flatRoutes.findIndex(({ href }) => href === `/${path}`);
   return {
-    prev: page_routes[index - 1],
-    next: page_routes[index + 1],
+    prev: index > 0 ? flatRoutes[index - 1] : undefined,
+    next: index >= 0 ? flatRoutes[index + 1] : undefined,
   };
 }
 
@@ -126,40 +183,71 @@ function sluggify(text: string) {
   return slug.replace(/[^a-z0-9-]/g, "");
 }
 
-function getDocsContentPath(slug: string) {
-  return path.join(process.cwd(), "/contents/docs/", `${slug}/index.mdx`);
-}
-
 function justGetFrontmatterFromMD<Frontmatter>(rawMd: string): Frontmatter {
   return matter(rawMd).data as Frontmatter;
 }
 
-export async function getAllChilds(pathString: string) {
-  const items = pathString.split("/").filter((it) => it != "");
-  let page_routes_copy = ROUTES;
-
-  let prevHref = "";
-  for (const it of items) {
-    const found = page_routes_copy.find((innerIt) => innerIt.href == `/${it}`);
-    if (!found) break;
-    prevHref += found.href;
-    page_routes_copy = found.items ?? [];
+export async function getContentFrontmatter(
+  section: ContentSection,
+  path: string
+) {
+  try {
+    const contentPath = getContentPath(section, path);
+    const rawMdx = await fs.readFile(contentPath, "utf-8");
+    return justGetFrontmatterFromMD<BaseMdxFrontmatter>(rawMdx);
+  } catch {
+    return undefined;
   }
-  if (!prevHref) return [];
+}
+
+export async function getDocFrontmatter(path: string) {
+  return await getContentFrontmatter("docs", path);
+}
+
+export async function getGuideFrontmatter(path: string) {
+  return await getContentFrontmatter("guides", path);
+}
+
+function normalizeRouteHref(href: string) {
+  return href.replace(/^\//, "");
+}
+
+export async function getAllChilds(
+  pathString: string,
+  section: ContentSection = "docs"
+) {
+  const items = pathString.split("/").filter(Boolean);
+  const config = getSectionConfig(section);
+  const { routesTree, baseHref, baseDir } = config;
+
+  let routesCursor = routesTree;
+  let accumulatedHref = "";
+
+  for (const segment of items) {
+    const found = routesCursor.find(
+      (route) => normalizeRouteHref(route.href) === segment
+    );
+    if (!found) break;
+    accumulatedHref += found.href;
+    routesCursor = found.items ?? [];
+  }
+
+  if (!accumulatedHref) return [];
 
   return await Promise.all(
-    page_routes_copy.map(async (it) => {
+    routesCursor.map(async (route) => {
+      const totalHref = `${accumulatedHref}${route.href}`;
+      const slugSegments = totalHref.split("/").filter(Boolean);
       const totalPath = path.join(
         process.cwd(),
-        "/contents/docs/",
-        prevHref,
-        it.href,
+        ...baseDir,
+        ...slugSegments,
         "index.mdx"
       );
       const raw = await fs.readFile(totalPath, "utf-8");
       return {
         ...justGetFrontmatterFromMD<BaseMdxFrontmatter>(raw),
-        href: `/docs${prevHref}${it.href}`,
+        href: `${baseHref}${totalHref}`,
       };
     })
   );
@@ -242,16 +330,6 @@ export async function getBlogFrontmatter(slug: string) {
   const blogFile = path.join(process.cwd(), "/contents/blogs/", `${slug}.mdx`);
   try {
     const rawMdx = await fs.readFile(blogFile, "utf-8");
-    return justGetFrontmatterFromMD<BlogMdxFrontmatter>(rawMdx);
-  } catch {
-    return undefined;
-  }
-}
-
-export async function getDocFrontmatter(path: string) {
-  try {
-    const contentPath = getDocsContentPath(path);
-    const rawMdx = await fs.readFile(contentPath, "utf-8");
     return justGetFrontmatterFromMD<BlogMdxFrontmatter>(rawMdx);
   } catch {
     return undefined;

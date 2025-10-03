@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { EachRoute, ROUTES } from "./routes-config";
+import { EachRoute, DOC_ROUTES } from "./routes-config";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -42,7 +42,7 @@ export function helperSearch(
 }
 
 export function advanceSearch(query: string) {
-  return ROUTES.map((node) =>
+  return DOC_ROUTES.map((node) =>
     helperSearch(query, node, "", 1, query.length == 0 ? 2 : undefined)
   ).flat();
 }

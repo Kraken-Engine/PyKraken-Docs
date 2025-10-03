@@ -10,13 +10,14 @@ import { Button } from "./ui/button";
 import { AlignLeftIcon } from "lucide-react";
 import { DialogTitle } from "./ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import DocsMenu from "./docs-menu";
+import DocsMenu, { GuidesMenu } from "./docs-menu";
 
 export function Leftbar() {
   return (
     <aside className="md:flex hidden w-[20rem] sticky top-16 flex-col h-[93.75vh] overflow-y-auto">
       <ScrollArea className="py-4 px-2">
         <DocsMenu />
+        <GuidesMenu />
       </ScrollArea>
     </aside>
   );
@@ -43,6 +44,7 @@ export function SheetLeftbar() {
           </div>
           <div className="ml-2 pl-5">
             <DocsMenu isSheet />
+            <GuidesMenu isSheet />
           </div>
         </div>
       </SheetContent>

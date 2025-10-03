@@ -1,0 +1,46 @@
+---
+title: Drawing Shapes
+---
+
+The Kraken Engine supports drawing various kinds of primitive shapes.
+It can be useful when prototyping or grayboxing game mechanics before using textures.
+
+## Rectangles
+Rectangles are your simplest building block.
+A `Rect` object stores x, y, width, and height values.
+For example, let's draw a 50x30 rectangle with its top left corner placed at (100, 100).
+```py
+rect = kn.Rect(100, 100, 50, 30)
+kn.draw.rect(rect, color=kn.color.WHITE)
+```
+
+<p style={{marginBottom: 0}}><i>Result:</i></p>
+<img src="/images/shapes-01.png" alt="A 50x30 rectangle drawn at (100, 100)" />
+
+## Other Primitives
+Alongside rectangles, we can also draw circles, lines, points, and polygons.
+Lines can be great for **raycasts** or **debug guides**, and points could be used for **collision test spots** or **spawn locations**.
+
+```py
+# Draw a green line from (0, 0) to (200, 200)
+kn.draw.line(((0, 0), (200, 200)), color=kn.color.GREEM)
+
+# Draw a yellow point/pixel at (400, 300)
+kn.draw.point((400, 300), color=kn.color.YELLOW)
+```
+
+## Clear, Draw, Present!
+Both shapes and textures are drawn in the order you call them, which means a later drawing can override the pixels in the buffer of an earlier drawing.
+If something covers another shape unexpectedly, check the order of your draw calls.
+
+```py
+while kn.window.is_open():
+    ...
+    kn.renderer.clear()
+    kn.draw.rect((20, 20, 100, 100), color=kn.color.GREEN)
+    kn.draw.rect((60, 60, 100, 100), color=kn.color.ORANGE)
+    kn.renderer.present()
+```
+
+<p style={{marginBottom: 0}}><i>Result:</i></p>
+<img src="/images/shapes-02.png" alt="Two overlapping rectangles drawn to the screen" />
