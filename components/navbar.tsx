@@ -70,8 +70,7 @@ export function Navbar() {
         <div
           className="hidden sm:flex items-center
               rounded-xl
-              bg-background/70
-              ring-1 ring-border/60
+              
               shadow-[0_12px_28px_-16px_rgba(0,0,0,0.45)]
               motion-safe:transition
               motion-safe:hover:-translate-y-0.5
@@ -89,7 +88,7 @@ export function Navbar() {
                     transform-gpu motion-safe:transition
                     motion-safe:hover:-translate-y-0.5 motion-safe:active:translate-y-[1px]
                     motion-safe:hover:shadow-md
-                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50
+                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 ml-4
                   `,
                 })}
                 aria-label="GitHub repository"
@@ -160,15 +159,13 @@ export function NavMenu({ isSheet = false }) {
               transform-gpu motion-safe:transition
               motion-safe:hover:-translate-y-0.5
               hover:text-white dark:hover:text-white
-              /* luminous underline */
               after:content-[''] after:absolute after:left-0 after:right-0 after:-bottom-1
               after:h-[2px] after:rounded-full
               after:bg-gradient-to-r after:from-transparent after:via-white/70 after:to-transparent
               dark:after:via-white/30
               after:opacity-0 motion-safe:hover:after:opacity-100
-              /* soft text shadow on hover to pop from bg */
               hover:drop-shadow
-              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded
+               focus-visible:ring-2 focus-visible:ring-primary/40 rounded
               px-1"
             href={item.href}
           >
