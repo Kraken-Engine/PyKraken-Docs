@@ -36,11 +36,27 @@ const algolia_props = {
 
 export function Navbar() {
   return (
-    <nav className="w-full border-b h-16 sticky top-0 z-50 bg-background">
+    <nav
+      className="sticky top-0 z-50
+        h-16 w-full
+        bg-background/80 backdrop-blur-md supports-[backdrop-filter]:backdrop-blur-md
+        border-b border-border/60
+        shadow-lg
+        nav-3d isolate
+        before:content-[''] before:absolute before:inset-x-0 before:top-0 before:h-px
+        before:bg-gradient-to-r before:from-transparent before:via-white/30 before:to-transparent
+        dark:before:via-white/10
+        after:content-[''] after:absolute after:inset-x-0 after:bottom-0 after:h-px
+        after:bg-gradient-to-r after:from-transparent after:via-white/20 after:to-transparent
+        dark:after:via-white/5
+        transform-gpu"
+      role="navigation"
+      aria-label="Global"
+    >
       <div className="sm:container mx-auto w-[95vw] h-full flex items-center sm:justify-between md:gap-2">
         <div className="flex items-center sm:gap-5 gap-2.5">
           <SheetLeftbar />
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 ">
             <div className="lg:flex hidden">
               <Logo />
             </div>
@@ -50,7 +66,17 @@ export function Navbar() {
           </div>
         </div>
 
-        <div className="flex items-center sm:justify-normal justify-between sm:gap-3 ml-1 sm:w-fit w-[90%]">
+        {/* Right Side */}
+        <div
+          className="hidden sm:flex items-center
+              rounded-xl
+              bg-background/70
+              ring-1 ring-border/60
+              shadow-[0_12px_28px_-16px_rgba(0,0,0,0.45)]
+              motion-safe:transition
+              motion-safe:hover:-translate-y-0.5
+              transform-gpu"
+        >
           <AlgoliaSearch {...algolia_props} />
           <div className="flex items-center justify-between sm:gap-2">
             <div className="flex ml-4 sm:ml-0">
@@ -59,7 +85,14 @@ export function Navbar() {
                 className={buttonVariants({
                   variant: "ghost",
                   size: "icon",
+                  className: `
+                    transform-gpu motion-safe:transition
+                    motion-safe:hover:-translate-y-0.5 motion-safe:active:translate-y-[1px]
+                    motion-safe:hover:shadow-md
+                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50
+                  `,
                 })}
+                aria-label="GitHub repository"
               >
                 <GithubIcon className="h-[1.1rem] w-[1.1rem]" />
               </Link>
@@ -74,9 +107,40 @@ export function Navbar() {
 
 export function Logo() {
   return (
-    <Link href="/" className="flex items-center gap-2.5" id="kraken-banner">
-      <Image src="/images/faviconcircle.png" alt="Kraken Logo" width={256} height={256} />
-      <h2 className="text-md font-bold font-code">Kraken Engine</h2>
+    <Link
+      href="/"
+      className="group flex items-center gap-2.5
+        transform-gpu motion-safe:transition
+        motion-safe:hover:-translate-y-0.5"
+      id="kraken-banner"
+    >
+      <div
+        className="
+          relative aspect-square h-8 w-8
+          rounded-lg overflow-hidden
+          ring-1 ring-black/5 dark:ring-white/5
+          shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_8px_18px_-10px_rgba(0,0,0,0.5)]
+          dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_8px_18px_-12px_rgba(0,0,0,0.7)]
+          transform-gpu motion-safe:transition
+          motion-safe:group-hover:rotate-[1.5deg] motion-safe:group-hover:scale-[1.02]
+        "
+      >
+        <Image
+          src="/images/faviconcircle.png"
+          alt="Kraken Logo"
+          fill
+          sizes="32px"
+          className="object-contain"
+        />
+      </div>
+
+      <h2
+        className="text-md font-bold font-code text-foreground
+          drop-shadow-[0_1px_0_rgba(255,255,255,0.25)]
+          dark:drop-shadow-[0_1px_0_rgba(0,0,0,0.35)]"
+      >
+        Kraken Engine
+      </h2>
     </Link>
   );
 }
@@ -88,9 +152,24 @@ export function NavMenu({ isSheet = false }) {
         const Comp = (
           <Anchor
             key={item.title + item.href}
-            activeClassName="!text-primary dark:font-medium font-semibold"
+            activeClassName="text-primary dark:font-medium font-semibold"
             absolute
-            className="flex items-center gap-1 sm:text-sm text-[14.5px] dark:text-stone-300/85 text-stone-800"
+            className="relative inline-flex items-center gap-1
+              sm:text-sm text-[14.5px]
+              text-stone-800 dark:text-stone-300/85
+              transform-gpu motion-safe:transition
+              motion-safe:hover:-translate-y-0.5
+              hover:text-white dark:hover:text-white
+              /* luminous underline */
+              after:content-[''] after:absolute after:left-0 after:right-0 after:-bottom-1
+              after:h-[2px] after:rounded-full
+              after:bg-gradient-to-r after:from-transparent after:via-white/70 after:to-transparent
+              dark:after:via-white/30
+              after:opacity-0 motion-safe:hover:after:opacity-100
+              /* soft text shadow on hover to pop from bg */
+              hover:drop-shadow
+              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded
+              px-1"
             href={item.href}
           >
             {item.title}

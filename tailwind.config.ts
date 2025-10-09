@@ -80,7 +80,47 @@ const config = {
       },
     },
   },
-  plugins: [animate, typography],
+  plugins: [
+    animate,
+    typography,
+    function ({
+      addUtilities,
+    }: {
+      addUtilities: (utilities: Record<string, any>) => void;
+    }) {
+      addUtilities({
+        ".nav-3d": {
+          position: "relative",
+        },
+        ".nav-3d::before": {
+          content: '""',
+          position: "absolute",
+          inset: "0",
+          boxShadow:
+            "inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -1px 0 rgba(0, 0, 0, 0.05)",
+          pointerEvents: "none",
+        },
+        ".nav-3d::after": {
+          content: '""',
+          position: "absolute",
+          left: "2rem",
+          right: "2rem",
+          bottom: "-12px",
+          height: "12px",
+          background:
+            "radial-gradient(closest-side, rgba(0,0,0,0.25), transparent)",
+          filter: "blur(8px)",
+          pointerEvents: "none",
+        },
+        "@media (prefers-color-scheme: dark)": {
+          ".nav-3d::before": {
+            boxShadow:
+              "inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -1px 0 rgba(255, 255, 255, 0.03)",
+          },
+        },
+      });
+    },
+  ],
 } satisfies Config;
 
 export default config;
