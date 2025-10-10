@@ -6,7 +6,7 @@ export function Typography({ children }: PropsWithChildren) {
       {/* gradient border frame */}
       <div
         className="
-          rounded-2xl p-[1px]
+          rounded-2xl p-[4px]
           bg-[linear-gradient(180deg,rgba(255,255,255,0.14),rgba(255,255,255,0.04))]
           dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))]
           shadow-[0_28px_80px_-48px_rgba(0,0,0,0.55)]
@@ -24,6 +24,7 @@ export function Typography({ children }: PropsWithChildren) {
         >
           <article
             className="
+            rounded-2xl
               prose sm:prose-base prose-sm prose-zinc dark:prose-invert
               max-w-none w-full
               prose-pre:bg-background
