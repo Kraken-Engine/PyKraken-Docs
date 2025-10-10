@@ -155,29 +155,6 @@ footer {
   background-color: hsl(var(--background));
 }
 
-/* .home-background {
-  position: relative;
-  overflow: hidden;
-} */
-
-/* .home-background::before {
-  content: "";
-  position: fixed;
-
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-
-  background-image: url('/images/doc-bg.gif');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-
-  opacity: 0.2;
-  z-index: -1;
-  pointer-events: none;
-} */
 
 .code-line {
   padding: 0.75px 16px;
@@ -308,7 +285,6 @@ main .prose {
   /* center column sizing */
   max-width: 75ch;
   /* comfy read width */
-  margin: 2rem auto !important;
   /* center it */
   padding: 2rem;
   /* internal spacing */
