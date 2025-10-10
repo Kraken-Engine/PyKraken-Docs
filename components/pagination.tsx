@@ -21,7 +21,7 @@ export default function Pagination({
   const basePath = BASE_PATH[section];
 
   return (
-    <div className="grid grid-cols-2 flex-grow sm:py-10 sm:py-7 py-4 pt-5 gap-5">
+    <div className="grid grid-cols-2 flex-grow sm:py-10 py-4 pt-5 gap-5">
       <div>
         {prev && (
           <Link

@@ -129,6 +129,22 @@ pre {
   overflow-x: auto;
 }
 
+/* Softer, edge-to-edge prose: no extra top/bottom margins */
+.prose-tight :where(
+  p, h1, h2, h3, h4, h5, h6,
+  ul, ol, li, pre, blockquote,
+  table, thead, tbody, tfoot, tr, th, td,
+  img, hr
+) {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Guard against first/last element adding gaps */
+.prose-tight > :where(:first-child) { margin-top: 0 !important; }
+.prose-tight > :where(:last-child)  { margin-bottom: 0 !important; }
+
+
 pre>code {
   display: grid;
   max-width: inherit !important;

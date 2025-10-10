@@ -45,13 +45,12 @@ export default async function Toc({ path, section = "docs" }: TocProps) {
         font-medium text-sm mb-2.5 text-foreground relative
         after:content-[''] after:absolute after:left-0 after:-bottom-1 after:right-0
         after:h-px after:bg-gradient-to-r after:from-transparent after:via-white/30 after:to-transparent
-        dark:after:via-white/10
+        dark:after:via-white/10 pb-2
       "
         >
           On this page
         </h3>
 
-        {/* scrolls only if content overflows */}
         <ScrollArea
           className="
         max-h-[70vh]    /* stops before touching footer */
