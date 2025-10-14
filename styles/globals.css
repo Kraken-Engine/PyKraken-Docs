@@ -11,42 +11,42 @@
 
 @layer base {
   :root {
-    --background: 35 80% 98%;
-    --foreground: 0 0% 14.50%;
+    --radius: 0.65rem;
+    --background: 220 16% 92%;
+    --foreground: 240 8% 8%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 14.50%;
+    --card-foreground: 240 8% 8%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 14.50%;
-    --primary: 0 0% 20.50%;
-    --primary-foreground: 35 80% 98%;
-    --secondary: 35 80% 93.5%;
-    --secondary-foreground: 0 0% 20.50%;
-    --muted: 35 80% 98%;
-    --muted-foreground: 0 0% 55.60%;
-    --accent: 35 80% 98%;
-    --accent-foreground: 0 0% 20.50%;
+    --popover-foreground: 240 8% 8%;
+    --primary: 240 6% 10%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 240 6% 16%;
+    --muted: 220 12% 94%;
+    --muted-foreground: 240 4% 38%;
+    --accent: 220 18% 97%;
+    --accent-foreground: 240 6% 18%;
     --destructive: 0 80% 57.70%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 92.20%;
-    --input: 0 0% 92.20%;
-    --ring: 0 0% 70.80%;
-    --chart-1: 41 78% 64.60%;
-    --chart-2: 185 68% 60%;
-    --chart-3: 227 65% 39.80%;
-    --chart-4: 84 63% 82.80%;
-    --chart-5: 70 68% 76.90%;
-    --sidebar: 0 0% 98.50%;
-    --sidebar-foreground: 0 0% 14.50%;
-    --sidebar-primary: 0 0% 20.50%;
-    --sidebar-primary-foreground: 35 80% 98.50%;
-    --sidebar-accent: 35 80% 98%;
-    --sidebar-accent-foreground: 0 0% 20.50%;
-    --sidebar-border: 0 0% 92.20%;
-    --sidebar-ring: 0 0% 70.80%;
+    --border: 220 13% 87%;
+    --input: 220 13% 87%;
+    --ring: 240 6% 22%;
+    --chart-1: 240 6% 28%;
+    --chart-2: 0 0% 46%;
+    --chart-3: 0 0% 65%;
+    --chart-4: 240 4% 52%;
+    --chart-5: 0 0% 34%;
+    --sidebar: 220 18% 97%;
+    --sidebar-foreground: 240 6% 12%;
+    --sidebar-primary: 240 6% 10%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 96%;
+    --sidebar-accent-foreground: 240 6% 16%;
+    --sidebar-border: 220 13% 90%;
+    --sidebar-ring: 240 6% 22%;
     --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    --radius: 0.625rem;
     --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
     --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
     --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
@@ -116,7 +116,9 @@
 }
 
 .prose {
-  margin: 0 !important;
+  margin: 1em 0 0 0 !important;
+  border: none !important;
+  box-shadow: var(--elev-2);
 }
 
 pre {
@@ -287,8 +289,6 @@ main .prose {
 
   /* center column sizing */
   max-width: 75ch;
-  /* comfy read width */
-  margin: 2rem auto !important;
   /* center it */
   padding: 2rem;
   /* internal spacing */
@@ -298,6 +298,24 @@ main .prose {
 @media (min-width: 1440px) {
   main .prose {
     max-width: 82ch;
+  }
+}
+
+/* Have prose take up entire screen width on small screens */
+@media (max-width: 640px) {
+  main .pb-5 {
+    display: none;
+  }
+
+  main .py-10 {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  main {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
   }
 }
 
@@ -352,7 +370,6 @@ aside[aria-label="Sidebar"] nav .active {
 }
 
 .prose code:not(pre code) {
-  background: color-mix(in oklab, hsl(var(--card)) 80%, black);
   border: 1px solid hsl(var(--border));
   border-radius: 6px;
   padding: .15rem .35rem;
@@ -382,7 +399,7 @@ nav[aria-label="On this page"] {
 }
 
 .prose tbody tr:nth-child(odd) {
-  background: color-mix(in oklab, hsl(var(--surface-1)) 92%, black);
+  background: color-mix(in oklab, hsl(var(--surface-1)) 95%, black);
 }
 
 .prose blockquote {
@@ -400,12 +417,17 @@ nav[aria-label="On this page"] {
 
 /* The card wrapper */
 .prose .api-card {
-  background: #151518;
+  background: hsl(var(--secondary));
   border: 1px solid hsl(var(--border));
   border-radius: var(--radius);
   box-shadow: var(--elev-1);
   padding: 1.25rem 1.25rem 0.25rem;
   margin: 0.75rem 0 2rem;
+}
+
+/* Dark mode api-card */
+.dark .prose .api-card {
+  background: #151518;
 }
 
 /* Make the first paragraph (your short summary) breathe a bit less */
@@ -443,9 +465,11 @@ nav[aria-label="On this page"] {
   letter-spacing: .2px;
 }
 
+/* Light mode api-sig */
 .api-sig {
-  background: #282c34;
-  color: #abb2bf;
+  background: hsl(var(--surface-2)) !important;
+  color: hsl(240 6% 25%);
+  border: 1px solid hsl(var(--border));
   border-radius: 6px;
   padding: 2px 6px;
   font-size: 0.95em;
@@ -453,40 +477,237 @@ nav[aria-label="On this page"] {
 }
 
 .api-sig .keyword {
-  color: #c678dd;
+  color: hsl(282 62% 45%);
 }
 
 /* fn name (purple) */
 .api-sig .type {
-  color: #56b6c2;
+  color: hsl(187 55% 42%);
 }
 
 /* types (cyan) */
 .api-sig .param {
-  color: #e5c07b;
+  color: hsl(36 65% 45%);
 }
 
 /* whole param (yellow) */
 .api-sig .param-name {
-  color: #e5c07b;
+  color: hsl(36 65% 45%);
 }
 
 .api-sig .literal {
-  color: #98c379;
+  color: hsl(95 48% 42%);
 }
 
 /* defaults/values (green) */
 .api-sig .arrow {
-  color: #61afef;
+  color: hsl(207 72% 48%);
 }
 
 /* → (blue) */
 .api-sig .punct {
+  color: hsl(240 6% 25%);
+}
+
+/* Dark mode api-sig */
+.dark .api-sig {
+  background: hsl(var(--surface-2)) !important;
   color: #abb2bf;
+  border: 1px solid hsl(var(--border));
+}
+
+.dark .api-sig .keyword {
+  color: #c678dd;
+}
+
+.dark .api-sig .type {
+  color: #56b6c2;
+}
+
+.dark .api-sig .param {
+  color: #e5c07b;
+}
+
+.dark .api-sig .param-name {
+  color: #e5c07b;
+}
+
+.dark .api-sig .literal {
+  color: #98c379;
+}
+
+.dark .api-sig .arrow {
+  color: #61afef;
+}
+
+.dark .api-sig .punct {
+  color: #abb2bf;
+}
+
+.menu-button {
+  border-top: 0.1rem solid hsl(var(--border));
+}
+
+.dark .menu-button {
+  border-top: 0.1rem solid rgba(255, 255, 255, 0.1);
+}
+
+.bg-primary:hover {
+  background-color: color-mix(in srgb, hsl(var(--primary)), black 10%);
+}
+
+.bg-secondary:hover {
+  background-color: color-mix(in srgb, hsl(var(--secondary)), black 5%);
+}
+
+.menu-button {
+  transition: transform 0.2s ease;
+}
+
+.menu-button:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease;
+}
+
+.nav-item {
+  position: relative;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.nav-item:hover {
+  transform: translateY(-2px);
+}
+
+.nav-item::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 80px;
+  height: 2px;
+
+  /* gradient glow */
+  background: radial-gradient(ellipse at center, hsl(var(--foreground) / 0.4) 0%, transparent 80%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.dark .nav-item::after {
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.4) 0%, transparent 80%);
+}
+
+.nav-item:hover::after {
+  opacity: 1;
+}
+
+.collapsible-content {
+  background:
+    repeating-linear-gradient(to bottom,
+      hsl(var(--border)) 0 4px,
+      /* dash length */
+      transparent 4px 12px
+      /* gap size */
+    ) left center / 1px 100% no-repeat;
+}
+
+.toc-element {
+  transition: transform 0.2s ease;
+  width: fit-content;
+}
+
+.toc-element:hover {
+  transform: translateX(4px);
+  transition: transform 0.2s ease;
+}
+
+.leftbar-sublink {
+  margin-left: -0.9rem;
+  padding-left: 1rem;
+  border-left: solid 2px transparent;
+  transition: border-color 0.4s ease, color 0.4s ease;
+}
+
+.leftbar-sublink:hover {
+  border-left: solid 2px hsl(var(--link));
+  color: hsl(var(--foreground)) !important;
+  transition: border-color 0s ease, color 0s ease;
+}
+
+.DocSearch-Button:hover {
+  box-shadow: 0 0 10px -2px hsl(var(--foreground) / 0.15) !important;
+}
+
+.dark .DocSearch-Button:hover {
+  box-shadow: 0 0 10px -2px rgba(255, 255, 255, 0.15) !important;
 }
 
 aside>div>div>div>div>div>div>div>div {
   padding-left: 1em;
+}
+
+#nav-github-link:hover {
+  border: 1px solid hsl(var(--link) / 0.1);
+}
+
+#mode-toggle-btn:hover {
+  border: 1px solid hsl(var(--link) / 0.1);
+}
+
+#top-nav {
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#move-up-right {
+  transition: transform 0.2s ease;
+}
+
+#view-on-github:hover #move-up-right {
+  transform: translate(4px, -4px);
+  transition: transform 0.2s ease;
+}
+
+#on-this-page {
+  padding-bottom: 0.25rem;
+  border-bottom: 0.1rem solid transparent;
+  border-image: linear-gradient(to right, hsl(var(--foreground) / 0.3), transparent) 1;
+}
+
+.dark #on-this-page {
+  border-image: linear-gradient(to right, rgba(255, 255, 255, 0.5), transparent) 1;
+}
+
+#small-toc {
+  background:
+    linear-gradient(hsl(var(--surface-2)), hsl(var(--surface-2))) padding-box,
+    linear-gradient(to bottom, hsl(var(--foreground) / 0.08), hsl(var(--foreground) / 0.04)) border-box;
+  border: 2px solid transparent;
+  border-radius: var(--radius) !important;
+  padding: 1.25em 1em;
+  height: fit-content;
+  box-shadow: var(--elev-1);
+}
+
+.dark #small-toc {
+  background:
+    linear-gradient(hsl(var(--surface-2)), hsl(var(--surface-2))) padding-box,
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)) border-box;
+}
+
+#pip-install {
+  background-color: hsl(var(--background) / 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.8rem;
+  border-top: 0.1rem solid hsl(var(--foreground) / 0.08);
+  font-family: monospace;
+}
+
+.dark #pip-install {
+  border-top: 0.1rem solid rgba(255, 255, 255, 0.1);
 }
 
 #kraken-banner {
@@ -494,16 +715,23 @@ aside>div>div>div>div>div>div>div>div {
 }
 
 #kraken-banner>img {
-  height: 2.75rem;
-  width: 2.75rem;
+  filter: brightness(0) saturate(100%);
+}
+
+.dark #kraken-banner>img {
+  filter: brightness(0) saturate(100%) invert(1);
 }
 
 #dbuff {
-  background-color: hsl(35 80% 98%);
+  background-color: hsl(var(--secondary));
   padding: 4% 10% 6% 4%;
   width: 80%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.dark #dbuff {
+  background-color: hsl(var(--foreground));
 }
 
 @media (max-width: 640px) {

@@ -1,0 +1,10 @@
+---
+title: InputAction
+description: An input action for binding keys, buttons, and axes.
+---
+
+- <ApiSig name="InputAction" params={[{ name: "scancode", type: "Scancode" }]} />
+- <ApiSig name="InputAction" params={[{ name: "keycode", type: "Keycode" }]} />
+- <ApiSig name="InputAction" params={[{ name: "mouse_button", type: "MouseButton" }]} />
+- <ApiSig name="InputAction" params={[{ name: "gamepad_button", type: "GamepadButton" }, { name: "slot", type: "int", default: "0" }]} />
+- <ApiSig name="InputAction" params={[{ name: "gamepad_axis", type: "GamepadAxis" }, { name: "is_positive", type: "bool" }, { name: "slot", type: "int", default: "0" }]} />

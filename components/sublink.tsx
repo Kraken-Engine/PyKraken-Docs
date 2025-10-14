@@ -59,7 +59,7 @@ export default function SubLink({
   );
 
   if (!items) {
-    return <div className="flex flex-col">{titleOrLink}</div>;
+    return <div className="leftbar-sublink flex flex-col">{titleOrLink}</div>;
   }
 
   return (
@@ -71,18 +71,19 @@ export default function SubLink({
               {titleOrLink}
             </span>
             <span className="sm:ml-0 -mr-1.5">
-              {!isOpen ? (
-                <ChevronRight className="h-[0.9rem] w-[0.9rem]" />
-              ) : (
-                <ChevronDown className="h-[0.9rem] w-[0.9rem]" />
-              )}
+              <ChevronRight
+                className={cn(
+                  "h-[0.9rem] w-[0.9rem] transition-transform duration-200",
+                  isOpen && "rotate-90"
+                )}
+              />
             </span>
           </div>
         </CollapsibleTrigger>
         <CollapsibleContent>
           <div
             className={cn(
-              "flex flex-col items-start sm:text-sm dark:text-stone-300/85 text-stone-800 ml-0.5 mt-2.5 gap-3",
+              "collapsible-content flex flex-col items-start sm:text-sm dark:text-stone-300/85 text-stone-800 ml-0.5 mt-2.5 gap-3",
               level > 0 && "pl-4 border-l ml-1.5"
             )}
           >

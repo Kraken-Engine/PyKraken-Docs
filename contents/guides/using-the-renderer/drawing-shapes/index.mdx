@@ -20,10 +20,9 @@ kn.draw.rect(rect, color=kn.color.WHITE)
 ## Other Primitives
 Alongside rectangles, we can also draw circles, lines, points, and polygons.
 Lines can be great for **raycasts** or **debug guides**, and points could be used for **collision test spots** or **spawn locations**.
-
 ```py
 # Draw a green line from (0, 0) to (200, 200)
-kn.draw.line(((0, 0), (200, 200)), color=kn.color.GREEM)
+kn.draw.line(((0, 0), (200, 200)), color=kn.color.GREEN)
 
 # Draw a yellow point/pixel at (400, 300)
 kn.draw.point((400, 300), color=kn.color.YELLOW)
@@ -32,7 +31,6 @@ kn.draw.point((400, 300), color=kn.color.YELLOW)
 ## Clear, Draw, Present!
 Both shapes and textures are drawn in the order you call them, which means a later drawing can override the pixels in the buffer of an earlier drawing.
 If something covers another shape unexpectedly, check the order of your draw calls.
-
 ```py
 while kn.window.is_open():
     ...

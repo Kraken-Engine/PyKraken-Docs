@@ -77,3 +77,20 @@ _**Returns**_
 `Vec2` : The width and height of the render target in pixels.
 
 </div>
+
+## Read Pixels
+<div className="api-card">
+
+<ApiSig name="read_pixels" params={[{ name: "src", type: "Rect", default: "None" }]} returns="PixelArray" />
+
+Read pixel data from the current render target within the specified rectangle.
+
+_**Parameters**_
+
+- `src` : The source rectangle to read pixels from. If omitted, the entire render target is read.
+
+_**Returns**_
+
+`PixelArray` : The pixel data read from the render target.
+
+</div>

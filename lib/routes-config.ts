@@ -40,6 +40,7 @@ export const DOC_ROUTES: EachRoute[] = [
       { title: "Color", href: "/color" },
       { title: "EasingAnimation", href: "/easing-animation" },
       { title: "Font", href: "/font" },
+      { title: "InputAction", href: "/input-action" },
       { title: "Line", href: "/line" },
       { title: "Mask", href: "/mask" },
       { title: "PixelArray", href: "/pixel-array" },
