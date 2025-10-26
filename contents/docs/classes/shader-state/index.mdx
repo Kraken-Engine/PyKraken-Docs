@@ -1,0 +1,48 @@
+---
+title: ShaderState
+description: A class for managing shader states in the rendering pipeline.
+---
+- <ApiSig name="ShaderState" multiline params={
+    [
+        { name: "fragment_file_path", type: "str" },
+        { name: "sampler_count", type: "int" },
+        { name: "storage_texture_count", type: "int" },
+        { name: "storage_buffer_count", type: "int" },
+        { name: "uniform_buffer_count", type: "int" },
+    ]
+    } />
+
+## Methods
+---
+
+### Bind
+<div className="api-card">
+
+<ApiSig name="bind" returns="None" />
+
+Bind the shader state. This will also unbind any currently bound shader state.
+
+</div>
+
+### Unbind
+<div className="api-card">
+
+<ApiSig name="unbind" returns="None" />
+
+Unbind the shader state.
+
+</div>
+
+### Set Uniform
+<div className="api-card">
+
+<ApiSig name="set_uniform" params={[{name: 'binding', type: 'int'}, {name: 'data', type: 'Buffer | bytes'}]} returns="None" />
+
+Set the uniform variable in the shader.
+
+_**Parameters**_
+
+- `binding` : The binding point of the uniform variable.
+- `data` : The data to set the uniform variable to.
+
+</div>

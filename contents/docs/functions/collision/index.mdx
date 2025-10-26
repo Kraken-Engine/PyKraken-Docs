@@ -1,0 +1,298 @@
+---
+title: Collision
+description: Functions for detecting collisions between shapes.
+---
+
+---
+
+## Overlap
+<div className="api-card">
+
+<ApiSig name="overlap" params={[{ name: "a", type: "Rect" }, { name: "b", type: "Rect" }]} returns="bool" />
+
+Check if two rectangles overlap.
+
+_**Parameters**_
+
+- `a` : The first rectangle to check for overlap.
+- `b` : The second rectangle to check for overlap.
+
+_**Returns**_
+
+`bool` : `True` if the rectangles overlap, otherwise `False`.
+
+---
+
+<ApiSig name="overlap" params={[{ name: "rect", type: "Rect" }, { name: "circle", type: "Circle" }]} returns="bool" />
+
+Check if a rectangle and a circle overlap.
+
+_**Parameters**_
+
+- `rect` : The rectangle to check for overlap.
+- `circle` : The circle to check for overlap.
+
+_**Returns**_
+
+`bool` : `True` if the rectangle and circle overlap, otherwise `False`.
+
+---
+
+<ApiSig name="overlap" params={[{ name: "rect", type: "Rect" }, { name: "line", type: "Line" }]} returns="bool" />
+
+Check if a rectangle and a line overlap.
+
+_**Parameters**_
+
+- `rect` : The rectangle to check for overlap.
+- `line` : The line to check for overlap.
+
+_**Returns**_
+
+`bool` : `True` if the rectangle and line overlap, otherwise `False`.
+
+---
+
+<ApiSig name="overlap" params={[{ name: "rect", type: "Rect" }, { name: "point", type: "Vec2" }]} returns="bool" />
+
+Check if a rectangle contains a point.
+
+_**Parameters**_
+
+- `rect` : The rectangle to check.
+- `point` : The point to check.
+
+_**Returns**_
+
+`bool` : `True` if the rectangle contains the point, otherwise `False`.
+
+---
+
+<ApiSig name="overlap" params={[{ name: "a", type: "Circle" }, { name: "b", type: "Circle" }]} returns="bool" />
+
+Check if two circles overlap.
+
+_**Parameters**_
+
+- `a` : The first circle to check for overlap.
+- `b` : The second circle to check for overlap.
+
+_**Returns**_
+
+`bool` : `True` if the circles overlap, otherwise `False`.
+
+---
+
+<ApiSig name="overlap" params={[{ name: "circle", type: "Circle" }, { name: "rect", type: "Rect" }]} returns="bool" />
+
+Check if a circle and a rectangle overlap.
+
+_**Parameters**_
+
+- `circle` : The circle to check for overlap.
+- `rect` : The rectangle to check for overlap.
+
+_**Returns**_
+
+`bool` : `True` if the circle and rectangle overlap, otherwise `False`.
+
+---
+
+<ApiSig name="overlap" params={[{ name: "circle", type: "Circle" }, { name: "line", type: "Line" }]} returns="bool" />
+
+Check if a circle and a line overlap.
+
+_**Parameters**_
+
+- `circle` : The circle to check for overlap.
+- `line` : The line to check for overlap.
+
+_**Returns**_
+
+`bool` : `True` if the circle and line overlap, otherwise `False`.
+
+---
+
+<ApiSig name="overlap" params={[{ name: "circle", type: "Circle" }, { name: "point", type: "Vec2" }]} returns="bool" />
+
+Check if a circle contains a point.
+
+_**Parameters**_
+
+- `circle` : The circle to check.
+- `point` : The point to check.
+
+_**Returns**_
+
+`bool` : `True` if the circle contains the point, otherwise `False`.
+
+---
+
+<ApiSig name="overlap" params={[{ name: "a", type: "Line" }, { name: "b", type: "Line" }]} returns="bool" />
+
+Check if two lines overlap (intersect).
+
+_**Parameters**_
+
+- `a` : The first line to check for overlap.
+- `b` : The second line to check for overlap.
+
+_**Returns**_
+
+`bool` : `True` if the lines intersect, otherwise `False`.
+
+---
+
+<ApiSig name="overlap" params={[{ name: "line", type: "Line" }, { name: "rect", type: "Rect" }]} returns="bool" />
+
+Check if a line and a rectangle overlap.
+
+_**Parameters**_
+
+- `line` : The line to check for overlap.
+- `rect` : The rectangle to check for overlap.
+
+_**Returns**_
+
+`bool` : `True` if the line and rectangle overlap, otherwise `False`.
+
+---
+
+<ApiSig name="overlap" params={[{ name: "line", type: "Line" }, { name: "circle", type: "Circle" }]} returns="bool" />
+
+Check if a line and a circle overlap.
+
+_**Parameters**_
+
+- `line` : The line to check for overlap.
+- `circle` : The circle to check for overlap.
+
+_**Returns**_
+
+`bool` : `True` if the line and circle overlap, otherwise `False`.
+
+---
+
+<ApiSig name="overlap" params={[{ name: "point", type: "Vec2" }, { name: "rect", type: "Rect" }]} returns="bool" />
+
+Check if a point is contained within a rectangle.
+
+_**Parameters**_
+
+- `point` : The point to check.
+- `rect` : The rectangle to check.
+
+_**Returns**_
+
+`bool` : `True` if the point is within the rectangle, otherwise `False`.
+
+---
+
+<ApiSig name="overlap" params={[{ name: "point", type: "Vec2" }, { name: "circle", type: "Circle" }]} returns="bool" />
+
+Check if a point is contained within a circle.
+
+_**Parameters**_
+
+- `point` : The point to check.
+- `circle` : The circle to check.
+
+_**Returns**_
+
+`bool` : `True` if the point is within the circle, otherwise `False`.
+
+</div>
+
+
+## Contains
+<div className="api-card">
+
+<ApiSig name="contains" params={[{ name: "outer", type: "Rect" }, { name: "inner", type: "Rect" }]} returns="bool" />
+
+Check if a rectangle fully contains another rectangle.
+
+_**Parameters**_
+
+- `outer` : The outer rectangle to check.
+- `inner` : The inner rectangle to check.
+
+_**Returns**_
+
+`bool` : `True` if the outer rectangle fully contains the inner rectangle, otherwise `False`.
+
+---
+
+<ApiSig name="contains" params={[{ name: "rect", type: "Rect" }, { name: "circle", type: "Circle" }]} returns="bool" />
+
+Check if a rectangle fully contains a circle.
+
+_**Parameters**_
+
+- `rect` : The rectangle to check.
+- `circle` : The circle to check.
+
+_**Returns**_
+
+`bool` : `True` if the rectangle fully contains the circle, otherwise `False`.
+
+---
+
+<ApiSig name="contains" params={[{ name: "rect", type: "Rect" }, { name: "line", type: "Line" }]} returns="bool" />
+
+Check if a rectangle fully contains a line.
+
+_**Parameters**_
+
+- `rect` : The rectangle to check.
+- `line` : The line to check.
+
+_**Returns**_
+
+`bool` : `True` if the rectangle fully contains the line, otherwise `False`.
+
+---
+
+<ApiSig name="contains" params={[{ name: "outer", type: "Circle" }, { name: "inner", type: "Circle" }]} returns="bool" />
+
+Check if a circle fully contains another circle.
+
+_**Parameters**_
+
+- `outer` : The outer circle to check.
+- `inner` : The inner circle to check.
+
+_**Returns**_
+
+`bool` : `True` if the outer circle fully contains the inner circle, otherwise `False`.
+
+---
+
+<ApiSig name="contains" params={[{ name: "circle", type: "Circle" }, { name: "rect", type: "Rect" }]} returns="bool" />
+
+Check if a circle fully contains a rectangle.
+
+_**Parameters**_
+
+- `circle` : The circle to check.
+- `rect` : The rectangle to check.
+
+_**Returns**_
+
+`bool` : `True` if the circle fully contains the rectangle, otherwise `False`.
+
+---
+
+<ApiSig name="contains" params={[{ name: "circle", type: "Circle" }, { name: "line", type: "Line" }]} returns="bool" />
+
+Check if a circle fully contains a line.
+
+_**Parameters**_
+
+- `circle` : The circle to check.
+- `line` : The line to check.
+
+_**Returns**_
+
+`bool` : `True` if the circle fully contains the line, otherwise `False`.
+
+</div>

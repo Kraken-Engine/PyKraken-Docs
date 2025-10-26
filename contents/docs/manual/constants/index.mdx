@@ -98,6 +98,21 @@ description: A comprehensive list of constants used in the Kraken Engine.
 | Name | Description | Type |
 | --- | --- | --- |
 | QUIT | User-requested quit | EventType |
+| TERMINATING | Application is terminating | EventType |
+| LOW_MEMORY | System is running low on memory | EventType |
+| WILL_ENTER_BACKGROUND | Application will enter background | EventType |
+| DID_ENTER_BACKGROUND | Application did enter background | EventType |
+| WILL_ENTER_FOREGROUND | Application will enter foreground | EventType |
+| DID_ENTER_FOREGROUND | Application did enter foreground | EventType |
+| LOCALE_CHANGED | System locale changed | EventType |
+| SYSTEM_THEME_CHANGED | System theme (light/dark) changed | EventType |
+| DISPLAY_ORIENTATION | Display orientation changed | EventType |
+| DISPLAY_ADDED | New display connected | EventType |
+| DISPLAY_REMOVED | Display disconnected | EventType |
+| DISPLAY_MOVED | Display position changed | EventType |
+| DISPLAY_DESKTOP_MODE_CHANGED | Display desktop mode changed | EventType |
+| DISPLAY_CURRENT_MODE_CHANGED | Display current mode changed | EventType |
+| DISPLAY_CONTENT_SCALE_CHANGED | Display content scale changed | EventType |
 | WINDOW_SHOWN | Window became visible | EventType |
 | WINDOW_HIDDEN | Window was hidden | EventType |
 | WINDOW_EXPOSED | Window needs to be redrawn | EventType |
@@ -110,15 +125,25 @@ description: A comprehensive list of constants used in the Kraken Engine.
 | WINDOW_MOUSE_LEAVE | Mouse left the window | EventType |
 | WINDOW_FOCUS_GAINED | Window gained keyboard focus | EventType |
 | WINDOW_FOCUS_LOST | Window lost keyboard focus | EventType |
+| WINDOW_CLOSE_REQUESTED | Window close requested by the user | EventType |
+| WINDOW_HIT_TEST | Window hit-test event | EventType |
+| WINDOW_ICCPROF_CHANGED | Window ICC profile changed | EventType |
+| WINDOW_DISPLAY_CHANGED | Window moved to different display | EventType |
+| WINDOW_DISPLAY_SCALE_CHANGED | Window display scale changed | EventType |
+| WINDOW_SAFE_AREA_CHANGED | Window safe area changed | EventType |
 | WINDOW_OCCLUDED | Window became occluded (covered) | EventType |
 | WINDOW_ENTER_FULLSCREEN | Window entered fullscreen mode | EventType |
 | WINDOW_LEAVE_FULLSCREEN | Window left fullscreen mode | EventType |
+| WINDOW_DESTROYED | Window was destroyed | EventType |
+| WINDOW_HDR_STATE_CHANGED | Window HDR state changed | EventType |
 | KEY_DOWN | Key was pressed | EventType |
 | KEY_UP | Key was released | EventType |
 | TEXT_EDITING | User is editing text (IME input) | EventType |
 | TEXT_INPUT | Text input event (e.g. typed character) | EventType |
+| KEYMAP_CHANGED | Keymap changed | EventType |
 | KEYBOARD_ADDED | New keyboard device connected | EventType |
 | KEYBOARD_REMOVED | Keyboard device was removed | EventType |
+| TEXT_EDITING_CANDIDATES | Text editing candidates available | EventType |
 | MOUSE_MOTION | Mouse moved | EventType |
 | MOUSE_BUTTON_DOWN | Mouse button pressed | EventType |
 | MOUSE_BUTTON_UP | Mouse button released | EventType |
@@ -130,9 +155,18 @@ description: A comprehensive list of constants used in the Kraken Engine.
 | GAMEPAD_BUTTON_UP | Gamepad button released | EventType |
 | GAMEPAD_ADDED | Gamepad connected | EventType |
 | GAMEPAD_REMOVED | Gamepad disconnected | EventType |
+| GAMEPAD_REMAPPED | Gamepad remapped | EventType |
 | GAMEPAD_TOUCHPAD_DOWN | Gamepad touchpad press | EventType |
 | GAMEPAD_TOUCHPAD_MOTION | Gamepad touchpad moved | EventType |
 | GAMEPAD_TOUCHPAD_UP | Gamepad touchpad released | EventType |
+| GAMEPAD_SENSOR_UPDATE | Gamepad sensor updated | EventType |
+| GAMEPAD_UPDATE_COMPLETE | Gamepad update cycle complete | EventType |
+| GAMEPAD_STEAM_HANDLE_UPDATED | Gamepad Steam handle updated | EventType |
+| FINGER_DOWN | Finger touched the screen | EventType |
+| FINGER_UP | Finger lifted off the screen | EventType |
+| FINGER_MOTION | Finger moved on the screen | EventType |
+| FINGER_CANCELED | Finger touch was canceled | EventType |
+| CLIPBOARD_UPDATE | Clipboard content changed | EventType |
 | DROP_FILE | File dropped onto the window | EventType |
 | DROP_TEXT | Text dropped onto the window | EventType |
 | DROP_BEGIN | Start of drag-and-drop operation | EventType |
@@ -141,6 +175,7 @@ description: A comprehensive list of constants used in the Kraken Engine.
 | AUDIO_DEVICE_ADDED | Audio device connected | EventType |
 | AUDIO_DEVICE_REMOVED | Audio device removed | EventType |
 | AUDIO_DEVICE_FORMAT_CHANGED | Audio device format changed | EventType |
+| SENSOR_UPDATE | Sensor data updated | EventType |
 | PEN_PROXIMITY_IN | Pen moved close to tablet | EventType |
 | PEN_PROXIMITY_OUT | Pen moved away from tablet | EventType |
 | PEN_DOWN | Pen touched the surface | EventType |
@@ -149,12 +184,15 @@ description: A comprehensive list of constants used in the Kraken Engine.
 | PEN_BUTTON_UP | Pen button released | EventType |
 | PEN_MOTION | Pen moved on the surface | EventType |
 | PEN_AXIS | Pen axis data changed (e.g. pressure, tilt) | EventType |
-| CAMERA_ADDED | Camera device connected | EventType |
-| CAMERA_REMOVED | Camera device removed | EventType |
-| CAMERA_APPROVED | Camera access granted | EventType |
-| CAMERA_DENIED | Camera access denied | EventType |
+| CAMERA_DEVICE_ADDED | Camera device connected | EventType |
+| CAMERA_DEVICE_REMOVED | Camera device removed | EventType |
+| CAMERA_DEVICE_APPROVED | Camera access granted | EventType |
+| CAMERA_DEVICE_DENIED | Camera access denied | EventType |
+| RENDER_TARGETS_RESET | Render targets need to be reset | EventType |
+| RENDER_DEVICE_RESET | Render device was reset | EventType |
+| RENDER_DEVICE_LOST | Render device was lost | EventType |
 
-## Keyboard
+## Scancodes
 | Name | Type |
 | --- | --- |
 | S_a | Scancode |
@@ -222,6 +260,9 @@ description: A comprehensive list of constants used in the Kraken Engine.
 | S_F10 | Scancode |
 | S_F11 | Scancode |
 | S_F12 | Scancode |
+| S_F13 | Scancode |
+| S_F14 | Scancode |
+| S_F15 | Scancode |
 | S_PRTSCR | Scancode |
 | S_SCRLK | Scancode |
 | S_PAUSE | Scancode |
@@ -252,6 +293,13 @@ description: A comprehensive list of constants used in the Kraken Engine.
 | S_KP_9 | Scancode |
 | S_KP_0 | Scancode |
 | S_KP_PERIOD | Scancode |
+| S_APPLICATION | Scancode |
+| S_POWER | Scancode |
+| S_EXECUTE | Scancode |
+| S_HELP | Scancode |
+| S_MENU | Scancode |
+| S_SELECT | Scancode |
+| S_STOP | Scancode |
 | S_AGAIN | Scancode |
 | S_UNDO | Scancode |
 | S_CUT | Scancode |
@@ -269,10 +317,35 @@ description: A comprehensive list of constants used in the Kraken Engine.
 | S_RSHIFT | Scancode |
 | S_RALT | Scancode |
 | S_RGUI | Scancode |
-| K_BACKSPACE | Keycode |
-| K_TAB | Keycode |
+| S_MODE | Scancode |
+| S_SLEEP | Scancode |
+| S_WAKE | Scancode |
+| S_CHANNEL_INC | Scancode |
+| S_CHANNEL_DEC | Scancode |
+| S_MEDIA_PLAY | Scancode |
+| S_MEDIA_PAUSE | Scancode |
+| S_MEDIA_RECORD | Scancode |
+| S_MEDIA_FAST_FORWARD | Scancode |
+| S_MEDIA_REWIND | Scancode |
+| S_MEDIA_NEXT | Scancode |
+| S_MEDIA_PREV | Scancode |
+| S_MEDIA_STOP | Scancode |
+| S_MEDIA_EJECT | Scancode |
+| S_MEDIA_PLAY_PAUSE | Scancode |
+| S_MEDIA_SELECT | Scancode |
+| S_SOFTLEFT | Scancode |
+| S_SOFTRIGHT | Scancode |
+| S_CALL | Scancode |
+| S_ENDCALL | Scancode |
+
+## Keycodes
+| Name | Type |
+| --- | --- |
+| K_UNKNOWN | Keycode |
 | K_RETURN | Keycode |
 | K_ESC | Keycode |
+| K_BACKSPACE | Keycode |
+| K_TAB | Keycode |
 | K_SPACE | Keycode |
 | K_EXCLAIM | Keycode |
 | K_DBLQUOTE | Keycode |
@@ -281,6 +354,8 @@ description: A comprehensive list of constants used in the Kraken Engine.
 | K_PERCENT | Keycode |
 | K_AMPERSAND | Keycode |
 | K_SGLQUOTE | Keycode |
+| K_LPAREN | Keycode |
+| K_RPAREN | Keycode |
 | K_ASTERISK | Keycode |
 | K_PLUS | Keycode |
 | K_COMMA | Keycode |
@@ -354,6 +429,9 @@ description: A comprehensive list of constants used in the Kraken Engine.
 | K_F10 | Keycode |
 | K_F11 | Keycode |
 | K_F12 | Keycode |
+| K_F13 | Keycode |
+| K_F14 | Keycode |
+| K_F15 | Keycode |
 | K_PRTSCR | Keycode |
 | K_SCRLK | Keycode |
 | K_PAUSE | Keycode |
@@ -383,6 +461,13 @@ description: A comprehensive list of constants used in the Kraken Engine.
 | K_KP_9 | Keycode |
 | K_KP_0 | Keycode |
 | K_KP_PERIOD | Keycode |
+| K_APPLICATION | Keycode |
+| K_POWER | Keycode |
+| K_EXECUTE | Keycode |
+| K_HELP | Keycode |
+| K_MENU | Keycode |
+| K_SELECT | Keycode |
+| K_STOP | Keycode |
 | K_AGAIN | Keycode |
 | K_UNDO | Keycode |
 | K_CUT | Keycode |
@@ -392,8 +477,6 @@ description: A comprehensive list of constants used in the Kraken Engine.
 | K_MUTE | Keycode |
 | K_VOLUP | Keycode |
 | K_VOLDOWN | Keycode |
-| K_LPAREN | Keycode |
-| K_RPAREN | Keycode |
 | K_LCTRL | Keycode |
 | K_LSHIFT | Keycode |
 | K_LALT | Keycode |
@@ -402,3 +485,23 @@ description: A comprehensive list of constants used in the Kraken Engine.
 | K_RSHIFT | Keycode |
 | K_RALT | Keycode |
 | K_RGUI | Keycode |
+| K_MODE | Keycode |
+| K_SLEEP | Keycode |
+| K_WAKE | Keycode |
+| K_CHANNEL_INC | Keycode |
+| K_CHANNEL_DEC | Keycode |
+| K_MEDIA_PLAY | Keycode |
+| K_MEDIA_PAUSE | Keycode |
+| K_MEDIA_REC | Keycode |
+| K_MEDIA_FAST_FORWARD | Keycode |
+| K_MEDIA_REWIND | Keycode |
+| K_MEDIA_NEXT | Keycode |
+| K_MEDIA_PREV | Keycode |
+| K_MEDIA_STOP | Keycode |
+| K_MEDIA_EJECT | Keycode |
+| K_MEDIA_PLAY_PAUSE | Keycode |
+| K_MEDIA_SELECT | Keycode |
+| K_SOFTLEFT | Keycode |
+| K_SOFTRIGHT | Keycode |
+| K_CALL | Keycode |
+| K_ENDCALL | Keycode |

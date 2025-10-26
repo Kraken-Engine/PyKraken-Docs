@@ -1,0 +1,59 @@
+---
+title: TileLayer
+description: A single tile layer within a tile map.
+---
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `type` | The type of the layer (OBJECT or TILE) | `TileLayer.Type` |
+| `is_visible` | Whether the layer is visible | `bool` |
+| `name` | The name of the layer | `str` |
+| `tiles` | A list of tiles in the layer | `list[Tile]` |
+
+## Methods
+---
+
+### Render
+<div className="api-card">
+
+<ApiSig name="render" returns="None" />
+
+Render the tile layer to the screen.
+
+</div>
+
+### Get From Area
+<div className="api-card">
+
+<ApiSig name="get_from_area" params={[{name: 'area', type: 'Rect'}]} returns="list[Tile]" />
+
+Get all tiles within a specified rectangular area.
+
+_**Parameters**_
+- `area` : The rectangular area to check for tiles.
+
+_**Returns**_
+
+`list[Tile]` : A list of tiles within the specified area.
+
+</div>
+
+### Get Tile At
+<div className="api-card">
+
+<ApiSig name="get_tile_at" params={[{name: 'column', type: 'int'}, {name: 'row', type: 'int'}]} returns="Tile | None" />
+
+Get the tile at a specific column and row.
+
+_**Parameters**_
+- `column` : The column index of the tile.
+- `row` : The row index of the tile.
+
+_**Returns**_
+
+`Tile | None` : The tile at the specified column and row, or None if it doesn't exist.
+
+</div>

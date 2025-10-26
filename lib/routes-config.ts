@@ -10,16 +10,6 @@ export type EachRoute = {
 
 export const DOC_ROUTES: EachRoute[] = [
   {
-    title: "Getting Started",
-    href: "/getting-started",
-    noLink: true,
-    items: [
-      { title: "Introduction", href: "/introduction" },
-      { title: "Installation", href: "/installation" },
-      { title: "Creating a Window", href: "/create-window" },
-    ],
-  },
-  {
     title: "Manual",
     href: "/manual",
     noLink: true,
@@ -47,8 +37,12 @@ export const DOC_ROUTES: EachRoute[] = [
       { title: "PolarCoordinate", href: "/polar-coordinate" },
       { title: "Polygon", href: "/polygon" },
       { title: "Rect", href: "/rect" },
+      { title: "ShaderState", href: "/shader-state" },
+      { title: "ShaderUniform", href: "/shader-uniform" },
       { title: "Texture", href: "/texture" },
-      { title: "TileMap", href: "/tile_map" },
+      { title: "Tile", href: "/tile" },
+      { title: "TileLayer", href: "/tile-layer" },
+      { title: "TileMap", href: "/tile-map" },
       { title: "Timer", href: "/timer" },
       { title: "Vec2", href: "/vec2" },
     ],
@@ -58,6 +52,7 @@ export const DOC_ROUTES: EachRoute[] = [
     href: "/functions",
     noLink: true,
     items: [
+      { title: "Collision", href: "/collision" },
       { title: "Color", href: "/color" },
       { title: "Draw", href: "/draw" },
       { title: "Ease", href: "/ease" },
@@ -78,6 +73,16 @@ export const DOC_ROUTES: EachRoute[] = [
 ];
 
 export const GUIDE_ROUTES: EachRoute[] = [
+  {
+    title: "Getting Started",
+    href: "/getting-started",
+    noLink: true,
+    items: [
+      { title: "Introduction", href: "/introduction" },
+      { title: "Installation", href: "/installation" },
+      { title: "Creating a Window", href: "/create-window" },
+    ],
+  },
   {
     title: "Using The Renderer",
     href: "/using-the-renderer",

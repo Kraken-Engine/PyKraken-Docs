@@ -741,3 +741,22 @@ aside>div>div>div>div>div>div>div>div {
     padding-right: 12%;
   }
 }
+
+.api-sig--block {
+  width: max-content;
+  background: var(--code-bg, hsl(220 13% 18%));
+  border: 1px solid var(--border, hsl(220 10% 28%));
+  border-radius: 8px;
+  max-width: 100%;
+}
+
+.api-sig--block code {
+  background: transparent !important;
+  border: none !important;
+  white-space: nowrap;
+}
+
+.api-sig--block .keyword {
+  position: relative;
+  left: -0.65ch;
+}
