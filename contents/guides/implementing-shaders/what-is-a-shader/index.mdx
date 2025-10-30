@@ -1,0 +1,24 @@
+---
+title: What is a Shader?
+description: An introduction to shaders and their role in graphics rendering.
+---
+
+**Shaders** are small programs that run on the GPU (Graphics Processing Unit) and are responsible for rendering graphics in a game or application.
+They allow developers to control the *visual appearance* of objects by manipulating how they are drawn on the screen.
+
+### Types of Shaders
+Shaders are typically written in specialized programming languages such as *GLSL* (OpenGL Shading Language) or *HLSL* (High-Level Shading Language).
+There are several types of shaders, but the most common ones are:
+* **Vertex Shaders**: These shaders process each vertex of a 3D model, transforming its position in 3D space to 2D screen coordinates.
+They can also manipulate vertex attributes like color, texture coordinates, and normals.
+* **Fragment Shaders**: Also known as pixel shaders, these shaders determine the color and other attributes of each pixel on the screen.
+They are responsible for effects like lighting, texturing, and color blending.
+* **Compute Shaders**: These shaders are used for general-purpose computing tasks on the GPU, allowing for parallel processing of data.
+They are not directly involved in rendering graphics but can be used for tasks like physics simulations, image processing, and more.
+
+### Uniforms, Textures, and Buffers
+Shaders often rely on external data to perform their calculations. This data can come in the form of:
+* **Uniforms**: These are constant values that are passed to the shader from the CPU.
+They can include transformation matrices, lighting parameters, or any other data that remains constant for a draw call.
+* **Textures**: These are images or data that can be sampled by the shader to apply patterns, colors, or other effects to the rendered objects.
+* **Buffers**: These are blocks of memory that store large amounts of data, such as vertex attributes or other information that the shader needs to access.

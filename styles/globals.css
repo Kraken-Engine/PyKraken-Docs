@@ -122,13 +122,14 @@
 }
 
 pre {
-  padding: 2px 0 !important;
+  padding: 0 0 !important;
   width: inherit !important;
   overflow-x: auto;
 }
 
 pre>code {
   display: grid;
+  border-radius: var(--radius) !important;
   max-width: inherit !important;
   padding: 14px 0 !important;
 }
@@ -366,7 +367,7 @@ aside[aria-label="Sidebar"] nav .active {
 .prose :focus-visible {
   outline: 2px solid hsl(var(--link));
   outline-offset: 2px;
-  border-radius: 6px;
+  border-radius: var(--radius);
 }
 
 .prose code:not(pre code) {
@@ -380,7 +381,7 @@ aside[aria-label="On this page"],
 nav[aria-label="On this page"] {
   background: hsl(var(--surface-2));
   border: 1px solid hsl(var(--border));
-  border-radius: 10px;
+  border-radius: var(--radius);
   box-shadow: var(--elev-1);
   padding: .75rem;
 }
@@ -454,7 +455,7 @@ nav[aria-label="On this page"] {
 .prose .api-card blockquote {
   border-left: 3px solid hsl(var(--primary));
   background: color-mix(in oklab, hsl(var(--surface-1)) 88%, black);
-  border-radius: 8px;
+  border-radius: var(--radius);
   padding: .6rem .8rem;
 }
 
@@ -470,7 +471,7 @@ nav[aria-label="On this page"] {
   background: hsl(var(--surface-2)) !important;
   color: hsl(240 6% 25%);
   border: 1px solid hsl(var(--border));
-  border-radius: 6px;
+  border-radius: var(--radius);
   padding: 2px 6px;
   font-size: 0.95em;
   /* white-space: nowrap; */
@@ -701,7 +702,7 @@ aside>div>div>div>div>div>div>div>div {
   -webkit-backdrop-filter: blur(12px);
 
   padding: 0.5rem 0.8rem;
-  border-radius: 0.8rem;
+  border-radius: var(--radius);
   border-top: 0.1rem solid hsl(var(--foreground) / 0.08);
   font-family: monospace;
 }
@@ -746,7 +747,7 @@ aside>div>div>div>div>div>div>div>div {
   width: max-content;
   background: var(--code-bg, hsl(220 13% 18%));
   border: 1px solid var(--border, hsl(220 10% 28%));
-  border-radius: 8px;
+  border-radius: var(--radius);
   max-width: 100%;
 }
 

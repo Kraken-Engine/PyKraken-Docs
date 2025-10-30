@@ -1,0 +1,89 @@
+---
+title: Using Shader States
+description: Guide to using shader states in Kraken Engine for rendering effects.
+---
+
+For now, Kraken Engine only supports fragment/pixel shaders.
+To load a shader, you can use the `ShaderState` class, which accepts five parameters:
+- `fragment_file_path`: The file path to the fragment shader code.
+- `sampler_count`: The number of texture samplers the shader will use.
+- `storage_texture_count`: The number of storage textures the shader will use.
+- `storage_buffer_count`: The number of storage buffers the shader will use.
+- `uniform_buffer_count`: The number of uniform buffers the shader will use.
+
+## Loading a Shader
+
+Here's a fragment shader that inverts the colors of a texture:
+
+<Tabs defaultValue="hlsl">
+    <TabsList>
+        <TabsTrigger value="hlsl">HLSL</TabsTrigger>
+        <TabsTrigger value="glsl">GLSL</TabsTrigger>
+    </TabsList>
+    <TabsContent value="hlsl">
+    ```hlsl:invert.frag.hlsl showLineNumbers
+    Texture2D    u_texture : register(t0, space2);
+    SamplerState u_sampler : register(s0, space2);
+
+    struct PSInput {
+        float4 v_color : COLOR0;
+        float2 v_uv    : TEXCOORD0;
+    };
+
+    struct PSOutput {
+        float4 o_color : SV_Target;
+    };
+
+    PSOutput main(PSInput input) {
+        PSOutput output;
+        float4 c = u_texture.Sample(u_sampler, input.v_uv) * input.v_color;
+        c.rgb = 1.0 - c.rgb;
+        output.o_color = c;
+        return output;
+    }
+    ```
+    </TabsContent>
+    <TabsContent value="glsl">
+    ```glsl:invert.frag.glsl showLineNumbers
+    #version 450
+
+    layout(set = 2, binding = 0) uniform sampler2D u_texture;
+
+    layout(location = 0) in vec4 v_color;
+    layout(location = 1) in vec2 v_uv;
+
+    layout(location = 0) out vec4 o_color;
+
+    void main() {
+        vec4 c = texture(u_texture, v_uv) * v_color;
+        c.rgb = 1.0 - c.rgb;
+        o_color = c;
+    }
+    ```
+    </TabsContent>
+</Tabs>
+
+The shader script has one texture sampler (`u_texture`) and inverts the colors of the sampled texture based on the vertex color.
+So, to load this shader, you would do the following:
+```py
+invert_shader = kn.ShaderState(
+    fragment_file_path="path/to/invert.frag.hlsl",  # or .frag.glsl
+    sampler_count=1,
+    storage_texture_count=0,
+    storage_buffer_count=0,
+    uniform_buffer_count=0,
+)
+```
+
+## Render Pipeline Integration
+
+This creates a `ShaderState` object that can be used in your rendering pipeline to apply the color inversion effect.
+It can be applied to any texture by binding the shader state before rendering.
+This is done with the `ShaderState.bind` method, and you should unbind it afterward using `ShaderState.unbind` to avoid the shader from applying to later rendered textures.
+
+```py
+invert_shader.bind()
+kn.renderer.draw(some_texture) # Renders with color inversion
+invert_shader.unbind()
+kn.renderer.draw(another_texture)  # Renders normally
+```

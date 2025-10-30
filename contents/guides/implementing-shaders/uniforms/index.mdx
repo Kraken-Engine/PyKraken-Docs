@@ -1,0 +1,74 @@
+---
+title: Uniforms
+---
+
+As described in the [What is a Shader?](./what-is-a-shader/) page, uniform shaders simply are data that is constant for a single draw call, sent from the CPU to the GPU.
+In Kraken, uniform data can be stored and sent to the GPU using `ShaderUniform`-inherited objects.
+
+## Creating a Uniform Buffer
+
+To create a uniform buffer, you need to define a class that inherits from `ShaderUniform`.
+Here's an example of a uniform buffer with commonly used data types:
+```py
+class MyUniform(kn.ShaderUniform):
+    value: float
+    offset: tuple[float, float]
+    color: tuple[float, float, float, float]
+```
+It can then be instantiated and updated like so:
+```py
+my_uniform = MyUniform(value=1.0, offset=(0.0, 0.0), color=(1.0, 1.0, 1.0, 1.0))
+
+# To update the uniform values
+my_uniform.value = 2.5
+my_uniform.offset = (10.0, 20.0)
+```
+
+## Defining Uniforms in Shaders
+
+In your shader code, you need to define the uniform buffer to match the structure of your `ShaderUniform` class.
+Here's how you would define the `MyUniform` in both HLSL and GLSL:
+
+<Tabs defaultValue="hlsl">
+    <TabsList>
+        <TabsTrigger value="hlsl">HLSL</TabsTrigger>
+        <TabsTrigger value="glsl">GLSL</TabsTrigger>
+    </TabsList>
+    <TabsContent value="hlsl">
+    ```hlsl:my_shader.frag.hlsl
+    cbuffer MyUniform : register(b0, space3) {
+        float value;
+        float2 offset;
+        float4 color;
+    };
+    ```
+    </TabsContent>
+    <TabsContent value="glsl">
+    ```glsl:my_shader.frag.glsl
+    layout(set = 3, binding = 0) uniform MyUniform {
+        float value;
+        vec2 offset;
+        vec4 color;
+    };
+    ```
+    </TabsContent>
+</Tabs>
+
+## Binding Uniforms
+
+When creating a `ShaderState`, you need to specify the number of uniform buffers it will use.
+For example, if your shader uses one uniform buffer, you would create the `ShaderState` like this:
+```py
+my_shader = kn.ShaderState(
+    fragment_file_path="path/to/my_shader.frag.hlsl",
+    sampler_count=1,
+    storage_texture_count=0,
+    storage_buffer_count=0,
+    uniform_buffer_count=1  # One uniform buffer (MyUniform)
+)
+```
+
+Then, after binding the shader state, you can bind the uniform buffer to a specific binding point at any point (usually once per frame):
+```py
+my_shader.set_uniform(binding=0, data=my_uniform.to_bytes())
+```

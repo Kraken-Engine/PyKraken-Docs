@@ -103,6 +103,8 @@ export const fileExtensionIconMap = {
   c: "c",
   bash: "bash",
   html: "html5",
+  hlsl: "vulkan",
+  glsl: "opengl",
 };
 
 export function hasSupportedExtension(name: string) {

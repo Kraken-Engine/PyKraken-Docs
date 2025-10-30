@@ -1,0 +1,16 @@
+---
+title: Keycode vs. Scancode
+---
+
+The Kraken Engine uses both keycodes and scancodes to handle keyboard input, but they serve different purposes.
+
+Keycodes are the character that the key represents, while scancodes are the physical location of the key on the keyboard.
+For example, the "Q" key on a QWERTY keyboard has a keycode of `K_q` and a scancode of `S_q`, whereas AZERTY keyboards would have a keycode of `K_a` instead.
+
+Here's a comparison of when to use each:
+| Scenario | Keycode (`K_`) | Scancode (`S_`) |
+|-|-|-|
+| **Menu navigation**                     | ✅ Works naturally with the user's keyboard layout            | ❌ Physical key positions may not match expected letters |
+| **Text input**                          | ✅ Respects the user's language and layout (ideal for typing) | ❌ Breaks on non-QWERTY keyboards                        |
+| **Gameplay movement**                   | ❌ Depends on user's layout (e.g., AZERTY vs QWERTY)          | ✅ Consistent physical keys across all layouts           |
+| **Developer shortcuts / debug hotkeys** | ❌ May vary between keyboard layouts                          | ✅ Always maps to the same physical key positions        |

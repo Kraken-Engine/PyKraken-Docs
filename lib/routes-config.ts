@@ -14,6 +14,8 @@ export const DOC_ROUTES: EachRoute[] = [
     href: "/manual",
     noLink: true,
     items: [
+      { title: "How to Read", href: "/how-to-read" },
+      { title: "Keycode vs. Scancode", href: "/keycode-vs-scancode" },
       { title: "Constants", href: "/constants" },
     ],
   },
@@ -93,6 +95,16 @@ export const GUIDE_ROUTES: EachRoute[] = [
       { title: "Rendering Textures", href: "/rendering-textures" },
     ],
   },
+  {
+    title: "Implementing Shaders",
+    href: "/implementing-shaders",
+    noLink: true,
+    items: [
+      { title: "What is a Shader?", href: "/what-is-a-shader" },
+      { title: "Using Shader States", href: "/using-shader-states" },
+      { title: "Uniforms", href: "/uniforms" },
+    ]
+  }
 ];
 
 type Page = { title: string; href: string };
