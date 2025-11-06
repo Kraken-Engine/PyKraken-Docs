@@ -3,6 +3,9 @@ title: AudioStream
 description: An audio stream that streams data from disk.
 ---
 - <ApiSig name="AudioStream" params={[{ name: "file_path", type: "str" }, { name: "volume", type: "float", default: '1.0' }]} />
+<Note>
+Audio file formats supported are WAV, FLAC, and MP3.
+</Note>
 
 ## Properties
 <hr style={{marginBottom: 0}} />
@@ -10,15 +13,23 @@ description: An audio stream that streams data from disk.
 | Name | Description | Type |
 | --- | --- | --- |
 | `volume` | The volume of the audio stream, from 0.0-1.0, with values above 1.0 allowed for amplification. | `float` |
+| `current_time` | The current playback time of the audio stream in seconds. | `float` |
+
 ## Methods
 ---
 
 ### Play
 <div className="api-card">
 
-<ApiSig name="play" returns="None" />
+<ApiSig name="play" multiline params={[{name: "fade_in_ms", type: "int", default: "0"}, {name: "loop", type: "bool", default: "false"}, {name: "start_time_seconds", type: "float", default: "0.0"}]} returns="None" />
 
-Play the audio stream.
+Play the audio stream with optional fade-in, looping, and start time.
+
+_**Parameters**_
+
+- `fade_in_ms` : The duration in milliseconds to fade in the audio.
+- `loop` : Whether to loop the audio stream.
+- `start_time_seconds` : The time in seconds to start playback from.
 
 </div>
 
@@ -28,6 +39,19 @@ Play the audio stream.
 <ApiSig name="stop" returns="None" />
 
 Stop the audio stream.
+
+</div>
+
+### Seek
+<div className="api-card">
+
+<ApiSig name="seek" params={[{name: "time_seconds", type: "float"}]} returns="None" />
+
+Seek to a specific time in the audio stream.
+
+_**Parameters**_
+
+- `time_seconds` : The time in seconds to seek to.
 
 </div>
 

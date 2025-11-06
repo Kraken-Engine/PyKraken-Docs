@@ -5,10 +5,8 @@ description: A class for managing shader states in the rendering pipeline.
 - <ApiSig name="ShaderState" multiline params={
     [
         { name: "fragment_file_path", type: "str" },
-        { name: "sampler_count", type: "int" },
-        { name: "storage_texture_count", type: "int" },
-        { name: "storage_buffer_count", type: "int" },
-        { name: "uniform_buffer_count", type: "int" },
+        { name: "uniform_buffer_count", type: "int", default: "0" },
+        { name: "sampler_count", type: "int", default: "1" },
     ]
     } />
 

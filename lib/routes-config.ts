@@ -41,6 +41,8 @@ export const DOC_ROUTES: EachRoute[] = [
       { title: "Rect", href: "/rect" },
       { title: "ShaderState", href: "/shader-state" },
       { title: "ShaderUniform", href: "/shader-uniform" },
+      { title: "SheetStrip", href: "/sheet-strip" },
+      { title: "Text", href: "/text" },
       { title: "Texture", href: "/texture" },
       { title: "Tile", href: "/tile" },
       { title: "TileLayer", href: "/tile-layer" },

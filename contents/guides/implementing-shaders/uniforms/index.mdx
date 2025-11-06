@@ -61,10 +61,8 @@ For example, if your shader uses one uniform buffer, you would create the `Shade
 ```py
 my_shader = kn.ShaderState(
     fragment_file_path="path/to/my_shader.frag.hlsl",
-    sampler_count=1,
-    storage_texture_count=0,
-    storage_buffer_count=0,
-    uniform_buffer_count=1  # One uniform buffer (MyUniform)
+    uniform_buffer_count=1,  # One uniform buffer (MyUniform)
+    sampler_count=1
 )
 ```
 

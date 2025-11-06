@@ -4,12 +4,10 @@ description: Guide to using shader states in Kraken Engine for rendering effects
 ---
 
 For now, Kraken Engine only supports fragment/pixel shaders.
-To load a shader, you can use the `ShaderState` class, which accepts five parameters:
+To load a shader, you can use the `ShaderState` class, which accepts three parameters:
 - `fragment_file_path`: The file path to the fragment shader code.
-- `sampler_count`: The number of texture samplers the shader will use.
-- `storage_texture_count`: The number of storage textures the shader will use.
-- `storage_buffer_count`: The number of storage buffers the shader will use.
 - `uniform_buffer_count`: The number of uniform buffers the shader will use.
+- `sampler_count`: The number of texture samplers the shader will use.
 
 ## Loading a Shader
 
@@ -68,10 +66,8 @@ So, to load this shader, you would do the following:
 ```py
 invert_shader = kn.ShaderState(
     fragment_file_path="path/to/invert.frag.hlsl",  # or .frag.glsl
-    sampler_count=1,
-    storage_texture_count=0,
-    storage_buffer_count=0,
     uniform_buffer_count=0,
+    sampler_count=1
 )
 ```
 

@@ -38,6 +38,21 @@ _**Returns**_
 
 ---
 
+<ApiSig name="overlap" params={[{ name: "rect", type: "Rect" }, { name: "polygon", type: "Polygon" }]} returns="bool" />
+
+Check if a rectangle and a polygon overlap.
+
+_**Parameters**_
+
+- `rect` : The rectangle to check for overlap.
+- `polygon` : The polygon to check for overlap.
+
+_**Returns**_
+
+`bool` : `True` if the rectangle and polygon overlap, otherwise `False`.
+
+---
+
 <ApiSig name="overlap" params={[{ name: "rect", type: "Rect" }, { name: "line", type: "Line" }]} returns="bool" />
 
 Check if a rectangle and a line overlap.
@@ -128,6 +143,36 @@ _**Returns**_
 
 ---
 
+<ApiSig name="overlap" params={[{ name: "polygon", type: "Polygon" }, { name: "rect", type: "Rect" }]} returns="bool" />
+
+Check if a polygon and a rectangle overlap.
+
+_**Parameters**_
+
+- `polygon` : The polygon to check for overlap.
+- `rect` : The rectangle to check for overlap.
+
+_**Returns**_
+
+`bool` : `True` if the polygon and rectangle overlap, otherwise `False`.
+
+---
+
+<ApiSig name="overlap" params={[{ name: "polygon", type: "Polygon" }, { name: "point", type: "Vec2" }]} returns="bool" />
+
+Check if a polygon overlaps with a point.
+
+_**Parameters**_
+
+- `polygon` : The polygon to check for overlap.
+- `point` : The point to check for overlap.
+
+_**Returns**_
+
+`bool` : `True` if the polygon and point overlap, otherwise `False`.
+
+---
+
 <ApiSig name="overlap" params={[{ name: "a", type: "Line" }, { name: "b", type: "Line" }]} returns="bool" />
 
 Check if two lines overlap (intersect).
@@ -200,6 +245,21 @@ _**Parameters**_
 _**Returns**_
 
 `bool` : `True` if the point is within the circle, otherwise `False`.
+
+---
+
+<ApiSig name="overlap" params={[{ name: "point", type: "Vec2" }, { name: "polygon", type: "Polygon" }]} returns="bool" />
+
+Check if a point is contained within a polygon.
+
+_**Parameters**_
+
+- `point` : The point to check.
+- `polygon` : The polygon to check.
+
+_**Returns**_
+
+`bool` : `True` if the point is within the polygon, otherwise `False`.
 
 </div>
 

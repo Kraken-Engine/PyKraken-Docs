@@ -11,9 +11,65 @@ description: A polygon shape defined by a series of points.
 | Name | Description | Type |
 | --- | --- | --- |
 | `points` | The points that define the polygon | `list[Vec2]` |
+| `perimeter` | The perimeter length of the polygon. | `float` |
+| `area` | The area of the polygon. | `float` |
+| `centroid` | The centroid (geometric center) of the polygon. | `Vec2` |
+| `bounds` | The axis-aligned bounding rectangle of the polygon. | `Rect` |
 
 ## Methods
 ---
+
+### Rotate
+<div className="api-card">
+
+<ApiSig name="rotate" params={[{name: "angle", type: "float"}, {name: "pivot", type: "Vec2"}]} returns="None" />
+
+Rotate the polygon by a certain angle around a pivot point.
+
+_**Parameters**_
+
+- `angle` : The angle in degrees to rotate the polygon.
+- `pivot` : The point around which to rotate the polygon.
+
+</div>
+
+### Translate
+<div className="api-card">
+
+<ApiSig name="translate" params={[{name: "offset", type: "Vec2"}]} returns="None" />
+
+Translate the polygon by a certain offset.
+
+_**Parameters**_
+
+- `offset` : The offset vector by which to translate the polygon.
+
+</div>
+
+### Scale
+<div className="api-card">
+
+<ApiSig name="scale" params={[{name: "factor", type: "float"}, {name: "pivot", type: "Vec2"}]} returns="None" />
+
+Scale the polygon uniformly by a certain factor from a pivot point.
+
+_**Parameters**_
+
+- `factor` : The scaling factor. Values less than 1.0 will shrink the polygon, while values greater than 1.0 will enlarge it.
+- `pivot` : The point from which to scale the polygon.
+
+---
+
+<ApiSig name="scale" params={[{name: "factor", type: "Vec2"}, {name: "pivot", type: "Vec2"}]} returns="None" />
+
+Scale the polygon non-uniformly by a certain factor from a pivot point.
+
+_**Parameters**_
+
+- `factor` : The scaling factor for each axis. Values less than 1.0 will shrink the polygon, while values greater than 1.0 will enlarge it.
+- `pivot` : The point from which to scale the polygon.
+
+</div>
 
 ### Copy
 <div className="api-card">

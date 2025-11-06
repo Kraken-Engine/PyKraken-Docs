@@ -12,6 +12,9 @@ description: An sprite animation manager and controller.
 | `current_animation_name` | The current animation's name | `str` |
 | `current_frame` | The current animation's frame | `Frame` |
 | `playback_speed` | The playback speed multiplier | `float` |
+| `frame_index` | The current frame index of the animation | `int` |
+| `progress` | The progress through the current animation as a value between 0.0 and 1.0 | `float` |
+| `looping` | Whether the animation should loop after playing | `bool` |
 
 ## Methods
 ---
@@ -19,29 +22,15 @@ description: An sprite animation manager and controller.
 ### Load Sprite Sheet
 <div className="api-card">
 
-<ApiSig name="load_sprite_sheet" multiline params={[{ name: "name", type: "str" }, { name: "file_path", type: "str" }, { name: "frame_size", type: "Vec2" }, { name: "fps", type: "int" }]} returns="None" />
+<ApiSig name="load_sprite_sheet" multiline params={[{ name: "file_path", type: "str" }, { name: "frame_size", type: "Vec2" }, { name: "strips", type: "list[SheetStrip]" }]} returns="None" />
 
-Load animation frames from a sprite sheet image.
+Load animation frames from a sprite sheet.
+Strips are read horizontally from left to right, top to bottom, as provided in the strips list.
 
 _**Parameters**_
-- `name` : The name to assign to the loaded animation.
 - `file_path` : The path to the sprite sheet image file.
 - `frame_size` : The size of each frame in the sprite sheet.
-- `fps` : The frames per second for the animation playback.
-
-</div>
-
-### Load Folder
-<div className="api-card">
-
-<ApiSig name="load_folder" params={[{ name: "name", type: "str" }, { name: "dir_path", type: "str" }, { name: "fps", type: "int" }]} returns="None" />
-
-Load animation frames from a folder.
-
-_**Parameters**_
-- `name` : The name to assign to the loaded animation.
-- `dir_path` : The path to the folder containing animation frames.
-- `fps` : The frames per second for the animation playback.
+- `strips` : A list of sheet strips to load from the sprite sheet.
 
 </div>
 
@@ -65,13 +54,36 @@ _**Parameters**_
 ### Set
 <div className="api-card">
 
-<ApiSig name="set" params={[{ name: "name", type: "str" }, { name: "rewind", type: "bool", default: "False" }]} returns="None" />
+<ApiSig name="set" params={[{ name: "name", type: "str" }]} returns="None" />
 
-Set the current animation by name.
+Set the current animation by name without affecting playback state.
 
 _**Parameters**_
 - `name` : The name of the animation to set as current.
-- `rewind` : Whether to rewind the animation to the first frame.
+
+</div>
+
+### Play
+<div className="api-card">
+
+<ApiSig name="play" params={[{ name: "name", type: "str" }]} returns="None" />
+
+Play an animation from the beginning by name.
+
+_**Parameters**_
+- `name` : The name of the animation to play.
+
+</div>
+
+### Play From
+<div className="api-card">
+
+<ApiSig name="play_from" params={[{ name: "frame_index", type: "int" }]} returns="None" />
+
+Play an animation from a specific frame.
+
+_**Parameters**_
+- `frame_index` : The index of the frame to start playing from.
 
 </div>
 
