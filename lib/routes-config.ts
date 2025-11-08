@@ -17,6 +17,7 @@ export const DOC_ROUTES: EachRoute[] = [
       { title: "How to Read", href: "/how-to-read" },
       { title: "Keycode vs. Scancode", href: "/keycode-vs-scancode" },
       { title: "Constants", href: "/constants" },
+      { title: "Event Attributes", href: "/event-attributes" },
     ],
   },
   {

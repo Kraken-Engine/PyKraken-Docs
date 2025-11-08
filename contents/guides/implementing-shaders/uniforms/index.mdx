@@ -60,7 +60,7 @@ When creating a `ShaderState`, you need to specify the number of uniform buffers
 For example, if your shader uses one uniform buffer, you would create the `ShaderState` like this:
 ```py
 my_shader = kn.ShaderState(
-    fragment_file_path="path/to/my_shader.frag.hlsl",
+    fragment_file_path="path/to/my_shader.frag.spv",
     uniform_buffer_count=1,  # One uniform buffer (MyUniform)
     sampler_count=1
 )

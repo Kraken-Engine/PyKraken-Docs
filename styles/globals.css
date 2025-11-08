@@ -20,11 +20,11 @@
     --popover-foreground: 240 8% 8%;
     --primary: 240 6% 10%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 14% 96%;
+    --secondary: 220 16% 96%;
     --secondary-foreground: 240 6% 16%;
     --muted: 220 12% 94%;
     --muted-foreground: 240 4% 38%;
-    --accent: 220 18% 97%;
+    --accent: 220 18% 94%;
     --accent-foreground: 240 6% 18%;
     --destructive: 0 80% 57.70%;
     --destructive-foreground: 0 0% 100%;
@@ -74,7 +74,7 @@
     --accent-foreground: 35 80% 98%;
     --destructive: 0 62.80% 30.60%;
     --destructive-foreground: 0 85.70% 97.30%;
-    --border: 240 3.70% 15.90%;
+    --border: 240 3.70% 20%;
     --input: 240 3.70% 15.90%;
     --ring: 240 4.90% 83.90%;
     --chart-1: 220 70% 50%;
@@ -82,7 +82,7 @@
     --chart-3: 30 80% 55.00%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55.00%;
-    --sidebar: 240 5.90% 10%;
+    --sidebar: 240 11% 9%;
     --sidebar-foreground: 240 4.80% 95.90%;
     --sidebar-primary: 224.30 76.30% 48%;
     --sidebar-primary-foreground: 0 0% 100%;
@@ -117,8 +117,6 @@
 
 .prose {
   margin: 1em 0 0 0 !important;
-  border: none !important;
-  box-shadow: var(--elev-2);
 }
 
 pre {
@@ -280,11 +278,35 @@ td>code {
    (if you added one). We explicitly DO NOT set
    background on main/article anymore. */
 
-/* 3) Make only the docs content (.prose) a “card” */
+body {
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(120, 180, 255, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(180, 220, 255, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 90%, rgba(140, 200, 255, 0.03) 0%, transparent 60%),
+    linear-gradient(135deg,
+      hsl(210, 20%, 95%) 0%,
+      hsl(200, 18%, 96%) 25%,
+      hsl(190, 15%, 96%) 50%,
+      hsl(200, 18%, 95%) 75%,
+      hsl(210, 20%, 94%) 100%);
+  background-attachment: fixed;
+}
+
+.dark body {
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(30, 60, 100, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(20, 50, 90, 0.12) 0%, transparent 50%),
+    linear-gradient(135deg,
+      hsl(240, 10%, 6.75%) 0%,
+      hsl(235, 12%, 8%) 50%,
+      hsl(240, 10%, 6.75%) 100%);
+  background-attachment: fixed;
+}
+
+/* 3) Make only the docs content (.prose) a "card" */
 main .prose {
   /* box look */
   background: hsl(var(--surface-1));
-  border: 1px solid hsl(var(--border));
   border-radius: var(--radius);
   box-shadow: var(--elev-2);
 
@@ -293,6 +315,12 @@ main .prose {
   /* center it */
   padding: 2rem;
   /* internal spacing */
+}
+
+/* Lighter prose card in dark mode */
+.dark main .prose {
+  background: hsl(240, 12%, 14%);
+  box-shadow: inset 0 0 6px 1px rgba(200, 220, 255, 0.1);
 }
 
 /* Optional: on very wide screens, give a touch more width */
@@ -374,6 +402,7 @@ aside[aria-label="Sidebar"] nav .active {
   border: 1px solid hsl(var(--border));
   border-radius: 6px;
   padding: .15rem .35rem;
+  background: hsl(var(--surface-2) / 0.6) !important;
 }
 
 /* 8) Right-side TOC card, if present */
@@ -428,7 +457,7 @@ nav[aria-label="On this page"] {
 
 /* Dark mode api-card */
 .dark .prose .api-card {
-  background: #151518;
+  background: hsl(240, 10%, 10%);
 }
 
 /* Make the first paragraph (your short summary) breathe a bit less */
@@ -632,8 +661,14 @@ nav[aria-label="On this page"] {
 
 .leftbar-sublink:hover {
   border-left: solid 2px hsl(var(--link));
-  color: hsl(var(--foreground)) !important;
-  transition: border-color 0s ease, color 0s ease;
+  border-color: rgba(0, 10, 30, 0.5);
+  transition: border-color 0s ease;
+}
+
+.dark .leftbar-sublink:hover {
+  border-left: solid 2px hsl(var(--link));
+  border-color: rgba(255, 255, 255, 0.8);
+  transition: border-color 0s ease;
 }
 
 .DocSearch-Button:hover {
@@ -660,6 +695,19 @@ aside>div>div>div>div>div>div>div>div {
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Better navbar contrast in light mode */
+#top-nav {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.dark #top-nav {
+  background-color: rgba(0, 2, 10, 0.4);
+  border-bottom: 1px solid hsl(var(--border));
+}
+
 #move-up-right {
   transition: transform 0.2s ease;
 }
@@ -680,20 +728,27 @@ aside>div>div>div>div>div>div>div>div {
 }
 
 #small-toc {
-  background:
-    linear-gradient(hsl(var(--surface-2)), hsl(var(--surface-2))) padding-box,
-    linear-gradient(to bottom, hsl(var(--foreground) / 0.08), hsl(var(--foreground) / 0.04)) border-box;
-  border: 2px solid transparent;
+  /* Glassmorphism effect */
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: var(--radius) !important;
   padding: 1.25em 1em;
   height: fit-content;
-  box-shadow: var(--elev-1);
+  box-shadow:
+    0 8px 12px 0 rgba(120, 180, 255, 0.1),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
 }
 
 .dark #small-toc {
-  background:
-    linear-gradient(hsl(var(--surface-2)), hsl(var(--surface-2))) padding-box,
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)) border-box;
+  background: rgba(20, 22, 28, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 8px 12px 0 rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
 }
 
 #pip-install {
@@ -760,4 +815,66 @@ aside>div>div>div>div>div>div>div>div {
 .api-sig--block .keyword {
   position: relative;
   left: -0.65ch;
+}
+
+/* Fix pagination button backgrounds */
+.prose+div>div>a[class*="buttonVariants"] {
+  background: hsl(var(--secondary));
+  border: 1px solid hsl(var(--border));
+}
+
+.prose+div>div>a[class*="buttonVariants"]:hover {
+  background: hsl(var(--accent));
+}
+
+.dark .prose+div>div>a[class*="buttonVariants"] {
+  background: hsl(240, 6%, 12%);
+  border: 1px solid hsl(var(--border));
+}
+
+.dark .prose+div>div>a[class*="buttonVariants"]:hover {
+  background: hsl(240, 5%, 16%);
+}
+
+/* Fix table row colors in dark mode */
+.dark .prose tbody tr:nth-child(odd) {
+  background: hsl(240, 12%, 12%);
+}
+
+.prose tbody tr:nth-child(odd):hover {
+  background: hsl(240, 8%, 98%);
+}
+
+.dark .prose tbody tr:nth-child(odd):hover {
+  background: hsl(240, 8%, 16%);
+}
+
+.pagination {
+  background: hsl(var(--secondary));
+}
+
+.pagination:hover {
+  background: hsl(var(--accent));
+}
+
+.dark .pagination {
+  background: hsl(240, 8%, 10%);
+}
+
+.dark .pagination:hover {
+  background: hsl(240, 12%, 9%);
+}
+
+.note-box {
+  background: hsl(220, 16%, 94%) !important;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.dark .note-box {
+  background: hsl(240, 14%, 8%) !important;
+}
+
+.dark .stepper {
+  background: hsl(240, 12%, 12%) !important;
 }

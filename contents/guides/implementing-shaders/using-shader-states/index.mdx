@@ -65,11 +65,15 @@ The shader script has one texture sampler (`u_texture`) and inverts the colors o
 So, to load this shader, you would do the following:
 ```py
 invert_shader = kn.ShaderState(
-    fragment_file_path="path/to/invert.frag.hlsl",  # or .frag.glsl
+    fragment_file_path="path/to/invert.frag.spv",
     uniform_buffer_count=0,
     sampler_count=1
 )
 ```
+<Note>
+Make sure to compile the shader code to SPIR-V format before loading it in Kraken Engine.
+You can use tools like `glslangValidator` for GLSL or `dxc` for HLSL to compile the shaders.
+</Note>
 
 ## Render Pipeline Integration
 

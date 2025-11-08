@@ -19,8 +19,13 @@ pre[class*="language-"] {
   padding: 1em;
   margin: 2em 0;
   overflow: auto;
-  background: #f6f8fa;
+  background: rgba(246, 248, 250, 0.6);
+  border: 1px solid rgba(180, 200, 220, 0.3);
   border-radius: var(--radius);
+  /* Glass effect with subtle shadows */
+  box-shadow:
+    0 2px 6px 0 rgba(120, 180, 255, 0.08),
+    inset 0 0 2px 1px rgba(255, 255, 255, 0.4);
 }
 
 :not(pre)>code[class*="language-"],
@@ -127,11 +132,14 @@ pre[class*="language-"] {
 }
 
 .dark pre[class*="language-"] {
-  background: #282c34;
+  background: rgba(20, 20, 28, 0.6);
+  border: 1px solid rgba(100, 150, 200, 0.05);
+  box-shadow:
+    0 2px 6px 0 rgba(0, 10, 30, 0.2),
+    inset 0 0 2px 1px rgba(100, 150, 200, 0.1);
 }
 
-.dark :not(pre)>code[class*="language-"],
-.dark pre[class*="language-"] {
+.dark :not(pre)>code[class*="language-"] {
   background: #151518;
 }
 

@@ -1,0 +1,340 @@
+---
+title: PyKraken Event Attributes Reference
+description: Comprehensive reference for event attributes in PyKraken, detailing available events and their associated attributes.
+---
+
+## Overview
+
+- All events have the `type` attribute containing the SDL event type constant
+- Attributes are accessed dynamically using dot notation
+- Attempting to access a non-existent attribute raises `AttributeError`
+- Event constants use the `EventType` enum, which is exported to the module level for convenience
+
+### Usage Example
+
+```python
+import pykraken as kn
+
+...
+
+while kn.window.is_open():
+    for event in kn.event.poll():
+        if event.type == kn.KEY_DOWN:
+            print(f"Key pressed: {event.key}, scancode: {event.scan}")
+            print(f"Modifiers: {event.mod}, Repeat: {event.repeat}")
+        
+        elif event.type == kn.MOUSE_BUTTON_DOWN:
+            print(f"Mouse button {event.button} clicked at ({event.x}, {event.y})")
+            print(f"Click count: {event.clicks}")
+        
+        elif event.type == kn.MOUSE_WHEEL:
+            print(f"Mouse wheel: dx={event.x}, dy={event.y}")
+            print(f"Mouse position: ({event.mouse_x}, {event.mouse_y})")
+        
+        elif event.type == kn.GAMEPAD_BUTTON_DOWN:
+            print(f"Gamepad {event.which} button {event.button} pressed")
+```
+
+## Attributes
+
+### Application
+---
+
+`QUIT`
+
+No additional attributes (triggers window close).
+
+`TERMINATING`
+`LOW_MEMORY`
+`WILL_ENTER_BACKGROUND`
+`DID_ENTER_BACKGROUND`
+`WILL_ENTER_FOREGROUND`
+`DID_ENTER_FOREGROUND`
+`LOCALE_CHANGED`
+`SYSTEM_THEME_CHANGED`
+
+No additional attributes.
+
+### Display
+---
+
+`DISPLAY_ORIENTATION`
+`DISPLAY_ADDED`
+`DISPLAY_REMOVED`
+`DISPLAY_MOVED`
+`DISPLAY_DESKTOP_MODE_CHANGED`
+`DISPLAY_CURRENT_MODE_CHANGED`
+`DISPLAY_CONTENT_SCALE_CHANGED`
+
+- `display_id` (int): The display that was affected
+- `data1` (int): Event-specific data
+- `data2` (int): Event-specific data
+
+### Window
+---
+
+`WINDOW_SHOWN`
+`WINDOW_HIDDEN`
+`WINDOW_EXPOSED`
+`WINDOW_MOVED`
+`WINDOW_RESIZED`
+`WINDOW_MINIMIZED`
+`WINDOW_MAXIMIZED`
+`WINDOW_RESTORED`
+`WINDOW_MOUSE_ENTER`
+`WINDOW_MOUSE_LEAVE`
+`WINDOW_FOCUS_GAINED`
+`WINDOW_FOCUS_LOST`
+`WINDOW_CLOSE_REQUESTED`
+`WINDOW_HIT_TEST`
+`WINDOW_ICCPROF_CHANGED`
+`WINDOW_DISPLAY_CHANGED`
+`WINDOW_DISPLAY_SCALE_CHANGED`
+`WINDOW_SAFE_AREA_CHANGED`
+`WINDOW_OCCLUDED`
+`WINDOW_ENTER_FULLSCREEN`
+`WINDOW_LEAVE_FULLSCREEN`
+`WINDOW_DESTROYED`
+`WINDOW_HDR_STATE_CHANGED`
+
+- `window_id` (int): The window that was affected
+- `data1` (int): Event-specific data (e.g., new x position for MOVED, new width for RESIZED)
+- `data2` (int): Event-specific data (e.g., new y position for MOVED, new height for RESIZED)
+
+### Keyboard
+---
+
+`KEY_DOWN`
+`KEY_UP`
+
+- `which` (int): Keyboard device ID
+- `key` (Keycode): Virtual key code (e.g., `K_SPACE`)
+- `scan` (Scancode): Physical key scancode (e.g., `S_SPACE`)
+- `repeat` (bool): True if this is a key repeat event
+- `mod` (int): Keyboard modifier state (Shift, Ctrl, Alt, etc.)
+- `window_id` (int): The window with keyboard focus
+
+`TEXT_EDITING`
+
+- `window_id` (int): The window with keyboard focus
+- `text` (str): The editing text
+- `start` (int): Start position of selected editing text
+- `length` (int): Length of selected editing text
+
+`TEXT_INPUT`
+
+- `window_id` (int): The window with keyboard focus
+- `text` (str): The input text
+
+`TEXT_EDITING_CANDIDATES`
+
+- `window_id` (int): The window with keyboard focus
+- `candidates` (list[str]): List of candidate strings
+- `num_candidates` (int): Number of candidates
+- `selected_candidate` (int): Index of the selected candidate
+- `horizontal` (bool): True if candidates should be displayed horizontally
+- `padding1` (int): Reserved
+- `padding2` (int): Reserved
+- `padding3` (int): Reserved
+
+`KEYMAP_CHANGED`
+No additional attributes.
+
+`KEYBOARD_ADDED`
+`KEYBOARD_REMOVED`
+
+- `which` (int): Keyboard device ID
+
+### Mouse
+---
+
+`MOUSE_MOTION`
+
+- `which` (int): Mouse device ID
+- `x` (float): Mouse X position
+- `y` (float): Mouse Y position
+- `xrel` (float): Relative motion in X direction
+- `yrel` (float): Relative motion in Y direction
+- `state` (int): Button state during motion
+- `window_id` (int): The window with mouse focus
+
+`MOUSE_BUTTON_DOWN`
+`MOUSE_BUTTON_UP`
+
+- `which` (int): Mouse device ID
+- `button` (MouseButton): Mouse button that was pressed/released
+- `x` (float): Mouse X position when button was pressed/released
+- `y` (float): Mouse Y position when button was pressed/released
+- `clicks` (int): Click count (1 = single click, 2 = double click, etc.)
+- `window_id` (int): The window with mouse focus
+
+`MOUSE_WHEEL`
+
+- `which` (int): Mouse device ID
+- `x` (float): Horizontal scroll amount (positive = right, negative = left)
+- `y` (float): Vertical scroll amount (positive = away from user, negative = toward user)
+- `intx` (int): Integer horizontal scroll amount
+- `inty` (int): Integer vertical scroll amount
+- `window_id` (int): The window with mouse focus
+- `mouse_x` (float): Mouse X position when wheel was scrolled
+- `mouse_y` (float): Mouse Y position when wheel was scrolled
+
+`MOUSE_ADDED`
+`MOUSE_REMOVED`
+
+- `which` (int): Mouse device ID
+
+### Gamepad
+---
+
+`GAMEPAD_AXIS_MOTION`
+
+- `which` (int): Gamepad instance ID
+- `axis` (int): The gamepad axis (see GamepadAxis enum)
+- `value` (int): Axis value (range: -32768 to 32767)
+
+`GAMEPAD_BUTTON_DOWN`
+`GAMEPAD_BUTTON_UP`
+
+- `which` (int): Gamepad instance ID
+- `button` (GamepadButton): The gamepad button that was pressed/released
+
+`GAMEPAD_ADDED`
+`GAMEPAD_REMOVED`
+`GAMEPAD_REMAPPED`
+`GAMEPAD_UPDATE_COMPLETE`
+`GAMEPAD_STEAM_HANDLE_UPDATED`
+
+- `which` (int): Gamepad instance ID
+
+`GAMEPAD_TOUCHPAD_DOWN`
+`GAMEPAD_TOUCHPAD_MOTION`
+`GAMEPAD_TOUCHPAD_UP`
+
+- `which` (int): Gamepad instance ID
+- `touchpad` (int): The touchpad index on the gamepad
+- `finger` (int): The finger index on the touchpad
+- `x` (float): Normalized X position (0.0 to 1.0)
+- `y` (float): Normalized Y position (0.0 to 1.0)
+- `pressure` (float): Normalized pressure (0.0 to 1.0)
+
+`GAMEPAD_SENSOR_UPDATE`
+
+- `which` (int): Gamepad instance ID
+- `sensor` (int): The sensor type (see SDL_SensorType)
+- `data` (list[float]): Sensor data (3 float values)
+- `timestamp` (int): Sensor timestamp in microseconds
+
+### Touch
+---
+
+`FINGER_DOWN`
+`FINGER_UP`
+`FINGER_MOTION`
+`FINGER_CANCELED`
+
+- `touch_id` (int): The touch device ID
+- `finger_id` (int): The finger ID
+- `x` (float): Normalized X position (0.0 to 1.0)
+- `y` (float): Normalized Y position (0.0 to 1.0)
+- `dx` (float): Normalized change in X direction
+- `dy` (float): Normalized change in Y direction
+- `pressure` (float): Normalized pressure (0.0 to 1.0)
+- `window_id` (int): The window underneath the finger
+
+### Pen/Tablet
+---
+
+`PEN_PROXIMITY_IN`
+`PEN_PROXIMITY_OUT`
+
+- `which` (int): Pen device ID
+
+`PEN_DOWN`
+`PEN_UP`
+
+- `which` (int): Pen device ID
+- `x` (float): Pen X position
+- `y` (float): Pen Y position
+- `eraser` (bool): True if the eraser tip is being used
+
+`PEN_BUTTON_DOWN`
+`PEN_BUTTON_UP`
+
+- `which` (int): Pen device ID
+- `button` (int): Button index that was pressed/released
+- `x` (float): Pen X position
+- `y` (float): Pen Y position
+
+`PEN_MOTION`
+
+- `which` (int): Pen device ID
+- `x` (float): Pen X position
+- `y` (float): Pen Y position
+
+`PEN_AXIS`
+
+- `which` (int): Pen device ID
+- `x` (float): Pen X position
+- `y` (float): Pen Y position
+- `axis` (int): Axis index that changed (see PenAxis enum)
+- `value` (float): Axis value
+
+### Drag and Drop
+---
+
+`CLIPBOARD_UPDATE`
+
+- `num_mime_types` (int): Number of MIME types available
+- `mime_types` (list[str]): List of MIME type strings
+
+`DROP_FILE`
+`DROP_TEXT`
+
+- `data` (str): The file path or text that was dropped
+- `x` (float): X position where drop occurred
+- `y` (float): Y position where drop occurred
+
+`DROP_BEGIN`
+`DROP_COMPLETE`
+`DROP_POSITION`
+
+- `x` (float): X position of the drop
+- `y` (float): Y position of the drop
+
+### Audio
+---
+
+`AUDIO_DEVICE_ADDED`
+`AUDIO_DEVICE_REMOVED`
+`AUDIO_DEVICE_FORMAT_CHANGED`
+
+- `which` (int): Audio device ID
+- `recording` (bool): True if this is a recording device, False for playback
+
+### Sensor
+---
+
+`SENSOR_UPDATE`
+
+- `which` (int): Sensor instance ID
+- `data` (list[float]): Sensor data (6 float values)
+
+### Camera
+---
+
+`CAMERA_DEVICE_ADDED`
+`CAMERA_DEVICE_REMOVED`
+`CAMERA_DEVICE_APPROVED`
+`CAMERA_DEVICE_DENIED`
+
+- `which` (int): Camera device ID
+
+### Render
+---
+
+`RENDER_TARGETS_RESET`
+`RENDER_DEVICE_RESET`
+`RENDER_DEVICE_LOST`
+
+No additional attributes.
