@@ -58,7 +58,7 @@
   }
 
   .dark {
-    --background: 240 10% 6.75%;
+    --background: 240 16% 6%;
     --foreground: 35 80% 98%;
     --card: 240 10% 3.90%;
     --card-foreground: 35 80% 98%;
@@ -766,15 +766,15 @@ aside>div>div>div>div>div>div>div>div {
   border-top: 0.1rem solid rgba(255, 255, 255, 0.1);
 }
 
-#kraken-banner {
+.kraken-banner {
   margin-right: 1.25rem;
 }
 
-#kraken-banner>img {
+.kraken-banner>img {
   filter: brightness(0) saturate(100%);
 }
 
-.dark #kraken-banner>img {
+.dark .kraken-banner>img {
   filter: brightness(0) saturate(100%) invert(1);
 }
 
@@ -877,4 +877,17 @@ aside>div>div>div>div>div>div>div>div {
 
 .dark .stepper {
   background: hsl(240, 12%, 12%) !important;
+}
+
+.winner-button {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.winner-button:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.2);
 }
