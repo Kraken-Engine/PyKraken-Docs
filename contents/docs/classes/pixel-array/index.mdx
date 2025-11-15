@@ -35,7 +35,7 @@ _**Parameters**_
 ### Blit
 <div className="api-card">
 
-<ApiSig name="blit" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "pos", type: "Vec2" }, { name: "anchor", type: "Anchor", default: "CENTER" }, { name: "src", type: "Rect", default: "None" }]} returns="None" />
+<ApiSig name="blit" multiline params={[{ name: "pixel_array", type: "PixelArray" }, { name: "pos", type: "Vec2" }, { name: "anchor", type: "Anchor", default: "Anchor.CENTER" }, { name: "src", type: "Rect", default: "None" }]} returns="None" />
 
 Blit another pixel array onto this one via position and anchor.
 
@@ -57,6 +57,22 @@ _**Parameters**_
 - `pixel_array`: The pixel array to blit onto this one.
 - `dst`: The destination rectangle to blit to.
 - `src`: The source rectangle to blit from.
+
+</div>
+
+
+### Scroll
+<div className="api-card">
+
+<ApiSig name="scroll" params={[{ name: "dx", type: "int" }, { name: "dy", type: "int" }, { name: "scroll_mode", type: "ScrollMode" }]} returns="None" />
+
+Scroll the pixel array by the specified amounts in the x and y directions.
+
+_**Parameters**_
+
+- `dx`: The amount to scroll in the x direction.
+- `dy`: The amount to scroll in the y direction.
+- `scroll_mode`: The scroll mode to use.
 
 </div>
 

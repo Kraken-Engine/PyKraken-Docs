@@ -32,7 +32,7 @@ export default function MainWrapper({ children }: { children: React.ReactNode })
   const isDark = mounted ? (resolvedTheme === 'dark' || theme === 'dark') : true;
 
   return (
-    <div className={`relative w-full ${isHome ? 'home-background' : ''}`}>
+    <div className={`relative w-full ${isHome ? 'h-[calc(100vh-4rem)] overflow-hidden home-background' : ''}`}>
       {isHome && mounted && (
         <>
           <video
@@ -57,7 +57,7 @@ export default function MainWrapper({ children }: { children: React.ReactNode })
           />
         </>
       )}
-      <main className="sm:container mx-auto w-[90vw] h-auto scroll-smooth">
+      <main className={`sm:container mx-auto w-[90vw] ${isHome ? 'h-full' : 'h-auto'} scroll-smooth`}>
         {children}
       </main>
     </div>

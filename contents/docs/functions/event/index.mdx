@@ -1,6 +1,6 @@
 ---
 title: Event
-description: Functions for handling user input events.
+description: Functions for managing user input events.
 ---
 
 ---
@@ -17,5 +17,60 @@ This clears input states and returns a list of events that occurred since the la
 _**Returns**_
 
 `list[Event]` : A list of events that have occurred since the last call to `poll()`.
+
+</div>
+
+## New Custom
+<div className="api-card">
+
+<ApiSig name="new_custom" returns="Event" />
+
+Create a new custom event.
+
+_**Returns**_
+
+`Event` : The newly created custom event.
+
+</div>
+
+## Push
+<div className="api-card">
+
+<ApiSig name="push" params={[{ name: "event", type: "Event" }]} returns="None" />
+
+Push a custom event onto the event queue.
+
+_**Parameters**_
+
+- `event` : The custom event to push onto the queue.
+
+</div>
+
+## Schedule
+<div className="api-card">
+
+<ApiSig name="schedule" params={[{ name: "event", type: "Event" }, { name: "delay_ms", type: "int" }, { name: "repeat", type: "bool" }]} returns="None" />
+
+Schedule an event to be triggered after a delay.
+Calling this function on the same event again will replace its past schedule.
+
+_**Parameters**_
+
+- `event` : The custom event to schedule.
+- `delay_ms` : The delay in milliseconds before the event is triggered.
+- `repeat` : Whether the event should be repeated.
+
+</div>
+
+## Unschedule
+<div className="api-card">
+
+<ApiSig name="unschedule" params={[{ name: "event", type: "Event" }]} returns="None" />
+
+Unschedule a previously scheduled event.
+
+_**Parameters**_
+
+- `event` : The custom event to unschedule.
 
 </div>

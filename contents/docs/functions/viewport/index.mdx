@@ -1,0 +1,46 @@
+---
+title: Viewport
+description: Functions for managing render viewports.
+---
+
+---
+
+## Layout
+<div className="api-card">
+
+<ApiSig name="layout" params={[{ name: "count", type: "int" }, { name: "mode", type: "ViewportMode" }]} returns="list[Rect]" />
+
+Arrange the viewport into a grid layout.
+
+_**Parameters**_
+
+- `count` : The number of viewports to arrange. Must be between 2 and 4.
+- `mode` : The layout mode to use.
+
+_**Returns**_
+
+`list[Rect]` : A list of rectangles representing the arranged viewports.
+
+</div>
+
+## Set
+<div className="api-card">
+
+<ApiSig name="set" params={[{ name: "area", type: "Rect" }]} returns="None" />
+
+Set a specific area as the render viewport.
+
+_**Parameters**_
+
+- `area` : The rectangle area to set as the viewport.
+
+</div>
+
+## Unset
+<div className="api-card">
+
+<ApiSig name="unset" returns="None" />
+
+Unset the current render viewport, reverting to the default full screen.
+
+</div>

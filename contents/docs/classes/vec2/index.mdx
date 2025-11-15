@@ -18,7 +18,8 @@ description: A 2D mathematical vector representation.
 | `xx` | A tuple representing the (x, x) components of the vector | `tuple[float, float]` |
 | `yy` | A tuple representing the (y, y) components of the vector | `tuple[float, float]` |
 | `length` | The length (magnitude) of the vector | `float` |
-| `angle` | The angle of the vector in radians | `float` |  
+| `length_squared` | The squared length of the vector | `float` |
+| `angle` | The angle of the vector in radians | `float` |
 
 ## Methods
 ---
@@ -79,6 +80,23 @@ _**Returns**_
 
 </div>
 
+### Distance Squared To
+<div className="api-card">
+
+<ApiSig name="distance_squared_to" params={[{ name: "other", type: "Vec2" }]} returns="float" />
+
+Calculate the squared distance to another vector.
+
+_**Parameters**_
+
+- `other` : The other vector to calculate the squared distance to.
+
+_**Returns**_
+
+`float` : The squared distance to the other vector.
+
+</div>
+
 ### To Polar
 <div className="api-card">
 
@@ -89,5 +107,18 @@ Convert the vector to polar coordinates.
 _**Returns**_
 
 `PolarCoordinate` : The polar coordinate object representation of the vector.
+
+</div>
+
+### Copy
+<div className="api-card">
+
+<ApiSig name="copy" returns="Vec2" />
+
+Create a copy of the vector.
+
+_**Returns**_
+
+`Vec2` : A new vector object that is a copy of the original.
 
 </div>

@@ -72,6 +72,7 @@ export const DOC_ROUTES: EachRoute[] = [
       { title: "Renderer", href: "/renderer" },
       { title: "Time", href: "/time" },
       { title: "Transform", href: "/transform" },
+      { title: "Viewport", href: "/viewport" },
       { title: "Window", href: "/window" },
     ],
   },
