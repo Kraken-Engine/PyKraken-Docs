@@ -4,7 +4,6 @@ import Link from "next/link";
 import { buttonVariants } from "./ui/button";
 import Anchor from "./anchor";
 import { SheetLeftbar } from "./leftbar";
-import { docs_routes, guides_routes } from "@/lib/routes-config";
 import { SheetClose } from "@/components/ui/sheet";
 import AlgoliaSearch from "./algolia-search";
 import Image from "next/image";
