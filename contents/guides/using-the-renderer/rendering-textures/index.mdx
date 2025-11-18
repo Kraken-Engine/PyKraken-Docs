@@ -25,11 +25,11 @@ If you need the same image multiple times (e.g. many enemies), reuse the same `T
 The simplest draw call renders the texture at the top left corner of the window, `(0, 0)`.
 Though, because textures are drawn from their center by default, we need to specify the anchor point as `TOP_LEFT`.
 ```py
-kn.renderer.draw(texture, anchor=kn.TOP_LEFT)
+kn.renderer.draw(texture, anchor=kn.Anchor.TOP_LEFT)
 ```
 
 <p style={{marginBottom: 0}}><i>Result:</i></p>
-<img src="/images/basic-tex-draw.png" alt="A texture drawn at the top left corner of the screen" />
+<img src="/images/basic-tex-draw.webp" alt="A texture drawn at the top left corner of the screen" />
 
 ### Batching
 Modern SDL3 backends (which we use) batch draw calls automatically if you draw the same texture consecutively.
@@ -65,7 +65,7 @@ while kn.window.is_open():
 ```
 
 <p style={{marginBottom: 0}}><i>Result:</i></p>
-<img src="/images/transformations.png" alt="Two textures drawn, one with transformations applied" />
+<img src="/images/transformations.webp" alt="Two textures drawn, one with transformations applied" />
 
 ## Atlases
 If your game uses lots of small sprites (UI icons, sprite states, etc.), pack them into a single large texture called an **atlas**.
@@ -88,4 +88,4 @@ while kn.window.is_open():
 <img src="/images/atlas-01.png" alt="Source file of the texture atlas used" />
 
 <p style={{marginBottom: 0}}><i>Result:</i></p>
-<img src="/images/atlas-02.png" alt="Two textures drawn, one with transformations applied" />
+<img src="/images/atlas-02.webp" alt="Two textures drawn, one with transformations applied" />

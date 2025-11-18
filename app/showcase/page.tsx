@@ -18,7 +18,7 @@ const jamWinners = [
         url: "https://prince-mario.itch.io/red-maiden",
         accent: "from-slate-400 via-indigo-400 to-rose-400",
         place: "2nd Place",
-        image: "/images/showcase/maiden.png", // Add your image path here
+        image: "/images/showcase/maiden.webp", // Add your image path here
     },
     {
         title: "A Calder Case",
@@ -28,7 +28,7 @@ const jamWinners = [
         url: "https://durkisneer.itch.io/a-calder-case",
         accent: "from-amber-400 via-slate-600 to-blue-900",
         place: "1st Place",
-        image: "/images/showcase/calder.png", // Add your image path here
+        image: "/images/showcase/calder.webp", // Add your image path here
     },
     {
         title: "Sumbit",
@@ -38,7 +38,7 @@ const jamWinners = [
         url: "https://aceofjesters.itch.io/noirgameproject",
         accent: "from-slate-700 via-teal-500 to-cyan-400",
         place: "3rd Place",
-        image: "/images/showcase/sumbit.png", // Add your image path here
+        image: "/images/showcase/sumbit.webp", // Add your image path here
     },
 ];
 
@@ -50,7 +50,7 @@ const curatedProjects = [
         tags: ["Platformer", "Retro"],
         url: "https://kibbuz.itch.io/brainrot-noire-cookie-clicker",
         accent: "from-orange-400 via-amber-500 to-yellow-500",
-        image: "/images/showcase/brainrot.png", // Add your image path here
+        image: "/images/showcase/brainrot.webp", // Add your image path here
     },
 ];
 

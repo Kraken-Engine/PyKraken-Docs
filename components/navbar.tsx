@@ -12,11 +12,11 @@ import Image from "next/image";
 export const NAVLINKS = [
   {
     title: "Documentation",
-    href: `/docs${docs_routes[0].href}`,
+    href: `/docs`,
   },
   {
     title: "Guides",
-    href: `/guides${guides_routes[0].href}`,
+    href: `/guides`,
   },
   {
     title: "Showcase",
