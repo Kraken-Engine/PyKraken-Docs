@@ -132,7 +132,7 @@ export default function ShowcasePage() {
                                         />
                                     ) : (
                                         <div
-                                            className={`absolute inset-0 bg-gradient-to-br ${project.accent} opacity-80 transition-all duration-500 group-hover:scale-110 group-hover:opacity-100`}
+                                            className="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-600 opacity-80 transition-all duration-500 group-hover:scale-110 group-hover:opacity-100"
                                         />
                                     )}
                                     {/* Subtle dark gradient overlay (no color tinting) */}
@@ -223,7 +223,7 @@ export default function ShowcasePage() {
                                         />
                                     ) : (
                                         <div
-                                            className={`absolute inset-0 bg-gradient-to-br ${project.accent} opacity-80 transition-all duration-500 group-hover:scale-110 group-hover:opacity-100`}
+                                            className="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-600 opacity-80 transition-all duration-500 group-hover:scale-110 group-hover:opacity-100"
                                         />
                                     )}
                                     {/* Glass overlay on image */}
