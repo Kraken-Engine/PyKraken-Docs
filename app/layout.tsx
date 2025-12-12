@@ -23,6 +23,8 @@ const monoFont = Space_Mono({
 
 export const metadata: Metadata = {
   title: "Kraken Engine Docs",
+  description: "Official documentation for building with Kraken Engine.",
+  metadataBase: new URL("https://docs.krakenengine.org"),
 };
 
 export default function RootLayout({
