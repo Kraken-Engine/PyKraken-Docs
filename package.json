@@ -10,6 +10,7 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
+    "@docsearch/css": "^4.3.2",
     "@docsearch/react": "^3.9.0",
     "@netlify/plugin-nextjs": "^5.11.3",
     "@radix-ui/react-accordion": "^1.2.0",
