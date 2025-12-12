@@ -11,13 +11,44 @@ export const metadata: Metadata = {
 
 const jamWinners = [
     {
+        title: "Mythic Alchemy",
+        description:
+            "Fuse mythical cards, read the runes, and outsmart your opponent in this Norse-inspired card battler.",
+        tags: ["Strategy", "Card Game"],
+        url: "https://durkisneer.itch.io/mythic-alchemy",
+        accent: "from-amber-700 via-slate-700 to-indigo-900",
+        place: "2nd Place",
+        image: "/images/showcase/alchemy.webp",
+    },
+    {
+        title: "Ascended",
+        description:
+            "Bind awakened myths as a fledgling Bookkeeper and battle for the one spirit destined to ascend beyond legend.",
+        tags: ["Turn-based", "RPG"],
+        url: "https://un1bear.itch.io/ascended",
+        accent: "from-emerald-500 via-cyan-700 to-indigo-900",
+        place: "1st Place",
+        image: "/images/showcase/ascended.webp",
+    },
+    {
+        title: "Clash of Pantheons",
+        description:
+            "Slide mythic tiles onto the board, flank rivals, and trade edges in a tactical duel of battling pantheons.",
+        tags: ["Strategy", "Board Game"],
+        url: "https://kitzun3.itch.io/clash-of-pantheons",
+        accent: "from-yellow-800 via-amber-900 to-slate-800",
+        place: "3rd Place",
+        image: "/images/showcase/pantheons.webp",
+    },
+];
+
+const curatedProjects = [
+    {
         title: "Red Maiden",
         description:
             "Navigate a maze of doors, uncovering the correct path while evading a relentless spirit that lurks within the crimson halls.",
         tags: ["Horror", "Action"],
         url: "https://prince-mario.itch.io/red-maiden",
-        accent: "from-slate-400 via-indigo-400 to-rose-400",
-        place: "2nd Place",
         image: "/images/showcase/maiden.webp", // Add your image path here
     },
     {
@@ -26,8 +57,6 @@ const jamWinners = [
             "Unravel a murder shrouded in lies and jealousy. One wrong move, and the truth may slip away forever.",
         tags: ["ARG", "Noir"],
         url: "https://durkisneer.itch.io/a-calder-case",
-        accent: "from-amber-400 via-slate-600 to-blue-900",
-        place: "1st Place",
         image: "/images/showcase/calder.webp", // Add your image path here
     },
     {
@@ -36,20 +65,14 @@ const jamWinners = [
             "Race to restore color to a lifeless city, using a short time-rewind ability to undo mistakes and retrace your steps in a burst of rainbow light.",
         tags: ["Sci-Fi"],
         url: "https://aceofjesters.itch.io/noirgameproject",
-        accent: "from-slate-700 via-teal-500 to-cyan-400",
-        place: "3rd Place",
         image: "/images/showcase/sumbit.webp", // Add your image path here
     },
-];
-
-const curatedProjects = [
     {
         title: "Brainrot Cookie Clicker",
         description:
             "Meltmaxx to this surreal cookie-clicker experience.",
         tags: ["Platformer", "Retro"],
         url: "https://kibbuz.itch.io/brainrot-noire-cookie-clicker",
-        accent: "from-orange-400 via-amber-500 to-yellow-500",
         image: "/images/showcase/brainrot.webp", // Add your image path here
     },
 ];
@@ -170,7 +193,7 @@ export default function ShowcasePage() {
             {/* Curated Projects Section */}
             <section className="space-y-8">
                 <h2 className="text-center text-2xl font-semibold sm:text-3xl">Curated Favorites</h2>
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 items-start">
                     {curatedProjects.map((project) => (
                         <article
                             key={project.title}

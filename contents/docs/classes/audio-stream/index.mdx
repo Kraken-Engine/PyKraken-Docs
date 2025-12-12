@@ -36,9 +36,13 @@ _**Parameters**_
 ### Stop
 <div className="api-card">
 
-<ApiSig name="stop" returns="None" />
+<ApiSig name="stop" params={[{name: "fade_out_ms", type: "int", default: "0"}]} returns="None" />
 
 Stop the audio stream.
+
+_**Parameters**_
+
+- `fade_out_ms` : The duration in milliseconds to fade out the audio.
 
 </div>
 
