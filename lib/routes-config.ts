@@ -32,6 +32,7 @@ export const DOC_ROUTES: EachRoute[] = [
       { title: "Color", href: "/color" },
       { title: "EasingAnimation", href: "/easing-animation" },
       { title: "Font", href: "/font" },
+      { title: "Frame", href: "/frame" },
       { title: "InputAction", href: "/input-action" },
       { title: "Line", href: "/line" },
       { title: "Mask", href: "/mask" },
@@ -105,8 +106,8 @@ export const GUIDE_ROUTES: EachRoute[] = [
       { title: "What is a Shader?", href: "/what-is-a-shader" },
       { title: "Using Shader States", href: "/using-shader-states" },
       { title: "Uniforms", href: "/uniforms" },
-    ]
-  }
+    ],
+  },
 ];
 
 type Page = { title: string; href: string };
