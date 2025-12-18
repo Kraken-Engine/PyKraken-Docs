@@ -1,5 +1,5 @@
 ---
-title: Transform
+title: Pixel Array
 description: Functions for transforming pixel arrays.
 ---
 
@@ -82,15 +82,20 @@ _**Returns**_
 
 <ApiSig name="box_blur" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "radius", type: "int" }, { name: "repeat_edge_pixels", type: "bool", default: "True" }]} returns="PixelArray" />
 
+Apply a box blur effect to a pixel array.
+
+Box blur creates a uniform blur effect by averaging pixels within a square kernel.
+It's *faster* than Gaussian blur but produces a more *uniform, less natural look*.
+
 _**Parameters**_
 
 - `pixel_array` : The pixel array to blur.
-- `radius` : The radius of the blur.
-- `repeat_edge_pixels` : Whether to repeat edge pixels when blurring.
+- `radius` : The blur radius in pixels. Larger values create stronger blur.
+- `repeat_edge_pixels` : Whether to repeat edge pixels when sampling outside the pixel array bounds. Defaults to True.
 
 _**Returns**_
 
-`PixelArray` : The blurred pixel array.
+`PixelArray` : A new pixel array with the box blur effect applied.
 
 </div>
 
@@ -99,15 +104,21 @@ _**Returns**_
 
 <ApiSig name="gaussian_blur" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "radius", type: "int" }, { name: "repeat_edge_pixels", type: "bool", default: "True" }]} returns="PixelArray" />
 
+Apply a Gaussian blur effect to a pixel array.
+
+Gaussian blur creates a *natural, smooth blur* effect using a Gaussian distribution
+for pixel weighting. It produces higher quality results than box blur but is
+computationally more *expensive*.
+
 _**Parameters**_
 
 - `pixel_array` : The pixel array to blur.
-- `radius` : The radius of the blur.
-- `repeat_edge_pixels` : Whether to repeat edge pixels when blurring.
+- `radius` : The blur radius in pixels. Larger values create stronger blur.
+- `repeat_edge_pixels` : Whether to repeat edge pixels when sampling outside the pixel array bounds. Defaults to True.
 
 _**Returns**_
 
-`PixelArray` : The blurred pixel array.
+`PixelArray` : A new pixel array with the Gaussian blur effect applied.
 
 </div>
 
@@ -116,7 +127,7 @@ _**Returns**_
 
 <ApiSig name="invert" params={[{ name: "pixel_array", type: "PixelArray" }]} returns="PixelArray" />
 
-Invert the colors of a pixel array.
+Invert the colors of a pixel array. The alpha channel is preserved.
 
 _**Parameters**_
 
@@ -124,7 +135,7 @@ _**Parameters**_
 
 _**Returns**_
 
-`PixelArray` : The color-inverted pixel array.
+`PixelArray` : A new pixel array with inverted colors.
 
 </div>
 
@@ -133,13 +144,16 @@ _**Returns**_
 
 <ApiSig name="grayscale" params={[{ name: "pixel_array", type: "PixelArray" }]} returns="PixelArray" />
 
-Convert a pixel array to luma grayscale.
+Convert a pixel array to grayscale. The alpha channel is preserved.
+
+Converts the pixel array to grayscale using the *standard luminance formula*:
+`gray = 0.299 * red + 0.587 * green + 0.114 * blue`
 
 _**Parameters**_
 - `pixel_array` : The pixel array to convert to grayscale.
 
 _**Returns**_
 
-`PixelArray` : The grayscale pixel array.
+`PixelArray` : A new grayscale pixel array.
 
 </div>

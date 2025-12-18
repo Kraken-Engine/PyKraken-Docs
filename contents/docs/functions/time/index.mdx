@@ -81,3 +81,42 @@ _**Parameters**_
 </Note>
 
 </div>
+
+## Set Max Delta
+<div className="api-card">
+
+<ApiSig name="set_max_delta" params={[{ name: "max_delta", type: "float" }]} returns="None" />
+
+Set the maximum allowed delta time between frames.
+
+_**Parameters**_
+
+- `max_delta` : Maximum delta time in seconds (> 0.0). Use this to avoid large deltas during frame drops or pauses that could destabilize physics or animations.
+
+</div>
+
+## Set Scale
+<div className="api-card">
+
+<ApiSig name="set_scale" params={[{ name: "scale", type: "float" }]} returns="None" />
+
+Set the global time scale factor.
+
+_**Parameters**_
+
+- `scale` : The time scale factor. Values &lt; 0.0 are clamped to 0.0. A scale of 1.0 represents normal time, 0.5 is half speed, and 2.0 is double speed.
+
+</div>
+
+## Get Scale
+<div className="api-card">
+
+<ApiSig name="get_scale" returns="float" />
+
+Get the current global time scale factor.
+
+_**Returns**_
+
+`float` : The current time scale factor.
+
+</div>

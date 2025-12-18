@@ -2,11 +2,23 @@
 title: Rect
 description: An AABB object with a position and size.
 ---
+
+## Constructor
+<div className="api-card">
 - <ApiSig name="Rect" />
 - <ApiSig name="Rect" params={[{ name: "pos", type: "Vec2" }, { name: "size", type: "Vec2" }]} />
 - <ApiSig name="Rect" params={[{ name: "pos", type: "Vec2" }, { name: "w", type: "float" }, { name: "h", type: "float" }]} />
 - <ApiSig name="Rect" params={[{ name: "x", type: "float" }, { name: "y", type: "float" }, { name: "size", type: "Vec2" }]} />
 - <ApiSig name="Rect" params={[{ name: "x", type: "float" }, { name: "y", type: "float" }, { name: "w", type: "float" }, { name: "h", type: "float" }]} />
+
+_**Parameters**_
+- `pos` : The position as a Vec2 (x, y).
+- `size` : The size as a Vec2 (width, height).
+- `x` : The x coordinate of the top-left corner.
+- `y` : The y coordinate of the top-left corner.
+- `w` : The width of the rectangle.
+- `h` : The height of the rectangle.
+</div>
 
 ## Properties
 <hr style={{marginBottom: 0}} />
@@ -118,5 +130,31 @@ Scale the rectangle to the given size.
 _**Parameters**_
 
 - `size` : The new size of the rectangle.
+
+</div>
+
+### Move
+<div className="api-card">
+
+<ApiSig name="move" params={[{name: 'offset', type: 'Vec2'}]} returns="None" />
+
+Move the rectangle by the given offset.
+
+_**Parameters**_
+
+- `offset` : The offset to move by as (dx, dy).
+
+</div>
+
+### Copy
+<div className="api-card">
+
+<ApiSig name="copy" returns="Rect" />
+
+Create a copy of this rectangle.
+
+_**Returns**_
+
+`Rect` : A new Rect with the same position and size.
 
 </div>

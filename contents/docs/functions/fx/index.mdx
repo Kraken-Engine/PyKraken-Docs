@@ -1,0 +1,120 @@
+---
+title: FX
+description: Effect functions for use with the Orchestrator class.
+---
+
+<Note>
+The `fx` module must be explicitly imported. It is used with the `Orchestrator` class to create timeline-based animations.
+</Note>
+
+---
+
+## Wait
+<div className="api-card">
+
+<ApiSig name="wait" params={[{ name: "dur", type: "float" }]} returns="Effect" />
+
+Create a wait/delay effect.
+
+_**Parameters**_
+
+- `dur` : Duration to wait in seconds.
+
+_**Returns**_
+
+`Effect` : The wait effect.
+
+</div>
+
+## Call
+<div className="api-card">
+
+<ApiSig name="call" params={[{ name: "callback", type: "Callable[[], None]" }]} returns="Effect" />
+
+Create an effect that calls a function.
+
+_**Parameters**_
+
+- `callback` : Function to call when this step is reached.
+
+_**Returns**_
+
+`Effect` : The call effect.
+
+</div>
+
+## Move To
+<div className="api-card">
+
+<ApiSig name="move_to" multiline params={[{ name: "pos", type: "Vec2", default: "None" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float]", default: "None" }]} returns="Effect" />
+
+Create a move-to effect.
+
+_**Parameters**_
+
+- `pos` : Target position.
+- `dur` : Duration in seconds.
+- `ease` : Easing function (t → t).
+
+_**Returns**_
+
+`Effect` : The move-to effect.
+
+</div>
+
+## Rotate To
+<div className="api-card">
+
+<ApiSig name="rotate_to" multiline params={[{ name: "angle", type: "float" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float]", default: "None" }]} returns="Effect" />
+
+Create a rotate-to effect.
+
+_**Parameters**_
+
+- `angle` : Target angle in radians.
+- `dur` : Duration in seconds.
+- `ease` : Easing function (t → t).
+
+_**Returns**_
+
+`Effect` : The rotate-to effect.
+
+</div>
+
+## Scale To
+<div className="api-card">
+
+<ApiSig name="scale_to" multiline params={[{ name: "scale", type: "float | Vec2", default: "None" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float]", default: "None" }]} returns="Effect" />
+
+Create a scale-to effect.
+
+_**Parameters**_
+
+- `scale` : Target scale. A single number applies to both axes.
+- `dur` : Duration in seconds.
+- `ease` : Easing function (t → t).
+
+_**Returns**_
+
+`Effect` : The scale-to effect.
+
+</div>
+
+## Shake
+<div className="api-card">
+
+<ApiSig name="shake" params={[{ name: "amp", type: "float" }, { name: "freq", type: "float" }, { name: "dur", type: "float" }]} returns="Effect" />
+
+Create a shake effect.
+
+_**Parameters**_
+
+- `amp` : Shake amplitude in pixels.
+- `freq` : Shake frequency in Hz.
+- `dur` : Duration in seconds.
+
+_**Returns**_
+
+`Effect` : The shake effect.
+
+</div>

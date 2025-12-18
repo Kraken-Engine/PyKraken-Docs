@@ -1,8 +1,13 @@
 ---
 title: AnimationController
-description: An sprite animation manager and controller.
+description: A sprite animation manager and controller.
 ---
-- <ApiSig name="AnimationController" />
+
+## Constructor
+<div className="api-card">
+<ApiSig name="AnimationController" />
+Load animations with `load_sprite_sheet` before using.
+</div>
 
 ## Properties
 <hr style={{marginBottom: 0}} />
@@ -10,7 +15,8 @@ description: An sprite animation manager and controller.
 | Name | Description | Type |
 | --- | --- | --- |
 | `current_animation_name` | The current animation's name | `str` |
-| `current_frame` | The current animation's frame | `Frame` |
+| `clip` | The source rectangle (clip) for the current animation frame | `Rect` |
+| `texture` | The sprite sheet texture used by this animation controller | `Texture` |
 | `playback_speed` | The playback speed multiplier | `float` |
 | `frame_index` | The current frame index of the animation | `int` |
 | `progress` | The progress through the current animation as a value between 0.0 and 1.0 | `float` |
@@ -31,23 +37,6 @@ _**Parameters**_
 - `file_path` : The path to the sprite sheet image file.
 - `frame_size` : The size of each frame in the sprite sheet.
 - `strips` : A list of sheet strips to load from the sprite sheet.
-
-</div>
-
-### Remove
-<div className="api-card">
-
-<ApiSig name="remove" params={[{ name: "name", type: "str" }]} returns="None" />
-
-Remove a loaded animation by name.
-
-_**Parameters**_
-- `name` : The name of the animation to remove.
-
-<Note>
-    If the removed animation is currently active, the controller will be left
-    without a current animation.
-</Note>
 
 </div>
 

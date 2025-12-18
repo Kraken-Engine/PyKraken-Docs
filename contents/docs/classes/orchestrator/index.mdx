@@ -1,0 +1,119 @@
+---
+title: Orchestrator
+description: A timeline animator for Transform objects.
+---
+
+## Constructor
+<div className="api-card">
+<ApiSig name="Orchestrator" params={[{ name: "target", type: "Transform | object" }]} />
+
+_**Parameters**_
+- `target` : Either a Transform object or an object with a `transform` attribute (like Sprite).
+</div>
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `finalized` | Whether the orchestrator has been finalized | `bool` |
+| `finished` | Whether the animation has completed | `bool` |
+| `playing` | Whether the animation is currently playing | `bool` |
+| `looping` | Whether the animation should loop when finished | `bool` |
+
+## Methods
+---
+
+### Then
+<div className="api-card">
+
+<ApiSig name="then" params={[{ name: "effect", type: "Effect" }]} returns="Orchestrator" />
+
+Add a single effect to the timeline.
+
+_**Parameters**_
+- `effect` : The Effect to add.
+
+_**Returns**_
+
+`Orchestrator` : Self for method chaining.
+
+</div>
+
+### Parallel
+<div className="api-card">
+
+<ApiSig name="parallel" params={[{ name: "*effects", type: "Effect" }]} returns="Orchestrator" />
+
+Add multiple effects to run in parallel.
+
+_**Parameters**_
+- `*effects` : Variable number of Effect objects to run simultaneously.
+
+_**Returns**_
+
+`Orchestrator` : Self for method chaining.
+
+</div>
+
+### Finalize
+<div className="api-card">
+
+<ApiSig name="finalize" returns="None" />
+
+Finalize the orchestrator, preventing further edits.
+
+<Note>
+    Must be called before `play()`. Logs a warning if called multiple times.
+</Note>
+
+</div>
+
+### Play
+<div className="api-card">
+
+<ApiSig name="play" returns="None" />
+
+Start playing the animation from the beginning.
+
+<Note>
+    Logs a warning if not finalized or if there are no steps.
+</Note>
+
+</div>
+
+### Pause
+<div className="api-card">
+
+<ApiSig name="pause" returns="None" />
+
+Pause the animation at the current position.
+
+</div>
+
+### Resume
+<div className="api-card">
+
+<ApiSig name="resume" returns="None" />
+
+Resume a paused animation.
+
+</div>
+
+### Stop
+<div className="api-card">
+
+<ApiSig name="stop" returns="None" />
+
+Stop the animation and reset to the beginning.
+
+</div>
+
+### Rewind
+<div className="api-card">
+
+<ApiSig name="rewind" returns="None" />
+
+Reset the animation to the beginning without stopping.
+
+</div>

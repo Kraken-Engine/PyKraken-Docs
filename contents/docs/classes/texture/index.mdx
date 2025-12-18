@@ -2,8 +2,16 @@
 title: Texture
 description: A 2D texture that can be rendered to the screen.
 ---
+
+## Constructor
+<div className="api-card">
 - <ApiSig name="Texture" params={[{ name: "file_path", type: "str" }]} />
 - <ApiSig name="Texture" params={[{ name: "pixel_array", type: "PixelArray" }]} />
+
+_**Parameters**_
+- `file_path` : Path to the image file to load.
+- `pixel_array` : The pixel array to convert to a texture.
+</div>
 
 ## Properties
 <hr style={{marginBottom: 0}} />
@@ -11,7 +19,6 @@ description: A 2D texture that can be rendered to the screen.
 | Name | Description | Type |
 | --- | --- | --- |
 | `flip` | Whether the texture is flipped horizontally and/or vertically | `Flip` |
-| `angle` | The rotation angle of the texture in radians | `float` |
 | `size` | The original width and height of the texture | `Vec2` |
 | `alpha` | The alpha modulation of the texture (0.0 to 1.0) | `float` |
 | `tint` | The color tint applied to the texture during rendering | `Color` |

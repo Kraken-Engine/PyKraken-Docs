@@ -2,10 +2,19 @@
 title: Audio
 description: An audio buffer loaded completely in memory.
 ---
-- <ApiSig name="Audio" params={[{ name: "file_path", type: "str" }, { name: "volume", type: "float", default: '1.0' }]} />
+
+## Constructor
+<div className="api-card">
+<ApiSig name="Audio" params={[{ name: "file_path", type: "str" }, { name: "volume", type: "float", default: '1.0' }]} />
+
+_**Parameters**_
+- `file_path` : Path to the audio file to load.
+- `volume` : Initial volume level (0.0 to 1.0+). Defaults to 1.0.
+
 <Note>
 Audio file formats supported are WAV, FLAC, and MP3.
 </Note>
+</div>
 
 ## Properties
 <hr style={{marginBottom: 0}} />

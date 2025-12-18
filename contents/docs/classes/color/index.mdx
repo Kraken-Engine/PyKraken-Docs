@@ -2,10 +2,22 @@
 title: Color
 description: A color representation in different formats.
 ---
+
+## Constructor
+<div className="api-card">
 - <ApiSig name="Color" />
 - <ApiSig name="Color" params={[{ name: "hex", type: "str" }]} />
-- <ApiSig name="Color" params={[{ name: "rgba", type: "Sequence[int, int, int, int]" }]} />
+- <ApiSig name="Color" params={[{ name: "rgba", type: "Sequence[int]" }]} />
 - <ApiSig name="Color" params={[{ name: "r", type: "int" }, { name: "g", type: "int" }, { name: "b", type: "int" }, { name: "a", type: "int", default: '255' }]} />
+
+_**Parameters**_
+- `hex` : Hex color string (with or without '#' prefix).
+- `rgba` : A sequence of 3 or 4 integers [0-255] (RGB or RGBA).
+- `r` : Red value [0-255].
+- `g` : Green value [0-255].
+- `b` : Blue value [0-255].
+- `a` : Alpha value [0-255]. Defaults to 255.
+</div>
 
 ## Properties
 <hr style={{marginBottom: 0}} />

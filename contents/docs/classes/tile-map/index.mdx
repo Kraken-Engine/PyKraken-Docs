@@ -2,7 +2,15 @@
 title: TileMap
 description: A Tiled map containing multiple layers of tiles.
 ---
-- <ApiSig name="TileMap" params={[{ name: "tmx_path", type: "str" }, { name: "border_size", type: "int", default: "0" }]} />
+
+## Constructor
+<div className="api-card">
+<ApiSig name="TileMap" params={[{ name: "tmx_path", type: "str" }, { name: "border_size", type: "int", default: "0" }]} />
+
+_**Parameters**_
+- `tmx_path` : Path to the TMX file.
+- `border_size` : Optional border (in pixels) around each tile in the tileset. Defaults to 0.
+</div>
 
 ## Methods
 ---
@@ -43,5 +51,14 @@ Get all tiles from the specified layers.
 _**Returns**_
 
 `list[Tile]` : A list of all tiles from the specified layers.
+
+</div>
+
+### Render
+<div className="api-card">
+
+<ApiSig name="render" returns="None" />
+
+Render all visible layers.
 
 </div>

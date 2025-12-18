@@ -2,9 +2,18 @@
 title: Vec2
 description: A 2D mathematical vector representation.
 ---
+
+## Constructor
+<div className="api-card">
 - <ApiSig name="Vec2" />
 - <ApiSig name="Vec2" params={[{ name: "value", type: "float" }]} />
 - <ApiSig name="Vec2" params={[{ name: "x", type: "float" }, { name: "y", type: "float" }]} />
+
+_**Parameters**_
+- `value` : Value assigned to both x and y components.
+- `x` : Horizontal component.
+- `y` : Vertical component.
+</div>
 
 ## Properties
 <hr style={{marginBottom: 0}} />
@@ -120,5 +129,73 @@ Create a copy of the vector.
 _**Returns**_
 
 `Vec2` : A new vector object that is a copy of the original.
+
+</div>
+
+### Is Zero
+<div className="api-card">
+
+<ApiSig name="is_zero" params={[{ name: "tolerance", type: "float", default: "1e-08" }]} returns="bool" />
+
+Determine whether this Vec2 is effectively zero.
+
+_**Parameters**_
+
+- `tolerance` : Largest allowed absolute component magnitude.
+
+_**Returns**_
+
+`bool` : True if both components are within the tolerance.
+
+</div>
+
+### Project
+<div className="api-card">
+
+<ApiSig name="project" params={[{ name: "other", type: "Vec2" }]} returns="Vec2" />
+
+Project this Vec2 onto another Vec2.
+
+_**Parameters**_
+
+- `other` : The vector to project onto.
+
+_**Returns**_
+
+`Vec2` : Projection of this vector onto the other vector.
+
+</div>
+
+### Reflect
+<div className="api-card">
+
+<ApiSig name="reflect" params={[{ name: "other", type: "Vec2" }]} returns="Vec2" />
+
+Reflect this Vec2 across another Vec2.
+
+_**Parameters**_
+
+- `other` : The vector used as the reflection normal.
+
+_**Returns**_
+
+`Vec2` : Reflected vector.
+
+</div>
+
+### Reject
+<div className="api-card">
+
+<ApiSig name="reject" params={[{ name: "other", type: "Vec2" }]} returns="Vec2" />
+
+Compute the rejection of this Vec2 from another Vec2.
+
+_**Parameters**_
+
+- `other` : The vector defining the projection axis.
+
+_**Returns**_
+
+`Vec2` : Component of this vector orthogonal to the other vector.
 
 </div>

@@ -2,12 +2,15 @@
 title: Font
 description: A font used by Text objects.
 ---
-- <ApiSig name="Font" params={[{ name: "file_dir", type: "str" }, { name: "pt_size", type: "int" }]} />
-<Note>
-`file_dir` can be given "kraken-clean" or "kraken-retro" for preloaded fonts.
-If loaded "kraken-retro", `pt_size` will be rounded to the nearest multiple of 8.
-No matter the font, `pt_size` will be clamped to a minimum of 8.
-</Note>
+
+## Constructor
+<div className="api-card">
+<ApiSig name="Font" params={[{ name: "file_dir", type: "str" }, { name: "pt_size", type: "int" }]} />
+
+_**Parameters**_
+- `file_dir` : Path to a .ttf font file, or one of the built-in names "kraken-clean" or "kraken-retro".
+- `pt_size` : The point size. Values below 8 are clamped to 8. For "kraken-retro", the size is rounded to the nearest multiple of 8 to preserve pixel alignment.
+</div>
 
 ## Properties
 <hr style={{marginBottom: 0}} />

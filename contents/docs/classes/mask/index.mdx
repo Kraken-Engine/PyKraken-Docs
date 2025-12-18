@@ -2,9 +2,19 @@
 title: Mask
 description: A 2D binary mask for pixel-perfect collision detection and pixel manipulation.
 ---
+
+## Constructor
+<div className="api-card">
 - <ApiSig name="Mask" />
 - <ApiSig name="Mask" params={[{ name: "size", type: "Vec2" }, { name: "filled", type: "bool", default: "False" }]} />
 - <ApiSig name="Mask" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "threshold", type: "int", default: "1" }]} />
+
+_**Parameters**_
+- `size` : The size of the mask as (width, height).
+- `filled` : Whether to fill the mask with solid pixels. Defaults to False.
+- `pixel_array` : The source pixel array to create the mask from.
+- `threshold` : Alpha threshold value (0-255). Pixels with alpha >= threshold are solid.
+</div>
 
 ## Properties
 <hr style={{marginBottom: 0}} />
@@ -66,6 +76,23 @@ _**Parameters**_
 <ApiSig name="invert" returns="None" />
 
 Invert the mask, flipping all values.
+
+</div>
+
+### Collide Mask
+<div className="api-card">
+
+<ApiSig name="collide_mask" params={[{ name: "other", type: "Mask" }, { name: "offset", type: "Vec2", default: "None" }]} returns="bool" />
+
+Check collision between this mask and another mask with an offset.
+
+_**Parameters**_
+- `other` : The other mask to test collision with.
+- `offset` : Position offset between the masks. Defaults to (0, 0).
+
+_**Returns**_
+
+`bool` : True if the masks collide, False otherwise.
 
 </div>
 
@@ -219,13 +246,17 @@ _**Returns**_
 ### Get Pixel Array
 <div className="api-card">
 
-<ApiSig name="get_pixel_array" returns="PixelArray" />
+<ApiSig name="get_pixel_array" params={[{ name: "color", type: "Color", default: "None" }]} returns="PixelArray" />
 
-Create a pixel array out of the mask.
+Convert the mask to a pixel array with the specified color.
+Solid pixels become the specified color, transparent pixels become transparent.
+
+_**Parameters**_
+- `color` : The color to use for solid pixels. Defaults to white (255, 255, 255, 255).
 
 _**Returns**_
 
-`PixelArray` : The pixel array from the mask.
+`PixelArray` : A new pixel array representation of the mask.
 
 </div>
 
