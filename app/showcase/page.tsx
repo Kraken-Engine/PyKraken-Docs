@@ -99,15 +99,13 @@ export default function ShowcasePage() {
                     {jamWinners.map((project, index) => (
                         <article
                             key={project.title}
-                            className={`group relative flex flex-col overflow-hidden rounded-3xl transition-all duration-300 hover:scale-[1.02] ${index === 1 ? 'md:scale-105' : ''
+                            className={`group relative flex flex-col overflow-hidden rounded-3xl transition-transform duration-300 hover:scale-[1.02] ${index === 1 ? 'md:scale-105' : ''
                                 }`}
                             style={{
-                                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))',
+                                background: 'hsl(220, 14%, 12%)',
                                 boxShadow: index === 1
                                     ? '0 12px 48px 0 rgba(0, 0, 0, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.15)'
                                     : '0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)',
-                                backfaceVisibility: 'hidden',
-                                WebkitFontSmoothing: 'subpixel-antialiased',
                                 transform: 'translateZ(0)',
                             }}
                         >
@@ -128,18 +126,18 @@ export default function ShowcasePage() {
                                             src={project.image}
                                             alt={project.title}
                                             fill
-                                            className="object-cover transition-all duration-500 group-hover:scale-110"
+                                            className="object-cover transition-transform duration-500 group-hover:scale-110"
                                         />
                                     ) : (
                                         <div
-                                            className="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-600 opacity-80 transition-all duration-500 group-hover:scale-110 group-hover:opacity-100"
+                                            className="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-600 opacity-80 transition-transform duration-500 group-hover:scale-110 group-hover:opacity-100"
                                         />
                                     )}
                                     {/* Subtle dark gradient overlay (no color tinting) */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent"></div>
 
                                     {/* Place badge */}
-                                    <div className={`absolute right-4 top-4 rounded-full backdrop-blur-md px-4 py-1.5 text-xs font-bold uppercase tracking-wider shadow-lg ${index === 1 ? 'text-sm' : ''
+                                    <div className={`absolute right-4 top-4 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-wider shadow-lg ${index === 1 ? 'text-sm' : ''
                                         }`}
                                         style={{
                                             background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1))',
@@ -197,7 +195,7 @@ export default function ShowcasePage() {
                     {curatedProjects.map((project) => (
                         <article
                             key={project.title}
-                            className="group relative flex flex-col overflow-hidden rounded-3xl transition-all duration-400 hover:translate-y-[-3px] hover:shadow-lg"
+                            className="group relative flex flex-col overflow-hidden rounded-3xl transition-transform duration-400 hover:translate-y-[-3px] hover:shadow-lg"
                             style={{
                                 // background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.9))',
                                 boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(59, 130, 246, 0.1)',
@@ -223,7 +221,7 @@ export default function ShowcasePage() {
                                         />
                                     ) : (
                                         <div
-                                            className="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-600 opacity-80 transition-all duration-500 group-hover:scale-110 group-hover:opacity-100"
+                                            className="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-600 opacity-80 transition-transform duration-500 group-hover:scale-110 group-hover:opacity-100"
                                         />
                                     )}
                                     {/* Glass overlay on image */}
