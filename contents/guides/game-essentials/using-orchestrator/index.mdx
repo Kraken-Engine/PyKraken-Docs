@@ -1,0 +1,131 @@
+---
+title: Using the Orchestrator
+---
+
+The `Orchestrator` creates smooth animations and sequences by applying effects to `Transform` objects over time.
+
+## What is the Orchestrator?
+
+The Orchestrator manages **effects** — transformations applied to objects over time.
+Unlike manual animation, effects automatically interpolate values, perfect for:
+
+- Moving objects smoothly from A to B
+- Rotating and scaling objects
+- Creating cutscenes and sequences
+- Screen shake effects
+
+## Creating an Orchestrator
+
+Create an orchestrator with a target object:
+
+```python
+# Create a transform to animate
+transform = kn.Transform(pos=(100, 300))
+
+# Create orchestrator targeting the transform
+orch = kn.Orchestrator(transform)
+```
+
+The target can be a `Transform` object or any object with a "transform" attribute of type `Transform` (like sprites).
+
+## Sequencing Effects
+
+### One at a Time
+
+Chain effects with `then()` for sequential animation:
+
+```python
+# Create a bouncing ball animation
+(
+orch.then(fx.move_to((400, 100), dur=0.5))
+    .then(fx.move_to((400, 500), dur=0.5))
+    .then(fx.scale_to((1.2, 0.8), dur=0.1))  # Squash
+    .then(fx.scale_to((0.8, 1.2), dur=0.1))  # Stretch
+    .then(fx.scale_to(1.0, dur=0.1))
+)
+```
+
+### In Parallel
+
+Run multiple effects simultaneously with `parallel()`.
+The duration of the parallel block is determined by the longest effect.
+
+```python
+# Move and rotate at the same time
+# Entire sequence lasts 1.2 seconds
+orch.parallel(
+    fx.move_to((600, 300), dur=1.0),
+    fx.rotate_to(kn.math.to_rad(180), dur=1.2),
+)
+```
+
+## Easing Functions
+
+Add easing for natural motion:
+
+```python
+# Smooth start and end
+orch.then(fx.move_to((700, 300), dur=1.0, ease=kn.ease.in_out_quad))
+
+# Bouncy ending
+orch.then(fx.move_to((100, 300), dur=1.0, ease=kn.ease.out_bounce))
+
+# Elastic overshoot
+orch.then(fx.scale_to(1.5, dur=1.0, ease=kn.ease.out_elastic))
+```
+
+You can find more easing functions in the `kn.ease` submodule.
+
+## Playing Animations
+
+Before playing, you **MUST** finalize the orchestrator.
+This will prevent further changes and prepare the timeline.
+
+```python
+# Finalize and play
+orch.finalize()
+orch.play()
+```
+
+The orchestrator updates itself every frame behind the scenes once played, which means no manual updating is necessary.
+
+```python
+while kn.window.is_open():
+    kn.event.poll()
+
+    # Render using the animated transform
+    kn.renderer.clear()
+    kn.renderer.draw(texture, transform)
+    kn.renderer.present()
+```
+
+## Playback Control
+
+### Check Status
+
+```python
+if orch.playing:
+    print("Animation is running")
+
+if orch.finished:
+    print("Animation completed")
+```
+
+### Pause/Resume/Stop
+
+```python
+orch.pause()   # Pause at current position
+orch.resume()  # Continue from paused position
+orch.stop()    # Stop and reset to beginning
+orch.rewind()  # Reset to beginning without stopping
+```
+
+### Looping
+
+Set looping for repeating animations:
+
+```python
+orch.looping = True
+orch.finalize()
+orch.play()  # Will loop when finished
+```

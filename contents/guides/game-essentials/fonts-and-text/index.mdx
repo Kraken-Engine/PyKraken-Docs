@@ -1,0 +1,216 @@
+---
+title: Fonts and Text
+---
+
+Rendering text is essential for UI, dialogue, scores, and debugging.
+Kraken provides the `Font` and `Text` classes for flexible text rendering.
+
+## Loading a Font
+
+Load a TrueType font (.ttf) at a specific point size:
+
+```python
+# Load font at size 24
+font = kn.Font("fonts/arial.ttf", 24)
+
+# Load a larger font for titles
+title_font = kn.Font("fonts/arial.ttf", 48)
+
+# Use a built-in font
+retro_font = kn.Font("kraken-retro", 16)
+```
+
+You can also change a font's size at runtime with the `pt_size` property:
+
+```python
+font.pt_size = 32  # Change to 32pt
+```
+
+Kraken includes two built-in fonts: `"kraken-clean"` and `"kraken-retro"`.
+
+## Creating Text Objects
+
+Create a `Text` object by passing a font, then set its content and color:
+
+```python
+# Create a text object with a font
+label = kn.Text(font)
+label.text = "Hello, World!"
+label.color = kn.color.WHITE
+
+# Create another with a custom color
+score_text = kn.Text(font)
+score_text.text = "Score: 0"
+score_text.color = kn.Color(255, 200, 0)
+```
+
+## Drawing Text
+
+Text objects have their own `draw()` method:
+
+```python
+position = kn.Vec2(100, 100)
+
+while kn.window.is_open():
+    kn.event.poll()
+
+    kn.renderer.clear()
+    label.draw(position)
+    kn.renderer.present()
+```
+
+<p style={{marginBottom: 0}}><i>Result:</i></p>
+<img src="/images/label-text.webp" alt="Hello world text rendered to the screen" />
+
+## Updating Text
+
+To change the displayed text, simply update the `.text` property:
+
+```python
+score = 0
+score_text = kn.Text(font)
+score_text.text = f"Score: {score}"
+score_text.color = kn.color.WHITE
+
+# When score changes:
+score += 10
+score_text.text = f"Score: {score}"
+```
+
+## Font Styling
+
+Fonts have properties for styling, with the ability to use more than one at a time:
+
+```python
+font = kn.Font("fonts/arial.ttf", 24)
+
+# Style options
+font.bold = True
+font.italic = True
+font.underline = True
+font.strikethrough = True
+
+# Outline
+font.outline = 1  # 1px outline
+```
+
+<p style={{marginBottom: 0}}><i>In practice:</i></p>
+<img src="/images/font-styles.webp" alt="Text with various font styles applied" width="400" />
+
+## Drop Shadows
+Text objects support drop shadows via the `shadow_color` and `shadow_offset` properties.
+Shadows will only be drawn if `shadow_color.a > 0` and `shadow_offset` is not `(0, 0)`.
+
+```python
+# Once
+label = kn.Text(font)
+label.color = kn.color.WHITE
+label.shadow_offset = kn.Vec2(4, 4)
+label.shadow_color = kn.Color(0, 0, 0, 128)
+
+# Per frame
+label.draw(pos)
+```
+
+<p style={{marginBottom: 0}}><i>Result:</i></p>
+<img src="/images/text-shadow.webp" alt="Text with a drop shadow effect" />
+
+## Multi-line Text
+Use `\n` for line breaks, or set `wrap_width` for automatic wrapping:
+
+```python
+dialogue = kn.Text(font)
+dialogue.text = "Line 1\nLine 2\nLine 3"
+
+# Or with automatic wrapping
+dialogue.wrap_width = 300
+dialogue.text = "This long text will automatically wrap at 300 pixels."
+```
+
+<p style={{marginBottom: 0}}><i>Result:</i></p>
+<img src="/images/multi-line-text.webp" alt="Multi-line text with automatic wrapping" width="600" />
+
+## Putting It Together
+
+Here's a full example with score display and title screen:
+
+```python
+import pykraken as kn
+
+SCN_WIDTH, SCN_HEIGHT = SCN_SIZE = kn.Vec2(800, 600)
+
+kn.init()
+kn.window.create("Text Example", SCN_SIZE)
+kn.time.set_target(60)
+
+# Load fonts
+small_font = kn.Font("fonts/arial.ttf", 20)
+medium_font = kn.Font("fonts/arial.ttf", 32)
+large_font = kn.Font("fonts/arial.ttf", 64)
+
+# Create static text
+title = kn.Text(large_font)
+title.text = "SPACE SHOOTER"
+title.color = kn.Color(100, 200, 255)
+
+instructions = kn.Text(medium_font)
+instructions.text = "Press SPACE to start"
+
+# Dynamic text
+score = 0
+score_text = kn.Text(small_font)
+score_text.text = f"Score: {score}"
+score_text.color = kn.color.YELLOW
+
+fps_text = kn.Text(small_font)
+fps_text.color = kn.color.GRAY
+
+game_started = False
+player_rect = kn.Rect(0, 0, 40, 40)
+player_rect.center = (SCN_WIDTH / 2, SCN_HEIGHT - 100)
+
+while kn.window.is_open():
+    kn.event.poll()
+    dt = kn.time.get_delta()
+
+    if not game_started:
+        # Title screen
+        if kn.key.is_just_pressed(kn.K_SPACE):
+            game_started = True
+
+        kn.renderer.clear((20, 20, 40))
+        title.draw((SCN_WIDTH / 2, SCN_HEIGHT / 3), kn.Anchor.CENTER)
+        instructions.draw(SCN_SIZE / 2, kn.Anchor.CENTER)
+    else:
+        # Game screen
+        if kn.key.is_pressed(kn.S_a):
+            player_rect.center += kn.Vec2(-300 * dt, 0)
+        if kn.key.is_pressed(kn.S_d):
+            player_rect.center += kn.Vec2(300 * dt, 0)
+
+        # Score increases over time (for demo)
+        score += 1
+        score_text.text = f"Score: {score}"
+
+        kn.renderer.clear((20, 20, 40))
+
+        # Draw player
+        kn.draw.rect(player_rect, kn.color.GREEN)
+
+        # Draw score in top-left
+        score_text.draw((10, 10))
+
+        # Draw FPS in top-right
+        fps_text.text = f"FPS: {int(kn.time.get_fps())}"
+        fps_text.draw((SCN_WIDTH - 10, 10), kn.Anchor.TOP_RIGHT)
+
+    kn.renderer.present()
+
+kn.quit()
+```
+
+<p style={{marginBottom: 0}}><i>Result:</i></p>
+<video autoPlay muted loop style={{marginTop: "12px", width: "600px", display: "block", borderRadius: "8px", boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)", border: "1px solid rgba(255, 255, 255, 0.1)"}}>
+    <source src="/videos/text-usage.webm" type="video/webm" />
+    <source src="/videos/text-usage.mp4" type="video/mp4" />
+</video>

@@ -22,10 +22,18 @@ If you need the same image multiple times (e.g. many enemies), reuse the same `T
 </Note>
 
 ## Drawing Textures
-The simplest draw call renders the texture at the top left corner of the window, `(0, 0)`.
-Though, because textures are drawn from their center by default, we need to specify the anchor point as `TOP_LEFT`.
+The simplest draw call renders the texture at the origin `(0, 0)`.
+Use a `Transform` to control position, rotation, scale, and anchor:
 ```py
-kn.renderer.draw(texture, anchor=kn.Anchor.TOP_LEFT)
+# Draw at origin with default transform
+kn.renderer.draw(texture)
+
+# Draw with custom transform
+transform = kn.Transform(
+    pos=(150, 100),
+    angle=kn.math.to_rad(30)
+)
+kn.renderer.draw(texture, transform)
 ```
 
 <p style={{marginBottom: 0}}><i>Result:</i></p>
@@ -37,7 +45,8 @@ This keeps the GPU from doing expensive state changes.
 ```py
 # Best performance:
 for i in range(5):
-    kn.renderer.draw(texture, (i * 40, 200))
+    transform = kn.Transform(pos=kn.Vec2(i * 40, 100))
+    kn.renderer.draw(texture, transform)
 
 # Do sparingly:
 kn.renderer.draw(texA)
@@ -46,26 +55,6 @@ kn.renderer.draw(texA)
 ```
 *So, wherever possible, group similar textures together when drawing.*
 
-## Transformations
-Texture objects contain attributes for the angle it should render at in radians and whether it should be renderered flipped horizontally and/or vertically.
-Below is an example that draws a texture regularly on the left and the same texture flipped horizontally and rotated 45 degrees on the right.
-```py
-while kn.window.is_open():
-    ...
-    # Draw normally (need to reset transformations)
-    texture.flip.h = False
-    texture.angle = 0
-    kn.renderer.draw(texture, ...)
-
-    # Draw horizontally flipped and rotated
-    texture.flip.h = True
-    texture.angle = math.pi / 4
-    kn.renderer.draw(texture, ...)
-    ...
-```
-
-<p style={{marginBottom: 0}}><i>Result:</i></p>
-<img src="/images/transformations.webp" alt="Two textures drawn, one with transformations applied" />
 
 ## Atlases
 If your game uses lots of small sprites (UI icons, sprite states, etc.), pack them into a single large texture called an **atlas**.
@@ -77,10 +66,11 @@ The renderer accepts a source rectangle to select a portion of the texture to dr
 ```py
 heart_src = kn.Rect(0, 0, 32, 32)
 power_src = kn.Rect(32, 0, 32, 32)
+
 while kn.window.is_open():
     ...
-    kn.renderer.draw(atlas_tex, (16, 16, 32, 32), src=heart_src)
-    kn.renderer.draw(atlas_tex, (32, 32, 32, 32), src=power_src)
+    kn.renderer.draw(texture, kn.Transform(pos=kn.Vec2(16, 16)), src=heart_src)
+    kn.renderer.draw(texture, kn.Transform(pos=kn.Vec2(32, 32)), src=power_src)
     ...
 ```
 

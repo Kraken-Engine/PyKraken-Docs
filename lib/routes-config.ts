@@ -111,6 +111,16 @@ export const GUIDE_ROUTES: EachRoute[] = [
       { title: "Using Shader States", href: "/using-shader-states" },
       { title: "Uniforms", href: "/uniforms" },
     ]
+  },
+  {
+    title: "Game Essentials",
+    href: "/game-essentials",
+    noLink: true,
+    items: [
+      { title: "Vectors for Game Physics", href: "/vector-physics" },
+      { title: "Fonts and Text", href: "/fonts-and-text" },
+      { title: "Using the Orchestrator", href: "/using-orchestrator" },
+    ]
   }
 ];
 

@@ -65,13 +65,14 @@ _**Returns**_
 ## Rotate To
 <div className="api-card">
 
-<ApiSig name="rotate_to" multiline params={[{ name: "angle", type: "float" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float]", default: "None" }]} returns="Effect" />
+<ApiSig name="rotate_to" multiline params={[{ name: "angle", type: "float" }, { name: "clockwise", type: "bool", default: "True" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float]", default: "None" }]} returns="Effect" />
 
 Create a rotate-to effect.
 
 _**Parameters**_
 
 - `angle` : Target angle in radians.
+- `clockwise` : Direction of rotation.
 - `dur` : Duration in seconds.
 - `ease` : Easing function (t → t).
 
@@ -79,6 +80,25 @@ _**Returns**_
 
 `Effect` : The rotate-to effect.
 
+</div>
+
+## Rotate By
+<div className="api-card">
+
+<ApiSig name="rotate_by" multiline params={[{ name: "delta", type: "float" }, { name: "clockwise", type: "bool", default: "True" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float]", default: "None" }]} returns="Effect" />
+
+Create a rotate-by effect.
+
+_**Parameters**_
+
+- `delta` : Delta angle in radians to rotate by.
+- `clockwise` : Direction of rotation.
+- `dur` : Duration in seconds.
+- `ease` : Easing function (t → t).
+
+_**Returns**_
+
+`Effect` : The rotate-by effect.
 </div>
 
 ## Scale To

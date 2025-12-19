@@ -43,25 +43,17 @@ Present the current render target to the display, swapping buffers.
 ## Draw
 <div className="api-card">
 
-<ApiSig name="draw" params={[{name: "texture", type: "Texture"}, {name: 'dst', type: 'Rect'}, {name: 'src', type: 'Rect', default: 'None'}]} returns="None" />
+<ApiSig name="draw" multiline params={[{name: "texture", type: "Texture"}, {name: 'transform', type: 'Transform', default: 'None'}, {name: 'src', type: 'Rect', default: 'None'}]} returns="None" />
 
-Render the texture within the specified destination rectangle, optionally using a source rectangle to select a portion of the texture.
+Render a texture with the specified transform and source rectangle.
 
-_**Parameters**_
-- `texture` : The texture to draw.
-- `dst` : The destination rectangle to render the texture into.
-- `src` : An optional source rectangle to select a portion of the texture.
-
----
-
-<ApiSig name="draw" multiline params={[{name: "texture", type: "Texture"}, {name: 'pos', type: 'Vec2', default: 'None'}, {name: 'anchor', type: 'Anchor', default: 'Anchor.CENTER'}]} returns="None" />
-
-Render the texture at the specified position, optionally using an anchor point to control the alignment.
+If transform has no size, it will then check if `src` has a size and use that.
+If neither have a size, it will use the full texture size.
 
 _**Parameters**_
-- `texture` : The texture to draw.
-- `pos` : The position to render the texture.
-- `anchor` : The anchor point for alignment.
+- `texture` : The texture to render.
+- `transform` : The transform (position, rotation, scale, anchor, pivot). Defaults to identity transform.
+- `src` : The source rectangle from the texture. Defaults to entire texture if not specified.
 
 </div>
 
