@@ -5,12 +5,27 @@ description: A 2D texture that can be rendered to the screen.
 
 ## Constructor
 <div className="api-card">
-- <ApiSig name="Texture" params={[{ name: "file_path", type: "str" }]} />
-- <ApiSig name="Texture" params={[{ name: "pixel_array", type: "PixelArray" }]} />
+- <ApiSig multiline name="Texture" params={[
+    { name: "file_path", type: "str" },
+    { name: "scale_mode", type: "TextureScaleMode", default: "TextureScaleMode.DEFAULT" },
+    { name: "access", type: "TextureAccess", default: "TextureAccess.STATIC" }
+    ]} />
+- <ApiSig multiline name="Texture" params={[
+    { name: "pixel_array", type: "PixelArray" },
+    { name: "scale_mode", type: "TextureScaleMode", default: "TextureScaleMode.DEFAULT" },
+    { name: "access", type: "TextureAccess", default: "TextureAccess.STATIC" }
+    ]} />
+- <ApiSig multiline name="Texture" params={[
+    { name: "size", type: "Vec2"},
+    { name: "scale_mode", type: "TextureScaleMode", default: "TextureScaleMode.DEFAULT" }
+    ]} />
 
 _**Parameters**_
 - `file_path` : Path to the image file to load.
 - `pixel_array` : The pixel array to convert to a texture.
+- `size` : The width and height of the empty texture to create.
+- `scale_mode` : The scaling mode to use for the texture.
+- `access` : The access mode for the texture.
 </div>
 
 ## Properties

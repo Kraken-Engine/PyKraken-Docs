@@ -8,15 +8,14 @@ description: Functions for creating and managing an application window.
 ## Create
 <div className="api-card">
 
-<ApiSig name="create" params={[{ name: "title", type: "str" }, { name: "resolution", type: "Vec2" }, { name: "scaled", type: "bool", default: "False" }]} returns="None" />
+<ApiSig name="create" params={[{ name: "title", type: "str" }, { name: "size", type: "Vec2" }]} returns="None" />
 
 Create a new application window.
 
 _**Parameters**_
 
 - `title` : The title of the window.
-- `resolution` : The initial resolution of the window.
-- `scaled` : Whether the window should be automatically scaled up to fit into the display.
+- `size` : The initial size of the window.
 
 </div>
 

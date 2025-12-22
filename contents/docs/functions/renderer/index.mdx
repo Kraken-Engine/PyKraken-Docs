@@ -57,16 +57,56 @@ _**Parameters**_
 
 </div>
 
-## Get Res
+## Get Target Resolution
 <div className="api-card">
 
-<ApiSig name="get_res" returns="Vec2" />
+<ApiSig name="get_target_resolution" returns="Vec2" />
 
-Get the current resolution of the renderer's output target.
+Get the resolution of the renderer's current render target.
 
 _**Returns**_
 
 `Vec2` : The width and height of the render target in pixels.
+
+</div>
+
+## Set Target
+<div className="api-card">
+
+<ApiSig name="set_target" params={[{ name: "texture", type: "Texture | None"}]} returns="None" />
+
+Set the current render target to the specified texture.
+If `None` is provided, any assigned render target is unset and the default backbuffer is used.
+
+_**Parameters**_
+
+- `texture` : The texture to set as the render target, or `None` to unset.
+
+</div>
+
+## Set Default Scale Mode
+<div className="api-card">
+
+<ApiSig name="set_default_scale_mode" params={[{ name: "scale_mode", type: "TextureScaleMode"}]} returns="None" />
+
+Set the default scale mode for new textures created with `TextureScaleMode.DEFAULT`.
+
+_**Parameters**_
+
+- `scale_mode` : The scale mode to set as default.
+
+</div>
+
+## Get Default Scale Mode
+<div className="api-card">
+
+<ApiSig name="get_default_scale_mode" returns="TextureScaleMode" />
+
+Get the current default scale mode used for new textures created with `TextureScaleMode.DEFAULT`.
+
+_**Returns**_
+
+`TextureScaleMode` : The current default scale mode.
 
 </div>
 
