@@ -10,10 +10,20 @@ export type EachRoute = {
 
 export const DOC_ROUTES: EachRoute[] = [
   {
+    title: "Preface",
+    href: "/preface",
+    noLink: true,
+    items: [
+      { title: "How to Read the Docs", href: "" },
+      { title: "How to Build the Docs", href: "/building" }
+    ]
+  },
+  {
     title: "Manual",
     href: "/manual",
     noLink: true,
     items: [
+      { title: "Introduction", href: "" },
       { title: "Keycode vs. Scancode", href: "/keycode-vs-scancode" },
       { title: "Constants", href: "/constants" },
       { title: "Event Attributes", href: "/event-attributes" },
@@ -24,6 +34,7 @@ export const DOC_ROUTES: EachRoute[] = [
     href: "/classes",
     noLink: true,
     items: [
+      { title: "Introduction", href: "" },
       { title: "AnimationController", href: "/animation-controller" },
       { title: "Audio", href: "/audio" },
       { title: "AudioStream", href: "/audio-stream" },
@@ -59,6 +70,7 @@ export const DOC_ROUTES: EachRoute[] = [
     href: "/functions",
     noLink: true,
     items: [
+      { title: "Introduction", href: "" },
       { title: "Collision", href: "/collision" },
       { title: "Color", href: "/color" },
       { title: "Draw", href: "/draw" },
