@@ -1,31 +1,6 @@
 ---
-title: How To Read the Docs
-description: A guide on how to navigate and understand the Kraken Engine documentation.
+title: Introduction
+description: An introduction to the PyKraken Documentation.
 ---
 
-The documentation is organized into three sections:
-* **Manual**: Information like constants, implicit conversions, and more.
-* **Classes**: Detailed documentation of all classes available in Kraken, including their methods and properties.
-* **Functions**: Comprehensive list of all functions provided by Kraken.
-
-## Navigating Classes
-For nearly every class, you can write them in code as `kn.[ClassName]`.
-For example, the "EasingAnimation" tab under the "Classes" section documents the `kn.EasingAnimation` class.
-
-Just below the class description, you'll often find a list of constructor signatures.
-These show you how to instantiate the class with different parameters.
-For example, the `InputAction` class has five different constructors, one of which being `InputAction(gamepad_button: GamepadButton, slot: int = 0)`.
-
-Meaning, the input action class can be instantiated as such:
-```py
-input_action = kn.InputAction(kn.C_WEST, slot=1)
-```
-
-## Navigating Functions
-The "Functions" section is organized a little differently.
-The name of the sections correspond to the submodule where the functions are located.
-For example, the "mouse" section has a function called "is_pressed", which you can call in code as `kn.mouse.is_pressed()`.
-
-<Note>
-We like to use "kn" as the common alias for the PyKraken module throughout the documentation.
-</Note>
+Hi Hello
