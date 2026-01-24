@@ -8,15 +8,11 @@ export default function MainWrapper({ children }: { children: React.ReactNode })
   const pathname = usePathname();
   const { theme, resolvedTheme } = useTheme();
   const [isHome, setIsHome] = useState(false);
-  const [hasChristmasBg, setHasChristmasBg] = useState(false);  // REMOVE NEXT YEAR
   const [mounted, setMounted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     setIsHome(pathname === '/');
-    // REMOVE NEXT YEAR
-    setHasChristmasBg(pathname.startsWith('/docs') || pathname.startsWith('/guides') || pathname === '/showcase');
-    // ----------------
   }, [pathname]);
 
   useEffect(() => {
@@ -36,8 +32,7 @@ export default function MainWrapper({ children }: { children: React.ReactNode })
   const isDark = mounted ? (resolvedTheme === 'dark' || theme === 'dark') : true;
 
   return (
-    // REMOVE ${hasChristmasBg ? 'christmas-bg' : ''} NEXT YEAR
-    <div className={`relative w-full ${isHome ? 'h-[calc(100vh-4rem)] overflow-hidden home-background' : ''} ${hasChristmasBg ? 'christmas-bg' : ''}`}>
+    <div className={`relative w-full ${isHome ? 'h-[calc(100vh-4rem)] overflow-hidden home-background' : ''}`}>
       {isHome && mounted && (
         <>
           <video

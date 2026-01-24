@@ -1,99 +1,96 @@
 ---
 title: Key
-description: Functions for interacting with keyboard inputs.
+description: Keyboard key state checks
 ---
 
 ---
-
-## Is Pressed
-<div className="api-card">
-
-<ApiSig name="is_pressed" params={[{ name: "scancode", type: "Scancode" }]} returns="bool" />
-
-Check if a key is currently being held down.
-
-_**Parameters**_
-
-- `scancode` : The scancode of the key to check.
-
-_**Returns**_
-
-`bool` : True if the key is pressed, otherwise False.
-
----
-
-<ApiSig name="is_pressed" params={[{ name: "keycode", type: "Keycode" }]} returns="bool" />
-
-Check if a key is currently being held down.
-
-_**Parameters**_
-
-- `keycode` : The keycode of the key to check.
-
-_**Returns**_
-
-`bool` : True if the key is pressed, otherwise False.
-
-</div>
 
 ## Is Just Pressed
 <div className="api-card">
-
 <ApiSig name="is_just_pressed" params={[{ name: "scancode", type: "Scancode" }]} returns="bool" />
 
-Check if a key was just pressed.
+Check if a key was pressed this frame (by scancode).
 
-_**Parameters**_
+_**Args**_
 
-- `scancode` : The scancode of the key to check.
+- `scancode` : The physical key.
 
 _**Returns**_
 
-`bool` : True if the key was just pressed, otherwise False.
+`bool` : True if the key was newly pressed.
 
 ---
 
 <ApiSig name="is_just_pressed" params={[{ name: "keycode", type: "Keycode" }]} returns="bool" />
 
-Check if a key was just pressed.
+Check if a key was pressed this frame (by keycode).
 
-_**Parameters**_
+_**Args**_
 
-- `keycode` : The keycode of the key to check.
+- `keycode` : The symbolic key.
 
 _**Returns**_
 
-`bool` : True if the key was just pressed, otherwise False.
+`bool` : True if the key was newly pressed.
 
 </div>
 
 ## Is Just Released
 <div className="api-card">
-
 <ApiSig name="is_just_released" params={[{ name: "scancode", type: "Scancode" }]} returns="bool" />
 
-Check if a key was just released.
+Check if a key was released this frame (by scancode).
 
-_**Parameters**_
+_**Args**_
 
-- `scancode` : The scancode of the key to check.
+- `scancode` : The physical key.
 
 _**Returns**_
 
-`bool` : True if the key was just released, otherwise False.
+`bool` : True if the key was newly released.
 
 ---
 
 <ApiSig name="is_just_released" params={[{ name: "keycode", type: "Keycode" }]} returns="bool" />
 
-Check if a key was just released.
+Check if a key was released this frame (by keycode).
 
-_**Parameters**_
+_**Args**_
 
-- `keycode` : The keycode of the key to check.
+- `keycode` : The symbolic key.
 
 _**Returns**_
 
-`bool` : True if the key was just released, otherwise False.
+`bool` : True if the key was newly released.
+
+</div>
+
+## Is Pressed
+<div className="api-card">
+<ApiSig name="is_pressed" params={[{ name: "scancode", type: "Scancode" }]} returns="bool" />
+
+Check if a key is currently held down (by scancode).
+
+_**Args**_
+
+- `scancode` : The physical key (e.g., S_w).
+
+_**Returns**_
+
+`bool` : True if the key is held.
+
+---
+
+<ApiSig name="is_pressed" params={[{ name: "keycode", type: "Keycode" }]} returns="bool" />
+
+Check if a key is currently held down (by keycode).
+
+_**Args**_
+
+- `keycode` : The symbolic key (e.g., K_SPACE).
+
+_**Returns**_
+
+`bool` : True if the key is held.
 
 </div>

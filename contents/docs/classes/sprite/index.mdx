@@ -5,15 +5,12 @@ description: Abstract base class for drawable game objects with a texture and tr
 
 ## Constructor
 <div className="api-card">
-- <ApiSig name="Sprite" />
-- <ApiSig name="Sprite" params={[{ name: "texture", type: "Texture" }]} />
-- <ApiSig name="Sprite" params={[{ name: "texture", type: "Texture" }, { name: "transform", type: "Transform" }]} />
 
-This class cannot be instantiated directly. Inherit from it and implement the `update()` method.
+- <ApiSig name="Sprite" returns="Sprite" />
+- <ApiSig name="Sprite" params={[{ name: "texture", type: "Texture" }]} returns="Sprite" />
+- <ApiSig name="Sprite" params={[{ name: "texture", type: "Texture" }, { name: "transform", type: "Transform" }]} returns="Sprite" />
 
-_**Parameters**_
-- `texture` : The sprite's texture.
-- `transform` : The sprite's Transform.
+Abstract base class for drawable game objects with a texture and transform.
 </div>
 
 ## Properties
@@ -21,42 +18,35 @@ _**Parameters**_
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `transform` | The sprite's position, rotation, and scale | `Transform` |
-| `velocity` | The sprite's velocity vector | `Vec2` |
-| `texture` | The sprite's texture (can be `None`) | `Texture` |
-| `visible` | Whether the sprite should be drawn | `bool` |
-| `clip` | Source rectangle for texture sampling (`None` = full texture) | `Rect` |
+| `clip` | Source rectangle for texture sampling (None = full texture). | <code>Any</code> |
+| `texture` | The sprite's texture. | <code><a href="/docs/classes/texture">Texture</a></code> |
+| `transform` | The sprite's transform. | <code><a href="/docs/classes/transform">Transform</a></code> |
+| `velocity` | The sprite's velocity. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `visible` | Whether the sprite is visible. | <code>bool</code> |
 
 ## Methods
 ---
 
 ### Draw
 <div className="api-card">
-
 <ApiSig name="draw" returns="None" />
 
 Draw the sprite to the screen with its current transform.
 
 </div>
 
-### Update
-<div className="api-card">
-
-<ApiSig name="update" returns="None" />
-
-Update the sprite state.
-
-<Note>
-    This method must be overridden in subclasses.
-</Note>
-
-</div>
-
 ### Move
 <div className="api-card">
-
 <ApiSig name="move" returns="None" />
 
 Apply frame-independent velocity to position.
+
+</div>
+
+### Update
+<div className="api-card">
+<ApiSig name="update" returns="None" />
+
+Update the sprite state (must be overridden).
 
 </div>

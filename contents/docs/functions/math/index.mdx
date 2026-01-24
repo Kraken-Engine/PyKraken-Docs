@@ -1,105 +1,54 @@
 ---
 title: Math
-description: Functions for mathematical operations.
+description: Math related functions
 ---
 
 ---
 
-## Scale To Length
+## Angle Between
 <div className="api-card">
+<ApiSig name="angle_between" params={[{ name: "a", type: "Vec2" }, { name: "b", type: "Vec2" }]} returns="float" />
 
-<ApiSig name="scale_to_length" params={[{ name: "vec", type: "Vec2" }, { name: "length", type: "float" }]} returns="Vec2" />
+Calculate the angle between two vectors.
 
-Scale a vector to a specific length.
+_**Args**_
 
-_**Parameters**_
-
-- `vec` : The vector to scale.
-- `length` : The desired length of the vector.
-
-_**Returns**_
-
-`Vec2` : The scaled vector.
-
-</div>
-
-## From Polar
-<div className="api-card">
-
-<ApiSig name="from_polar" params={[{ name: "angle", type: "float" }, { name: "radius", type: "float" }]} returns="Vec2" />
-
-Create a vector from polar coordinates.
-
-_**Parameters**_
-
-- `angle` : The angle in radians.
-- `radius` : The radius or length of the vector.
+- `a` : The first vector.
+- `b` : The second vector.
 
 _**Returns**_
 
-`Vec2` : The created vector.
-
----
-
-<ApiSig name="from_polar" params={[{ name: "polar", type: "PolarCoordinate" }]} returns="Vec2" />
-
-Create a vector from a polar coordinate object.
-
-_**Parameters**_
-
-- `polar` : The polar coordinate object.
-
-_**Returns**_
-
-`Vec2` : The created vector.
-
-</div>
-
-## Normalize
-<div className="api-card">
-
-<ApiSig name="normalize" params={[{ name: "vec", type: "Vec2" }]} returns="Vec2" />
-
-Normalize a vector to unit length. Will return a zero vector if the input vector has zero length.
-
-_**Parameters**_
-
-- `vec` : The vector to normalize.
-
-_**Returns**_
-
-`Vec2` : The normalized vector.
+`float` : The angle between the vectors in radians [0, π].
 
 </div>
 
 ## Clamp
 <div className="api-card">
+<ApiSig name="clamp" params={[{ name: "vec", type: "Vec2" }, { name: "min_vec", type: "Vec2" }, { name: "max_vec", type: "Vec2" }]} returns="Vec2" />
 
-<ApiSig name="clamp" params={[{ name: "vec", type: "Vec2" }, { name: "min", type: "Vec2" }, { name: "max", type: "Vec2" }]} returns="Vec2" />
+Clamp a vector between two boundary vectors.
 
-Clamp a vector to a specified range.
-
-_**Parameters**_
+_**Args**_
 
 - `vec` : The vector to clamp.
-- `min` : The minimum allowed values for each component.
-- `max` : The maximum allowed values for each component.
+- `min_vec` : The minimum boundary vector.
+- `max_vec` : The maximum boundary vector.
 
 _**Returns**_
 
-`Vec2` : The clamped vector.
+`Vec2` : A new vector with components clamped between min and max.
 
 ---
 
-<ApiSig name="clamp" params={[{ name: "value", type: "float" }, { name: "min", type: "float" }, { name: "max", type: "float" }]} returns="float" />
+<ApiSig name="clamp" multiline params={[{ name: "value", type: "SupportsFloat" }, { name: "min_val", type: "SupportsFloat" }, { name: "max_val", type: "SupportsFloat" }]} returns="float" />
 
-Clamp a value to a specified range.
+Clamp a value between two boundaries.
 
-_**Parameters**_
+_**Args**_
 
 - `value` : The value to clamp.
-- `min` : The minimum allowed value.
-- `max` : The maximum allowed value.
+- `min_val` : The minimum boundary.
+- `max_val` : The maximum boundary.
 
 _**Returns**_
 
@@ -107,18 +56,68 @@ _**Returns**_
 
 </div>
 
+## Cross
+<div className="api-card">
+<ApiSig name="cross" params={[{ name: "a", type: "Vec2" }, { name: "b", type: "Vec2" }]} returns="float" />
+
+Calculate the 2D cross product of two vectors.
+
+_**Args**_
+
+- `a` : The first vector.
+- `b` : The second vector.
+
+_**Returns**_
+
+`float` : The 2D cross product (a.x * b.y - a.y * b.x).
+
+</div>
+
+## Dot
+<div className="api-card">
+<ApiSig name="dot" params={[{ name: "a", type: "Vec2" }, { name: "b", type: "Vec2" }]} returns="float" />
+
+Calculate the dot product of two vectors.
+
+_**Args**_
+
+- `a` : The first vector.
+- `b` : The second vector.
+
+_**Returns**_
+
+`float` : The dot product (a.x * b.x + a.y * b.y).
+
+</div>
+
+## From Polar
+<div className="api-card">
+<ApiSig name="from_polar" multiline params={[{ name: "angle", type: "SupportsFloat" }, { name: "radius", type: "SupportsFloat" }]} returns="Vec2" />
+
+Convert polar coordinates to a Cartesian vector.
+
+_**Args**_
+
+- `angle` : The angle in radians.
+- `radius` : The radius/distance from origin.
+
+_**Returns**_
+
+`Vec2` : The equivalent Cartesian vector.
+
+</div>
+
 ## Lerp
 <div className="api-card">
+<ApiSig name="lerp" params={[{ name: "a", type: "Vec2" }, { name: "b", type: "Vec2" }, { name: "t", type: "SupportsFloat" }]} returns="Vec2" />
 
-<ApiSig name="lerp" params={[{ name: "a", type: "Vec2" }, { name: "b", type: "Vec2" }, { name: "t", type: "float" }]} returns="Vec2" />
+Linearly interpolate between two Vec2s.
 
-Linearly interpolate between two vectors.
+_**Args**_
 
-_**Parameters**_
-
-- `a` : The starting vector.
-- `b` : The ending vector.
-- `t` : The interpolation factor (between 0 and 1).
+- `a` : The start vector.
+- `b` : The end vector.
+- `t` : The interpolation factor [0.0, 1.0].
 
 _**Returns**_
 
@@ -126,53 +125,55 @@ _**Returns**_
 
 ---
 
-<ApiSig name="lerp" params={[{ name: "a", type: "float" }, { name: "b", type: "float" }, { name: "t", type: "float" }]} returns="float" />
+<ApiSig name="lerp" multiline params={[{ name: "a", type: "SupportsFloat" }, { name: "b", type: "SupportsFloat" }, { name: "t", type: "SupportsFloat" }]} returns="float" />
 
-Linearly interpolate between two floats.
+Linearly interpolate between two values.
 
-_**Parameters**_
+_**Args**_
 
-- `a` : The starting float.
-- `b` : The ending float.
-- `t` : The interpolation factor (between 0 and 1).
+- `a` : The start value.
+- `b` : The end value.
+- `t` : The interpolation factor [0.0, 1.0].
 
 _**Returns**_
 
-`float` : The interpolated float.
+`float` : The interpolated value.
 
 </div>
 
 ## Remap
 <div className="api-card">
-
-<ApiSig name="remap" params={[{ name: "in_min", type: "float" }, { name: "in_max", type: "float" }, { name: "out_min", type: "float" }, { name: "out_max", type: "float" }, { name: "value", type: "float" }]} returns="float" />
+<ApiSig name="remap" multiline params={[{ name: "in_min", type: "SupportsFloat" }, { name: "in_max", type: "SupportsFloat" }, { name: "out_min", type: "SupportsFloat" }, { name: "out_max", type: "SupportsFloat" }, { name: "value", type: "SupportsFloat" }]} returns="float" />
 
 Remap a value from one range to another.
 
-_**Parameters**_
+_**Args**_
 
-- `in_min` : The minimum of the input range.
-- `in_max` : The maximum of the input range.
-- `out_min` : The minimum of the output range.
-- `out_max` : The maximum of the output range.
+- `in_min` : Input range minimum.
+- `in_max` : Input range maximum.
+- `out_min` : Output range minimum.
+- `out_max` : Output range maximum.
 - `value` : The value to remap.
 
 _**Returns**_
 
-`float` : The remapped value.
+`float` : The remapped value in the output range.
+
+_**Raises**_
+
+- `ValueError` : If in_min equals in_max.
 
 </div>
 
 ## To Deg
 <div className="api-card">
-
-<ApiSig name="to_deg" params={[{ name: "rad", type: "float" }]} returns="float" />
+<ApiSig name="to_deg" params={[{ name: "radians", type: "SupportsFloat" }]} returns="float" />
 
 Convert radians to degrees.
 
-_**Parameters**_
+_**Args**_
 
-- `rad` : The angle in radians.
+- `radians` : The angle in radians.
 
 _**Returns**_
 
@@ -182,89 +183,16 @@ _**Returns**_
 
 ## To Rad
 <div className="api-card">
-
-<ApiSig name="to_rad" params={[{ name: "deg", type: "float" }]} returns="float" />
+<ApiSig name="to_rad" params={[{ name: "degrees", type: "SupportsFloat" }]} returns="float" />
 
 Convert degrees to radians.
 
-_**Parameters**_
+_**Args**_
 
-- `deg` : The angle in degrees.
+- `degrees` : The angle in degrees.
 
 _**Returns**_
 
 `float` : The angle in radians.
-
-</div>
-
-## Dot
-<div className="api-card">
-
-<ApiSig name="dot" params={[{ name: "a", type: "Vec2" }, { name: "b", type: "Vec2" }]} returns="float" />
-
-Calculate the dot product of two vectors.
-
-_**Parameters**_
-
-- `a` : The LHS vector.
-- `b` : The RHS vector.
-
-_**Returns**_
-
-`float` : The dot product of the two vectors.
-
-</div>
-
-## Cross
-<div className="api-card">
-
-<ApiSig name="cross" params={[{ name: "a", type: "Vec2" }, { name: "b", type: "Vec2" }]} returns="float" />
-
-Calculate the cross product of two vectors.
-
-_**Parameters**_
-
-- `a` : The LHS vector.
-- `b` : The RHS vector.
-
-_**Returns**_
-
-`float` : The cross product of the two vectors.
-
-</div>
-
-## Rotate
-<div className="api-card">
-
-<ApiSig name="rotate" params={[{ name: "vec", type: "Vec2" }, { name: "angle", type: "float" }]} returns="Vec2" />
-
-Rotate a vector by a given angle.
-
-_**Parameters**_
-
-- `vec` : The vector to rotate.
-- `angle` : The angle to rotate the vector by, in radians.
-
-_**Returns**_
-
-`Vec2` : The rotated vector.
-
-</div>
-
-## Angle Between
-<div className="api-card">
-
-<ApiSig name="angle_between" params={[{ name: "a", type: "Vec2" }, { name: "b", type: "Vec2" }]} returns="float" />
-
-Calculate the angle between two vectors in radians.
-
-_**Parameters**_
-
-- `a` : The LHS vector.
-- `b` : The RHS vector.
-
-_**Returns**_
-
-`float` : The angle between the two vectors in radians.
 
 </div>

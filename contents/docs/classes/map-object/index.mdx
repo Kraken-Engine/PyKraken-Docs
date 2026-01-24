@@ -1,0 +1,21 @@
+---
+title: MapObject
+description: MapObject represents a placed object on an object layer. Access via the 'tilemap' submodule.
+---
+
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `name` | Object name. | <code>str</code> |
+| `rect` | Object bounding rectangle. | <code><a href="/docs/classes/rect">Rect</a></code> |
+| `shape_type` | Shape type enum for the object. | <code><a href="/docs/classes/map-object">MapObject</a>.ShapeType</code> |
+| `text` | Text properties if the object is text. | <code><a href="/docs/classes/text-properties">TextProperties</a></code> |
+| `tile_id` | Associated tile id when the object is a tile. | <code>int</code> |
+| `transform` | Transform component for the object. | <code><a href="/docs/classes/transform">Transform</a></code> |
+| `type` | Object type string. | <code>str</code> |
+| `uid` | Unique object identifier. | <code>int</code> |
+| `vertices` | Vertices for polygon/polyline shapes. | <code>Vec2List</code> |
+| `visible` | Visibility flag. | <code>bool</code> |

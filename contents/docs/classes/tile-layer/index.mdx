@@ -1,63 +1,56 @@
 ---
 title: TileLayer
-description: A single tile layer within a tile map.
+description: TileLayer represents a grid of tiles within the map. Access via the 'tilemap' submodule.
 ---
 
-<Note>
-TileLayer objects are not directly constructable. They are obtained from TileMap methods.
-</Note>
 
 ## Properties
 <hr style={{marginBottom: 0}} />
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `type` | The type of the layer (OBJECT or TILE) | `TileLayer.Type` |
-| `is_visible` | Whether the layer is visible | `bool` |
-| `name` | The name of the layer | `str` |
-| `tiles` | A list of tiles in the layer | `list[Tile]` |
+| `opacity` | Layer opacity from 0.0 to 1.0. | <code>float</code> |
+| `tiles` | List of tiles in the layer grid. | <code><a href="/docs/classes/tile-layer">TileLayer</a>.TileLayerTileList</code> |
 
 ## Methods
 ---
 
-### Render
-<div className="api-card">
-
-<ApiSig name="render" returns="None" />
-
-Render the tile layer to the screen.
-
-</div>
-
 ### Get From Area
 <div className="api-card">
+<ApiSig name="get_from_area" params={[{ name: "area", type: "Rect" }]} returns="TileLayer.TileResultList" />
 
-<ApiSig name="get_from_area" params={[{name: 'area', type: 'Rect'}]} returns="list[Tile]" />
+Return tiles intersecting a Rect area.
 
-Get all tiles within a specified rectangular area.
+_**Args**_
 
-_**Parameters**_
-- `area` : The rectangular area to check for tiles.
+- `area` : World-space area to query.
 
 _**Returns**_
 
-`list[Tile]` : A list of tiles within the specified area.
+`list[TileLayer.TileResult]` : List of TileResult entries for tiles intersecting the area.
 
 </div>
 
-### Get Tile At
+### Get From Point
 <div className="api-card">
+<ApiSig name="get_from_point" params={[{ name: "position", type: "Vec2" }]} returns="Any" />
 
-<ApiSig name="get_tile_at" params={[{name: 'column', type: 'int'}, {name: 'row', type: 'int'}]} returns="Tile | None" />
+Return the tile at a given world position.
 
-Get the tile at a specific column and row.
+_**Args**_
 
-_**Parameters**_
-- `column` : The column index of the tile.
-- `row` : The row index of the tile.
+- `position` : World-space position to query.
 
 _**Returns**_
 
-`Tile | None` : The tile at the specified column and row, or None if it doesn't exist.
+`Optional[TileLayer.TileResult]` : TileResult entry if a tile exists at the position, None otherwise.
+
+</div>
+
+### Render
+<div className="api-card">
+<ApiSig name="render" returns="None" />
+
+Draw the tile layer.
 
 </div>

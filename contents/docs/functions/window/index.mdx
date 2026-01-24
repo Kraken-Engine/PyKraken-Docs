@@ -1,146 +1,176 @@
 ---
 title: Window
-description: Functions for creating and managing an application window.
+description: Window related functions
 ---
 
 ---
-
-## Create
-<div className="api-card">
-
-<ApiSig name="create" params={[{ name: "title", type: "str" }, { name: "size", type: "Vec2" }]} returns="None" />
-
-Create a new application window.
-
-_**Parameters**_
-
-- `title` : The title of the window.
-- `size` : The initial size of the window.
-
-</div>
-
-## Is Open
-<div className="api-card">
-
-<ApiSig name="is_open" returns="bool" />
-
-Check if the window is currently open.
-
-_**Returns**_
-
-`bool` : True if the window is open, False otherwise.
-
-</div>
 
 ## Close
 <div className="api-card">
-
 <ApiSig name="close" returns="None" />
 
-Close the application window.
+Close the window.
+
+Marks the window as closed, typically used to signal the main loop to exit.
+This doesn't destroy the window immediately but sets the close flag.
 
 </div>
 
-## Get Size
+## Create
 <div className="api-card">
+<ApiSig name="create" params={[{ name: "title", type: "str" }, { name: "size", type: "Vec2" }]} returns="None" />
 
-<ApiSig name="get_size" returns="Vec2" />
+Create a window with the requested title and resolution.
 
-Get the current size of the window. If scaled, the size will be adjusted to fit the display.
+_**Args**_
 
-_**Returns**_
+- `title` : Non-empty title no longer than 255 characters.
+- `size` : The window size (width, height), both values must be positive.
 
-`Vec2` : The current size of the window.
+_**Raises**_
 
-</div>
-
-## Set Fullscreen
-<div className="api-card">
-
-<ApiSig name="set_fullscreen" params={[{ name: "fullscreen", type: "bool" }]} returns="None" />
-
-Set the window to a fullscreen mode.
-
-_**Parameters**_
-
-- `fullscreen` : Whether to enable or disable fullscreen mode.
-
-</div>
-
-## Is Fullscreen
-<div className="api-card">
-
-<ApiSig name="is_fullscreen" returns="bool" />
-
-Check if the window is currently in fullscreen mode.
-
-_**Returns**_
-
-`bool` : True if the window is in fullscreen mode, False otherwise.
-
-</div>
-
-## Set Title
-<div className="api-card">
-
-<ApiSig name="set_title" params={[{ name: "title", type: "str" }]} returns="None" />
-
-Set the title of the window.
-
-_**Parameters**_
-
-- `title` : The new title of the window.
-
-</div>
-
-## Get Title
-<div className="api-card">
-
-<ApiSig name="get_title" returns="str" />
-
-Get the current title of the window.
-
-_**Returns**_
-
-`str` : The current title of the window.
+- `RuntimeError` : If a window already exists or SDL window creation fails.
+- `ValueError` : If the title is invalid or any dimension is non-positive.
 
 </div>
 
 ## Get Scale
 <div className="api-card">
-
 <ApiSig name="get_scale" returns="int" />
 
 Get the scale of the window relative to the renderer resolution.
 
 _**Returns**_
 
-`int` : The current scale factor of the window.
+`int` : The window's scale
+
+_**Raises**_
+
+- `RuntimeError` : If the window is not initialized.
+
+</div>
+
+## Get Size
+<div className="api-card">
+<ApiSig name="get_size" returns="Vec2" />
+
+Get the current size of the window.
+
+_**Returns**_
+
+`tuple[float, float]` : The window size as (width, height).
+
+_**Raises**_
+
+- `RuntimeError` : If the window is not initialized.
+
+</div>
+
+## Get Title
+<div className="api-card">
+<ApiSig name="get_title" returns="str" />
+
+Get the current title of the window.
+
+_**Returns**_
+
+`str` : The current window title.
+
+_**Raises**_
+
+- `RuntimeError` : If the window is not initialized.
+
+</div>
+
+## Is Fullscreen
+<div className="api-card">
+<ApiSig name="is_fullscreen" returns="bool" />
+
+Check if the window is in fullscreen mode.
+
+_**Returns**_
+
+`bool` : True if the window is currently in fullscreen mode.
+
+_**Raises**_
+
+- `RuntimeError` : If the window is not initialized.
+
+</div>
+
+## Is Open
+<div className="api-card">
+<ApiSig name="is_open" returns="bool" />
+
+Report whether the window is currently open.
+
+_**Returns**_
+
+`bool` : True if the window is open and active.
 
 </div>
 
 ## Save Screenshot
 <div className="api-card">
-
 <ApiSig name="save_screenshot" params={[{ name: "path", type: "str" }]} returns="None" />
 
-Save a screenshot of the current window content to a file.
+Save a screenshot of the current frame to a file.
 
-_**Parameters**_
+_**Args**_
 
-- `path` : The file path where the screenshot will be saved.
+- `path` : The path to save the screenshot to.
+
+_**Raises**_
+
+- `RuntimeError` : If the window is not initialized or the screenshot cannot be saved.
+
+</div>
+
+## Set Fullscreen
+<div className="api-card">
+<ApiSig name="set_fullscreen" params={[{ name: "fullscreen", type: "bool" }]} returns="None" />
+
+Set the fullscreen mode of the window.
+
+_**Args**_
+
+- `fullscreen` : True to enable fullscreen mode, False for windowed mode.
+
+_**Raises**_
+
+- `RuntimeError` : If the window is not initialized or fullscreen mode cannot be changed.
 
 </div>
 
 ## Set Icon
 <div className="api-card">
-
 <ApiSig name="set_icon" params={[{ name: "path", type: "str" }]} returns="None" />
 
-Set the icon of the application window.
+Set the window icon from an image file.
 
-_**Parameters**_
+_**Args**_
 
-- `path` : The file path to the icon image.
+- `path` : The file path to the image to use as the icon.
+
+_**Raises**_
+
+- `RuntimeError` : If the window is not initialized or icon setting fails.
+
+</div>
+
+## Set Title
+<div className="api-card">
+<ApiSig name="set_title" params={[{ name: "title", type: "str" }]} returns="None" />
+
+Set the title of the window.
+
+_**Args**_
+
+- `title` : The new window title. Must be non-empty and &lt;= 255 characters.
+
+_**Raises**_
+
+- `RuntimeError` : If the window is not initialized or title setting fails.
+- `ValueError` : If title is empty or exceeds 255 characters.
 
 </div>

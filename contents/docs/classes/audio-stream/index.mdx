@@ -1,19 +1,14 @@
 ---
 title: AudioStream
-description: An audio stream that streams data from disk.
+description: A streaming audio object for single-instance playback of large audio files.
 ---
 
 ## Constructor
 <div className="api-card">
-<ApiSig name="AudioStream" params={[{ name: "file_path", type: "str" }, { name: "volume", type: "float", default: '1.0' }]} />
 
-_**Parameters**_
-- `file_path` : Path to the audio file to stream.
-- `volume` : Initial volume level (0.0 to 1.0+). Defaults to 1.0.
+- <ApiSig name="AudioStream" multiline params={[{ name: "file_path", type: "str" }, { name: "volume", type: "SupportsFloat", default: "1.0" }]} returns="AudioStream" />
 
-<Note>
-Audio file formats supported are WAV, FLAC, and MP3.
-</Note>
+A streaming audio object for single-instance playback of large audio files.
 </div>
 
 ## Properties
@@ -21,85 +16,96 @@ Audio file formats supported are WAV, FLAC, and MP3.
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `volume` | The volume of the audio stream, from 0.0-1.0, with values above 1.0 allowed for amplification. | `float` |
-| `current_time` | The current playback time of the audio stream in seconds. | `float` |
+| `current_time` | The current playback time position in seconds. | <code>float</code> |
+| `volume` | The volume level of the audio stream. | <code>float</code> |
 
 ## Methods
 ---
 
-### Play
-<div className="api-card">
-
-<ApiSig name="play" multiline params={[{name: "fade_in_ms", type: "int", default: "0"}, {name: "loop", type: "bool", default: "false"}, {name: "start_time_seconds", type: "float", default: "0.0"}]} returns="None" />
-
-Play the audio stream with optional fade-in, looping, and start time.
-
-_**Parameters**_
-
-- `fade_in_ms` : The duration in milliseconds to fade in the audio.
-- `loop` : Whether to loop the audio stream.
-- `start_time_seconds` : The time in seconds to start playback from.
-
-</div>
-
-### Stop
-<div className="api-card">
-
-<ApiSig name="stop" params={[{name: "fade_out_ms", type: "int", default: "0"}]} returns="None" />
-
-Stop the audio stream.
-
-_**Parameters**_
-
-- `fade_out_ms` : The duration in milliseconds to fade out the audio.
-
-</div>
-
-### Seek
-<div className="api-card">
-
-<ApiSig name="seek" params={[{name: "time_seconds", type: "float"}]} returns="None" />
-
-Seek to a specific time in the audio stream.
-
-_**Parameters**_
-
-- `time_seconds` : The time in seconds to seek to.
-
-</div>
-
 ### Pause
 <div className="api-card">
-
 <ApiSig name="pause" returns="None" />
 
-Pause the audio stream.
+Pause the audio stream playback.
+
+The stream position is preserved and can be resumed with resume().
+
+</div>
+
+### Play
+<div className="api-card">
+<ApiSig name="play" multiline params={[{ name: "fade_in_ms", type: "SupportsInt", default: "0" }, { name: "loop", type: "bool", default: "False" }, { name: "start_time_seconds", type: "SupportsFloat", default: "0.0" }]} returns="None" />
+
+Play the audio stream with optional fade-in time, loop setting, and start position.
+
+Starts playback from the specified time position. If the stream is already
+playing, it will restart from the specified position.
+
+_**Args**_
+
+- `fade_in_ms` : Fade-in duration in milliseconds. Defaults to 0.
+- `loop` : Whether to loop the audio continuously. Defaults to False.
+- `start_time_seconds` : Time position in seconds to start playback from. Defaults to 0.0.
 
 </div>
 
 ### Resume
 <div className="api-card">
-
 <ApiSig name="resume" returns="None" />
 
-Resume the audio stream.
+Resume paused audio stream playback.
+
+Continues playback from the current stream position.
 
 </div>
 
 ### Rewind
 <div className="api-card">
-
 <ApiSig name="rewind" returns="None" />
 
-Rewind the audio stream.
+Rewind the audio stream to the beginning.
+
+Sets the playback position back to the start of the audio file. Does not affect
+the current play state (playing/paused).
+
+</div>
+
+### Seek
+<div className="api-card">
+<ApiSig name="seek" params={[{ name: "time_seconds", type: "SupportsFloat" }]} returns="None" />
+
+Seek to a specific time position in the audio stream.
+
+Sets the playback position to the specified time in seconds. Does not affect
+the current play state (playing/paused).
+
+_**Args**_
+
+- `time_seconds` : The time position in seconds to seek to.
 
 </div>
 
 ### Set Looping
 <div className="api-card">
+<ApiSig name="set_looping" params={[{ name: "loop", type: "bool" }]} returns="None" />
 
-<ApiSig name="setLooping" returns="None" />
+Set whether the audio stream loops continuously.
 
-Set whether the audio stream should loop.
+_**Args**_
+
+- `loop` : True to enable looping, False to disable.
+
+</div>
+
+### Stop
+<div className="api-card">
+<ApiSig name="stop" params={[{ name: "fade_out_ms", type: "SupportsInt", default: "0" }]} returns="None" />
+
+Stop the audio stream playback.
+
+_**Args**_
+
+- `fade_out_ms` : Fade-out duration in milliseconds. If 0, stops immediately.
+                              If &gt; 0, fades out over the specified duration. Defaults to 0.
 
 </div>

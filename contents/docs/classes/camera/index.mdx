@@ -1,18 +1,16 @@
 ---
 title: Camera
-description: A class for managing the camera's position and view in the scene.
+description: Represents a 2D camera used for rendering.
 ---
 
 ## Constructor
 <div className="api-card">
-- <ApiSig name="Camera" />
-- <ApiSig name="Camera" params={[{ name: "pos", type: "Vec2" }]} />
-- <ApiSig name="Camera" params={[{ name: "x", type: "float" }, { name: "y", type: "float" }]} />
 
-_**Parameters**_
-- `pos` : The camera's initial position.
-- `x` : The x-coordinate of the camera's initial position.
-- `y` : The y-coordinate of the camera's initial position.
+- <ApiSig name="Camera" returns="Camera" />
+- <ApiSig name="Camera" params={[{ name: "pos", type: "Vec2" }]} returns="Camera" />
+- <ApiSig name="Camera" params={[{ name: "x", type: "SupportsFloat" }, { name: "y", type: "SupportsFloat" }]} returns="Camera" />
+
+Represents a 2D camera used for rendering.
 </div>
 
 ## Properties
@@ -20,16 +18,17 @@ _**Parameters**_
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `pos` | The camera's position | `Vec2` |
+| `pos` | Get or set the camera's position. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 
 ## Methods
----0
+---
 
 ### Set
 <div className="api-card">
-
 <ApiSig name="set" returns="None" />
 
-Set the camera as the active camera.
+Set this camera as the active one for rendering.
+
+Only one camera can be active at a time.
 
 </div>

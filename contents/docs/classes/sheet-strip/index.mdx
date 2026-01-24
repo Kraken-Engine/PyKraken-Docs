@@ -1,16 +1,14 @@
 ---
 title: SheetStrip
-description: Sheet strip object to use with AnimationController.
+description: A descriptor for one horizontal strip (row) in a sprite sheet.
 ---
 
 ## Constructor
 <div className="api-card">
-<ApiSig name="SheetStrip" params={[{ name: "name", type: "str" }, { name: "frame_count", type: "int" }, { name: "fps", type: "float" }]} />
 
-_**Parameters**_
-- `name` : Unique identifier for this animation.
-- `frame_count` : Number of frames to extract from this strip/row.
-- `fps` : Frames per second for playback timing.
+- <ApiSig name="SheetStrip" multiline params={[{ name: "name", type: "str" }, { name: "frame_count", type: "SupportsInt" }, { name: "fps", type: "SupportsFloat" }]} returns="SheetStrip" />
+
+A descriptor for one horizontal strip (row) in a sprite sheet.
 </div>
 
 ## Properties
@@ -18,6 +16,6 @@ _**Parameters**_
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `name` | The name of the sheet strip. | `str` |
-| `frame_count` | The number of frames in the sheet strip. | `int` |
-| `fps` | The frames per second of the sheet strip. | `int` |
+| `fps` | The playback speed in frames per second. | <code>float</code> |
+| `frame_count` | The number of frames in this animation strip. | <code>int</code> |
+| `name` | The unique name identifier for this animation strip. | <code>str</code> |

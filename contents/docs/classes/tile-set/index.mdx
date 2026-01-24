@@ -1,0 +1,58 @@
+---
+title: TileSet
+description: TileSet represents a collection of tiles and associated metadata. Access via the 'tilemap' submodule.
+---
+
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `columns` | Number of tile columns in the source image. | <code>int</code> |
+| `first_gid` | First global tile id (GID) in this tileset. | <code>int</code> |
+| `last_gid` | Last global tile id (GID) in this tileset. | <code>int</code> |
+| `margin` | Pixel margin around the source image. | <code>int</code> |
+| `name` | Tileset name. | <code>str</code> |
+| `spacing` | Pixel spacing between tiles in the source image. | <code>int</code> |
+| `terrains` | List of terrain definitions. | <code><a href="/docs/classes/tile-set">TileSet</a>.TerrainList</code> |
+| `texture` | Source texture for the tileset. | <code><a href="/docs/classes/texture">Texture</a></code> |
+| `tile_count` | Total number of tiles in the tileset. | <code>int</code> |
+| `tile_offset` | Per-tile offset applied when rendering. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `tile_size` | Size of tiles in pixels. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `tiles` | List of tile metadata entries. | <code><a href="/docs/classes/tile-set">TileSet</a>.TileSetTileList</code> |
+
+## Methods
+---
+
+### Get Tile
+<div className="api-card">
+<ApiSig name="get_tile" params={[{ name: "id", type: "SupportsInt" }]} returns="TileSet.Tile" />
+
+Retrieve tile metadata for a given id.
+
+_**Args**_
+
+- `id` : Global tile id (GID).
+
+_**Returns**_
+
+`Tile` : The tile metadata, or None if not found.
+
+</div>
+
+### Has Tile
+<div className="api-card">
+<ApiSig name="has_tile" params={[{ name: "id", type: "SupportsInt" }]} returns="bool" />
+
+Check whether a global tile id belongs to this tileset.
+
+_**Args**_
+
+- `id` : Global tile id (GID).
+
+_**Returns**_
+
+`bool` : True if the tileset contains the tile id, False otherwise.
+
+</div>

@@ -1,26 +1,14 @@
 ---
 title: Transform
-description: 2D transformations for sprites.
+description: Transform represents a 2D transformation with position, size, rotation, and scale.
 ---
 
 ## Constructor
 <div className="api-card">
-<ApiSig name="Transform" multiline params={[
-    { name: "pos", type: "Vec2", default: "None" },
-    { name: "size", type: "Vec2", default: "None" },
-    { name: "angle", type: "float", default: "0.0" },
-    { name: "scale", type: "Vec2", default: "None" },
-    { name: "anchor", type: "Anchor", default: "Anchor.TOP_LEFT" },
-    { name: "pivot", type: "Vec2", default: "None" }
-]} />
 
-_**Parameters**_
-- `pos` : Position component. Defaults to `(0, 0)`.
-- `size` : Explicit size. Defaults to empty (auto-detect from texture).
-- `angle` : Rotation in radians. Defaults to `0.0`.
-- `scale` : Scale multiplier. Defaults to `(1, 1)`.
-- `anchor` : Anchor point for positioning. Defaults to `Anchor.TOP_LEFT`.
-- `pivot` : Normalized rotation pivot. Defaults to `(0.5, 0.5)` for center.
+- <ApiSig name="Transform" multiline params={[{ name: "pos", type: "Any", default: "None" }, { name: "size", type: "Any", default: "None" }, { name: "angle", type: "SupportsFloat", default: "0.0" }, { name: "scale", type: "Any", default: "None" }, { name: "anchor", type: "Anchor", default: "Anchor.TOP_LEFT" }, { name: "pivot", type: "Any", default: "None" }]} returns="Transform" />
+
+Transform represents a 2D transformation with position, size, rotation, and scale.
 </div>
 
 ## Properties
@@ -28,9 +16,9 @@ _**Parameters**_
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `pos` | Position component | `Vec2` |
-| `size` | Explicit size (empty = use texture size) | `Vec2` |
-| `angle` | Rotation component in radians | `float` |
-| `scale` | Scale component | `Vec2` |
-| `anchor` | Anchor point for positioning | `Anchor` |
-| `pivot` | Normalized pivot point for rotation | `Vec2` |
+| `anchor` | The anchor point for positioning. | <code><a href="/docs/manual/constants#anchor">Anchor</a></code> |
+| `angle` | The rotation component in radians. | <code>float</code> |
+| `pivot` | The normalized pivot point for rotation. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `pos` | The position component as a Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `scale` | The scale component as a Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `size` | The explicit size as a Vec2. If zero/empty, uses texture or source rect size. | <code><a href="/docs/classes/vec2">Vec2</a></code> |

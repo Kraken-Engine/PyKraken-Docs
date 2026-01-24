@@ -1,24 +1,18 @@
 ---
 title: Line
-description: Functions for manipulating line objects.
+description: Functions in line.
 ---
 
 ---
 
 ## Move
 <div className="api-card">
-    
 <ApiSig name="move" params={[{ name: "line", type: "Line" }, { name: "offset", type: "Vec2" }]} returns="Line" />
 
-Returns a new line translated by the given offset.
+Move the given line by a Vec2 or 2-element sequence.
 
-_**Parameters**_
+_**Args**_
 
-- `line` : The original line to be moved.
-- `offset` : The vector by which to translate the line.
-
-_**Returns**_
-
-`Line` : A new line translated by the offset.
+- `offset` : The amount to move.
 
 </div>

@@ -1,61 +1,63 @@
 ---
 title: Mouse
-description: Functions for handling mouse input and cursor state.
+description: Mouse related functions
 ---
 
 ---
 
 ## Get Pos
 <div className="api-card">
-
 <ApiSig name="get_pos" returns="Vec2" />
 
 Get the current position of the mouse cursor.
 
 _**Returns**_
 
-`Vec2` : The current mouse position as a 2D vector.
+`tuple[float, float]` : The current mouse position as (x, y) coordinates.
 
 </div>
 
 ## Get Rel
 <div className="api-card">
-
 <ApiSig name="get_rel" returns="Vec2" />
 
 Get the relative mouse movement since the last frame.
 
 _**Returns**_
 
-`Vec2` : The relative movement of the mouse as a 2D vector.
+`tuple[float, float]` : The relative movement of the mouse as (dx, dy).
 
 </div>
 
-## Is Pressed
+## Hide
 <div className="api-card">
+<ApiSig name="hide" returns="None" />
 
-<ApiSig name="is_pressed" params={[{ name: "button", type: "MouseButton" }]} returns="bool" />
+Hide the mouse cursor from view.
 
-Check if a mouse button is currently pressed.
+The cursor will be invisible but mouse input will still be tracked.
 
-_**Parameters**_
+</div>
 
-- `button` : The mouse button to check.
+## Is Hidden
+<div className="api-card">
+<ApiSig name="is_hidden" returns="bool" />
+
+Check if the mouse cursor is currently hidden.
 
 _**Returns**_
 
-`bool` : True if the button is currently pressed.
+`bool` : True if the cursor is hidden.
 
 </div>
 
 ## Is Just Pressed
 <div className="api-card">
-
 <ApiSig name="is_just_pressed" params={[{ name: "button", type: "MouseButton" }]} returns="bool" />
 
 Check if a mouse button was pressed this frame.
 
-_**Parameters**_
+_**Args**_
 
 - `button` : The mouse button to check.
 
@@ -67,45 +69,22 @@ _**Returns**_
 
 ## Is Just Released
 <div className="api-card">
-
 <ApiSig name="is_just_released" params={[{ name: "button", type: "MouseButton" }]} returns="bool" />
 
 Check if a mouse button was released this frame.
 
-_**Parameters**_
+_**Args**_
 
 - `button` : The mouse button to check.
 
 _**Returns**_
 
-`bool` : True if the button is currently pressed.
-
-</div>
-
-## Lock
-<div className="api-card">
-
-<ApiSig name="lock" returns="None" />
-
-Lock the mouse to the center of the window.
-
-Useful for first-person controls where you want to capture mouse movement
-without letting the cursor leave the window area.
-
-</div>
-
-## Unlock
-<div className="api-card">
-
-<ApiSig name="unlock" returns="None" />
-
-Unlock the mouse from the window, allowing it to move freely.
+`bool` : True if the button was just released.
 
 </div>
 
 ## Is Locked
 <div className="api-card">
-
 <ApiSig name="is_locked" returns="bool" />
 
 Check if the mouse is currently locked to the window.
@@ -116,35 +95,45 @@ _**Returns**_
 
 </div>
 
-## Hide
+## Is Pressed
 <div className="api-card">
+<ApiSig name="is_pressed" params={[{ name: "button", type: "MouseButton" }]} returns="bool" />
 
-<ApiSig name="hide" returns="None" />
+Check if a mouse button is currently pressed.
 
-Hide the mouse cursor from view.
+_**Args**_
 
-The cursor will be invisible but mouse input will still be tracked.
+- `button` : The mouse button to check (e.g., kn.MOUSE_LEFT).
+
+_**Returns**_
+
+`bool` : True if the button is currently pressed.
+
+</div>
+
+## Lock
+<div className="api-card">
+<ApiSig name="lock" returns="None" />
+
+Lock the mouse to the center of the window.
+
+Useful for first-person controls where you want to capture mouse movement
+without letting the cursor leave the window area.
 
 </div>
 
 ## Show
 <div className="api-card">
-
 <ApiSig name="show" returns="None" />
 
 Show the mouse cursor if it was hidden.
 
 </div>
 
-## Is Hidden
+## Unlock
 <div className="api-card">
+<ApiSig name="unlock" returns="None" />
 
-<ApiSig name="is_hidden" returns="bool" />
-
-Check if the mouse cursor is currently hidden.
-
-_**Returns**_
-
-`bool` : True if the cursor is hidden.
+Unlock the mouse from the window, allowing it to move freely.
 
 </div>

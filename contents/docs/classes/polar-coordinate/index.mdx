@@ -1,16 +1,15 @@
 ---
 title: PolarCoordinate
-description: A polar coordinate representation with angle and radius.
+description: PolarCoordinate models a polar coordinate pair.
 ---
 
 ## Constructor
 <div className="api-card">
-- <ApiSig name="PolarCoordinate" />
-- <ApiSig name="PolarCoordinate" params={[{ name: "angle", type: "float" }, { name: "radius", type: "float" }]} />
 
-_**Parameters**_
-- `angle` : Angle in radians.
-- `radius` : Distance from the origin.
+- <ApiSig name="PolarCoordinate" returns="PolarCoordinate" />
+- <ApiSig name="PolarCoordinate" multiline params={[{ name: "angle", type: "SupportsFloat" }, { name: "radius", type: "SupportsFloat" }]} returns="PolarCoordinate" />
+
+PolarCoordinate models a polar coordinate pair.
 </div>
 
 ## Properties
@@ -18,21 +17,20 @@ _**Parameters**_
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `angle` | The angle in radians. | `float` |
-| `radius` | The radius of the coordinate. | `float` |
+| `angle` | The angle component in radians. | <code>float</code> |
+| `radius` | The radius component (distance from origin). | <code>float</code> |
 
 ## Methods
 ---
 
 ### To Cartesian
 <div className="api-card">
-
 <ApiSig name="to_cartesian" returns="Vec2" />
 
-Convert the polar coordinate to Cartesian coordinates.
+Convert this PolarCoordinate to a Vec2.
 
 _**Returns**_
 
-`Vec2` : The Cartesian coordinate (vector) representation of the polar coordinate.
+`Vec2` : Cartesian representation of this coordinate.
 
 </div>

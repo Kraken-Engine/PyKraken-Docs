@@ -1,23 +1,35 @@
 ---
 title: ShaderUniform
-description: An inheritable dataclass representing a shader uniform variable.
+description: Base model for shader uniform data structures. Access via the 'shader_uniform' submodule.
 ---
 
-## Constructor
-<div className="api-card">
-<ApiSig name="ShaderUniform" />
 
-Inherit from this class and define fields to create uniform data structures for shaders.
-</div>
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `model_config` |  | <code>ClassVar[dict]</code> |
 
 ## Methods
 ---
 
 ### To Bytes
 <div className="api-card">
-
 <ApiSig name="to_bytes" returns="bytes" />
 
-Convert the shader uniform data to a bytes object.
+Serialize the uniform data into a packed binary format.
+
+The packing order follows the model's field order, and Python's ``struct``
+module determines the byte layout based on field types.
+
+_**Returns**_
+
+`bytes` : Packed binary representation of the uniform data.
+
+_**Raises**_
+
+- `ValueError` : If a tuple or list field does not contain 2, 3, or 4 values.
+- `TypeError` : If a field uses an unsupported type.
 
 </div>

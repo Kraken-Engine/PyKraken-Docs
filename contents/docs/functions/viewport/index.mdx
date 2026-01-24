@@ -1,46 +1,45 @@
 ---
 title: Viewport
-description: Functions for managing render viewports.
+description: Viewport management functions
 ---
 
 ---
 
 ## Layout
 <div className="api-card">
+<ApiSig name="layout" multiline params={[{ name: "count", type: "SupportsInt" }, { name: "mode", type: "ViewportMode", default: "ViewportMode.VERTICAL" }]} returns="list[Rect]" />
 
-<ApiSig name="layout" params={[{ name: "count", type: "int" }, { name: "mode", type: "ViewportMode" }]} returns="list[Rect]" />
+Layout the screen into multiple viewports.
+The viewports are created with the current renderer target resolution in mind.
 
-Arrange the viewport into a grid layout.
+_**Args**_
 
-_**Parameters**_
-
-- `count` : The number of viewports to arrange. Must be between 2 and 4.
-- `mode` : The layout mode to use.
+- `count` : The number of viewports to create (between 2 and 4).
+- `mode` : The layout mode for 2 viewports (VERTICAL or HORIZONTAL).
+                              Defaults to VERTICAL.
 
 _**Returns**_
 
-`list[Rect]` : A list of rectangles representing the arranged viewports.
+`list[Rect]` : A list of Rects representing the viewports.
 
 </div>
 
 ## Set
 <div className="api-card">
+<ApiSig name="set" params={[{ name: "rect", type: "Rect" }]} returns="None" />
 
-<ApiSig name="set" params={[{ name: "area", type: "Rect" }]} returns="None" />
+Set the current viewport to the given rectangle.
 
-Set a specific area as the render viewport.
+_**Args**_
 
-_**Parameters**_
-
-- `area` : The rectangle area to set as the viewport.
+- `rect` : The rectangle defining the viewport.
 
 </div>
 
 ## Unset
 <div className="api-card">
-
 <ApiSig name="unset" returns="None" />
 
-Unset the current render viewport, reverting to the default full screen.
+Unset the current viewport, reverting to the full rendering area.
 
 </div>

@@ -1,15 +1,15 @@
 ---
 title: Polygon
-description: A polygon shape defined by a series of points.
+description: Represents a polygon shape defined by a sequence of points.
 ---
 
 ## Constructor
 <div className="api-card">
-- <ApiSig name="Polygon" />
-- <ApiSig name="Polygon" params={[{ name: "points", type: "Sequence[Vec2]" }]} />
 
-_**Parameters**_
-- `points` : List of Vec2 points defining the polygon vertices.
+- <ApiSig name="Polygon" returns="Polygon" />
+- <ApiSig name="Polygon" params={[{ name: "points", type: "Sequence[Vec2]" }]} returns="Polygon" />
+
+Represents a polygon shape defined by a sequence of points.
 </div>
 
 ## Properties
@@ -17,76 +17,72 @@ _**Parameters**_
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `points` | The points that define the polygon | `list[Vec2]` |
-| `perimeter` | The perimeter length of the polygon. | `float` |
-| `area` | The area of the polygon. | `float` |
-| `centroid` | The centroid (geometric center) of the polygon. | `Vec2` |
-| `bounds` | The axis-aligned bounding rectangle of the polygon. | `Rect` |
+| `area` | Get the area of the polygon. | <code>float</code> |
+| `bounds` | Get the bounding rectangle of the polygon. | <code><a href="/docs/classes/rect">Rect</a></code> |
+| `centroid` | Get the centroid of the polygon. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `perimeter` | Get the perimeter of the polygon. | <code>float</code> |
+| `points` | The list of Vec2 points that define the polygon vertices. | <code>list[<a href="/docs/classes/vec2">Vec2</a>]</code> |
 
 ## Methods
 ---
 
-### Rotate
+### Copy
 <div className="api-card">
+<ApiSig name="copy" returns="Polygon" />
 
-<ApiSig name="rotate" params={[{name: "angle", type: "float"}, {name: "pivot", type: "Vec2"}]} returns="None" />
+Return a copy of the polygon.
 
-Rotate the polygon by a certain angle around a pivot point.
+_**Returns**_
 
-_**Parameters**_
-
-- `angle` : The angle in degrees to rotate the polygon.
-- `pivot` : The point around which to rotate the polygon.
+`Polygon` : A new polygon with the same points.
 
 </div>
 
-### Translate
+### Rotate
 <div className="api-card">
+<ApiSig name="rotate" params={[{ name: "angle", type: "SupportsFloat" }, { name: "pivot", type: "Vec2" }]} returns="None" />
 
-<ApiSig name="translate" params={[{name: "offset", type: "Vec2"}]} returns="None" />
+Rotate the polygon around a pivot point.
 
-Translate the polygon by a certain offset.
+_**Args**_
 
-_**Parameters**_
-
-- `offset` : The offset vector by which to translate the polygon.
+- `angle` : The rotation angle in radians.
+- `pivot` : The point to rotate around.
 
 </div>
 
 ### Scale
 <div className="api-card">
+<ApiSig name="scale" params={[{ name: "factor", type: "SupportsFloat" }, { name: "pivot", type: "Vec2" }]} returns="None" />
 
-<ApiSig name="scale" params={[{name: "factor", type: "float"}, {name: "pivot", type: "Vec2"}]} returns="None" />
+Scale the polygon uniformly from a pivot point.
 
-Scale the polygon uniformly by a certain factor from a pivot point.
+_**Args**_
 
-_**Parameters**_
-
-- `factor` : The scaling factor. Values less than 1.0 will shrink the polygon, while values greater than 1.0 will enlarge it.
-- `pivot` : The point from which to scale the polygon.
+- `factor` : The scaling factor.
+- `pivot` : The point to scale from.
 
 ---
 
-<ApiSig name="scale" params={[{name: "factor", type: "Vec2"}, {name: "pivot", type: "Vec2"}]} returns="None" />
+<ApiSig name="scale" params={[{ name: "factor", type: "Vec2" }, { name: "pivot", type: "Vec2" }]} returns="None" />
 
-Scale the polygon non-uniformly by a certain factor from a pivot point.
+Scale the polygon non-uniformly from a pivot point.
 
-_**Parameters**_
+_**Args**_
 
-- `factor` : The scaling factor for each axis. Values less than 1.0 will shrink the polygon, while values greater than 1.0 will enlarge it.
-- `pivot` : The point from which to scale the polygon.
+- `factor` : The scaling factors for x and y.
+- `pivot` : The point to scale from.
 
 </div>
 
-### Copy
+### Translate
 <div className="api-card">
+<ApiSig name="translate" params={[{ name: "offset", type: "Vec2" }]} returns="None" />
 
-<ApiSig name="copy" returns="Polygon" />
+Move the polygon by an offset.
 
-Create a copy of the polygon object.
+_**Args**_
 
-_**Returns**_
-
-`Polygon` : A new copy of the polygon.
+- `offset` : The offset to move by.
 
 </div>

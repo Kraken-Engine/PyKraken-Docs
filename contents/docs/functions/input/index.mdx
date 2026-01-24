@@ -1,122 +1,117 @@
 ---
 title: Input
-description: Functions for handling input actions and bindings.
+description: Input handling and action binding
 ---
 
 ---
 
 ## Bind
 <div className="api-card">
+<ApiSig name="bind" params={[{ name: "name", type: "str" }, { name: "actions", type: "InputActionList" }]} returns="None" />
 
-<ApiSig name="bind" params={[{ name: "name", type: "str" }, { name: "actions", type: "list[InputAction]" }]} returns="None" />
+Bind a name to a list of InputActions.
 
-Bind a list of input actions to a name.
+_**Args**_
 
-_**Parameters**_
-
-- `name` : The name to bind the actions to.
-- `actions` : The list of input actions to bind.
-
-</div>
-
-## Unbind
-<div className="api-card">
-
-<ApiSig name="unbind" params={[{ name: "name", type: "str" }]} returns="None" />
-
-Unbind all input actions associated with a name.
-
-_**Parameters**_
-
-- `name` : The name to unbind the actions from.
-
-</div>
-
-## Get Direction
-<div className="api-card">
-
-<ApiSig name="get_direction" params={[{ name: "up", type: "str" }, { name: "right", type: "str" }, { name: "down", type: "str" }, { name: "left", type: "str" }]} returns="Vec2" />
-
-Get the direction vector based on the input actions.
-
-_**Parameters**_
-
-- `up`: The name of the input action for moving up.
-- `right`: The name of the input action for moving right.
-- `down`: The name of the input action for moving down.
-- `left`: The name of the input action for moving left.
-
-_**Returns**_
-
-`Vec2` : A vector representing the direction based on the input actions.
+- `name` : The identifier for this binding (e.g. "jump").
+- `actions` : One or more InputActions to bind.
 
 </div>
 
 ## Get Axis
 <div className="api-card">
-
 <ApiSig name="get_axis" params={[{ name: "negative", type: "str" }, { name: "positive", type: "str" }]} returns="float" />
 
-Get the axis value based on the input actions.
+Get a 1D axis value based on two opposing input actions.
 
-_**Parameters**_
+_**Args**_
 
-- `negative`: The name of the input action for moving in the negative direction.
-- `positive`: The name of the input action for moving in the positive direction.
+- `negative` : Name of the negative direction action (e.g. "left").
+- `positive` : Name of the positive direction action (e.g. "right").
 
 _**Returns**_
 
-`float` : A float representing the axis value based on the input actions.
+`float` : Value in range [-1.0, 1.0] based on input.
 
 </div>
 
-## Is Pressed
+## Get Direction
 <div className="api-card">
+<ApiSig name="get_direction" multiline params={[{ name: "up", type: "str" }, { name: "right", type: "str" }, { name: "down", type: "str" }, { name: "left", type: "str" }]} returns="Vec2" />
 
-<ApiSig name="is_pressed" params={[{ name: "name", type: "str" }]} returns="bool" />
+Get a directional vector based on named input actions.
 
-Check if an input action is currently pressed.
+This is typically used for WASD-style or D-pad movement.
 
-_**Parameters**_
+_**Args**_
 
-- `name`: The name of the input action to check.
+- `up` : Name of action for upward movement.
+- `right` : Name of action for rightward movement.
+- `down` : Name of action for downward movement.
+- `left` : Name of action for leftward movement.
 
 _**Returns**_
 
-`bool` : A boolean indicating whether the input action is currently pressed.
+`Vec2` : A normalized vector representing the intended direction.
 
 </div>
 
 ## Is Just Pressed
 <div className="api-card">
-
 <ApiSig name="is_just_pressed" params={[{ name: "name", type: "str" }]} returns="bool" />
 
-Check if an input action was just pressed.
+Check if the given action was just pressed this frame.
 
-_**Parameters**_
+_**Args**_
 
-- `name`: The name of the input action to check.
+- `name` : The name of the bound input.
 
 _**Returns**_
 
-`bool` : A boolean indicating whether the input action was just pressed.
+`bool` : True if pressed this frame only.
 
 </div>
 
 ## Is Just Released
 <div className="api-card">
-
 <ApiSig name="is_just_released" params={[{ name: "name", type: "str" }]} returns="bool" />
 
-Check if an input action was just released.
+Check if the given action was just released this frame.
 
-_**Parameters**_
+_**Args**_
 
-- `name`: The name of the input action to check.
+- `name` : The name of the bound input.
 
 _**Returns**_
 
-`bool` : A boolean indicating whether the input action was just released.
+`bool` : True if released this frame only.
+
+</div>
+
+## Is Pressed
+<div className="api-card">
+<ApiSig name="is_pressed" params={[{ name: "name", type: "str" }]} returns="bool" />
+
+Check if the given action is currently being held.
+
+_**Args**_
+
+- `name` : The name of the bound input.
+
+_**Returns**_
+
+`bool` : True if any action bound to the name is pressed.
+
+</div>
+
+## Unbind
+<div className="api-card">
+<ApiSig name="unbind" params={[{ name: "name", type: "str" }]} returns="None" />
+
+Unbind a previously registered input name.
+
+_**Args**_
+
+- `name` : The binding name to remove.
 
 </div>

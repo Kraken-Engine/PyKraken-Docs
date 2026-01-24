@@ -1,135 +1,121 @@
 ---
 title: Pixel Array
-description: Functions for transforming pixel arrays.
+description: Functions for manipulating PixelArray objects
 ---
 
 ---
-
-## Flip
-<div className="api-card">
-
-<ApiSig name="flip" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "flip_x", type: "bool" }, { name: "flip_y", type: "bool" }]} returns="PixelArray" />
-
-Flip a pixel array horizontally and/or vertically.
-
-_**Parameters**_
-
-- `pixel_array` : The pixel array to flip.
-- `flip_x` : Whether to flip the pixel array horizontally.
-- `flip_y` : Whether to flip the pixel array vertically.
-
-_**Returns**_
-
-`PixelArray` : The flipped pixel array.
-
-</div>
-
-## Scale To
-<div className="api-card">
-
-<ApiSig name="scale_to" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "size", type: "Vec2" }]} returns="PixelArray" />
-
-Scale a pixel array to a specific size.
-
-_**Parameters**_
-- `pixel_array` : The pixel array to scale.
-- `size` : The size to scale the pixel array to.
-
-_**Returns**_
-
-`PixelArray` : The scaled pixel array.
-
-</div>
-
-## Scale By
-<div className="api-card">
-
-<ApiSig name="scale_by" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "factor", type: "float" }]} returns="PixelArray" />
-
-Scale a pixel array by a specific factor.
-
-_**Parameters**_
-
-- `pixel_array` : The pixel array to scale.
-- `factor` : The factor by which to scale the pixel array.
-
-_**Returns**_
-
-`PixelArray` : The scaled pixel array.
-
-</div>
-
-## Rotate
-<div className="api-card">
-
-<ApiSig name="rotate" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "angle", type: "float" }]} returns="PixelArray" />
-
-Rotate a pixel array by a specific angle.
-
-_**Parameters**_
-
-- `pixel_array` : The pixel array to rotate.
-- `angle` : The angle in degrees to rotate the pixel array.
-
-_**Returns**_
-
-`PixelArray` : The rotated pixel array.
-
-</div>
 
 ## Box Blur
 <div className="api-card">
-
-<ApiSig name="box_blur" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "radius", type: "int" }, { name: "repeat_edge_pixels", type: "bool", default: "True" }]} returns="PixelArray" />
+<ApiSig name="box_blur" multiline params={[{ name: "pixel_array", type: "PixelArray" }, { name: "radius", type: "SupportsInt" }, { name: "repeat_edge_pixels", type: "bool", default: "True" }]} returns="PixelArray" />
 
 Apply a box blur effect to a pixel array.
 
 Box blur creates a uniform blur effect by averaging pixels within a square kernel.
-It's *faster* than Gaussian blur but produces a more *uniform, less natural look*.
+It's faster than Gaussian blur but produces a more uniform, less natural look.
 
-_**Parameters**_
+_**Args**_
 
 - `pixel_array` : The pixel array to blur.
 - `radius` : The blur radius in pixels. Larger values create stronger blur.
-- `repeat_edge_pixels` : Whether to repeat edge pixels when sampling outside the pixel array bounds. Defaults to True.
+- `repeat_edge_pixels` : Whether to repeat edge pixels when sampling
+                                        outside the pixel array bounds. Defaults to True.
 
 _**Returns**_
 
 `PixelArray` : A new pixel array with the box blur effect applied.
 
+_**Raises**_
+
+- `RuntimeError` : If pixel array creation fails during the blur process.
+
+</div>
+
+## Flip
+<div className="api-card">
+<ApiSig name="flip" multiline params={[{ name: "pixel_array", type: "PixelArray" }, { name: "flip_x", type: "bool" }, { name: "flip_y", type: "bool" }]} returns="PixelArray" />
+
+Flip a pixel array horizontally, vertically, or both.
+
+_**Args**_
+
+- `pixel_array` : The pixel array to flip.
+- `flip_x` : Whether to flip horizontally (mirror left-right).
+- `flip_y` : Whether to flip vertically (mirror top-bottom).
+
+_**Returns**_
+
+`PixelArray` : A new pixel array with the flipped image.
+
+_**Raises**_
+
+- `RuntimeError` : If pixel array creation fails.
+
 </div>
 
 ## Gaussian Blur
 <div className="api-card">
-
-<ApiSig name="gaussian_blur" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "radius", type: "int" }, { name: "repeat_edge_pixels", type: "bool", default: "True" }]} returns="PixelArray" />
+<ApiSig name="gaussian_blur" multiline params={[{ name: "pixel_array", type: "PixelArray" }, { name: "radius", type: "SupportsInt" }, { name: "repeat_edge_pixels", type: "bool", default: "True" }]} returns="PixelArray" />
 
 Apply a Gaussian blur effect to a pixel array.
 
-Gaussian blur creates a *natural, smooth blur* effect using a Gaussian distribution
+Gaussian blur creates a natural, smooth blur effect using a Gaussian distribution
 for pixel weighting. It produces higher quality results than box blur but is
-computationally more *expensive*.
+computationally more expensive.
 
-_**Parameters**_
+_**Args**_
 
 - `pixel_array` : The pixel array to blur.
 - `radius` : The blur radius in pixels. Larger values create stronger blur.
-- `repeat_edge_pixels` : Whether to repeat edge pixels when sampling outside the pixel array bounds. Defaults to True.
+- `repeat_edge_pixels` : Whether to repeat edge pixels when sampling
+                                        outside the pixel array bounds. Defaults to True.
 
 _**Returns**_
 
 `PixelArray` : A new pixel array with the Gaussian blur effect applied.
 
+_**Raises**_
+
+- `RuntimeError` : If pixel array creation fails during the blur process.
+
+</div>
+
+## Grayscale
+<div className="api-card">
+<ApiSig name="grayscale" params={[{ name: "pixel_array", type: "PixelArray" }]} returns="PixelArray" />
+
+Convert a pixel array to grayscale.
+
+Converts the pixel array to grayscale using the standard luminance formula:
+gray = 0.299 * red + 0.587 * green + 0.114 * blue
+
+This formula accounts for human perception of brightness across different colors.
+The alpha channel is preserved unchanged.
+
+_**Args**_
+
+- `pixel_array` : The pixel array to convert to grayscale.
+
+_**Returns**_
+
+`PixelArray` : A new pixel array converted to grayscale.
+
+_**Raises**_
+
+- `RuntimeError` : If pixel array creation fails.
+
 </div>
 
 ## Invert
 <div className="api-card">
-
 <ApiSig name="invert" params={[{ name: "pixel_array", type: "PixelArray" }]} returns="PixelArray" />
 
-Invert the colors of a pixel array. The alpha channel is preserved.
+Invert the colors of a pixel array.
 
-_**Parameters**_
+Creates a negative image effect by inverting each color channel (RGB).
+The alpha channel is preserved unchanged.
+
+_**Args**_
 
 - `pixel_array` : The pixel array to invert.
 
@@ -137,23 +123,74 @@ _**Returns**_
 
 `PixelArray` : A new pixel array with inverted colors.
 
+_**Raises**_
+
+- `RuntimeError` : If pixel array creation fails.
+
 </div>
 
-## Grayscale
+## Rotate
 <div className="api-card">
+<ApiSig name="rotate" multiline params={[{ name: "pixel_array", type: "PixelArray" }, { name: "angle", type: "SupportsFloat" }]} returns="PixelArray" />
 
-<ApiSig name="grayscale" params={[{ name: "pixel_array", type: "PixelArray" }]} returns="PixelArray" />
+Rotate a pixel array by a given angle.
 
-Convert a pixel array to grayscale. The alpha channel is preserved.
+_**Args**_
 
-Converts the pixel array to grayscale using the *standard luminance formula*:
-`gray = 0.299 * red + 0.587 * green + 0.114 * blue`
-
-_**Parameters**_
-- `pixel_array` : The pixel array to convert to grayscale.
+- `pixel_array` : The pixel array to rotate.
+- `angle` : The rotation angle in degrees. Positive values rotate clockwise.
 
 _**Returns**_
 
-`PixelArray` : A new grayscale pixel array.
+`PixelArray` : A new pixel array containing the rotated image. The output pixel array may be
+            larger than the input to accommodate the rotated image.
+
+_**Raises**_
+
+- `RuntimeError` : If pixel array rotation fails.
+
+</div>
+
+## Scale By
+<div className="api-card">
+<ApiSig name="scale_by" multiline params={[{ name: "pixel_array", type: "PixelArray" }, { name: "factor", type: "SupportsFloat" }]} returns="PixelArray" />
+
+Scale a pixel array by a given factor.
+
+_**Args**_
+
+- `pixel_array` : The pixel array to scale.
+- `factor` : The scaling factor (must be &gt; 0). Values &gt; 1.0 enlarge,
+                   values &lt; 1.0 shrink the pixel array.
+
+_**Returns**_
+
+`PixelArray` : A new pixel array scaled by the specified factor.
+
+_**Raises**_
+
+- `ValueError` : If factor is &lt;= 0.
+- `RuntimeError` : If pixel array creation or scaling fails.
+
+</div>
+
+## Scale To
+<div className="api-card">
+<ApiSig name="scale_to" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "size", type: "Vec2" }]} returns="PixelArray" />
+
+Scale a pixel array to a new exact size.
+
+_**Args**_
+
+- `pixel_array` : The pixel array to scale.
+- `size` : The target size as (width, height).
+
+_**Returns**_
+
+`PixelArray` : A new pixel array scaled to the specified size.
+
+_**Raises**_
+
+- `RuntimeError` : If pixel array creation or scaling fails.
 
 </div>

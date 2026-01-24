@@ -1,22 +1,17 @@
 ---
 title: Color
-description: A color representation in different formats.
+description: Represents an RGBA color.
 ---
 
 ## Constructor
 <div className="api-card">
-- <ApiSig name="Color" />
-- <ApiSig name="Color" params={[{ name: "hex", type: "str" }]} />
-- <ApiSig name="Color" params={[{ name: "rgba", type: "Sequence[int]" }]} />
-- <ApiSig name="Color" params={[{ name: "r", type: "int" }, { name: "g", type: "int" }, { name: "b", type: "int" }, { name: "a", type: "int", default: '255' }]} />
 
-_**Parameters**_
-- `hex` : Hex color string (with or without '#' prefix).
-- `rgba` : A sequence of 3 or 4 integers [0-255] (RGB or RGBA).
-- `r` : Red value [0-255].
-- `g` : Green value [0-255].
-- `b` : Blue value [0-255].
-- `a` : Alpha value [0-255]. Defaults to 255.
+- <ApiSig name="Color" returns="Color" />
+- <ApiSig name="Color" multiline params={[{ name: "r", type: "SupportsInt" }, { name: "g", type: "SupportsInt" }, { name: "b", type: "SupportsInt" }, { name: "a", type: "SupportsInt", default: "255" }]} returns="Color" />
+- <ApiSig name="Color" params={[{ name: "hex", type: "str" }]} returns="Color" />
+- <ApiSig name="Color" params={[{ name: "sequence", type: "Sequence" }]} returns="Color" />
+
+Represents an RGBA color.
 </div>
 
 ## Properties
@@ -24,25 +19,24 @@ _**Parameters**_
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `r` | The red component of the color | `int` |
-| `g` | The green component of the color | `int` |
-| `b` | The blue component of the color | `int` |
-| `a` | The alpha component of the color | `int` |
-| `hex` | The hexadecimal representation of the color | `str` |
-| `hsv` | The HSV representation of the color | `tuple[float,float,float,float]` |
+| `a` | Alpha (transparency) channel value. | <code>int</code> |
+| `b` | Blue channel value. | <code>int</code> |
+| `g` | Green channel value. | <code>int</code> |
+| `hex` | Get or set the color as a hex string. | <code>str</code> |
+| `hsv` | Get or set the color as an HSV tuple. | <code>tuple[float, float, float, float]</code> |
+| `r` | Red channel value. | <code>int</code> |
 
 ## Methods
 ---
 
 ### Copy
 <div className="api-card">
-
 <ApiSig name="copy" returns="Color" />
 
 Create a copy of the color.
 
 _**Returns**_
 
-`Color` : A new color object that is a copy of the original.
+`Color` : A new Color object with the same RGBA values.
 
 </div>

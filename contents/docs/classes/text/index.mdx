@@ -1,14 +1,14 @@
 ---
 title: Text
-description: A text object for rendering strings with a specified font.
+description: A text object for rendering text to the active renderer.
 ---
 
 ## Constructor
 <div className="api-card">
-<ApiSig name="Text" params={[{ name: "font", type: "Font" }]} />
 
-_**Parameters**_
-- `font` : The font to use for rendering this text.
+- <ApiSig name="Text" params={[{ name: "font", type: "Font" }]} returns="Text" />
+
+A text object for rendering text to the active renderer.
 </div>
 
 ## Properties
@@ -16,56 +16,57 @@ _**Parameters**_
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `text` | The string content of the text object. | `str` |
-| `color` | The color of the text. | `Color` |
-| `wrap_width` | The width at which to wrap text. Set to 0 for no wrapping. | `int` |
-| `size` | The size of the text in pixels. | `Vec2` |
-| `width` | The width of the text in pixels. | `int` |
-| `height` | The height of the text in pixels. | `int` |
-| `shadow_color` | The color of the text shadow. | `Color` |
-| `shadow_offset` | The offset of the text shadow. | `Vec2` |
+| `color` | Get or set the color of the rendered text. | <code><a href="/docs/classes/color">Color</a></code> |
+| `height` | Get the height in pixels of the current text. | <code>int</code> |
+| `shadow_color` | Get or set the shadow color for the text. | <code><a href="/docs/classes/color">Color</a></code> |
+| `shadow_offset` | Get or set the shadow offset for the text. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `size` | Get the size (width, height) of the current text as a Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `text` | Get or set the text string to be rendered. | <code>str</code> |
+| `width` | Get the width in pixels of the current text. | <code>int</code> |
+| `wrap_width` | Get or set the wrap width in pixels for text wrapping. | <code>int</code> |
 
 ## Methods
 ---
 
 ### Draw
 <div className="api-card">
+<ApiSig name="draw" multiline params={[{ name: "pos", type: "Any", default: "None" }, { name: "anchor", type: "Anchor", default: "Anchor.TOP_LEFT" }]} returns="None" />
 
-<ApiSig name="draw" params={[{name: "pos", type: "Vec2", default: "None"}, {name: "anchor", type: "Anchor", default: "Anchor.TOP_LEFT"}]} returns="None" />
+Draw the text to the renderer at the specified position with alignment.
+A shadow is drawn if shadow_color.a &gt; 0 and shadow_offset is not (0, 0).
 
-Draw text to the renderer.
-`\n` will write text on a new line.
-A shadow is drawn if `shadow_color.a > 0` and `shadow_offset` is not `(0, 0)`.
+_**Args**_
 
-_**Parameters**_
+- `pos` : The position in pixels. Defaults to (0, 0).
+- `anchor` : The anchor point for alignment. Defaults to TopLeft.
 
-- `pos` : The position to draw the text at. Defaults to (0, 0).
-- `anchor` : The anchor point to draw the text from. Defaults to TOP_LEFT.
+_**Raises**_
 
-</div>
-
-### Set Font
-<div className="api-card">
-
-<ApiSig name="set_font" params={[{name: "font", type: "Font"}]} returns="None" />
-
-Set the font to use for drawing text.
-
-_**Parameters**_
-
-- `font` : The font to use for drawing text.
+- `RuntimeError` : If the renderer is not initialized or text drawing fails.
+- `RuntimeError` : If the text font is not set or has gone out of scope.
 
 </div>
 
 ### Get Rect
 <div className="api-card">
-
 <ApiSig name="get_rect" returns="Rect" />
 
-Get the bounding rectangle of the text.
+Get the bounding rectangle of the current text.
 
 _**Returns**_
 
-`Rect` : The bounding rectangle of the text.
+`Rect` : A rectangle with x=0, y=0, and width/height of the text.
+
+</div>
+
+### Set Font
+<div className="api-card">
+<ApiSig name="set_font" params={[{ name: "font", type: "Font" }]} returns="None" />
+
+Set the font to use for rendering this text.
+
+_**Args**_
+
+- `font` : The font to use.
 
 </div>

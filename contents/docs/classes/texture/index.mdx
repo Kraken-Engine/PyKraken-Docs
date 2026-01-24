@@ -1,31 +1,16 @@
 ---
 title: Texture
-description: A 2D texture that can be rendered to the screen.
+description: Represents a hardware-accelerated image that can be efficiently rendered.
 ---
 
 ## Constructor
 <div className="api-card">
-- <ApiSig multiline name="Texture" params={[
-    { name: "file_path", type: "str" },
-    { name: "scale_mode", type: "TextureScaleMode", default: "TextureScaleMode.DEFAULT" },
-    { name: "access", type: "TextureAccess", default: "TextureAccess.STATIC" }
-    ]} />
-- <ApiSig multiline name="Texture" params={[
-    { name: "pixel_array", type: "PixelArray" },
-    { name: "scale_mode", type: "TextureScaleMode", default: "TextureScaleMode.DEFAULT" },
-    { name: "access", type: "TextureAccess", default: "TextureAccess.STATIC" }
-    ]} />
-- <ApiSig multiline name="Texture" params={[
-    { name: "size", type: "Vec2"},
-    { name: "scale_mode", type: "TextureScaleMode", default: "TextureScaleMode.DEFAULT" }
-    ]} />
 
-_**Parameters**_
-- `file_path` : Path to the image file to load.
-- `pixel_array` : The pixel array to convert to a texture.
-- `size` : The width and height of the empty texture to create.
-- `scale_mode` : The scaling mode to use for the texture.
-- `access` : The access mode for the texture.
+- <ApiSig name="Texture" multiline params={[{ name: "file_path", type: "str" }, { name: "scale_mode", type: "TextureScaleMode", default: "TextureScaleMode.DEFAULT" }, { name: "access", type: "TextureAccess", default: "TextureAccess.STATIC" }]} returns="Texture" />
+- <ApiSig name="Texture" multiline params={[{ name: "pixel_array", type: "PixelArray" }, { name: "scale_mode", type: "TextureScaleMode", default: "TextureScaleMode.DEFAULT" }, { name: "access", type: "TextureAccess", default: "TextureAccess.STATIC" }]} returns="Texture" />
+- <ApiSig name="Texture" multiline params={[{ name: "size", type: "Vec2" }, { name: "scale_mode", type: "TextureScaleMode", default: "TextureScaleMode.DEFAULT" }]} returns="Texture" />
+
+Represents a hardware-accelerated image that can be efficiently rendered.
 </div>
 
 ## Properties
@@ -33,46 +18,54 @@ _**Parameters**_
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `flip` | Whether the texture is flipped horizontally and/or vertically | `Texture.Flip` |
-| `size` | The original width and height of the texture | `Vec2` |
-| `alpha` | The alpha modulation of the texture (0.0 to 1.0) | `float` |
-| `tint` | The color tint applied to the texture during rendering | `Color` |
+| `alpha` | Get or set the alpha modulation of the texture as a float between `0.0` and `1.0`. | <code>float</code> |
+| `flip` | The flip settings for horizontal and vertical mirroring. | <code><a href="/docs/classes/texture">Texture</a>.Flip</code> |
+| `size` | Get the dimensions of the texture as a Vec2 (width, height). | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `tint` | Get or set the color tint applied to the texture during rendering. | <code><a href="/docs/classes/color">Color</a></code> |
 
 ## Methods
 ---
 
 ### Get Rect
 <div className="api-card">
-
 <ApiSig name="get_rect" returns="Rect" />
 
-Get the rectangle of the texture.
+Get a rectangle representing the texture bounds.
 
 _**Returns**_
 
-`Rect` : The dimensions of the texture as a Rect.
+`Rect` : A rectangle with position (0, 0) and the texture's dimensions.
+
 </div>
 
 ### Make Additive
 <div className="api-card">
-
 <ApiSig name="make_additive" returns="None" />
 
-Set the texture's blending mode to additive.
+Set the texture to use additive blending mode.
+
+In additive mode, the texture's colors are added to the destination,
+creating bright, glowing effects.
+
 </div>
 
 ### Make Multiply
 <div className="api-card">
-
 <ApiSig name="make_multiply" returns="None" />
 
-Set the texture's blending mode to multiply.
+Set the texture to use multiply blending mode.
+
+In multiply mode, the texture's colors are multiplied with the destination,
+creating darkening and shadow effects.
+
 </div>
 
 ### Make Normal
 <div className="api-card">
-
 <ApiSig name="make_normal" returns="None" />
 
-Set the texture's blending mode to normal.
+Set the texture to use normal (alpha) blending mode.
+
+This is the default blending mode for standard transparency effects.
+
 </div>

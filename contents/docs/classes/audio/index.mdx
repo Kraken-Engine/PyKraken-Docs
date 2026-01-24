@@ -1,19 +1,14 @@
 ---
 title: Audio
-description: An audio buffer loaded completely in memory.
+description: A decoded audio object that supports multiple simultaneous playbacks.
 ---
 
 ## Constructor
 <div className="api-card">
-<ApiSig name="Audio" params={[{ name: "file_path", type: "str" }, { name: "volume", type: "float", default: '1.0' }]} />
 
-_**Parameters**_
-- `file_path` : Path to the audio file to load.
-- `volume` : Initial volume level (0.0 to 1.0+). Defaults to 1.0.
+- <ApiSig name="Audio" multiline params={[{ name: "file_path", type: "str" }, { name: "volume", type: "SupportsFloat", default: "1.0" }]} returns="Audio" />
 
-<Note>
-Audio file formats supported are WAV, FLAC, and MP3.
-</Note>
+A decoded audio object that supports multiple simultaneous playbacks.
 </div>
 
 ## Properties
@@ -21,29 +16,42 @@ Audio file formats supported are WAV, FLAC, and MP3.
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `volume` | The volume of the audio, from 0.0-1.0, with values above 1.0 allowed for amplification. | `float` |
+| `volume` | The volume level for new and existing playbacks. | <code>float</code> |
 
 ## Methods
 ---
 
 ### Play
 <div className="api-card">
+<ApiSig name="play" multiline params={[{ name: "fade_in_ms", type: "SupportsInt", default: "0" }, { name: "loop", type: "bool", default: "False" }]} returns="None" />
 
-<ApiSig name="play" returns="None" />
+Play the audio with optional fade-in time and loop setting.
 
-Play the audio.
+Creates a new voice for playback, allowing multiple simultaneous plays of the same audio.
+Each play instance is independent and can have different fade and loop settings.
 
-<Note>
-    Playing the audio again while it's already playing plays a separate sound instance, meaning multiple plays can overlap.
-</Note>
+_**Args**_
+
+- `fade_in_ms` : Fade-in duration in milliseconds. Defaults to 0.
+- `loop` : Whether to loop the audio continuously. Defaults to False.
+
+_**Raises**_
+
+- `RuntimeError` : If audio playback initialization fails.
 
 </div>
 
 ### Stop
 <div className="api-card">
+<ApiSig name="stop" params={[{ name: "fade_out_ms", type: "SupportsInt", default: "0" }]} returns="None" />
 
-<ApiSig name="stop" returns="None" />
+Stop all active playbacks of this audio.
 
-Stop all instances of currently playing audio.
+Stops all currently playing voices associated with this Audio object. If a fade-out
+time is specified, all voices will fade out over that duration before stopping.
+
+_**Args**_
+
+- `fade_out_ms` : Fade-out duration in milliseconds. Defaults to 0.
 
 </div>
