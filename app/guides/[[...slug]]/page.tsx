@@ -52,9 +52,13 @@ export async function generateMetadata(props: PageProps) {
   const res = await getGuideFrontmatter(pathName);
   if (!res) return {};
   const { title, description } = res;
+  const canonicalPath = pathName ? `/guides/${pathName}` : "/guides";
   return {
     title,
     description,
+    alternates: {
+      canonical: canonicalPath,
+    },
   };
 }
 

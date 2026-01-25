@@ -7,6 +7,9 @@ import { TrophyIcon } from "lucide-react";
 export const metadata: Metadata = {
     title: "Showcase",
     description: "Highlights from the Kraken Engine community.",
+    alternates: {
+        canonical: "/showcase",
+    },
 };
 
 const jamWinners = [

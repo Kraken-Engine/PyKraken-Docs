@@ -49,9 +49,13 @@ export async function generateMetadata(props: PageProps) {
     const res = await getDocFrontmatter(pathName);
     if (!res) return {};
     const { title, description } = res;
+    const canonicalPath = pathName ? `/docs/${pathName}` : "/docs";
     return {
         title,
         description,
+        alternates: {
+            canonical: canonicalPath,
+        },
     };
 }
 
