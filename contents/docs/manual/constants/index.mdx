@@ -4,134 +4,128 @@ description: A comprehensive list of constants used in the Kraken Engine.
 ---
 
 ## Align
-Horizontal alignment options for layout and text.
-
 | Name | Description | Type |
 | --- | --- | --- |
-| `CENTER` | Center alignment | `Align` |
-| `LEFT` | Left alignment | `Align` |
-| `RIGHT` | Right alignment | `Align` |
+| `CENTER` |  | `Align` |
+| `LEFT` |  | `Align` |
+| `RIGHT` |  | `Align` |
 
 ## Anchor
-Anchor positions used for aligning elements within a rectangle.
-
 | Name | Description | Type |
 | --- | --- | --- |
-| `BOTTOM_LEFT` | Bottom-left anchor | `Anchor` |
-| `BOTTOM_MID` | Bottom-center anchor | `Anchor` |
-| `BOTTOM_RIGHT` | Bottom-right anchor | `Anchor` |
-| `CENTER` | Center anchor | `Anchor` |
-| `MID_LEFT` | Middle-left anchor | `Anchor` |
-| `MID_RIGHT` | Middle-right anchor | `Anchor` |
-| `TOP_LEFT` | Top-left anchor | `Anchor` |
-| `TOP_MID` | Top-center anchor | `Anchor` |
-| `TOP_RIGHT` | Top-right anchor | `Anchor` |
+| `BOTTOM_LEFT` |  | `Anchor` |
+| `BOTTOM_MID` |  | `Anchor` |
+| `BOTTOM_RIGHT` |  | `Anchor` |
+| `CENTER` |  | `Anchor` |
+| `MID_LEFT` |  | `Anchor` |
+| `MID_RIGHT` |  | `Anchor` |
+| `TOP_LEFT` |  | `Anchor` |
+| `TOP_MID` |  | `Anchor` |
+| `TOP_RIGHT` |  | `Anchor` |
 
 ## EventType
-SDL event type constants for input and system events.
-
 | Name | Description | Type |
 | --- | --- | --- |
-| `AUDIO_DEVICE_ADDED` | Audio device connected | `EventType` |
-| `AUDIO_DEVICE_FORMAT_CHANGED` | Audio device format changed | `EventType` |
-| `AUDIO_DEVICE_REMOVED` | Audio device disconnected | `EventType` |
-| `CAMERA_DEVICE_ADDED` | Camera connected | `EventType` |
-| `CAMERA_DEVICE_APPROVED` | Camera access approved | `EventType` |
-| `CAMERA_DEVICE_DENIED` | Camera access denied | `EventType` |
-| `CAMERA_DEVICE_REMOVED` | Camera disconnected | `EventType` |
-| `CLIPBOARD_UPDATE` | Clipboard content changed | `EventType` |
-| `DID_ENTER_BACKGROUND` | Entered background | `EventType` |
-| `DID_ENTER_FOREGROUND` | Entered foreground | `EventType` |
-| `DISPLAY_ADDED` | Display connected | `EventType` |
-| `DISPLAY_CONTENT_SCALE_CHANGED` | Display content scale changed | `EventType` |
-| `DISPLAY_CURRENT_MODE_CHANGED` | Current display mode changed | `EventType` |
-| `DISPLAY_DESKTOP_MODE_CHANGED` | Desktop display mode changed | `EventType` |
-| `DISPLAY_MOVED` | Display moved | `EventType` |
-| `DISPLAY_ORIENTATION` | Display orientation changed | `EventType` |
-| `DISPLAY_REMOVED` | Display disconnected | `EventType` |
-| `DISPLAY_USABLE_BOUNDS_CHANGED` | Usable display bounds changed | `EventType` |
-| `DROP_BEGIN` | Drag-and-drop started | `EventType` |
-| `DROP_COMPLETE` | Drag-and-drop completed | `EventType` |
-| `DROP_FILE` | File dropped | `EventType` |
-| `DROP_POSITION` | Drag-and-drop position updated | `EventType` |
-| `DROP_TEXT` | Text dropped | `EventType` |
-| `FINGER_CANCELED` | Finger touch canceled | `EventType` |
-| `FINGER_DOWN` | Finger touch began | `EventType` |
-| `FINGER_MOTION` | Finger moved | `EventType` |
-| `FINGER_UP` | Finger touch ended | `EventType` |
-| `GAMEPAD_ADDED` | Gamepad connected | `EventType` |
-| `GAMEPAD_AXIS_MOTION` | Gamepad axis moved | `EventType` |
-| `GAMEPAD_BUTTON_DOWN` | Gamepad button pressed | `EventType` |
-| `GAMEPAD_BUTTON_UP` | Gamepad button released | `EventType` |
-| `GAMEPAD_REMAPPED` | Gamepad mapping updated | `EventType` |
-| `GAMEPAD_REMOVED` | Gamepad disconnected | `EventType` |
-| `GAMEPAD_SENSOR_UPDATE` | Gamepad sensor updated | `EventType` |
-| `GAMEPAD_STEAM_HANDLE_UPDATED` | Steam handle updated | `EventType` |
-| `GAMEPAD_TOUCHPAD_DOWN` | Touchpad pressed | `EventType` |
-| `GAMEPAD_TOUCHPAD_MOTION` | Touchpad moved | `EventType` |
-| `GAMEPAD_TOUCHPAD_UP` | Touchpad released | `EventType` |
-| `GAMEPAD_UPDATE_COMPLETE` | Gamepad update complete | `EventType` |
-| `KEYBOARD_ADDED` | Keyboard connected | `EventType` |
-| `KEYBOARD_REMOVED` | Keyboard disconnected | `EventType` |
-| `KEYMAP_CHANGED` | Keymap changed | `EventType` |
-| `KEY_DOWN` | Key pressed or repeating while held | `EventType` |
-| `KEY_UP` | Key released | `EventType` |
-| `LOCALE_CHANGED` | Locale settings changed | `EventType` |
-| `LOW_MEMORY` | Low memory warning | `EventType` |
-| `MOUSE_ADDED` | Mouse connected | `EventType` |
-| `MOUSE_BUTTON_DOWN` | Mouse button pressed | `EventType` |
-| `MOUSE_BUTTON_UP` | Mouse button released | `EventType` |
-| `MOUSE_MOTION` | Mouse moved | `EventType` |
-| `MOUSE_REMOVED` | Mouse disconnected | `EventType` |
-| `MOUSE_WHEEL` | Mouse wheel scrolled | `EventType` |
-| `PEN_AXIS` | Pen axis data updated | `EventType` |
-| `PEN_BUTTON_DOWN` | Pen button pressed | `EventType` |
-| `PEN_BUTTON_UP` | Pen button released | `EventType` |
-| `PEN_DOWN` | Pen pressed | `EventType` |
-| `PEN_MOTION` | Pen moved | `EventType` |
-| `PEN_PROXIMITY_IN` | Pen entered proximity | `EventType` |
-| `PEN_PROXIMITY_OUT` | Pen left proximity | `EventType` |
-| `PEN_UP` | Pen released | `EventType` |
-| `PINCH_BEGIN` | Pinch gesture began | `EventType` |
-| `PINCH_END` | Pinch gesture ended | `EventType` |
-| `PINCH_UPDATE` | Pinch gesture updated | `EventType` |
-| `QUIT` | Quit requested | `EventType` |
-| `RENDER_DEVICE_LOST` | Render device lost | `EventType` |
-| `RENDER_DEVICE_RESET` | Render device reset | `EventType` |
-| `RENDER_TARGETS_RESET` | Render targets reset | `EventType` |
-| `SCREEN_KEYBOARD_HIDDEN` | On-screen keyboard hidden | `EventType` |
-| `SCREEN_KEYBOARD_SHOWN` | On-screen keyboard shown | `EventType` |
-| `SENSOR_UPDATE` | Sensor data updated | `EventType` |
-| `SYSTEM_THEME_CHANGED` | System theme changed | `EventType` |
-| `TERMINATING` | Application is terminating | `EventType` |
-| `TEXT_EDITING` | Text editing in progress | `EventType` |
-| `TEXT_EDITING_CANDIDATES` | IME candidate list updated | `EventType` |
-| `TEXT_INPUT` | Text input committed | `EventType` |
-| `WILL_ENTER_BACKGROUND` | About to enter background | `EventType` |
-| `WILL_ENTER_FOREGROUND` | About to enter foreground | `EventType` |
-| `WINDOW_CLOSE_REQUESTED` | Window close requested | `EventType` |
-| `WINDOW_DESTROYED` | Window destroyed | `EventType` |
-| `WINDOW_DISPLAY_CHANGED` | Window display changed | `EventType` |
-| `WINDOW_DISPLAY_SCALE_CHANGED` | Window display scale changed | `EventType` |
-| `WINDOW_ENTER_FULLSCREEN` | Entered fullscreen | `EventType` |
-| `WINDOW_EXPOSED` | Window needs redraw | `EventType` |
-| `WINDOW_FOCUS_GAINED` | Window gained focus | `EventType` |
-| `WINDOW_FOCUS_LOST` | Window lost focus | `EventType` |
-| `WINDOW_HDR_STATE_CHANGED` | HDR state changed | `EventType` |
-| `WINDOW_HIDDEN` | Window hidden | `EventType` |
-| `WINDOW_HIT_TEST` | Window hit test request | `EventType` |
-| `WINDOW_ICCPROF_CHANGED` | ICC profile changed | `EventType` |
-| `WINDOW_LEAVE_FULLSCREEN` | Left fullscreen | `EventType` |
-| `WINDOW_MAXIMIZED` | Window maximized | `EventType` |
-| `WINDOW_MINIMIZED` | Window minimized | `EventType` |
-| `WINDOW_MOUSE_ENTER` | Mouse entered window | `EventType` |
-| `WINDOW_MOUSE_LEAVE` | Mouse left window | `EventType` |
-| `WINDOW_MOVED` | Window moved | `EventType` |
-| `WINDOW_OCCLUDED` | Window occluded | `EventType` |
-| `WINDOW_RESIZED` | Window resized | `EventType` |
-| `WINDOW_RESTORED` | Window restored | `EventType` |
-| `WINDOW_SAFE_AREA_CHANGED` | Window safe area changed | `EventType` |
-| `WINDOW_SHOWN` | Window shown | `EventType` |
+| `AUDIO_DEVICE_ADDED` |  | `EventType` |
+| `AUDIO_DEVICE_FORMAT_CHANGED` |  | `EventType` |
+| `AUDIO_DEVICE_REMOVED` |  | `EventType` |
+| `CAMERA_DEVICE_ADDED` |  | `EventType` |
+| `CAMERA_DEVICE_APPROVED` |  | `EventType` |
+| `CAMERA_DEVICE_DENIED` |  | `EventType` |
+| `CAMERA_DEVICE_REMOVED` |  | `EventType` |
+| `CLIPBOARD_UPDATE` |  | `EventType` |
+| `DID_ENTER_BACKGROUND` |  | `EventType` |
+| `DID_ENTER_FOREGROUND` |  | `EventType` |
+| `DISPLAY_ADDED` |  | `EventType` |
+| `DISPLAY_CONTENT_SCALE_CHANGED` |  | `EventType` |
+| `DISPLAY_CURRENT_MODE_CHANGED` |  | `EventType` |
+| `DISPLAY_DESKTOP_MODE_CHANGED` |  | `EventType` |
+| `DISPLAY_MOVED` |  | `EventType` |
+| `DISPLAY_ORIENTATION` |  | `EventType` |
+| `DISPLAY_REMOVED` |  | `EventType` |
+| `DISPLAY_USABLE_BOUNDS_CHANGED` |  | `EventType` |
+| `DROP_BEGIN` |  | `EventType` |
+| `DROP_COMPLETE` |  | `EventType` |
+| `DROP_FILE` |  | `EventType` |
+| `DROP_POSITION` |  | `EventType` |
+| `DROP_TEXT` |  | `EventType` |
+| `FINGER_CANCELED` |  | `EventType` |
+| `FINGER_DOWN` |  | `EventType` |
+| `FINGER_MOTION` |  | `EventType` |
+| `FINGER_UP` |  | `EventType` |
+| `GAMEPAD_ADDED` |  | `EventType` |
+| `GAMEPAD_AXIS_MOTION` |  | `EventType` |
+| `GAMEPAD_BUTTON_DOWN` |  | `EventType` |
+| `GAMEPAD_BUTTON_UP` |  | `EventType` |
+| `GAMEPAD_REMAPPED` |  | `EventType` |
+| `GAMEPAD_REMOVED` |  | `EventType` |
+| `GAMEPAD_SENSOR_UPDATE` |  | `EventType` |
+| `GAMEPAD_STEAM_HANDLE_UPDATED` |  | `EventType` |
+| `GAMEPAD_TOUCHPAD_DOWN` |  | `EventType` |
+| `GAMEPAD_TOUCHPAD_MOTION` |  | `EventType` |
+| `GAMEPAD_TOUCHPAD_UP` |  | `EventType` |
+| `GAMEPAD_UPDATE_COMPLETE` |  | `EventType` |
+| `KEYBOARD_ADDED` |  | `EventType` |
+| `KEYBOARD_REMOVED` |  | `EventType` |
+| `KEYMAP_CHANGED` |  | `EventType` |
+| `KEY_DOWN` |  | `EventType` |
+| `KEY_UP` |  | `EventType` |
+| `LOCALE_CHANGED` |  | `EventType` |
+| `LOW_MEMORY` |  | `EventType` |
+| `MOUSE_ADDED` |  | `EventType` |
+| `MOUSE_BUTTON_DOWN` |  | `EventType` |
+| `MOUSE_BUTTON_UP` |  | `EventType` |
+| `MOUSE_MOTION` |  | `EventType` |
+| `MOUSE_REMOVED` |  | `EventType` |
+| `MOUSE_WHEEL` |  | `EventType` |
+| `PEN_AXIS` |  | `EventType` |
+| `PEN_BUTTON_DOWN` |  | `EventType` |
+| `PEN_BUTTON_UP` |  | `EventType` |
+| `PEN_DOWN` |  | `EventType` |
+| `PEN_MOTION` |  | `EventType` |
+| `PEN_PROXIMITY_IN` |  | `EventType` |
+| `PEN_PROXIMITY_OUT` |  | `EventType` |
+| `PEN_UP` |  | `EventType` |
+| `PINCH_BEGIN` |  | `EventType` |
+| `PINCH_END` |  | `EventType` |
+| `PINCH_UPDATE` |  | `EventType` |
+| `QUIT` |  | `EventType` |
+| `RENDER_DEVICE_LOST` |  | `EventType` |
+| `RENDER_DEVICE_RESET` |  | `EventType` |
+| `RENDER_TARGETS_RESET` |  | `EventType` |
+| `SCREEN_KEYBOARD_HIDDEN` |  | `EventType` |
+| `SCREEN_KEYBOARD_SHOWN` |  | `EventType` |
+| `SENSOR_UPDATE` |  | `EventType` |
+| `SYSTEM_THEME_CHANGED` |  | `EventType` |
+| `TERMINATING` |  | `EventType` |
+| `TEXT_EDITING` |  | `EventType` |
+| `TEXT_EDITING_CANDIDATES` |  | `EventType` |
+| `TEXT_INPUT` |  | `EventType` |
+| `WILL_ENTER_BACKGROUND` |  | `EventType` |
+| `WILL_ENTER_FOREGROUND` |  | `EventType` |
+| `WINDOW_CLOSE_REQUESTED` |  | `EventType` |
+| `WINDOW_DESTROYED` |  | `EventType` |
+| `WINDOW_DISPLAY_CHANGED` |  | `EventType` |
+| `WINDOW_DISPLAY_SCALE_CHANGED` |  | `EventType` |
+| `WINDOW_ENTER_FULLSCREEN` |  | `EventType` |
+| `WINDOW_EXPOSED` |  | `EventType` |
+| `WINDOW_FOCUS_GAINED` |  | `EventType` |
+| `WINDOW_FOCUS_LOST` |  | `EventType` |
+| `WINDOW_HDR_STATE_CHANGED` |  | `EventType` |
+| `WINDOW_HIDDEN` |  | `EventType` |
+| `WINDOW_HIT_TEST` |  | `EventType` |
+| `WINDOW_ICCPROF_CHANGED` |  | `EventType` |
+| `WINDOW_LEAVE_FULLSCREEN` |  | `EventType` |
+| `WINDOW_MAXIMIZED` |  | `EventType` |
+| `WINDOW_MINIMIZED` |  | `EventType` |
+| `WINDOW_MOUSE_ENTER` |  | `EventType` |
+| `WINDOW_MOUSE_LEAVE` |  | `EventType` |
+| `WINDOW_MOVED` |  | `EventType` |
+| `WINDOW_OCCLUDED` |  | `EventType` |
+| `WINDOW_RESIZED` |  | `EventType` |
+| `WINDOW_RESTORED` |  | `EventType` |
+| `WINDOW_SAFE_AREA_CHANGED` |  | `EventType` |
+| `WINDOW_SHOWN` |  | `EventType` |
 
 ## FontHint
 Font hinting modes for controlling how fonts are rendered.
@@ -145,476 +139,444 @@ Font hinting modes for controlling how fonts are rendered.
 | `NORMAL` | Default hinting | `FontHint` |
 
 ## GamepadAxis
-Gamepad axis identifiers.
-
 | Name | Description | Type |
 | --- | --- | --- |
-| `C_LTRIGGER` | Left trigger axis | `GamepadAxis` |
-| `C_LX` | Left stick X axis | `GamepadAxis` |
-| `C_LY` | Left stick Y axis | `GamepadAxis` |
-| `C_RTRIGGER` | Right trigger axis | `GamepadAxis` |
-| `C_RX` | Right stick X axis | `GamepadAxis` |
-| `C_RY` | Right stick Y axis | `GamepadAxis` |
+| `C_LTRIGGER` |  | `GamepadAxis` |
+| `C_LX` |  | `GamepadAxis` |
+| `C_LY` |  | `GamepadAxis` |
+| `C_RTRIGGER` |  | `GamepadAxis` |
+| `C_RX` |  | `GamepadAxis` |
+| `C_RY` |  | `GamepadAxis` |
 
 ## GamepadButton
-Gamepad button identifiers.
-
 | Name | Description | Type |
 | --- | --- | --- |
-| `C_BACK` | Back button | `GamepadButton` |
-| `C_DPAD_DOWN` | D-pad down | `GamepadButton` |
-| `C_DPAD_LEFT` | D-pad left | `GamepadButton` |
-| `C_DPAD_RIGHT` | D-pad right | `GamepadButton` |
-| `C_DPAD_UP` | D-pad up | `GamepadButton` |
-| `C_EAST` | East face button | `GamepadButton` |
-| `C_GUIDE` | Guide button | `GamepadButton` |
-| `C_LSHOULDER` | Left shoulder button | `GamepadButton` |
-| `C_LSTICK` | Left stick button | `GamepadButton` |
-| `C_NORTH` | North face button | `GamepadButton` |
-| `C_RSHOULDER` | Right shoulder button | `GamepadButton` |
-| `C_RSTICK` | Right stick button | `GamepadButton` |
-| `C_SOUTH` | South face button | `GamepadButton` |
-| `C_START` | Start button | `GamepadButton` |
-| `C_WEST` | West face button | `GamepadButton` |
+| `C_BACK` |  | `GamepadButton` |
+| `C_DPAD_DOWN` |  | `GamepadButton` |
+| `C_DPAD_LEFT` |  | `GamepadButton` |
+| `C_DPAD_RIGHT` |  | `GamepadButton` |
+| `C_DPAD_UP` |  | `GamepadButton` |
+| `C_EAST` |  | `GamepadButton` |
+| `C_GUIDE` |  | `GamepadButton` |
+| `C_LSHOULDER` |  | `GamepadButton` |
+| `C_LSTICK` |  | `GamepadButton` |
+| `C_NORTH` |  | `GamepadButton` |
+| `C_RSHOULDER` |  | `GamepadButton` |
+| `C_RSTICK` |  | `GamepadButton` |
+| `C_SOUTH` |  | `GamepadButton` |
+| `C_START` |  | `GamepadButton` |
+| `C_WEST` |  | `GamepadButton` |
 
 ## GamepadType
-Gamepad device type identifiers.
-
 | Name | Description | Type |
 | --- | --- | --- |
-| `C_PS3` | PlayStation 3 gamepad | `GamepadType` |
-| `C_PS4` | PlayStation 4 gamepad | `GamepadType` |
-| `C_PS5` | PlayStation 5 gamepad | `GamepadType` |
-| `C_STANDARD` | Standard gamepad | `GamepadType` |
-| `C_SWITCH_JOYCON_LEFT` | Nintendo Switch Joy-Con left | `GamepadType` |
-| `C_SWITCH_JOYCON_PAIR` | Nintendo Switch Joy-Con pair | `GamepadType` |
-| `C_SWITCH_JOYCON_RIGHT` | Nintendo Switch Joy-Con right | `GamepadType` |
-| `C_SWITCH_PRO` | Nintendo Switch Pro controller | `GamepadType` |
-| `C_XBOX_360` | Xbox 360 gamepad | `GamepadType` |
-| `C_XBOX_ONE` | Xbox One gamepad | `GamepadType` |
+| `C_PS3` |  | `GamepadType` |
+| `C_PS4` |  | `GamepadType` |
+| `C_PS5` |  | `GamepadType` |
+| `C_STANDARD` |  | `GamepadType` |
+| `C_SWITCH_JOYCON_LEFT` |  | `GamepadType` |
+| `C_SWITCH_JOYCON_PAIR` |  | `GamepadType` |
+| `C_SWITCH_JOYCON_RIGHT` |  | `GamepadType` |
+| `C_SWITCH_PRO` |  | `GamepadType` |
+| `C_XBOX_360` |  | `GamepadType` |
+| `C_XBOX_ONE` |  | `GamepadType` |
 
 ## Keycode
-Keyboard keycodes representing logical keys.
-
 | Name | Description | Type |
 | --- | --- | --- |
-| `K_0` | The symbolic 0 key | `Keycode` |
-| `K_1` | The symbolic 1 key | `Keycode` |
-| `K_2` | The symbolic 2 key | `Keycode` |
-| `K_3` | The symbolic 3 key | `Keycode` |
-| `K_4` | The symbolic 4 key | `Keycode` |
-| `K_5` | The symbolic 5 key | `Keycode` |
-| `K_6` | The symbolic 6 key | `Keycode` |
-| `K_7` | The symbolic 7 key | `Keycode` |
-| `K_8` | The symbolic 8 key | `Keycode` |
-| `K_9` | The symbolic 9 key | `Keycode` |
-| `K_AGAIN` | The symbolic Again key | `Keycode` |
-| `K_AMPERSAND` | The symbolic Ampersand key | `Keycode` |
-| `K_APPLICATION` | The symbolic Application key | `Keycode` |
-| `K_ASTERISK` | The symbolic Asterisk key | `Keycode` |
-| `K_AT` | The symbolic At key | `Keycode` |
-| `K_BACKSLASH` | The symbolic Backslash key | `Keycode` |
-| `K_BACKSPACE` | The symbolic Backspace key | `Keycode` |
-| `K_CALL` | The symbolic Call key | `Keycode` |
-| `K_CAPS` | The symbolic Caps Lock key | `Keycode` |
-| `K_CARET` | The symbolic Caret key | `Keycode` |
-| `K_CHANNEL_DEC` | The symbolic Channel Down key | `Keycode` |
-| `K_CHANNEL_INC` | The symbolic Channel Up key | `Keycode` |
-| `K_COLON` | The symbolic Colon key | `Keycode` |
-| `K_COMMA` | The symbolic Comma key | `Keycode` |
-| `K_COPY` | The symbolic Copy key | `Keycode` |
-| `K_CUT` | The symbolic Cut key | `Keycode` |
-| `K_DBLQUOTE` | The symbolic Double Quote key | `Keycode` |
-| `K_DEL` | The symbolic Delete key | `Keycode` |
-| `K_DOLLAR` | The symbolic Dollar key | `Keycode` |
-| `K_DOWN` | The symbolic Down Arrow key | `Keycode` |
-| `K_END` | The symbolic End key | `Keycode` |
-| `K_ENDCALL` | The symbolic End Call key | `Keycode` |
-| `K_EQ` | The symbolic Equals key | `Keycode` |
-| `K_ESC` | The symbolic Escape key | `Keycode` |
-| `K_EXCLAIM` | The symbolic Exclamation key | `Keycode` |
-| `K_EXECUTE` | The symbolic Execute key | `Keycode` |
-| `K_F1` | The symbolic F1 key | `Keycode` |
-| `K_F10` | The symbolic F10 key | `Keycode` |
-| `K_F11` | The symbolic F11 key | `Keycode` |
-| `K_F12` | The symbolic F12 key | `Keycode` |
-| `K_F13` | The symbolic F13 key | `Keycode` |
-| `K_F14` | The symbolic F14 key | `Keycode` |
-| `K_F15` | The symbolic F15 key | `Keycode` |
-| `K_F2` | The symbolic F2 key | `Keycode` |
-| `K_F3` | The symbolic F3 key | `Keycode` |
-| `K_F4` | The symbolic F4 key | `Keycode` |
-| `K_F5` | The symbolic F5 key | `Keycode` |
-| `K_F6` | The symbolic F6 key | `Keycode` |
-| `K_F7` | The symbolic F7 key | `Keycode` |
-| `K_F8` | The symbolic F8 key | `Keycode` |
-| `K_F9` | The symbolic F9 key | `Keycode` |
-| `K_FIND` | The symbolic Find key | `Keycode` |
-| `K_GRAVE` | The symbolic Grave key | `Keycode` |
-| `K_GT` | The symbolic Greater-than key | `Keycode` |
-| `K_HASH` | The symbolic Hash key | `Keycode` |
-| `K_HELP` | The symbolic Help key | `Keycode` |
-| `K_HOME` | The symbolic Home key | `Keycode` |
-| `K_INS` | The symbolic Insert key | `Keycode` |
-| `K_KP_0` | The symbolic keypad 0 key | `Keycode` |
-| `K_KP_1` | The symbolic keypad 1 key | `Keycode` |
-| `K_KP_2` | The symbolic keypad 2 key | `Keycode` |
-| `K_KP_3` | The symbolic keypad 3 key | `Keycode` |
-| `K_KP_4` | The symbolic keypad 4 key | `Keycode` |
-| `K_KP_5` | The symbolic keypad 5 key | `Keycode` |
-| `K_KP_6` | The symbolic keypad 6 key | `Keycode` |
-| `K_KP_7` | The symbolic keypad 7 key | `Keycode` |
-| `K_KP_8` | The symbolic keypad 8 key | `Keycode` |
-| `K_KP_9` | The symbolic keypad 9 key | `Keycode` |
-| `K_KP_DIV` | The symbolic keypad Divide key | `Keycode` |
-| `K_KP_ENTER` | The symbolic keypad Enter key | `Keycode` |
-| `K_KP_MINUS` | The symbolic keypad Minus key | `Keycode` |
-| `K_KP_MULT` | The symbolic keypad Multiply key | `Keycode` |
-| `K_KP_PERIOD` | The symbolic keypad Period key | `Keycode` |
-| `K_KP_PLUS` | The symbolic keypad Plus key | `Keycode` |
-| `K_LALT` | The symbolic Left Alt key | `Keycode` |
-| `K_LBRACE` | The symbolic Left Brace key | `Keycode` |
-| `K_LBRACKET` | The symbolic Left Bracket key | `Keycode` |
-| `K_LCTRL` | The symbolic Left Ctrl key | `Keycode` |
-| `K_LEFT` | The symbolic Left Arrow key | `Keycode` |
-| `K_LGUI` | The symbolic Left GUI/Windows key | `Keycode` |
-| `K_LPAREN` | The symbolic Left Parenthesis key | `Keycode` |
-| `K_LSHIFT` | The symbolic Left Shift key | `Keycode` |
-| `K_LT` | The symbolic Less-than key | `Keycode` |
-| `K_MEDIA_EJECT` | The symbolic Media Eject key | `Keycode` |
-| `K_MEDIA_FF` | The symbolic Media Fast Forward key | `Keycode` |
-| `K_MEDIA_NEXT` | The symbolic Media Next Track key | `Keycode` |
-| `K_MEDIA_PAUSE` | The symbolic Media Pause key | `Keycode` |
-| `K_MEDIA_PLAY` | The symbolic Media Play key | `Keycode` |
-| `K_MEDIA_PLAY_PAUSE` | The symbolic Media Play/Pause key | `Keycode` |
-| `K_MEDIA_PREV` | The symbolic Media Previous Track key | `Keycode` |
-| `K_MEDIA_REC` | The symbolic Media Record key | `Keycode` |
-| `K_MEDIA_REWIND` | The symbolic Media Rewind key | `Keycode` |
-| `K_MEDIA_SELECT` | The symbolic Media Select key | `Keycode` |
-| `K_MEDIA_STOP` | The symbolic Media Stop key | `Keycode` |
-| `K_MENU` | The symbolic Menu key | `Keycode` |
-| `K_MINUS` | The symbolic Minus key | `Keycode` |
-| `K_MODE` | The symbolic Mode key | `Keycode` |
-| `K_MUTE` | The symbolic Mute key | `Keycode` |
-| `K_NUMLOCK` | The symbolic Num Lock key | `Keycode` |
-| `K_PASTE` | The symbolic Paste key | `Keycode` |
-| `K_PAUSE` | The symbolic Pause key | `Keycode` |
-| `K_PERCENT` | The symbolic Percent key | `Keycode` |
-| `K_PERIOD` | The symbolic Period key | `Keycode` |
-| `K_PGDOWN` | The symbolic Page Down key | `Keycode` |
-| `K_PGUP` | The symbolic Page Up key | `Keycode` |
-| `K_PIPE` | The symbolic Pipe key | `Keycode` |
-| `K_PLUS` | The symbolic Plus key | `Keycode` |
-| `K_POWER` | The symbolic Power key | `Keycode` |
-| `K_PRTSCR` | The symbolic Print Screen key | `Keycode` |
-| `K_QUESTION` | The symbolic Question key | `Keycode` |
-| `K_RALT` | The symbolic Right Alt key | `Keycode` |
-| `K_RBRACE` | The symbolic Right Brace key | `Keycode` |
-| `K_RBRACKET` | The symbolic Right Bracket key | `Keycode` |
-| `K_RCTRL` | The symbolic Right Ctrl key | `Keycode` |
-| `K_RETURN` | The symbolic Return key | `Keycode` |
-| `K_RGUI` | The symbolic Right GUI/Windows key | `Keycode` |
-| `K_RIGHT` | The symbolic Right Arrow key | `Keycode` |
-| `K_RPAREN` | The symbolic Right Parenthesis key | `Keycode` |
-| `K_RSHIFT` | The symbolic Right Shift key | `Keycode` |
-| `K_SCRLK` | The symbolic Scroll Lock key | `Keycode` |
-| `K_SELECT` | The symbolic Select key | `Keycode` |
-| `K_SEMICOLON` | The symbolic Semicolon key | `Keycode` |
-| `K_SGLQUOTE` | The symbolic Single Quote key | `Keycode` |
-| `K_SLASH` | The symbolic Slash key | `Keycode` |
-| `K_SLEEP` | The symbolic Sleep key | `Keycode` |
-| `K_SOFTLEFT` | The symbolic Soft Left key | `Keycode` |
-| `K_SOFTRIGHT` | The symbolic Soft Right key | `Keycode` |
-| `K_SPACE` | The symbolic Space key | `Keycode` |
-| `K_STOP` | The symbolic Stop key | `Keycode` |
-| `K_TAB` | The symbolic Tab key | `Keycode` |
-| `K_TILDE` | The symbolic Tilde key | `Keycode` |
-| `K_UNDERSCORE` | The symbolic Underscore key | `Keycode` |
-| `K_UNDO` | The symbolic Undo key | `Keycode` |
-| `K_UNKNOWN` | Unknown key | `Keycode` |
-| `K_UP` | The symbolic Up Arrow key | `Keycode` |
-| `K_VOLDOWN` | The symbolic Volume Down key | `Keycode` |
-| `K_VOLUP` | The symbolic Volume Up key | `Keycode` |
-| `K_WAKE` | The symbolic Wake key | `Keycode` |
-| `K_a` | The symbolic A key | `Keycode` |
-| `K_b` | The symbolic B key | `Keycode` |
-| `K_c` | The symbolic C key | `Keycode` |
-| `K_d` | The symbolic D key | `Keycode` |
-| `K_e` | The symbolic E key | `Keycode` |
-| `K_f` | The symbolic F key | `Keycode` |
-| `K_g` | The symbolic G key | `Keycode` |
-| `K_h` | The symbolic H key | `Keycode` |
-| `K_i` | The symbolic I key | `Keycode` |
-| `K_j` | The symbolic J key | `Keycode` |
-| `K_k` | The symbolic K key | `Keycode` |
-| `K_l` | The symbolic L key | `Keycode` |
-| `K_m` | The symbolic M key | `Keycode` |
-| `K_n` | The symbolic N key | `Keycode` |
-| `K_o` | The symbolic O key | `Keycode` |
-| `K_p` | The symbolic P key | `Keycode` |
-| `K_q` | The symbolic Q key | `Keycode` |
-| `K_r` | The symbolic R key | `Keycode` |
-| `K_s` | The symbolic S key | `Keycode` |
-| `K_t` | The symbolic T key | `Keycode` |
-| `K_u` | The symbolic U key | `Keycode` |
-| `K_v` | The symbolic V key | `Keycode` |
-| `K_w` | The symbolic W key | `Keycode` |
-| `K_x` | The symbolic X key | `Keycode` |
-| `K_y` | The symbolic Y key | `Keycode` |
-| `K_z` | The symbolic Z key | `Keycode` |
+| `K_0` |  | `Keycode` |
+| `K_1` |  | `Keycode` |
+| `K_2` |  | `Keycode` |
+| `K_3` |  | `Keycode` |
+| `K_4` |  | `Keycode` |
+| `K_5` |  | `Keycode` |
+| `K_6` |  | `Keycode` |
+| `K_7` |  | `Keycode` |
+| `K_8` |  | `Keycode` |
+| `K_9` |  | `Keycode` |
+| `K_AGAIN` |  | `Keycode` |
+| `K_AMPERSAND` |  | `Keycode` |
+| `K_APPLICATION` |  | `Keycode` |
+| `K_ASTERISK` |  | `Keycode` |
+| `K_AT` |  | `Keycode` |
+| `K_BACKSLASH` |  | `Keycode` |
+| `K_BACKSPACE` |  | `Keycode` |
+| `K_CALL` |  | `Keycode` |
+| `K_CAPS` |  | `Keycode` |
+| `K_CARET` |  | `Keycode` |
+| `K_CHANNEL_DEC` |  | `Keycode` |
+| `K_CHANNEL_INC` |  | `Keycode` |
+| `K_COLON` |  | `Keycode` |
+| `K_COMMA` |  | `Keycode` |
+| `K_COPY` |  | `Keycode` |
+| `K_CUT` |  | `Keycode` |
+| `K_DBLQUOTE` |  | `Keycode` |
+| `K_DEL` |  | `Keycode` |
+| `K_DOLLAR` |  | `Keycode` |
+| `K_DOWN` |  | `Keycode` |
+| `K_END` |  | `Keycode` |
+| `K_ENDCALL` |  | `Keycode` |
+| `K_EQ` |  | `Keycode` |
+| `K_ESC` |  | `Keycode` |
+| `K_EXCLAIM` |  | `Keycode` |
+| `K_EXECUTE` |  | `Keycode` |
+| `K_F1` |  | `Keycode` |
+| `K_F10` |  | `Keycode` |
+| `K_F11` |  | `Keycode` |
+| `K_F12` |  | `Keycode` |
+| `K_F13` |  | `Keycode` |
+| `K_F14` |  | `Keycode` |
+| `K_F15` |  | `Keycode` |
+| `K_F2` |  | `Keycode` |
+| `K_F3` |  | `Keycode` |
+| `K_F4` |  | `Keycode` |
+| `K_F5` |  | `Keycode` |
+| `K_F6` |  | `Keycode` |
+| `K_F7` |  | `Keycode` |
+| `K_F8` |  | `Keycode` |
+| `K_F9` |  | `Keycode` |
+| `K_FIND` |  | `Keycode` |
+| `K_GRAVE` |  | `Keycode` |
+| `K_GT` |  | `Keycode` |
+| `K_HASH` |  | `Keycode` |
+| `K_HELP` |  | `Keycode` |
+| `K_HOME` |  | `Keycode` |
+| `K_INS` |  | `Keycode` |
+| `K_KP_0` |  | `Keycode` |
+| `K_KP_1` |  | `Keycode` |
+| `K_KP_2` |  | `Keycode` |
+| `K_KP_3` |  | `Keycode` |
+| `K_KP_4` |  | `Keycode` |
+| `K_KP_5` |  | `Keycode` |
+| `K_KP_6` |  | `Keycode` |
+| `K_KP_7` |  | `Keycode` |
+| `K_KP_8` |  | `Keycode` |
+| `K_KP_9` |  | `Keycode` |
+| `K_KP_DIV` |  | `Keycode` |
+| `K_KP_ENTER` |  | `Keycode` |
+| `K_KP_MINUS` |  | `Keycode` |
+| `K_KP_MULT` |  | `Keycode` |
+| `K_KP_PERIOD` |  | `Keycode` |
+| `K_KP_PLUS` |  | `Keycode` |
+| `K_LALT` |  | `Keycode` |
+| `K_LBRACE` |  | `Keycode` |
+| `K_LBRACKET` |  | `Keycode` |
+| `K_LCTRL` |  | `Keycode` |
+| `K_LEFT` |  | `Keycode` |
+| `K_LGUI` |  | `Keycode` |
+| `K_LPAREN` |  | `Keycode` |
+| `K_LSHIFT` |  | `Keycode` |
+| `K_LT` |  | `Keycode` |
+| `K_MEDIA_EJECT` |  | `Keycode` |
+| `K_MEDIA_FF` |  | `Keycode` |
+| `K_MEDIA_NEXT` |  | `Keycode` |
+| `K_MEDIA_PAUSE` |  | `Keycode` |
+| `K_MEDIA_PLAY` |  | `Keycode` |
+| `K_MEDIA_PLAY_PAUSE` |  | `Keycode` |
+| `K_MEDIA_PREV` |  | `Keycode` |
+| `K_MEDIA_REC` |  | `Keycode` |
+| `K_MEDIA_REWIND` |  | `Keycode` |
+| `K_MEDIA_SELECT` |  | `Keycode` |
+| `K_MEDIA_STOP` |  | `Keycode` |
+| `K_MENU` |  | `Keycode` |
+| `K_MINUS` |  | `Keycode` |
+| `K_MODE` |  | `Keycode` |
+| `K_MUTE` |  | `Keycode` |
+| `K_NUMLOCK` |  | `Keycode` |
+| `K_PASTE` |  | `Keycode` |
+| `K_PAUSE` |  | `Keycode` |
+| `K_PERCENT` |  | `Keycode` |
+| `K_PERIOD` |  | `Keycode` |
+| `K_PGDOWN` |  | `Keycode` |
+| `K_PGUP` |  | `Keycode` |
+| `K_PIPE` |  | `Keycode` |
+| `K_PLUS` |  | `Keycode` |
+| `K_POWER` |  | `Keycode` |
+| `K_PRTSCR` |  | `Keycode` |
+| `K_QUESTION` |  | `Keycode` |
+| `K_RALT` |  | `Keycode` |
+| `K_RBRACE` |  | `Keycode` |
+| `K_RBRACKET` |  | `Keycode` |
+| `K_RCTRL` |  | `Keycode` |
+| `K_RETURN` |  | `Keycode` |
+| `K_RGUI` |  | `Keycode` |
+| `K_RIGHT` |  | `Keycode` |
+| `K_RPAREN` |  | `Keycode` |
+| `K_RSHIFT` |  | `Keycode` |
+| `K_SCRLK` |  | `Keycode` |
+| `K_SELECT` |  | `Keycode` |
+| `K_SEMICOLON` |  | `Keycode` |
+| `K_SGLQUOTE` |  | `Keycode` |
+| `K_SLASH` |  | `Keycode` |
+| `K_SLEEP` |  | `Keycode` |
+| `K_SOFTLEFT` |  | `Keycode` |
+| `K_SOFTRIGHT` |  | `Keycode` |
+| `K_SPACE` |  | `Keycode` |
+| `K_STOP` |  | `Keycode` |
+| `K_TAB` |  | `Keycode` |
+| `K_TILDE` |  | `Keycode` |
+| `K_UNDERSCORE` |  | `Keycode` |
+| `K_UNDO` |  | `Keycode` |
+| `K_UNKNOWN` |  | `Keycode` |
+| `K_UP` |  | `Keycode` |
+| `K_VOLDOWN` |  | `Keycode` |
+| `K_VOLUP` |  | `Keycode` |
+| `K_WAKE` |  | `Keycode` |
+| `K_a` |  | `Keycode` |
+| `K_b` |  | `Keycode` |
+| `K_c` |  | `Keycode` |
+| `K_d` |  | `Keycode` |
+| `K_e` |  | `Keycode` |
+| `K_f` |  | `Keycode` |
+| `K_g` |  | `Keycode` |
+| `K_h` |  | `Keycode` |
+| `K_i` |  | `Keycode` |
+| `K_j` |  | `Keycode` |
+| `K_k` |  | `Keycode` |
+| `K_l` |  | `Keycode` |
+| `K_m` |  | `Keycode` |
+| `K_n` |  | `Keycode` |
+| `K_o` |  | `Keycode` |
+| `K_p` |  | `Keycode` |
+| `K_q` |  | `Keycode` |
+| `K_r` |  | `Keycode` |
+| `K_s` |  | `Keycode` |
+| `K_t` |  | `Keycode` |
+| `K_u` |  | `Keycode` |
+| `K_v` |  | `Keycode` |
+| `K_w` |  | `Keycode` |
+| `K_x` |  | `Keycode` |
+| `K_y` |  | `Keycode` |
+| `K_z` |  | `Keycode` |
 
 ## LayerType
-TMX layer type values.
-
 | Name | Description | Type |
 | --- | --- | --- |
-| `IMAGE` | Image layer | `LayerType` |
-| `OBJECT` | Object layer | `LayerType` |
-| `TILE` | Tile layer | `LayerType` |
+| `IMAGE` |  | `LayerType` |
+| `OBJECT` |  | `LayerType` |
+| `TILE` |  | `LayerType` |
 
 ## MapOrientation
-TMX map orientation values.
-
 | Name | Description | Type |
 | --- | --- | --- |
-| `HEXAGONAL` | Hexagonal orientation | `MapOrientation` |
-| `ISOMETRIC` | Isometric orientation | `MapOrientation` |
-| `NONE` | No orientation specified | `MapOrientation` |
-| `ORTHOGONAL` | Orthogonal grid orientation | `MapOrientation` |
-| `STAGGERED` | Staggered orientation | `MapOrientation` |
+| `HEXAGONAL` |  | `MapOrientation` |
+| `ISOMETRIC` |  | `MapOrientation` |
+| `NONE` |  | `MapOrientation` |
+| `ORTHOGONAL` |  | `MapOrientation` |
+| `STAGGERED` |  | `MapOrientation` |
 
 ## MapRenderOrder
-Tile render order for TMX maps.
-
 | Name | Description | Type |
 | --- | --- | --- |
-| `LEFT_DOWN` | Render left then down | `MapRenderOrder` |
-| `LEFT_UP` | Render left then up | `MapRenderOrder` |
-| `NONE` | No render order specified | `MapRenderOrder` |
-| `RIGHT_DOWN` | Render right then down | `MapRenderOrder` |
-| `RIGHT_UP` | Render right then up | `MapRenderOrder` |
+| `LEFT_DOWN` |  | `MapRenderOrder` |
+| `LEFT_UP` |  | `MapRenderOrder` |
+| `NONE` |  | `MapRenderOrder` |
+| `RIGHT_DOWN` |  | `MapRenderOrder` |
+| `RIGHT_UP` |  | `MapRenderOrder` |
 
 ## MapStaggerAxis
-Stagger axis for staggered/hex maps.
-
 | Name | Description | Type |
 | --- | --- | --- |
-| `NONE` | No stagger axis | `MapStaggerAxis` |
-| `X` | Stagger along the X axis | `MapStaggerAxis` |
-| `Y` | Stagger along the Y axis | `MapStaggerAxis` |
+| `NONE` |  | `MapStaggerAxis` |
+| `X` |  | `MapStaggerAxis` |
+| `Y` |  | `MapStaggerAxis` |
 
 ## MapStaggerIndex
-Stagger index for staggered/hex maps.
-
 | Name | Description | Type |
 | --- | --- | --- |
-| `EVEN` | Even rows/columns are staggered | `MapStaggerIndex` |
-| `NONE` | No stagger index | `MapStaggerIndex` |
-| `ODD` | Odd rows/columns are staggered | `MapStaggerIndex` |
+| `EVEN` |  | `MapStaggerIndex` |
+| `NONE` |  | `MapStaggerIndex` |
+| `ODD` |  | `MapStaggerIndex` |
 
 ## MouseButton
-Mouse button identifiers.
-
 | Name | Description | Type |
 | --- | --- | --- |
-| `M_LEFT` | Left mouse button | `MouseButton` |
-| `M_MIDDLE` | Middle mouse button | `MouseButton` |
-| `M_RIGHT` | Right mouse button | `MouseButton` |
-| `M_SIDE1` | First side mouse button | `MouseButton` |
-| `M_SIDE2` | Second side mouse button | `MouseButton` |
+| `M_LEFT` |  | `MouseButton` |
+| `M_MIDDLE` |  | `MouseButton` |
+| `M_RIGHT` |  | `MouseButton` |
+| `M_SIDE1` |  | `MouseButton` |
+| `M_SIDE2` |  | `MouseButton` |
 
 ## PenAxis
-Stylus/pen axis identifiers for pen motion data.
-
 | Name | Description | Type |
 | --- | --- | --- |
-| `P_DISTANCE` | Pen distance from surface | `PenAxis` |
-| `P_PRESSURE` | Pen pressure axis | `PenAxis` |
-| `P_ROTATION` | Pen rotation axis | `PenAxis` |
-| `P_SLIDER` | Pen slider axis | `PenAxis` |
-| `P_TANGENTIAL_PRESSURE` | Pen tangential pressure | `PenAxis` |
-| `P_TILT_X` | Pen X tilt axis | `PenAxis` |
-| `P_TILT_Y` | Pen Y tilt axis | `PenAxis` |
+| `P_DISTANCE` |  | `PenAxis` |
+| `P_PRESSURE` |  | `PenAxis` |
+| `P_ROTATION` |  | `PenAxis` |
+| `P_SLIDER` |  | `PenAxis` |
+| `P_TANGENTIAL_PRESSURE` |  | `PenAxis` |
+| `P_TILT_X` |  | `PenAxis` |
+| `P_TILT_Y` |  | `PenAxis` |
 
 ## Scancode
-Keyboard scancodes representing physical key locations.
-
 | Name | Description | Type |
 | --- | --- | --- |
-| `S_0` | The physical 0 key | `Scancode` |
-| `S_1` | The physical 1 key | `Scancode` |
-| `S_2` | The physical 2 key | `Scancode` |
-| `S_3` | The physical 3 key | `Scancode` |
-| `S_4` | The physical 4 key | `Scancode` |
-| `S_5` | The physical 5 key | `Scancode` |
-| `S_6` | The physical 6 key | `Scancode` |
-| `S_7` | The physical 7 key | `Scancode` |
-| `S_8` | The physical 8 key | `Scancode` |
-| `S_9` | The physical 9 key | `Scancode` |
-| `S_AGAIN` | The physical Again key | `Scancode` |
-| `S_APOSTROPHE` | The physical Apostrophe key | `Scancode` |
-| `S_APPLICATION` | The physical Application key | `Scancode` |
-| `S_BACKSLASH` | The physical Backslash key | `Scancode` |
-| `S_BACKSPACE` | The physical Backspace key | `Scancode` |
-| `S_CALL` | The physical Call key | `Scancode` |
-| `S_CAPS` | The physical Caps Lock key | `Scancode` |
-| `S_CHANNEL_DEC` | The physical Channel Down key | `Scancode` |
-| `S_CHANNEL_INC` | The physical Channel Up key | `Scancode` |
-| `S_COMMA` | The physical Comma key | `Scancode` |
-| `S_COPY` | The physical Copy key | `Scancode` |
-| `S_CUT` | The physical Cut key | `Scancode` |
-| `S_DEL` | The physical Delete key | `Scancode` |
-| `S_DOWN` | The physical Down Arrow key | `Scancode` |
-| `S_END` | The physical End key | `Scancode` |
-| `S_ENDCALL` | The physical End Call key | `Scancode` |
-| `S_EQ` | The physical Equals key | `Scancode` |
-| `S_ESC` | The physical Escape key | `Scancode` |
-| `S_EXECUTE` | The physical Execute key | `Scancode` |
-| `S_F1` | The physical F1 key | `Scancode` |
-| `S_F10` | The physical F10 key | `Scancode` |
-| `S_F11` | The physical F11 key | `Scancode` |
-| `S_F12` | The physical F12 key | `Scancode` |
-| `S_F13` | The physical F13 key | `Scancode` |
-| `S_F14` | The physical F14 key | `Scancode` |
-| `S_F15` | The physical F15 key | `Scancode` |
-| `S_F2` | The physical F2 key | `Scancode` |
-| `S_F3` | The physical F3 key | `Scancode` |
-| `S_F4` | The physical F4 key | `Scancode` |
-| `S_F5` | The physical F5 key | `Scancode` |
-| `S_F6` | The physical F6 key | `Scancode` |
-| `S_F7` | The physical F7 key | `Scancode` |
-| `S_F8` | The physical F8 key | `Scancode` |
-| `S_F9` | The physical F9 key | `Scancode` |
-| `S_FIND` | The physical Find key | `Scancode` |
-| `S_GRAVE` | The physical Grave key | `Scancode` |
-| `S_HELP` | The physical Help key | `Scancode` |
-| `S_HOME` | The physical Home key | `Scancode` |
-| `S_INS` | The physical Insert key | `Scancode` |
-| `S_KP_0` | The physical keypad 0 key | `Scancode` |
-| `S_KP_1` | The physical keypad 1 key | `Scancode` |
-| `S_KP_2` | The physical keypad 2 key | `Scancode` |
-| `S_KP_3` | The physical keypad 3 key | `Scancode` |
-| `S_KP_4` | The physical keypad 4 key | `Scancode` |
-| `S_KP_5` | The physical keypad 5 key | `Scancode` |
-| `S_KP_6` | The physical keypad 6 key | `Scancode` |
-| `S_KP_7` | The physical keypad 7 key | `Scancode` |
-| `S_KP_8` | The physical keypad 8 key | `Scancode` |
-| `S_KP_9` | The physical keypad 9 key | `Scancode` |
-| `S_KP_DIV` | The physical keypad Divide key | `Scancode` |
-| `S_KP_ENTER` | The physical keypad Enter key | `Scancode` |
-| `S_KP_MINUS` | The physical keypad Minus key | `Scancode` |
-| `S_KP_MULT` | The physical keypad Multiply key | `Scancode` |
-| `S_KP_PERIOD` | The physical keypad Period key | `Scancode` |
-| `S_KP_PLUS` | The physical keypad Plus key | `Scancode` |
-| `S_LALT` | The physical Left Alt key | `Scancode` |
-| `S_LBRACKET` | The physical Left Bracket key | `Scancode` |
-| `S_LCTRL` | The physical Left Ctrl key | `Scancode` |
-| `S_LEFT` | The physical Left Arrow key | `Scancode` |
-| `S_LGUI` | The physical Left GUI/Windows key | `Scancode` |
-| `S_LSHIFT` | The physical Left Shift key | `Scancode` |
-| `S_MEDIA_EJECT` | The physical Media Eject key | `Scancode` |
-| `S_MEDIA_FAST_FORWARD` | The physical Media Fast Forward key | `Scancode` |
-| `S_MEDIA_NEXT` | The physical Media Next Track key | `Scancode` |
-| `S_MEDIA_PAUSE` | The physical Media Pause key | `Scancode` |
-| `S_MEDIA_PLAY` | The physical Media Play key | `Scancode` |
-| `S_MEDIA_PLAY_PAUSE` | The physical Media Play/Pause key | `Scancode` |
-| `S_MEDIA_PREV` | The physical Media Previous Track key | `Scancode` |
-| `S_MEDIA_REC` | The physical Media Record key | `Scancode` |
-| `S_MEDIA_REWIND` | The physical Media Rewind key | `Scancode` |
-| `S_MEDIA_SELECT` | The physical Media Select key | `Scancode` |
-| `S_MEDIA_STOP` | The physical Media Stop key | `Scancode` |
-| `S_MENU` | The physical Menu key | `Scancode` |
-| `S_MINUS` | The physical Minus key | `Scancode` |
-| `S_MODE` | The physical Mode key | `Scancode` |
-| `S_MUTE` | The physical Mute key | `Scancode` |
-| `S_NUMLOCK` | The physical Num Lock key | `Scancode` |
-| `S_PASTE` | The physical Paste key | `Scancode` |
-| `S_PAUSE` | The physical Pause key | `Scancode` |
-| `S_PERIOD` | The physical Period key | `Scancode` |
-| `S_PGDOWN` | The physical Page Down key | `Scancode` |
-| `S_PGUP` | The physical Page Up key | `Scancode` |
-| `S_POWER` | The physical Power key | `Scancode` |
-| `S_PRTSCR` | The physical Print Screen key | `Scancode` |
-| `S_RALT` | The physical Right Alt key | `Scancode` |
-| `S_RBRACKET` | The physical Right Bracket key | `Scancode` |
-| `S_RCTRL` | The physical Right Ctrl key | `Scancode` |
-| `S_RETURN` | The physical Return key | `Scancode` |
-| `S_RGUI` | The physical Right GUI/Windows key | `Scancode` |
-| `S_RIGHT` | The physical Right Arrow key | `Scancode` |
-| `S_RSHIFT` | The physical Right Shift key | `Scancode` |
-| `S_SCRLK` | The physical Scroll Lock key | `Scancode` |
-| `S_SELECT` | The physical Select key | `Scancode` |
-| `S_SEMICOLON` | The physical Semicolon key | `Scancode` |
-| `S_SLASH` | The physical Slash key | `Scancode` |
-| `S_SLEEP` | The physical Sleep key | `Scancode` |
-| `S_SOFTLEFT` | The physical Soft Left key | `Scancode` |
-| `S_SOFTRIGHT` | The physical Soft Right key | `Scancode` |
-| `S_SPACE` | The physical Space key | `Scancode` |
-| `S_STOP` | The physical Stop key | `Scancode` |
-| `S_TAB` | The physical Tab key | `Scancode` |
-| `S_UNDO` | The physical Undo key | `Scancode` |
-| `S_UP` | The physical Up Arrow key | `Scancode` |
-| `S_VOLDOWN` | The physical Volume Down key | `Scancode` |
-| `S_VOLUP` | The physical Volume Up key | `Scancode` |
-| `S_WAKE` | The physical Wake key | `Scancode` |
-| `S_a` | The physical A key | `Scancode` |
-| `S_b` | The physical B key | `Scancode` |
-| `S_c` | The physical C key | `Scancode` |
-| `S_d` | The physical D key | `Scancode` |
-| `S_e` | The physical E key | `Scancode` |
-| `S_f` | The physical F key | `Scancode` |
-| `S_g` | The physical G key | `Scancode` |
-| `S_h` | The physical H key | `Scancode` |
-| `S_i` | The physical I key | `Scancode` |
-| `S_j` | The physical J key | `Scancode` |
-| `S_k` | The physical K key | `Scancode` |
-| `S_l` | The physical L key | `Scancode` |
-| `S_m` | The physical M key | `Scancode` |
-| `S_n` | The physical N key | `Scancode` |
-| `S_o` | The physical O key | `Scancode` |
-| `S_p` | The physical P key | `Scancode` |
-| `S_q` | The physical Q key | `Scancode` |
-| `S_r` | The physical R key | `Scancode` |
-| `S_s` | The physical S key | `Scancode` |
-| `S_t` | The physical T key | `Scancode` |
-| `S_u` | The physical U key | `Scancode` |
-| `S_v` | The physical V key | `Scancode` |
-| `S_w` | The physical W key | `Scancode` |
-| `S_x` | The physical X key | `Scancode` |
-| `S_y` | The physical Y key | `Scancode` |
-| `S_z` | The physical Z key | `Scancode` |
+| `S_0` |  | `Scancode` |
+| `S_1` |  | `Scancode` |
+| `S_2` |  | `Scancode` |
+| `S_3` |  | `Scancode` |
+| `S_4` |  | `Scancode` |
+| `S_5` |  | `Scancode` |
+| `S_6` |  | `Scancode` |
+| `S_7` |  | `Scancode` |
+| `S_8` |  | `Scancode` |
+| `S_9` |  | `Scancode` |
+| `S_AGAIN` |  | `Scancode` |
+| `S_APOSTROPHE` |  | `Scancode` |
+| `S_APPLICATION` |  | `Scancode` |
+| `S_BACKSLASH` |  | `Scancode` |
+| `S_BACKSPACE` |  | `Scancode` |
+| `S_CALL` |  | `Scancode` |
+| `S_CAPS` |  | `Scancode` |
+| `S_CHANNEL_DEC` |  | `Scancode` |
+| `S_CHANNEL_INC` |  | `Scancode` |
+| `S_COMMA` |  | `Scancode` |
+| `S_COPY` |  | `Scancode` |
+| `S_CUT` |  | `Scancode` |
+| `S_DEL` |  | `Scancode` |
+| `S_DOWN` |  | `Scancode` |
+| `S_END` |  | `Scancode` |
+| `S_ENDCALL` |  | `Scancode` |
+| `S_EQ` |  | `Scancode` |
+| `S_ESC` |  | `Scancode` |
+| `S_EXECUTE` |  | `Scancode` |
+| `S_F1` |  | `Scancode` |
+| `S_F10` |  | `Scancode` |
+| `S_F11` |  | `Scancode` |
+| `S_F12` |  | `Scancode` |
+| `S_F13` |  | `Scancode` |
+| `S_F14` |  | `Scancode` |
+| `S_F15` |  | `Scancode` |
+| `S_F2` |  | `Scancode` |
+| `S_F3` |  | `Scancode` |
+| `S_F4` |  | `Scancode` |
+| `S_F5` |  | `Scancode` |
+| `S_F6` |  | `Scancode` |
+| `S_F7` |  | `Scancode` |
+| `S_F8` |  | `Scancode` |
+| `S_F9` |  | `Scancode` |
+| `S_FIND` |  | `Scancode` |
+| `S_GRAVE` |  | `Scancode` |
+| `S_HELP` |  | `Scancode` |
+| `S_HOME` |  | `Scancode` |
+| `S_INS` |  | `Scancode` |
+| `S_KP_0` |  | `Scancode` |
+| `S_KP_1` |  | `Scancode` |
+| `S_KP_2` |  | `Scancode` |
+| `S_KP_3` |  | `Scancode` |
+| `S_KP_4` |  | `Scancode` |
+| `S_KP_5` |  | `Scancode` |
+| `S_KP_6` |  | `Scancode` |
+| `S_KP_7` |  | `Scancode` |
+| `S_KP_8` |  | `Scancode` |
+| `S_KP_9` |  | `Scancode` |
+| `S_KP_DIV` |  | `Scancode` |
+| `S_KP_ENTER` |  | `Scancode` |
+| `S_KP_MINUS` |  | `Scancode` |
+| `S_KP_MULT` |  | `Scancode` |
+| `S_KP_PERIOD` |  | `Scancode` |
+| `S_KP_PLUS` |  | `Scancode` |
+| `S_LALT` |  | `Scancode` |
+| `S_LBRACKET` |  | `Scancode` |
+| `S_LCTRL` |  | `Scancode` |
+| `S_LEFT` |  | `Scancode` |
+| `S_LGUI` |  | `Scancode` |
+| `S_LSHIFT` |  | `Scancode` |
+| `S_MEDIA_EJECT` |  | `Scancode` |
+| `S_MEDIA_FAST_FORWARD` |  | `Scancode` |
+| `S_MEDIA_NEXT` |  | `Scancode` |
+| `S_MEDIA_PAUSE` |  | `Scancode` |
+| `S_MEDIA_PLAY` |  | `Scancode` |
+| `S_MEDIA_PLAY_PAUSE` |  | `Scancode` |
+| `S_MEDIA_PREV` |  | `Scancode` |
+| `S_MEDIA_REC` |  | `Scancode` |
+| `S_MEDIA_REWIND` |  | `Scancode` |
+| `S_MEDIA_SELECT` |  | `Scancode` |
+| `S_MEDIA_STOP` |  | `Scancode` |
+| `S_MENU` |  | `Scancode` |
+| `S_MINUS` |  | `Scancode` |
+| `S_MODE` |  | `Scancode` |
+| `S_MUTE` |  | `Scancode` |
+| `S_NUMLOCK` |  | `Scancode` |
+| `S_PASTE` |  | `Scancode` |
+| `S_PAUSE` |  | `Scancode` |
+| `S_PERIOD` |  | `Scancode` |
+| `S_PGDOWN` |  | `Scancode` |
+| `S_PGUP` |  | `Scancode` |
+| `S_POWER` |  | `Scancode` |
+| `S_PRTSCR` |  | `Scancode` |
+| `S_RALT` |  | `Scancode` |
+| `S_RBRACKET` |  | `Scancode` |
+| `S_RCTRL` |  | `Scancode` |
+| `S_RETURN` |  | `Scancode` |
+| `S_RGUI` |  | `Scancode` |
+| `S_RIGHT` |  | `Scancode` |
+| `S_RSHIFT` |  | `Scancode` |
+| `S_SCRLK` |  | `Scancode` |
+| `S_SELECT` |  | `Scancode` |
+| `S_SEMICOLON` |  | `Scancode` |
+| `S_SLASH` |  | `Scancode` |
+| `S_SLEEP` |  | `Scancode` |
+| `S_SOFTLEFT` |  | `Scancode` |
+| `S_SOFTRIGHT` |  | `Scancode` |
+| `S_SPACE` |  | `Scancode` |
+| `S_STOP` |  | `Scancode` |
+| `S_TAB` |  | `Scancode` |
+| `S_UNDO` |  | `Scancode` |
+| `S_UP` |  | `Scancode` |
+| `S_VOLDOWN` |  | `Scancode` |
+| `S_VOLUP` |  | `Scancode` |
+| `S_WAKE` |  | `Scancode` |
+| `S_a` |  | `Scancode` |
+| `S_b` |  | `Scancode` |
+| `S_c` |  | `Scancode` |
+| `S_d` |  | `Scancode` |
+| `S_e` |  | `Scancode` |
+| `S_f` |  | `Scancode` |
+| `S_g` |  | `Scancode` |
+| `S_h` |  | `Scancode` |
+| `S_i` |  | `Scancode` |
+| `S_j` |  | `Scancode` |
+| `S_k` |  | `Scancode` |
+| `S_l` |  | `Scancode` |
+| `S_m` |  | `Scancode` |
+| `S_n` |  | `Scancode` |
+| `S_o` |  | `Scancode` |
+| `S_p` |  | `Scancode` |
+| `S_q` |  | `Scancode` |
+| `S_r` |  | `Scancode` |
+| `S_s` |  | `Scancode` |
+| `S_t` |  | `Scancode` |
+| `S_u` |  | `Scancode` |
+| `S_v` |  | `Scancode` |
+| `S_w` |  | `Scancode` |
+| `S_x` |  | `Scancode` |
+| `S_y` |  | `Scancode` |
+| `S_z` |  | `Scancode` |
 
 ## ScrollMode
-Edge handling behavior for PixelArray scrolling.
-
 | Name | Description | Type |
 | --- | --- | --- |
-| `ERASE` | Erase pixels that scroll out | `ScrollMode` |
-| `REPEAT` | Wrap pixels when scrolling | `ScrollMode` |
-| `SMEAR` | Clamp edge pixels when scrolling | `ScrollMode` |
+| `ERASE` |  | `ScrollMode` |
+| `REPEAT` |  | `ScrollMode` |
+| `SMEAR` |  | `ScrollMode` |
 
 ## TextureAccess
-Texture access mode for GPU textures.
-
 | Name | Description | Type |
 | --- | --- | --- |
-| `STATIC` | Static texture | `TextureAccess` |
-| `TARGET` | Render target texture | `TextureAccess` |
+| `STATIC` |  | `TextureAccess` |
+| `TARGET` |  | `TextureAccess` |
 
 ## TextureScaleMode
-Texture scaling and filtering modes.
-
 | Name | Description | Type |
 | --- | --- | --- |
-| `DEFAULT` | Renderer default scaling | `TextureScaleMode` |
-| `LINEAR` | Linear filtering | `TextureScaleMode` |
-| `NEAREST` | Nearest-neighbor scaling | `TextureScaleMode` |
-| `PIXEL_ART` | Pixel-art friendly scaling | `TextureScaleMode` |
+| `DEFAULT` |  | `TextureScaleMode` |
+| `LINEAR` |  | `TextureScaleMode` |
+| `NEAREST` |  | `TextureScaleMode` |
+| `PIXEL_ART` |  | `TextureScaleMode` |
 
 ## ViewportMode
-Viewport layout mode for split-screen layouts.
-
 | Name | Description | Type |
 | --- | --- | --- |
-| `HORIZONTAL` | Split viewports horizontally | `ViewportMode` |
-| `VERTICAL` | Split viewports vertically | `ViewportMode` |
+| `HORIZONTAL` |  | `ViewportMode` |
+| `VERTICAL` |  | `ViewportMode` |
