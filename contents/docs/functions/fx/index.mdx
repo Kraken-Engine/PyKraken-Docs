@@ -1,39 +1,17 @@
 ---
-title: FX
-description: Effect functions for use with the Orchestrator class.
+title: Fx
+description: Effect factory functions for Orchestrator timeline animations.
 ---
 
-<Note>
-The `fx` module must be explicitly imported. It is used with the `Orchestrator` class to create timeline-based animations.
-</Note>
-
 ---
-
-## Wait
-<div className="api-card">
-
-<ApiSig name="wait" params={[{ name: "dur", type: "float" }]} returns="Effect" />
-
-Create a wait/delay effect.
-
-_**Parameters**_
-
-- `dur` : Duration to wait in seconds.
-
-_**Returns**_
-
-`Effect` : The wait effect.
-
-</div>
 
 ## Call
 <div className="api-card">
-
 <ApiSig name="call" params={[{ name: "callback", type: "Callable[[], None]" }]} returns="Effect" />
 
 Create an effect that calls a function.
 
-_**Parameters**_
+_**Args**_
 
 - `callback` : Function to call when this step is reached.
 
@@ -45,16 +23,15 @@ _**Returns**_
 
 ## Move To
 <div className="api-card">
-
-<ApiSig name="move_to" multiline params={[{ name: "pos", type: "Vec2", default: "None" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float]", default: "None" }]} returns="Effect" />
+<ApiSig name="move_to" multiline params={[{ name: "pos", type: "Vec2" }, { name: "dur", type: "SupportsFloat", default: "0.0" }, { name: "ease", type: "Any", default: "None" }]} returns="Effect" />
 
 Create a move-to effect.
 
-_**Parameters**_
+_**Args**_
 
 - `pos` : Target position.
 - `dur` : Duration in seconds.
-- `ease` : Easing function (t → t).
+- `ease` : Easing function (t -&gt; t).
 
 _**Returns**_
 
@@ -62,19 +39,37 @@ _**Returns**_
 
 </div>
 
+## Rotate By
+<div className="api-card">
+<ApiSig name="rotate_by" multiline params={[{ name: "delta", type: "SupportsFloat" }, { name: "clockwise", type: "bool", default: "True" }, { name: "dur", type: "SupportsFloat", default: "0.0" }, { name: "ease", type: "Any", default: "None" }]} returns="Effect" />
+
+Create a rotate-by effect.
+
+_**Args**_
+
+- `delta` : Delta angle in radians to rotate by in radians.
+- `clockwise` : Direction of rotation. True for clockwise, False for counterclockwise.
+- `dur` : Duration in seconds.
+- `ease` : Easing function (t -&gt; t).
+
+_**Returns**_
+
+`Effect` : The rotate-by effect.
+
+</div>
+
 ## Rotate To
 <div className="api-card">
-
-<ApiSig name="rotate_to" multiline params={[{ name: "angle", type: "float" }, { name: "clockwise", type: "bool", default: "True" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float]", default: "None" }]} returns="Effect" />
+<ApiSig name="rotate_to" multiline params={[{ name: "angle", type: "SupportsFloat" }, { name: "clockwise", type: "bool", default: "True" }, { name: "dur", type: "SupportsFloat", default: "0.0" }, { name: "ease", type: "Any", default: "None" }]} returns="Effect" />
 
 Create a rotate-to effect.
 
-_**Parameters**_
+_**Args**_
 
 - `angle` : Target angle in radians.
-- `clockwise` : Direction of rotation.
+- `clockwise` : Direction of rotation. True for clockwise, False for counterclockwise.
 - `dur` : Duration in seconds.
-- `ease` : Easing function (t → t).
+- `ease` : Easing function (t -&gt; t).
 
 _**Returns**_
 
@@ -82,37 +77,17 @@ _**Returns**_
 
 </div>
 
-## Rotate By
-<div className="api-card">
-
-<ApiSig name="rotate_by" multiline params={[{ name: "delta", type: "float" }, { name: "clockwise", type: "bool", default: "True" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float]", default: "None" }]} returns="Effect" />
-
-Create a rotate-by effect.
-
-_**Parameters**_
-
-- `delta` : Delta angle in radians to rotate by.
-- `clockwise` : Direction of rotation.
-- `dur` : Duration in seconds.
-- `ease` : Easing function (t → t).
-
-_**Returns**_
-
-`Effect` : The rotate-by effect.
-</div>
-
 ## Scale To
 <div className="api-card">
-
-<ApiSig name="scale_to" multiline params={[{ name: "scale", type: "float | Vec2", default: "None" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float]", default: "None" }]} returns="Effect" />
+<ApiSig name="scale_to" multiline params={[{ name: "scale", type: "Any", default: "None" }, { name: "dur", type: "SupportsFloat", default: "0.0" }, { name: "ease", type: "Any", default: "None" }]} returns="Effect" />
 
 Create a scale-to effect.
 
-_**Parameters**_
+_**Args**_
 
 - `scale` : Target scale. A single number applies to both axes.
 - `dur` : Duration in seconds.
-- `ease` : Easing function (t → t).
+- `ease` : Easing function (t -&gt; t).
 
 _**Returns**_
 
@@ -122,12 +97,11 @@ _**Returns**_
 
 ## Shake
 <div className="api-card">
-
-<ApiSig name="shake" params={[{ name: "amp", type: "float" }, { name: "freq", type: "float" }, { name: "dur", type: "float" }]} returns="Effect" />
+<ApiSig name="shake" multiline params={[{ name: "amp", type: "SupportsFloat" }, { name: "freq", type: "SupportsFloat" }, { name: "dur", type: "SupportsFloat" }]} returns="Effect" />
 
 Create a shake effect.
 
-_**Parameters**_
+_**Args**_
 
 - `amp` : Shake amplitude in pixels.
 - `freq` : Shake frequency in Hz.
@@ -136,5 +110,21 @@ _**Parameters**_
 _**Returns**_
 
 `Effect` : The shake effect.
+
+</div>
+
+## Wait
+<div className="api-card">
+<ApiSig name="wait" params={[{ name: "dur", type: "SupportsFloat" }]} returns="Effect" />
+
+Create a wait/delay effect.
+
+_**Args**_
+
+- `dur` : Duration to wait in seconds.
+
+_**Returns**_
+
+`Effect` : The wait effect.
 
 </div>

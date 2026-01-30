@@ -3,52 +3,41 @@ title: Classes
 description: Complete reference for all classes in Kraken Engine.
 ---
 
-Comprehensive documentation for all classes available in Kraken Engine. Each class page includes constructor signatures, methods, properties, and usage examples.
+Comprehensive documentation for all classes available in Kraken Engine.
 
-## Animation & Sprites
-- [AnimationController](/docs/classes/animation-controller) - Manage sprite sheet animations
-- [Orchestrator](/docs/classes/orchestrator) - Timeline animator for transform effects
-- [SheetStrip](/docs/classes/sheet-strip) - Handle sprite sheet strips
-- [Sprite](/docs/classes/sprite) - Abstract base class for drawable game objects
-
-## Audio
-- [Audio](/docs/classes/audio) - Play sound effects and music
-- [AudioStream](/docs/classes/audio-stream) - Stream audio files
-
-## Graphics & Rendering
-- [Camera](/docs/classes/camera) - Control viewport and camera transforms
-- [Color](/docs/classes/color) - Manage RGBA colors
-- [Font](/docs/classes/font) - Load and use fonts for text rendering
-- [Mask](/docs/classes/mask) - Create pixel-perfect collision masks
-- [PixelArray](/docs/classes/pixel-array) - Manipulate pixel data
-- [Text](/docs/classes/text) - Render text
-- [Texture](/docs/classes/texture) - Load and manage textures
-
-## Shapes
-- [Circle](/docs/classes/circle) - Circle geometry
-- [Line](/docs/classes/line) - Line segments
-- [Polygon](/docs/classes/polygon) - Polygonal shapes
-- [Rect](/docs/classes/rect) - Rectangles
-
-## Shaders
-- [ShaderState](/docs/classes/shader-state) - Manage shader programs
-- [ShaderUniform](/docs/classes/shader-uniform) - Pass data to shaders
-
-## Tile Maps
-- [Tile](/docs/classes/tile) - Individual tiles
-- [TileLayer](/docs/classes/tile-layer) - Tile map layers
-- [TileMap](/docs/classes/tile-map) - Complete tile maps
-
-## Input
-- [InputAction](/docs/classes/input-action) - Map inputs to actions
-
-## Math & Utilities
-- [EasingAnimation](/docs/classes/easing-animation) - Animated easing transitions
-- [PolarCoordinate](/docs/classes/polar-coordinate) - Polar coordinate system
-- [Timer](/docs/classes/timer) - Game timers
-- [Transform](/docs/classes/transform) - 2D transformation with position, size, rotation, and scale
-- [Vec2](/docs/classes/vec2) - 2D vectors
-
----
-
-For standalone functions, see the [Functions](/docs/functions) reference.
+## All Classes
+- [AnimationController](/docs/classes/animation-controller) - Manages and controls sprite animations with multiple animation sequences.
+- [Audio](/docs/classes/audio) - A decoded audio object that supports multiple simultaneous playbacks.
+- [AudioStream](/docs/classes/audio-stream) - A streaming audio object for single-instance playback of large audio files.
+- [Camera](/docs/classes/camera) - Represents a 2D camera used for rendering.
+- [Circle](/docs/classes/circle) - Represents a circle shape with position and radius.
+- [Color](/docs/classes/color) - Represents an RGBA color.
+- [EasingAnimation](/docs/classes/easing-animation) - A class for animating values over time using easing functions.
+- [Effect](/docs/classes/effect) - Base class for timeline effects. Not directly instantiable.
+- [Event](/docs/classes/event) - Represents a single input event such as keyboard, mouse, or gamepad activity.
+- [Font](/docs/classes/font) - A font typeface for rendering text.
+- [ImageLayer](/docs/classes/image-layer) - ImageLayer displays a single image as a layer.
+- [InputAction](/docs/classes/input-action) - Represents a single input trigger such as a key, mouse button, or gamepad control.
+- [Layer](/docs/classes/layer) - Layer is the base class for all tilemap layers.
+- [Line](/docs/classes/line) - A 2D line segment defined by two points: A and B.
+- [Map](/docs/classes/map) - Map represents a loaded TMX map and provides access to its layers and tilesets.
+- [MapObject](/docs/classes/map-object) - MapObject represents a placed object on an object layer.
+- [Mask](/docs/classes/mask) - A collision mask for pixel-perfect collision detection.
+- [ObjectGroup](/docs/classes/object-group) - ObjectGroup is a layer containing placed MapObjects.
+- [Orchestrator](/docs/classes/orchestrator) - Timeline animator for Transform objects.
+- [PixelArray](/docs/classes/pixel-array) - Represents a 2D pixel buffer for image manipulation and blitting operations.
+- [PolarCoordinate](/docs/classes/polar-coordinate) - PolarCoordinate models a polar coordinate pair.
+- [Polygon](/docs/classes/polygon) - Represents a polygon shape defined by a sequence of points.
+- [Rect](/docs/classes/rect) - Represents a rectangle with position and size.
+- [ShaderState](/docs/classes/shader-state) - Encapsulates a GPU shader and its associated render state.
+- [ShaderUniform](/docs/classes/shader-uniform) - Base model for shader uniform data structures.
+- [SheetStrip](/docs/classes/sheet-strip) - A descriptor for one horizontal strip (row) in a sprite sheet.
+- [Sprite](/docs/classes/sprite) - Abstract base class for drawable game objects with a texture and transform.
+- [Text](/docs/classes/text) - A text object for rendering text to the active renderer.
+- [TextProperties](/docs/classes/text-properties) - TextProperties holds styling for text objects on the map.
+- [Texture](/docs/classes/texture) - Represents a hardware-accelerated image that can be efficiently rendered.
+- [TileLayer](/docs/classes/tile-layer) - TileLayer represents a grid of tiles within the map.
+- [TileSet](/docs/classes/tile-set) - TileSet represents a collection of tiles and associated metadata.
+- [Timer](/docs/classes/timer) - A timer for tracking countdown durations with pause/resume functionality.
+- [Transform](/docs/classes/transform) - Transform represents a 2D transformation with position, size, rotation, and scale.
+- [Vec2](/docs/classes/vec2) - Vec2 represents a 2D vector.

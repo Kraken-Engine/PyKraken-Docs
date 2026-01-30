@@ -1,15 +1,15 @@
 ---
 title: Circle
-description: A representation of a circle shape with basic geometric operations and collision detection.
+description: Represents a circle shape with position and radius. Access via the '' submodule.
 ---
 
 ## Constructor
 <div className="api-card">
-<ApiSig name="Circle" params={[{ name: "pos", type: "Vec2" }, { name: "radius", type: "float" }]} />
 
-_**Parameters**_
-- `pos` : Center position of the circle.
-- `radius` : Radius of the circle.
+- <ApiSig name="Circle" params={[{ name: "pos", type: "Vec2" }, { name: "radius", type: "SupportsFloat" }]} returns="Circle" />
+- <ApiSig name="Circle" multiline params={[{ name: "x", type: "SupportsFloat" }, { name: "y", type: "SupportsFloat" }, { name: "radius", type: "SupportsFloat" }]} returns="Circle" />
+
+Represents a circle shape with position and radius.
 </div>
 
 ## Properties
@@ -17,36 +17,26 @@ _**Parameters**_
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `pos` | The circle's position | `Vec2` |
-| `radius` | The circle's radius | `float` |
-| `area` | The area of the circle | `float` |
-| `circumference` | The circumference of the circle | `float` |
+| `area` | Return the area of the circle. | <code>float</code> |
+| `circumference` | Return the circumference of the circle. | <code>float</code> |
+| `pos` | The center position of the circle as a Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `radius` | The radius of the circle. | <code>float</code> |
 
 ## Methods
 ---
 
 ### As Rect
 <div className="api-card">
-
 <ApiSig name="as_rect" returns="Rect" />
 
-Get the bounding rectangle of the circle.
-
-_**Returns**_
-
-`Rect` : The bounding rectangle of the circle.
+Return the smallest rectangle that fully contains the circle.
 
 </div>
 
 ### Copy
 <div className="api-card">
-
 <ApiSig name="copy" returns="Circle" />
 
-Create a copy of the circle.
-
-_**Returns**_
-
-`Circle` : A new circle with the same properties.
+Return a copy of the circle.
 
 </div>

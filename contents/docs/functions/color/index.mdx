@@ -1,105 +1,114 @@
 ---
 title: Color
-description: Functions for creating and manipulating colors.
+description: Color utility functions and predefined color constants.
 ---
 
 ---
 
 ## From Hex
 <div className="api-card">
-
 <ApiSig name="from_hex" params={[{ name: "hex", type: "str" }]} returns="Color" />
 
-Create a Color from a hex string (e.g. "#FF00FF" or "#FF00FF80").
+Create a Color from a hex string.
 
-_**Parameters**_
+Supports multiple hex formats:
+- "#RRGGBB" - 6-digit hex with full opacity
+- "#RRGGBBAA" - 8-digit hex with alpha
+- "#RGB" - 3-digit hex (each digit duplicated)
+- "#RGBA" - 4-digit hex with alpha (each digit duplicated)
 
-- `hex` : The color hex code to turn into an RGBA Color object.
+_**Args**_
+
+- `hex` : Hex color string (with or without '#' prefix).
 
 _**Returns**_
 
-`Color` : A color object containing RGBA values represented by the provided hex string.
+`Color` : New Color object from the hex string.
+
+`Examples` :
+    from_hex("#FF00FF")      # Magenta, full opacity
+    from_hex("#FF00FF80")    # Magenta, 50% opacity
+    from_hex("#F0F")         # Same as "#FF00FF"
+    from_hex("RGB")          # Without '#' prefix
 
 </div>
 
-## From HSV
+## From Hsv
 <div className="api-card">
-
-<ApiSig name="from_hsv" params={[
-  { name: "h", type: "float" },
-  { name: "s", type: "float" },
-  { name: "v", type: "float" },
-  { name: "a", type: "float", default: 1.0 }
-]} returns="Color" />
+<ApiSig name="from_hsv" multiline params={[{ name: "h", type: "SupportsFloat" }, { name: "s", type: "SupportsFloat" }, { name: "v", type: "SupportsFloat" }, { name: "a", type: "SupportsFloat", default: "1.0" }]} returns="Color" />
 
 Create a Color from HSV(A) values.
 
-_**Parameters**_
+_**Args**_
 
-- `h` : Hue angle [0-360].
-- `s` : Saturation [0-1].
-- `v` : Value/brightness [0-1].
-- `a` : Alpha [0-1]. Defaults to 1.0.
-
-_**Returns**_
-
-`Color` : A color object containing RGBA values represented by the provided HSV(A) values.
-
-</div>
-
-## Lerp
-<div className="api-card">
-
-<ApiSig name="lerp" params={[
-  { name: "a", type: "Color" },
-  { name: "b", type: "Color" },
-  { name: "t", type: "float" }
-]} returns="Color" />
-
-Linearly interpolate between two colors.
-
-_**Parameters**_
-
-- `a` : Start color.
-- `b` : End color.
-- `t` : Blend factor (0.0 = a, 1.0 = b).
-
-_**Returns**_
-
-`Color` : The color at the current position in interpolation.
-
-</div>
-
-## Invert
-<div className="api-card">
-
-<ApiSig name="invert" params={[{ name: "color", type: "Color" }]} returns="Color" />
-
-Return the inverse of a color (flips RGB channels).
-
-_**Parameters**_
-
-- `color` : The color to invert.
-
-_**Returns**_
-
-`Color` : The color with its RGB values inverted.
+- `h` : Hue angle (0-360).
+- `s` : Saturation (0-1).
+- `v` : Value/brightness (0-1).
+- `a` : Alpha (0-1). Defaults to 1.0.
 
 </div>
 
 ## Grayscale
 <div className="api-card">
-
 <ApiSig name="grayscale" params={[{ name: "color", type: "Color" }]} returns="Color" />
 
 Convert a color to grayscale.
 
-_**Parameters**_
+_**Args**_
 
 - `color` : The color to convert.
 
 _**Returns**_
 
-`Color` : The grayscale version of the color.
+`Color` : New Color object representing the grayscale version.
+
+`Example` :
+    grayscale(Color(255, 0, 0))  # Returns Color(76, 76, 76, 255)
+
+</div>
+
+## Invert
+<div className="api-card">
+<ApiSig name="invert" params={[{ name: "color", type: "Color" }]} returns="Color" />
+
+Return the inverse of a color by flipping RGB channels.
+
+The alpha channel is preserved unchanged.
+
+_**Args**_
+
+- `color` : The color to invert.
+
+_**Returns**_
+
+`Color` : New Color with inverted RGB values (255 - original value).
+
+`Example` :
+    invert(Color(255, 0, 128, 200))  # Returns Color(0, 255, 127, 200)
+
+</div>
+
+## Lerp
+<div className="api-card">
+<ApiSig name="lerp" params={[{ name: "a", type: "Color" }, { name: "b", type: "Color" }, { name: "t", type: "SupportsFloat" }]} returns="Color" />
+
+Linearly interpolate between two colors.
+
+Performs component-wise linear interpolation between start and end colors.
+All RGBA channels are interpolated independently.
+
+_**Args**_
+
+- `a` : Start color (when t=0.0).
+- `b` : End color (when t=1.0).
+- `t` : Blend factor. Values outside [0,1] will extrapolate.
+
+_**Returns**_
+
+`Color` : New interpolated color.
+
+`Examples` :
+    lerp(Color.RED, Color.BLUE, 0.5)    # Purple (halfway between red and blue)
+    lerp(Color.BLACK, Color.WHITE, 0.25) # Dark gray
 
 </div>

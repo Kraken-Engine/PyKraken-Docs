@@ -1,16 +1,15 @@
 ---
 title: PixelArray
-description: An array of pixel color data.
+description: Represents a 2D pixel buffer for image manipulation and blitting operations. Access via the '' submodule.
 ---
 
 ## Constructor
 <div className="api-card">
-- <ApiSig name="PixelArray" params={[{ name: "size", type: "Vec2" }]} />
-- <ApiSig name="PixelArray" params={[{ name: "file_path", type: "str" }]} />
 
-_**Parameters**_
-- `size` : The size of the pixel array as (width, height).
-- `file_path` : Path to the image file to load.
+- <ApiSig name="PixelArray" params={[{ name: "size", type: "Vec2" }]} returns="PixelArray" />
+- <ApiSig name="PixelArray" params={[{ name: "file_path", type: "str" }]} returns="PixelArray" />
+
+Represents a 2D pixel buffer for image manipulation and blitting operations.
 </div>
 
 ## Properties
@@ -18,125 +17,140 @@ _**Parameters**_
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `color_key` | The color key used for transparency in the pixel array | `Color` |
-| `alpha_mod` | The alpha modulation value for the pixel array (0-255) | `int` |
-| `width` | The width of the pixel array in pixels | `int` |
-| `height` | The height of the pixel array in pixels | `int` |
-| `size` | The size of the pixel array | `Vec2` |
+| `alpha_mod` | The alpha modulation value for the pixel array. | <code>int</code> |
+| `color_key` | The color key for transparency. | <code><a href="/docs/classes/color">Color</a></code> |
+| `height` | The height of the pixel array. | <code>int</code> |
+| `size` | The size of the pixel array as a Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `width` | The width of the pixel array. | <code>int</code> |
 
 ## Methods
 ---
 
-### Fill
-<div className="api-card">
-
-<ApiSig name="fill" params={[{ name: "color", type: "Color" }]} returns="None" />
-
-Fill the pixel array with a color.
-
-_**Parameters**_
-
-- `color`: The color to fill the pixel array with.
-
-</div>
-
 ### Blit
 <div className="api-card">
+<ApiSig name="blit" multiline params={[{ name: "pixel_array", type: "PixelArray" }, { name: "pos", type: "Vec2" }, { name: "anchor", type: "Any", default: "None" }, { name: "src", type: "Any", default: "None" }]} returns="None" />
 
-<ApiSig name="blit" multiline params={[{ name: "pixel_array", type: "PixelArray" }, { name: "pos", type: "Vec2" }, { name: "anchor", type: "Anchor", default: "Anchor.CENTER" }, { name: "src", type: "Rect", default: "None" }]} returns="None" />
+Blit (copy) another pixel array onto this pixel array at the specified position with anchor alignment.
 
-Blit another pixel array onto this one via position and anchor.
+_**Args**_
 
-_**Parameters**_
+- `pixel_array` : The source pixel array to blit from.
+- `pos` : The position to blit to.
+- `anchor` : The anchor point for positioning. Defaults to (0,0) TopLeft.
+- `src` : The source rectangle to blit from. Defaults to entire source pixel array.
 
-- `pixel_array`: The pixel array to blit onto this one.
-- `pos`: The position to blit the pixel array at.
-- `anchor`: The anchor point for the blit operation.
-- `src`: The source rectangle to blit from.
+_**Raises**_
+
+- `RuntimeError` : If the blit operation fails.
 
 ---
 
-<ApiSig name="blit" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "dst", type: "Rect" }, { name: "src", type: "Rect", default: "None" }]} returns="None" />
+<ApiSig name="blit" multiline params={[{ name: "pixel_array", type: "PixelArray" }, { name: "dst", type: "Rect" }, { name: "src", type: "Any", default: "None" }]} returns="None" />
 
-Blit another pixel array onto this one via destination and source rectangles.
+Blit (copy) another pixel array onto this pixel array with specified destination and source rectangles.
 
-_**Parameters**_
+_**Args**_
 
-- `pixel_array`: The pixel array to blit onto this one.
-- `dst`: The destination rectangle to blit to.
-- `src`: The source rectangle to blit from.
+- `pixel_array` : The source pixel array to blit from.
+- `dst` : The destination rectangle on this pixel array.
+- `src` : The source rectangle to blit from. Defaults to entire source pixel array.
 
-</div>
+_**Raises**_
 
-
-### Scroll
-<div className="api-card">
-
-<ApiSig name="scroll" params={[{ name: "dx", type: "int" }, { name: "dy", type: "int" }, { name: "scroll_mode", type: "ScrollMode" }]} returns="None" />
-
-Scroll the pixel array by the specified amounts in the x and y directions.
-
-_**Parameters**_
-
-- `dx`: The amount to scroll in the x direction.
-- `dy`: The amount to scroll in the y direction.
-- `scroll_mode`: The scroll mode to use.
-
-</div>
-
-### Get Rect
-<div className="api-card">
-
-<ApiSig name="get_rect" returns="Rect" />
-
-Get the rectangle representing the pixel array's dimensions.
-
-_**Returns**_
-
-`Rect` : The pixel array's rectangle.
-
-</div>
-
-### Get At
-<div className="api-card">
-
-<ApiSig name="get_at" params={[{ name: "pos", type: "Vec2" }]} returns="Color" />
-
-Get the color of the pixel at the specified position.
-
-_**Parameters**_
-
-- `pos` : The position of the pixel to get the color of.
-
-_**Returns**_
-
-`Color` : The color of the pixel at the specified position.
-
-</div>
-
-### Set At
-<div className="api-card">
-
-<ApiSig name="set_at" params={[{ name: "pos", type: "Vec2" }, { name: "color", type: "Color" }]} returns="None" />
-
-Set the color of the pixel at the specified position.
-
-_**Parameters**_
-
-- `pos` : The position of the pixel to set the color of.
-- `color` : The color to set the pixel to.
+- `RuntimeError` : If the blit operation fails.
 
 </div>
 
 ### Copy
 <div className="api-card">
-
 <ApiSig name="copy" returns="PixelArray" />
 
-Create a copy of the pixel array.
+Create a copy of this pixel array.
 
 _**Returns**_
 
-`PixelArray` : A new pixel array object that is a copy of the original.
+`PixelArray` : A new PixelArray that is an exact copy of this one.
+
+_**Raises**_
+
+- `RuntimeError` : If pixel array copying fails.
+
+</div>
+
+### Fill
+<div className="api-card">
+<ApiSig name="fill" params={[{ name: "color", type: "Color" }]} returns="None" />
+
+Fill the entire pixel array with a solid color.
+
+_**Args**_
+
+- `color` : The color to fill the pixel array with.
+
+</div>
+
+### Get At
+<div className="api-card">
+<ApiSig name="get_at" params={[{ name: "coord", type: "Vec2" }]} returns="Color" />
+
+Get the color of a pixel at the specified coordinates.
+
+_**Args**_
+
+- `coord` : The coordinates of the pixel as (x, y).
+
+_**Returns**_
+
+`Color` : The color of the pixel at the specified coordinates.
+
+_**Raises**_
+
+- `IndexError` : If coordinates are outside the pixel array bounds.
+
+</div>
+
+### Get Rect
+<div className="api-card">
+<ApiSig name="get_rect" returns="Rect" />
+
+Get a rectangle representing the pixel array bounds.
+
+_**Returns**_
+
+`Rect` : A rectangle with position (0, 0) and the pixel array's dimensions.
+
+</div>
+
+### Scroll
+<div className="api-card">
+<ApiSig name="scroll" multiline params={[{ name: "dx", type: "SupportsInt" }, { name: "dy", type: "SupportsInt" }, { name: "scroll_mode", type: "ScrollMode" }]} returns="None" />
+
+Scroll the pixel array's contents by the specified offset.
+
+_**Args**_
+
+- `dx` : Horizontal scroll offset in pixels.
+- `dy` : Vertical scroll offset in pixels.
+- `scroll_mode` : Behavior for pixels scrolled off the edge.
+- `- REPEAT` : Wrap pixels around to the opposite edge.
+- `- ERASE` : Fill scrolled areas with transparent pixels.
+- `- SMEAR` : Extend edge pixels into scrolled areas.
+
+</div>
+
+### Set At
+<div className="api-card">
+<ApiSig name="set_at" params={[{ name: "coord", type: "Vec2" }, { name: "color", type: "Color" }]} returns="None" />
+
+Set the color of a pixel at the specified coordinates.
+
+_**Args**_
+
+- `coord` : The coordinates of the pixel as (x, y).
+- `color` : The color to set the pixel to.
+
+_**Raises**_
+
+- `IndexError` : If coordinates are outside the pixel array bounds.
 
 </div>

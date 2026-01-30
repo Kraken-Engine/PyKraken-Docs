@@ -1,116 +1,69 @@
 ---
 title: Time
-description: Functions for managing time and frame rate.
+description: Time related functions
 ---
 
 ---
+
+## Delay
+<div className="api-card">
+<ApiSig name="delay" params={[{ name: "milliseconds", type: "SupportsInt" }]} returns="None" />
+
+Delay the program execution for the specified duration.
+
+This function pauses execution for the given number of milliseconds.
+Useful for simple timing control, though using time.set_cap() is generally
+preferred for precise frame rate control with nanosecond accuracy.
+
+_**Args**_
+
+- `milliseconds` : The number of milliseconds to delay.
+
+</div>
 
 ## Get Delta
 <div className="api-card">
-
 <ApiSig name="get_delta" returns="float" />
 
-Get the time elapsed since the last frame.
+Get the time elapsed since the last frame in seconds.
+
+For stability, the returned delta is clamped so it will not be
+smaller than 1/12 seconds (equivalent to capping at 12 FPS). This prevents
+unstable calculations that rely on delta when very small frame times are
+measured.
 
 _**Returns**_
 
-`float` : The delta time in seconds.
-
-<Note>
-    For stability, the returned delta is clamped so it will not be
-    smaller than 1/12 seconds (equivalent to capping at 12 FPS). This prevents
-    unstable calculations that rely on delta when very small frame times are
-    measured. This will not, however, clamp the value returned by `get_fps()`.
-</Note>
-
-</div>
-
-## Get FPS
-<div className="api-card">
-
-<ApiSig name="get_fps" returns="float" />
-
-Get the current frames per second (FPS) measurement.
-
-_**Returns**_
-
-`float` : The current FPS value.
-
-</div>
-
-## Set Target
-<div className="api-card">
-
-<ApiSig name="set_target" params={[{ name: "frame_rate", type: "int" }]} returns="None" />
-
-Set the target frame rate for the application.
-
-_**Parameters**_
-
-- `frame_rate` : The desired frame rate in frames per second (FPS). Values &le; 0 disable frame rate limiting.
+`float` : The time elapsed since the last frame, in seconds.
 
 </div>
 
 ## Get Elapsed
 <div className="api-card">
-
 <ApiSig name="get_elapsed" returns="float" />
 
-Get the total elapsed time since the application started.
+Get the elapsed time since the program started.
 
 _**Returns**_
 
-`float` : The elapsed time in seconds.
+`float` : The total elapsed time since program start, in seconds.
 
 </div>
 
-## Delay
+## Get Fps
 <div className="api-card">
+<ApiSig name="get_fps" returns="float" />
 
-<ApiSig name="delay" params={[{ name: "ms", type: "float" }]} returns="None" />
+Get the current frames per second of the program.
 
-Pause the application for a specified duration.
+_**Returns**_
 
-_**Parameters**_
-
-- `ms` : The amount of time to delay in milliseconds.
-
-<Note>
-    This function pauses execution for the given number of milliseconds — useful for simple timing control.
-    Though, `set_target()` is generally preferred for precise frame rate control with nanosecond accuracy.
-</Note>
-
-</div>
-
-## Set Max Delta
-<div className="api-card">
-
-<ApiSig name="set_max_delta" params={[{ name: "max_delta", type: "float" }]} returns="None" />
-
-Set the maximum allowed delta time between frames.
-
-_**Parameters**_
-
-- `max_delta` : Maximum delta time in seconds (> 0.0). Use this to avoid large deltas during frame drops or pauses that could destabilize physics or animations.
-
-</div>
-
-## Set Scale
-<div className="api-card">
-
-<ApiSig name="set_scale" params={[{ name: "scale", type: "float" }]} returns="None" />
-
-Set the global time scale factor.
-
-_**Parameters**_
-
-- `scale` : The time scale factor. Values &lt; 0.0 are clamped to 0.0. A scale of 1.0 represents normal time, 0.5 is half speed, and 2.0 is double speed.
+`float` : The current FPS based on the last frame time.
 
 </div>
 
 ## Get Scale
 <div className="api-card">
-
 <ApiSig name="get_scale" returns="float" />
 
 Get the current global time scale factor.
@@ -118,5 +71,45 @@ Get the current global time scale factor.
 _**Returns**_
 
 `float` : The current time scale factor.
+
+</div>
+
+## Set Max Delta
+<div className="api-card">
+<ApiSig name="set_max_delta" params={[{ name: "max_delta", type: "SupportsFloat" }]} returns="None" />
+
+Set the maximum allowed delta time between frames.
+
+_**Args**_
+
+- `max_delta` : Maximum delta time in seconds (&gt; 0.0).
+                       Use this to avoid large deltas during frame drops or pauses
+                       that could destabilize physics or animations.
+
+</div>
+
+## Set Scale
+<div className="api-card">
+<ApiSig name="set_scale" params={[{ name: "scale", type: "SupportsFloat" }]} returns="None" />
+
+Set the global time scale factor.
+
+_**Args**_
+
+- `scale` : The time scale factor. Values &lt; 0.0 are clamped to 0.0.
+                   A scale of 1.0 represents normal time, 0.5 is half speed,
+                   and 2.0 is double speed.
+
+</div>
+
+## Set Target
+<div className="api-card">
+<ApiSig name="set_target" params={[{ name: "frame_rate", type: "SupportsInt" }]} returns="None" />
+
+Set the target framerate for the application.
+
+_**Args**_
+
+- `frame_rate` : Target framerate to enforce. Values &lt;= 0 disable frame rate limiting.
 
 </div>

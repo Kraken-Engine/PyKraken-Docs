@@ -1,109 +1,125 @@
 ---
 title: Rect
-description: Functions for rectangle operations.
+description: Rectangle related functions
 ---
 
 ---
-
-## Move
-<div className="api-card">
-
-<ApiSig name="move" params={[{ name: "rect", type: "Rect" }, { name: "offset", type: "Vec2" }]} returns="Rect" />
-
-Move a rectangle by a specified offset.
-
-_**Parameters**_
-
-- `rect` : The rectangle to move.
-- `offset` : The offset by which to move the rectangle.
-
-_**Returns**_
-
-`Rect` : The moved rectangle.
-
-</div>
 
 ## Clamp
 <div className="api-card">
-
 <ApiSig name="clamp" params={[{ name: "rect", type: "Rect" }, { name: "min", type: "Vec2" }, { name: "max", type: "Vec2" }]} returns="Rect" />
 
-Clamp a rectangle to a specified range.
+Clamp a rectangle to be within the specified bounds.
 
-_**Parameters**_
+_**Args**_
 
 - `rect` : The rectangle to clamp.
-- `min` : The minimum allowed values for each component.
-- `max` : The maximum allowed values for each component.
+- `min` : The minimum bounds as (min_x, min_y).
+- `max` : The maximum bounds as (max_x, max_y).
 
 _**Returns**_
 
-`Rect` : The clamped rectangle.
+`Rect` : A new rectangle clamped within the bounds.
+
+_**Raises**_
+
+- `ValueError` : If min &gt;= max or rectangle is larger than the clamp area.
 
 ---
 
 <ApiSig name="clamp" params={[{ name: "rect", type: "Rect" }, { name: "other", type: "Rect" }]} returns="Rect" />
 
-Clamp a rectangle to another rectangle.
+Clamp a rectangle to be within another rectangle.
 
-_**Parameters**_
+_**Args**_
 
 - `rect` : The rectangle to clamp.
-- `other` : The rectangle to clamp to.
+- `other` : The rectangle to clamp within.
 
 _**Returns**_
 
-`Rect` : The clamped rectangle.
+`Rect` : A new rectangle clamped within the other rectangle.
+
+_**Raises**_
+
+- `ValueError` : If rect is larger than the clamp area.
+
+</div>
+
+## Move
+<div className="api-card">
+<ApiSig name="move" params={[{ name: "rect", type: "Rect" }, { name: "offset", type: "Vec2" }]} returns="Rect" />
+
+Move a rectangle by the given offset.
+
+_**Args**_
+
+- `rect` : The rectangle to move.
+- `offset` : The offset to move by as (dx, dy).
+
+_**Returns**_
+
+`Rect` : A new rectangle moved by the offset.
 
 </div>
 
 ## Scale By
 <div className="api-card">
+<ApiSig name="scale_by" params={[{ name: "rect", type: "Rect" }, { name: "factor", type: "SupportsFloat" }]} returns="Rect" />
 
-<ApiSig name="scale_by" params={[{ name: "rect", type: "Rect" }, { name: "factor", type: "float" }]} returns="Rect" />
+Scale a rectangle by a uniform factor.
 
-Scale a rectangle by a specified factor.
-
-_**Parameters**_
+_**Args**_
 
 - `rect` : The rectangle to scale.
-- `factor` : The scaling factor (uniform scaling).
+- `factor` : The scaling factor (must be &gt; 0).
 
 _**Returns**_
 
-`Rect` : The scaled rectangle.
+`Rect` : A new rectangle scaled by the factor.
+
+_**Raises**_
+
+- `ValueError` : If factor is &lt;= 0.
 
 ---
 
 <ApiSig name="scale_by" params={[{ name: "rect", type: "Rect" }, { name: "factor", type: "Vec2" }]} returns="Rect" />
 
-Scale a rectangle by a specified factor for each component.
+Scale a rectangle by different factors for width and height.
 
-_**Parameters**_
+_**Args**_
 
 - `rect` : The rectangle to scale.
-- `factor` : The scaling factor for each component.
+- `factor` : The scaling factors as (scale_x, scale_y).
 
 _**Returns**_
 
-`Rect` : The scaled rectangle.
+`Rect` : A new rectangle scaled by the factors.
+
+_**Raises**_
+
+- `ValueError` : If any factor is &lt;= 0.
 
 </div>
 
 ## Scale To
 <div className="api-card">
-
 <ApiSig name="scale_to" params={[{ name: "rect", type: "Rect" }, { name: "size", type: "Vec2" }]} returns="Rect" />
 
-Scale a rectangle to a specified size.
+Scale a rectangle to the specified size.
 
-_**Parameters**_
+_**Args**_
 
 - `rect` : The rectangle to scale.
-- `size` : The desired size of the rectangle.
+- `size` : The new size as (width, height).
 
 _**Returns**_
 
-`Rect` : The scaled rectangle.
+`Rect` : A new rectangle scaled to the specified size.
+
+_**Raises**_
+
+- `ValueError` : If width or height is &lt;= 0.
 
 </div>

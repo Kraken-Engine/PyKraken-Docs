@@ -13,13 +13,14 @@ You can create them with x and y components, or as a zero vector.
 ```python
 position = kn.Vec2(100, 200)
 velocity = kn.Vec2(-3)  # (-3, -3)
-zero = kn.Vec2()  # (0, 0)
+zero = kn.Vec2.ZERO  # (0, 0)
 ```
 
 Access components with `.x` and `.y`:
 
 ```python
-print(f"X: {position.x}, Y: {position.y}")
+>>> print(f"X: {position.x}, Y: {position.y}")
+X: 100, Y: 200
 ```
 
 ## Basic Movement
@@ -34,21 +35,23 @@ import pykraken as kn
 
 kn.init()
 kn.window.create("Movement Demo", (800, 600))
+bg_color = kn.Color("#222")
 
-position = kn.Vec2(400, 300)
-direction = kn.Vec2(1, 0)  # Moving right
+circle = kn.Circle(kn.Vec2(400, 300), 20)
+direction = kn.Vec2.RIGHT  # (1, 0)
 speed = 200  # pixels per second
 
 while kn.window.is_open():
     kn.event.poll()
+
     dt = kn.time.get_delta()
 
     # velocity = speed * direction
     # Optimization tip: Multiply the scalars first
-    position += dt * speed * direction
+    circle.pos += dt * speed * direction
 
-    kn.renderer.clear("#222")
-    kn.draw.circle(kn.Circle(position, 20), kn.color.WHITE)
+    kn.renderer.clear(bg_color)
+    kn.draw.circle(circle, kn.Color.WHITE)
     kn.renderer.present()
 
 kn.quit()
@@ -87,8 +90,8 @@ The **dot product** tells you how aligned two vectors are:
 - **Negative**: Opposite directions
 
 ```python
-forward = kn.Vec2(1, 0)
-to_target = kn.math.normalize(target_pos - my_pos)
+forward = kn.Vec2.RIGHT  # (1, 0)
+to_target = (target_pos - my_pos).normalized()
 
 alignment = kn.math.dot(forward, to_target)
 

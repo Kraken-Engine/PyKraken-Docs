@@ -1,15 +1,14 @@
 ---
 title: EasingAnimation
-description: An animation for easing transitions between two points.
+description: A class for animating values over time using easing functions. Access via the '' submodule.
 ---
 
 ## Constructor
 <div className="api-card">
-<ApiSig name="EasingAnimation" multiline params={[{ name: "ease_func", type: "Callable[[float], float]" }, { name: "duration", type: "float" }]} />
 
-_**Parameters**_
-- `ease_func` : Easing function that maps [0, 1] → [0, 1].
-- `duration` : Time in seconds for full animation.
+- <ApiSig name="EasingAnimation" multiline params={[{ name: "ease_func", type: "Callable[[SupportsFloat], float]" }, { name: "duration", type: "SupportsFloat" }]} returns="EasingAnimation" />
+
+A class for animating values over time using easing functions.
 </div>
 
 ## Properties
@@ -17,58 +16,53 @@ _**Parameters**_
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `is_done` | Indicates if the animation is complete | `bool` |
-| `start_pos` | The starting position of the animation | `Vec2` |
-| `end_pos` | The ending position of the animation | `Vec2` |
+| `end_pos` | The ending position of the animation. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `is_done` | Check whether the animation has finished. | <code>bool</code> |
+| `start_pos` | The starting position of the animation. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 
 ## Methods
 ---
 
-### Step
-<div className="api-card">
-
-<ApiSig name="step" returns="Vec2" />
-
-Advance the animation by one step.
-
-_**Returns**_
-
-`Vec2` : The current position of the animation.
-
-</div>
-
 ### Pause
 <div className="api-card">
-
 <ApiSig name="pause" returns="None" />
 
-Pause the animation.
-
-</div>
-
-### Resume
-<div className="api-card">
-
-<ApiSig name="resume" returns="None" />
-
-Resume the animation.
+Pause the animation's progression.
 
 </div>
 
 ### Restart
 <div className="api-card">
-
 <ApiSig name="restart" returns="None" />
 
-Restart the animation.
+Restart the animation from the beginning.
+
+</div>
+
+### Resume
+<div className="api-card">
+<ApiSig name="resume" returns="None" />
+
+Resume the animation from its current state.
 
 </div>
 
 ### Reverse
 <div className="api-card">
-
 <ApiSig name="reverse" returns="None" />
 
 Reverse the direction of the animation.
+
+</div>
+
+### Step
+<div className="api-card">
+<ApiSig name="step" returns="Vec2" />
+
+Advance the animation and get its current position.
+
+_**Returns**_
+
+`Vec2` : Interpolated position.
 
 </div>

@@ -22,15 +22,15 @@ while kn.window.is_open():
         if event.type == kn.KEY_DOWN:
             print(f"Key pressed: {event.key}, scancode: {event.scan}")
             print(f"Modifiers: {event.mod}, Repeat: {event.repeat}")
-        
+
         elif event.type == kn.MOUSE_BUTTON_DOWN:
             print(f"Mouse button {event.button} clicked at ({event.x}, {event.y})")
             print(f"Click count: {event.clicks}")
-        
+
         elif event.type == kn.MOUSE_WHEEL:
             print(f"Mouse wheel: dx={event.x}, dy={event.y}")
             print(f"Mouse position: ({event.mouse_x}, {event.mouse_y})")
-        
+
         elif event.type == kn.GAMEPAD_BUTTON_DOWN:
             print(f"Gamepad {event.which} button {event.button} pressed")
 ```
@@ -41,9 +41,6 @@ while kn.window.is_open():
 ---
 
 `QUIT`
-
-No additional attributes (triggers window close).
-
 `TERMINATING`
 `LOW_MEMORY`
 `WILL_ENTER_BACKGROUND`
@@ -53,7 +50,7 @@ No additional attributes (triggers window close).
 `LOCALE_CHANGED`
 `SYSTEM_THEME_CHANGED`
 
-No additional attributes.
+No attributes.
 
 ### Display
 ---
@@ -65,6 +62,7 @@ No additional attributes.
 `DISPLAY_DESKTOP_MODE_CHANGED`
 `DISPLAY_CURRENT_MODE_CHANGED`
 `DISPLAY_CONTENT_SCALE_CHANGED`
+`DISPLAY_USABLE_BOUNDS_CHANGED`
 
 - `display_id` (int): The display that was affected
 - `data1` (int): Event-specific data
@@ -138,12 +136,18 @@ No additional attributes.
 - `padding3` (int): Reserved
 
 `KEYMAP_CHANGED`
-No additional attributes.
+
+No attributes.
 
 `KEYBOARD_ADDED`
 `KEYBOARD_REMOVED`
 
 - `which` (int): Keyboard device ID
+
+`SCREEN_KEYBOARD_SHOWN`
+`SCREEN_KEYBOARD_HIDDEN`
+
+No attributes.
 
 ### Mouse
 ---
@@ -242,6 +246,13 @@ No additional attributes.
 - `pressure` (float): Normalized pressure (0.0 to 1.0)
 - `window_id` (int): The window underneath the finger
 
+`PINCH_BEGIN`
+`PINCH_UPDATE`
+`PINCH_END`
+
+- `window_id` (int): The window with pinch gesture
+- `scale` (float): Pinch scale factor
+
 ### Pen/Tablet
 ---
 
@@ -337,4 +348,4 @@ No additional attributes.
 `RENDER_DEVICE_RESET`
 `RENDER_DEVICE_LOST`
 
-No additional attributes.
+No attributes.

@@ -1,12 +1,14 @@
 ---
 title: AnimationController
-description: A sprite animation manager and controller.
+description: Manages and controls sprite animations with multiple animation sequences. Access via the '' submodule.
 ---
 
 ## Constructor
 <div className="api-card">
-<ApiSig name="AnimationController" />
-Load animations with `load_sprite_sheet` before using.
+
+- <ApiSig name="AnimationController" returns="AnimationController" />
+
+Manages and controls sprite animations with multiple animation sequences.
 </div>
 
 ## Properties
@@ -14,102 +16,137 @@ Load animations with `load_sprite_sheet` before using.
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `current_animation_name` | The current animation's name | `str` |
-| `clip` | The source rectangle (clip) for the current animation frame | `Rect` |
-| `playback_speed` | The playback speed multiplier | `float` |
-| `frame_index` | The current frame index of the animation | `int` |
-| `progress` | The progress through the current animation as a value between 0.0 and 1.0 | `float` |
-| `looping` | Whether the animation should loop after playing | `bool` |
+| `current_animation_name` | The name of the currently active animation. | <code>str</code> |
+| `frame_area` | The clip area (atlas region) for the current animation frame. | <code><a href="/docs/classes/rect">Rect</a></code> |
+| `frame_index` | The current frame index in the animation sequence. | <code>int</code> |
+| `looping` | Whether the animation should loop when it reaches the end. | <code>bool</code> |
+| `playback_speed` | The playback speed multiplier for animation timing. | <code>float</code> |
+| `progress` | The normalized progress through the current animation. | <code>float</code> |
 
 ## Methods
 ---
 
-### Load Sprite Sheet
+### Add Sheet
 <div className="api-card">
+<ApiSig name="add_sheet" multiline params={[{ name: "frame_size", type: "Vec2" }, { name: "strips", type: "Sequence[SheetStrip]" }]} returns="None" />
 
-<ApiSig name="load_sprite_sheet" multiline params={[{ name: "frame_size", type: "Vec2" }, { name: "strips", type: "list[SheetStrip]" }]} returns="None" />
+Add animations from a sprite sheet definition.
 
-Load animation frames for a sprite sheet.
-Strips are read horizontally from left to right, top to bottom, as provided in the strips list.
+Divides an atlas into horizontal strips, where each strip represents a different animation.
+Each strip is divided into equal-sized frames based on the specified frame size.
+Frames are read left-to-right within each strip, and strips are read top-to-bottom.
 
-_**Parameters**_
-- `frame_size` : The size of each frame in the sprite sheet.
-- `strips` : A list of sheet strips to load from the sprite sheet.
+_**Args**_
 
-</div>
+- `frame_size` : Size of each frame as (width, height).
+- `strips` : List of strip definitions.
 
-### Set
-<div className="api-card">
+_**Raises**_
 
-<ApiSig name="set" params={[{ name: "name", type: "str" }]} returns="None" />
-
-Set the current animation by name without affecting playback state.
-
-_**Parameters**_
-- `name` : The name of the animation to set as current.
-
-</div>
-
-### Play
-<div className="api-card">
-
-<ApiSig name="play" params={[{ name: "name", type: "str" }]} returns="None" />
-
-Play an animation from the beginning by name.
-
-_**Parameters**_
-- `name` : The name of the animation to play.
-
-</div>
-
-### Play From
-<div className="api-card">
-
-<ApiSig name="play_from" params={[{ name: "frame_index", type: "int" }]} returns="None" />
-
-Play an animation from a specific frame.
-
-_**Parameters**_
-- `frame_index` : The index of the frame to start playing from.
+- `ValueError` : If frame size is not positive, no strips provided, frame count is not positive.
+- `RuntimeError` : If duplicate animation names exist.
 
 </div>
 
 ### Is Finished
 <div className="api-card">
-
 <ApiSig name="is_finished" returns="bool" />
 
-Check if the current animation has finished a loop since the last frame update.
+Check if the animation completed a full loop during the last update.
+
+Returns True if the animation looped back to the beginning during the most recent
+frame update. This method is const and can be called multiple times per frame
+with consistent results.
 
 _**Returns**_
 
-`bool` : `True` if the animation is finished, otherwise `False`.
-
-</div>
-
-### Rewind
-<div className="api-card">
-
-<ApiSig name="rewind" returns="None" />
-
-Rewind the current animation to the first frame.
+`bool` : True if the animation completed a loop during the last update.
 
 </div>
 
 ### Pause
 <div className="api-card">
-
 <ApiSig name="pause" returns="None" />
 
-Pause the current animation.
+Pause the animation playback.
+
+Stops animation frame advancement while preserving the current frame position.
+
+</div>
+
+### Play
+<div className="api-card">
+<ApiSig name="play" params={[{ name: "name", type: "str" }]} returns="None" />
+
+Play an animation from the beginning.
+
+Switches to the specified animation, rewinds it to frame 0, and starts playback.
+
+_**Args**_
+
+- `name` : The name of the animation to play.
+
+_**Raises**_
+
+- `ValueError` : If the specified animation name is not found.
+
+</div>
+
+### Play From
+<div className="api-card">
+<ApiSig name="play_from" params={[{ name: "frame_index", type: "SupportsInt" }]} returns="None" />
+
+Start playing the current animation from a specific frame.
+
+Sets the animation to the specified frame index and resumes playback. Useful for
+starting animations mid-sequence or implementing custom animation logic.
+
+_**Args**_
+
+- `frame_index` : The frame index to start from (0-based).
+
+_**Raises**_
+
+- `IndexError` : If the frame index is out of range for the current animation.
 
 </div>
 
 ### Resume
 <div className="api-card">
-
 <ApiSig name="resume" returns="None" />
 
-Resume the current animation.
+Resume paused animation playback.
+
+Resumes animation frame advancement if the playback speed is greater than 0.
+Does nothing if the animation is already playing or playback speed is 0.
+
+</div>
+
+### Rewind
+<div className="api-card">
+<ApiSig name="rewind" returns="None" />
+
+Reset the animation to the beginning.
+
+Sets the animation back to frame 0 and resets loop detection state.
+
+</div>
+
+### Set
+<div className="api-card">
+<ApiSig name="set" params={[{ name: "name", type: "str" }]} returns="None" />
+
+Set the current active animation by name without affecting playback state.
+
+Switches to the specified animation while preserving the current frame index and
+playback state (paused/playing). Useful for seamless animation transitions.
+
+_**Args**_
+
+- `name` : The name of the animation to activate.
+
+_**Raises**_
+
+- `ValueError` : If the specified animation name is not found.
 
 </div>

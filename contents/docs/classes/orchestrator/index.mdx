@@ -1,14 +1,14 @@
 ---
 title: Orchestrator
-description: A timeline animator for Transform objects.
+description: Timeline animator for Transform objects. Access via the '' submodule.
 ---
 
 ## Constructor
 <div className="api-card">
-<ApiSig name="Orchestrator" params={[{ name: "target", type: "Transform | object" }]} />
 
-_**Parameters**_
-- `target` : Either a Transform object or an object with a `transform` attribute (like Sprite).
+- <ApiSig name="Orchestrator" params={[{ name: "target", type: "Any" }]} returns="Orchestrator" />
+
+Timeline animator for Transform objects.
 </div>
 
 ## Properties
@@ -16,38 +16,32 @@ _**Parameters**_
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `finalized` | Whether the orchestrator has been finalized | `bool` |
-| `finished` | Whether the animation has completed | `bool` |
-| `playing` | Whether the animation is currently playing | `bool` |
-| `looping` | Whether the animation should loop when finished | `bool` |
+| `finalized` | Whether the orchestrator has been finalized. | <code>bool</code> |
+| `finished` | Whether the animation has completed. | <code>bool</code> |
+| `looping` | Whether the animation should loop when finished. | <code>bool</code> |
+| `playing` | Whether the animation is currently playing. | <code>bool</code> |
 
 ## Methods
 ---
 
-### Then
+### Finalize
 <div className="api-card">
+<ApiSig name="finalize" returns="None" />
 
-<ApiSig name="then" params={[{ name: "effect", type: "Effect" }]} returns="Orchestrator" />
+Finalize the orchestrator, preventing further edits.
 
-Add a single effect to the timeline.
-
-_**Parameters**_
-- `effect` : The Effect to add.
-
-_**Returns**_
-
-`Orchestrator` : Self for method chaining.
+Must be called before play(). Logs a warning if called multiple times.
 
 </div>
 
 ### Parallel
 <div className="api-card">
-
-<ApiSig name="parallel" params={[{ name: "*effects", type: "Effect" }]} returns="Orchestrator" />
+<ApiSig name="parallel" params={[{ name: "*args" }]} returns="Orchestrator" />
 
 Add multiple effects to run in parallel.
 
-_**Parameters**_
+_**Args**_
+
 - `*effects` : Variable number of Effect objects to run simultaneously.
 
 _**Returns**_
@@ -56,64 +50,60 @@ _**Returns**_
 
 </div>
 
-### Finalize
-<div className="api-card">
-
-<ApiSig name="finalize" returns="None" />
-
-Finalize the orchestrator, preventing further edits.
-
-<Note>
-    Must be called before `play()`. Logs a warning if called multiple times.
-</Note>
-
-</div>
-
-### Play
-<div className="api-card">
-
-<ApiSig name="play" returns="None" />
-
-Start playing the animation from the beginning.
-
-<Note>
-    Logs a warning if not finalized or if there are no steps.
-</Note>
-
-</div>
-
 ### Pause
 <div className="api-card">
-
 <ApiSig name="pause" returns="None" />
 
 Pause the animation at the current position.
 
 </div>
 
+### Play
+<div className="api-card">
+<ApiSig name="play" returns="None" />
+
+Start playing the animation from the beginning.
+
+Logs a warning if not finalized or if there are no steps.
+
+</div>
+
 ### Resume
 <div className="api-card">
-
 <ApiSig name="resume" returns="None" />
 
 Resume a paused animation.
 
 </div>
 
+### Rewind
+<div className="api-card">
+<ApiSig name="rewind" returns="None" />
+
+Reset the animation to the beginning without stopping.
+
+</div>
+
 ### Stop
 <div className="api-card">
-
 <ApiSig name="stop" returns="None" />
 
 Stop the animation and reset to the beginning.
 
 </div>
 
-### Rewind
+### Then
 <div className="api-card">
+<ApiSig name="then" params={[{ name: "effect", type: "Effect" }]} returns="Orchestrator" />
 
-<ApiSig name="rewind" returns="None" />
+Add a single effect to the timeline.
 
-Reset the animation to the beginning without stopping.
+_**Args**_
+
+- `effect` : The Effect to add.
+
+_**Returns**_
+
+`Orchestrator` : Self for method chaining.
 
 </div>

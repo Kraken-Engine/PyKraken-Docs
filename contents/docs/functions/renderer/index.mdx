@@ -1,128 +1,134 @@
 ---
 title: Renderer
-description: Functions for managing rendering operations and the render target.
+description: Functions for rendering graphics
 ---
 
 ---
 
 ## Clear
 <div className="api-card">
+<ApiSig name="clear" params={[{ name: "color", type: "Any", default: "None" }]} returns="None" />
 
-<ApiSig name="clear" params={[{ name: "color", type: "Color", default: "None" }]} returns="None" />
+Clear the renderer with the specified color.
 
-Clear the current render target with the specified color.
+_**Args**_
 
-_**Parameters**_
+- `color` : The color to clear with. Defaults to black (0, 0, 0, 255).
 
-- `color` : The color to clear with. If omitted, black is used.
+_**Raises**_
+
+- `ValueError` : If color values are not between 0 and 255.
 
 ---
 
-<ApiSig name="clear" params={[{ name: "r", type: "int" }, { name: "g", type: "int" }, { name: "b", type: "int" }, { name: "a", type: "int", default: "255" }]} returns="None" />
+<ApiSig name="clear" multiline params={[{ name: "r", type: "SupportsInt" }, { name: "g", type: "SupportsInt" }, { name: "b", type: "SupportsInt" }, { name: "a", type: "SupportsInt", default: "255" }]} returns="None" />
 
-Clear the current render target with the specified RGBA color components.
+Clear the renderer with the specified color.
 
-_**Parameters**_
+_**Args**_
 
 - `r` : Red component (0-255).
 - `g` : Green component (0-255).
 - `b` : Blue component (0-255).
-- `a` : Alpha component (0-255), defaults to 255 (opaque).
-
-</div>
-
-## Present
-<div className="api-card">
-
-<ApiSig name="present" returns="None" />
-
-Present the current render target to the display, swapping buffers.
+- `a` : Alpha component (0-255). Defaults to 255.
 
 </div>
 
 ## Draw
 <div className="api-card">
+<ApiSig name="draw" multiline params={[{ name: "texture", type: "Texture" }, { name: "transform", type: "Any", default: "None" }, { name: "anchor", type: "Any", default: "None" }, { name: "pivot", type: "Any", default: "None" }]} returns="None" />
 
-<ApiSig name="draw" multiline params={[{name: "texture", type: "Texture"}, {name: 'transform', type: 'Transform', default: 'None'}, {name: 'src', type: 'Rect', default: 'None'}]} returns="None" />
+Render a texture.
 
-Render a texture with the specified transform and source rectangle.
+_**Args**_
 
-If transform has no size, it will then check if `src` has a size and use that.
-If neither have a size, it will use the full texture size.
-
-_**Parameters**_
 - `texture` : The texture to render.
-- `transform` : The transform (position, rotation, scale, anchor, pivot). Defaults to identity transform.
-- `src` : The source rectangle from the texture. Defaults to entire texture if not specified.
-
-</div>
-
-## Get Target Resolution
-<div className="api-card">
-
-<ApiSig name="get_target_resolution" returns="Vec2" />
-
-Get the resolution of the renderer's current render target.
-
-_**Returns**_
-
-`Vec2` : The width and height of the render target in pixels.
-
-</div>
-
-## Set Target
-<div className="api-card">
-
-<ApiSig name="set_target" params={[{ name: "texture", type: "Texture | None"}]} returns="None" />
-
-Set the current render target to the specified texture.
-If `None` is provided, any assigned render target is unset and the default backbuffer is used.
-
-_**Parameters**_
-
-- `texture` : The texture to set as the render target, or `None` to unset.
-
-</div>
-
-## Set Default Scale Mode
-<div className="api-card">
-
-<ApiSig name="set_default_scale_mode" params={[{ name: "scale_mode", type: "TextureScaleMode"}]} returns="None" />
-
-Set the default scale mode for new textures created with `TextureScaleMode.DEFAULT`.
-
-_**Parameters**_
-
-- `scale_mode` : The scale mode to set as default.
+- `transform` : The transform (position, rotation, scale).
+- `anchor` : The anchor point (0.0-1.0). Defaults to top left (0, 0).
+- `pivot` : The rotation pivot (0.0-1.0). Defaults to center (0.5, 0.5).
 
 </div>
 
 ## Get Default Scale Mode
 <div className="api-card">
-
 <ApiSig name="get_default_scale_mode" returns="TextureScaleMode" />
 
-Get the current default scale mode used for new textures created with `TextureScaleMode.DEFAULT`.
+Get the current default TextureScaleMode for new textures.
 
 _**Returns**_
 
-`TextureScaleMode` : The current default scale mode.
+`TextureScaleMode` : The current default scaling/filtering mode.
+
+</div>
+
+## Get Target Resolution
+<div className="api-card">
+<ApiSig name="get_target_resolution" returns="Vec2" />
+
+Get the resolution of the current render target.
+If no target is set, returns the logical presentation resolution.
+
+_**Returns**_
+
+`Vec2` : The width and height of the render target.
+
+</div>
+
+## Present
+<div className="api-card">
+<ApiSig name="present" returns="None" />
+
+Present the rendered content to the screen.
+
+This finalizes the current frame and displays it. Should be called after
+all drawing operations for the frame are complete.
 
 </div>
 
 ## Read Pixels
 <div className="api-card">
+<ApiSig name="read_pixels" params={[{ name: "src", type: "Any", default: "None" }]} returns="PixelArray" />
 
-<ApiSig name="read_pixels" params={[{ name: "src", type: "Rect", default: "None" }]} returns="PixelArray" />
+Read pixel data from the renderer within the specified rectangle.
 
-Read pixel data from the current render target within the specified rectangle.
+_**Args**_
 
-_**Parameters**_
-
-- `src` : The source rectangle to read pixels from. If omitted, the entire render target is read.
+- `src` : The rectangle area to read pixels from. Defaults to entire renderer if None.
 
 _**Returns**_
 
-`PixelArray` : The pixel data read from the render target.
+`PixelArray` : An array containing the pixel data.
+
+_**Raises**_
+
+- `RuntimeError` : If reading pixels fails.
+
+</div>
+
+## Set Default Scale Mode
+<div className="api-card">
+<ApiSig name="set_default_scale_mode" params={[{ name: "scale_mode", type: "TextureScaleMode" }]} returns="None" />
+
+Set the default TextureScaleMode for new textures.
+
+_**Args**_
+
+- `scale_mode` : The default scaling/filtering mode to use for new textures.
+
+</div>
+
+## Set Target
+<div className="api-card">
+<ApiSig name="set_target" params={[{ name: "target", type: "Texture" }]} returns="None" />
+
+Set the current render target to the provided Texture, or unset if None.
+
+_**Args**_
+
+- `target` : Texture created with TextureAccess.TARGET, or None to unset.
+
+_**Raises**_
+
+- `RuntimeError` : If the renderer is not initialized or the texture is not a TARGET texture.
 
 </div>

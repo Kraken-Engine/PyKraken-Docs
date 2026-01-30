@@ -1,22 +1,29 @@
 ---
 title: Log
-description: Functions for logging messages.
+description: Logging utilities
 ---
 
-<Note>
-Logging will only work if the engine was initialized with debugging enabled.
-</Note>
-
 ---
+
+## Error
+<div className="api-card">
+<ApiSig name="error" params={[{ name: "message", type: "str" }]} returns="None" />
+
+Log an error message.
+
+_**Args**_
+
+- `message` : The message to log.
+
+</div>
 
 ## Info
 <div className="api-card">
-
 <ApiSig name="info" params={[{ name: "message", type: "str" }]} returns="None" />
 
 Log an informational message.
 
-_**Parameters**_
+_**Args**_
 
 - `message` : The message to log.
 
@@ -24,25 +31,11 @@ _**Parameters**_
 
 ## Warn
 <div className="api-card">
-
 <ApiSig name="warn" params={[{ name: "message", type: "str" }]} returns="None" />
 
 Log a warning message.
 
-_**Parameters**_
-
-- `message` : The message to log.
-
-</div>
-
-## Error
-<div className="api-card">
-
-<ApiSig name="error" params={[{ name: "message", type: "str" }]} returns="None" />
-
-Log an error message.
-
-_**Parameters**_
+_**Args**_
 
 - `message` : The message to log.
 

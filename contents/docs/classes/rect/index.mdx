@@ -1,23 +1,18 @@
 ---
 title: Rect
-description: An AABB object with a position and size.
+description: Represents a rectangle with position and size. Access via the '' submodule.
 ---
 
 ## Constructor
 <div className="api-card">
-- <ApiSig name="Rect" />
-- <ApiSig name="Rect" params={[{ name: "pos", type: "Vec2" }, { name: "size", type: "Vec2" }]} />
-- <ApiSig name="Rect" params={[{ name: "pos", type: "Vec2" }, { name: "w", type: "float" }, { name: "h", type: "float" }]} />
-- <ApiSig name="Rect" params={[{ name: "x", type: "float" }, { name: "y", type: "float" }, { name: "size", type: "Vec2" }]} />
-- <ApiSig name="Rect" params={[{ name: "x", type: "float" }, { name: "y", type: "float" }, { name: "w", type: "float" }, { name: "h", type: "float" }]} />
 
-_**Parameters**_
-- `pos` : The position as a Vec2 (x, y).
-- `size` : The size as a Vec2 (width, height).
-- `x` : The x coordinate of the top-left corner.
-- `y` : The y coordinate of the top-left corner.
-- `w` : The width of the rectangle.
-- `h` : The height of the rectangle.
+- <ApiSig name="Rect" returns="Rect" />
+- <ApiSig name="Rect" multiline params={[{ name: "x", type: "SupportsFloat" }, { name: "y", type: "SupportsFloat" }, { name: "w", type: "SupportsFloat" }, { name: "h", type: "SupportsFloat" }]} returns="Rect" />
+- <ApiSig name="Rect" multiline params={[{ name: "x", type: "SupportsFloat" }, { name: "y", type: "SupportsFloat" }, { name: "size", type: "Vec2" }]} returns="Rect" />
+- <ApiSig name="Rect" multiline params={[{ name: "pos", type: "Vec2" }, { name: "w", type: "SupportsFloat" }, { name: "h", type: "SupportsFloat" }]} returns="Rect" />
+- <ApiSig name="Rect" params={[{ name: "pos", type: "Vec2" }, { name: "size", type: "Vec2" }]} returns="Rect" />
+
+Represents a rectangle with position and size.
 </div>
 
 ## Properties
@@ -25,130 +20,61 @@ _**Parameters**_
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `x` | The top left x-coordinate of the rectangle's position | `float` |
-| `y` | The top left y-coordinate of the rectangle's position | `float` |
-| `w` | The width of the rectangle | `float` |
-| `h` | The height of the rectangle | `float` |
-| `left` | The left edge x-coordinate of the rectangle | `float` |
-| `right` | The right edge x-coordinate of the rectangle | `float` |
-| `top` | The top edge y-coordinate of the rectangle | `float` |
-| `bottom` | The bottom edge y-coordinate of the rectangle | `float` |
-| `size` | The size of the rectangle as a Vec2 | `Vec2` |
-| `top_left` | The top left corner of the rectangle as a Vec2 | `Vec2` |
-| `top_mid` | The top middle point of the rectangle as a Vec2 | `Vec2` |
-| `top_right` | The top right corner of the rectangle as a Vec2 | `Vec2` |
-| `mid_left` | The middle left point of the rectangle as a Vec2 | `Vec2` |
-| `center` | The center point of the rectangle as a Vec2 | `Vec2` |
-| `mid_right` | The middle right point of the rectangle as a Vec2 | `Vec2` |
-| `bottom_left` | The bottom left corner of the rectangle as a Vec2 | `Vec2` |
-| `bottom_mid` | The bottom middle point of the rectangle as a Vec2 | `Vec2` |
-| `bottom_right` | The bottom right corner of the rectangle as a Vec2 | `Vec2` |
+| `bottom` | The y coordinate of the bottom edge. | <code>float</code> |
+| `bottom_left` | The position of the bottom-left corner as (x, y). | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `bottom_mid` | The position of the bottom-middle point as (x, y). | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `bottom_right` | The position of the bottom-right corner as (x, y). | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `center` | The position of the center point as (x, y). | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `h` | The height of the rectangle. | <code>float</code> |
+| `left` | The x coordinate of the left edge. | <code>float</code> |
+| `mid_left` | The position of the middle-left point as (x, y). | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `mid_right` | The position of the middle-right point as (x, y). | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `right` | The x coordinate of the right edge. | <code>float</code> |
+| `size` | The size of the rectangle as (width, height). | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `top` | The y coordinate of the top edge. | <code>float</code> |
+| `top_left` | The position of the top-left corner as (x, y). | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `top_mid` | The position of the top-middle point as (x, y). | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `top_right` | The position of the top-right corner as (x, y). | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `w` | The width of the rectangle. | <code>float</code> |
+| `x` | The x coordinate of the top-left corner. | <code>float</code> |
+| `y` | The y coordinate of the top-left corner. | <code>float</code> |
 
 ## Methods
 ---
 
-### Inflate
-<div className="api-card">
-
-<ApiSig name="inflate" params={[{name: 'offset', type: 'Vec2'}]} returns="None" />
-
-Inflate the rectangle from the center by the given offset.
-
-_**Parameters**_
-
-- `offset` : The amount to inflate the rectangle.
-
-</div>
-
-### Fit
-<div className="api-card">
-
-<ApiSig name="fit" params={[{name: 'other', type: 'Rect'}]} returns="None" />
-
-Fit the rectangle inside another rectangle while maintaining aspect ratio.
-
-_**Parameters**_
-
-- `other` : The other rectangle to fit inside.
-
-</div>
-
 ### Clamp
 <div className="api-card">
+<ApiSig name="clamp" params={[{ name: "other", type: "Rect" }]} returns="None" />
 
-<ApiSig name="clamp" params={[{name: 'other', type: 'Rect'}]} returns="None" />
+Clamp this rectangle to be within another rectangle.
 
-Clamp the rectangle inside another rectangle.
+_**Args**_
 
-_**Parameters**_
+- `other` : The rectangle to clamp within.
 
-- `other` : The other rectangle to clamp inside.
+_**Raises**_
 
----
-
-<ApiSig name="clamp" params={[{name: 'min', type: 'Vec2'}, {name: 'max', type: 'Vec2'}]} returns="None" />
-
-Clamp the rectangle inside the given min and max bounds.
-
-_**Parameters**_
-
-- `min` : The minimum bounds to clamp inside.
-- `max` : The maximum bounds to clamp inside.
-
-</div>
-
-### Scale By
-<div className="api-card">
-
-<ApiSig name="scale_by" params={[{name: 'factor', type: 'float'}]} returns="None" />
-
-Scale the rectangle by a given factor.
-
-_**Parameters**_
-
-- `factor` : The scale factor.
+- `ValueError` : If this rectangle is larger than the clamp area.
 
 ---
 
-<ApiSig name="scale_by" params={[{name: 'factor', type: 'Vec2'}]} returns="None" />
+<ApiSig name="clamp" params={[{ name: "min", type: "Vec2" }, { name: "max", type: "Vec2" }]} returns="None" />
 
-Scale the rectangle by different factors for width and height.
+Clamp this rectangle to be within the specified bounds.
 
-_**Parameters**_
+_**Args**_
 
-- `factor` : The scale factors.
+- `min` : The minimum bounds as (min_x, min_y).
+- `max` : The maximum bounds as (max_x, max_y).
 
-</div>
+_**Raises**_
 
-### Scale To
-<div className="api-card">
-
-<ApiSig name="scale_to" params={[{name: 'size', type: 'Vec2'}]} returns="None" />
-
-Scale the rectangle to the given size.
-
-_**Parameters**_
-
-- `size` : The new size of the rectangle.
-
-</div>
-
-### Move
-<div className="api-card">
-
-<ApiSig name="move" params={[{name: 'offset', type: 'Vec2'}]} returns="None" />
-
-Move the rectangle by the given offset.
-
-_**Parameters**_
-
-- `offset` : The offset to move by as (dx, dy).
+- `ValueError` : If min &gt;= max or rectangle is larger than the clamp area.
 
 </div>
 
 ### Copy
 <div className="api-card">
-
 <ApiSig name="copy" returns="Rect" />
 
 Create a copy of this rectangle.
@@ -156,5 +82,94 @@ Create a copy of this rectangle.
 _**Returns**_
 
 `Rect` : A new Rect with the same position and size.
+
+</div>
+
+### Fit
+<div className="api-card">
+<ApiSig name="fit" params={[{ name: "other", type: "Rect" }]} returns="None" />
+
+Scale this rectangle to fit inside another rectangle while maintaining aspect ratio.
+
+_**Args**_
+
+- `other` : The rectangle to fit inside.
+
+_**Raises**_
+
+- `ValueError` : If other rectangle has non-positive dimensions.
+
+</div>
+
+### Inflate
+<div className="api-card">
+<ApiSig name="inflate" params={[{ name: "offset", type: "Vec2" }]} returns="None" />
+
+Inflate the rectangle by the given offset.
+
+The rectangle grows in all directions. The position is adjusted to keep the center
+in the same place.
+
+_**Args**_
+
+- `offset` : The amount to inflate by as (dw, dh).
+
+</div>
+
+### Move
+<div className="api-card">
+<ApiSig name="move" params={[{ name: "offset", type: "Vec2" }]} returns="None" />
+
+Move the rectangle by the given offset.
+
+_**Args**_
+
+- `offset` : The offset to move by as (dx, dy).
+
+</div>
+
+### Scale By
+<div className="api-card">
+<ApiSig name="scale_by" params={[{ name: "factor", type: "SupportsFloat" }]} returns="None" />
+
+Scale the rectangle by a uniform factor.
+
+_**Args**_
+
+- `factor` : The scaling factor (must be &gt; 0).
+
+_**Raises**_
+
+- `ValueError` : If factor is &lt;= 0.
+
+---
+
+<ApiSig name="scale_by" params={[{ name: "factor", type: "Vec2" }]} returns="None" />
+
+Scale the rectangle by different factors for width and height.
+
+_**Args**_
+
+- `factor` : The scaling factors as (scale_x, scale_y).
+
+_**Raises**_
+
+- `ValueError` : If any factor is &lt;= 0.
+
+</div>
+
+### Scale To
+<div className="api-card">
+<ApiSig name="scale_to" params={[{ name: "size", type: "Vec2" }]} returns="None" />
+
+Scale the rectangle to the specified size.
+
+_**Args**_
+
+- `size` : The new size as (width, height).
+
+_**Raises**_
+
+- `ValueError` : If width or height is &lt;= 0.
 
 </div>

@@ -1,23 +1,18 @@
 ---
 title: Line
-description: A representation of a line segment.
+description: A 2D line segment defined by two points: A and B. Access via the '' submodule.
 ---
 
 ## Constructor
 <div className="api-card">
-- <ApiSig name="Line" />
-- <ApiSig name="Line" params={[{ name: "a", type: "Vec2" }, { name: "b", type: "Vec2" }]} />
-- <ApiSig name="Line" params={[{ name: "a", type: "Vec2" }, { name: "bx", type: "float" }, { name: "by", type: "float" }]} />
-- <ApiSig name="Line" params={[{ name: "ax", type: "float" }, { name: "ay", type: "float" }, { name: "b", type: "Vec2" }]} />
-- <ApiSig name="Line" params={[{ name: "ax", type: "float" }, { name: "ay", type: "float" }, { name: "bx", type: "float" }, { name: "by", type: "float" }]} />
 
-_**Parameters**_
-- `a` : Point A as a Vec2.
-- `b` : Point B as a Vec2.
-- `ax` : X-coordinate of point A.
-- `ay` : Y-coordinate of point A.
-- `bx` : X-coordinate of point B.
-- `by` : Y-coordinate of point B.
+- <ApiSig name="Line" returns="Line" />
+- <ApiSig name="Line" multiline params={[{ name: "ax", type: "SupportsFloat" }, { name: "ay", type: "SupportsFloat" }, { name: "bx", type: "SupportsFloat" }, { name: "by", type: "SupportsFloat" }]} returns="Line" />
+- <ApiSig name="Line" multiline params={[{ name: "ax", type: "SupportsFloat" }, { name: "ay", type: "SupportsFloat" }, { name: "b", type: "Vec2" }]} returns="Line" />
+- <ApiSig name="Line" multiline params={[{ name: "a", type: "Vec2" }, { name: "bx", type: "SupportsFloat" }, { name: "by", type: "SupportsFloat" }]} returns="Line" />
+- <ApiSig name="Line" params={[{ name: "a", type: "Vec2" }, { name: "b", type: "Vec2" }]} returns="Line" />
+
+A 2D line segment defined by two points: A and B.
 </div>
 
 ## Properties
@@ -25,34 +20,33 @@ _**Parameters**_
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `a` | The starting point of the line | `Vec2` |
-| `b` | The ending point of the line | `Vec2` |
-| `ax` | The x-coordinate of the starting point | `float` |
-| `ay` | The y-coordinate of the starting point | `float` |
-| `bx` | The x-coordinate of the ending point | `float` |
-| `by` | The y-coordinate of the ending point | `float` |
-| `length` | The length of the line | `float` |
+| `a` | Get or set point A as a tuple or Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `ax` | X-coordinate of point A. | <code>float</code> |
+| `ay` | Y-coordinate of point A. | <code>float</code> |
+| `b` | Get or set point B as a tuple or Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `bx` | X-coordinate of point B. | <code>float</code> |
+| `by` | Y-coordinate of point B. | <code>float</code> |
+| `length` | The Euclidean length of the line segment. | <code>float</code> |
 
 ## Methods
 ---
 
-### Move
+### Copy
 <div className="api-card">
+<ApiSig name="copy" returns="Line" />
 
-<ApiSig name="move" params={[{ name: "offset", type: "Vec2" }]} returns="None" />
-
-Move the line by a specified offset.
-
-_**Parameters**_
-- `offset` : The offset to move the line by.
+Return a copy of this line.
 
 </div>
 
-### Copy
+### Move
 <div className="api-card">
+<ApiSig name="move" params={[{ name: "offset", type: "Vec2" }]} returns="None" />
 
-<ApiSig name="copy" returns="Line" />
+Move this line by a Vec2 or 2-element sequence.
 
-Create a copy of the line.
+_**Args**_
+
+- `offset` : The amount to move.
 
 </div>

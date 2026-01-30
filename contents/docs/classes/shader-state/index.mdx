@@ -1,18 +1,14 @@
 ---
 title: ShaderState
-description: A class for managing shader states in the rendering pipeline.
+description: Encapsulates a GPU shader and its associated render state. Access via the '' submodule.
 ---
 
 ## Constructor
 <div className="api-card">
-<ApiSig name="ShaderState" multiline params={[
-    { name: "fragment_file_path", type: "str" },
-    { name: "uniform_buffer_count", type: "int", default: "0" }
-]} />
 
-_**Parameters**_
-- `fragment_file_path` : Path to the fragment shader file.
-- `uniform_buffer_count` : Number of uniform buffers used by the shader. Default is 0.
+- <ApiSig name="ShaderState" multiline params={[{ name: "fragment_file_path", type: "str" }, { name: "uniform_buffer_count", type: "SupportsInt", default: "0" }]} returns="ShaderState" />
+
+Encapsulates a GPU shader and its associated render state.
 </div>
 
 ## Methods
@@ -20,32 +16,29 @@ _**Parameters**_
 
 ### Bind
 <div className="api-card">
-
 <ApiSig name="bind" returns="None" />
 
-Bind the shader state. This will also unbind any currently bound shader state.
-
-</div>
-
-### Unbind
-<div className="api-card">
-
-<ApiSig name="unbind" returns="None" />
-
-Unbind the shader state.
+Binds this shader state to the current render pass, making it active for subsequent draw calls.
 
 </div>
 
 ### Set Uniform
 <div className="api-card">
+<ApiSig name="set_uniform" params={[{ name: "binding", type: "SupportsInt" }, { name: "data", type: "Buffer" }]} returns="None" />
 
-<ApiSig name="set_uniform" params={[{name: 'binding', type: 'int'}, {name: 'data', type: 'Buffer | bytes'}]} returns="None" />
+Set uniform data for the fragment shader at the specified binding point.
 
-Set the uniform variable in the shader.
+_**Args**_
 
-_**Parameters**_
+- `binding` : Uniform buffer binding index.
+- `data` : Buffer or bytes object containing the uniform data to upload.
 
-- `binding` : The binding point of the uniform variable.
-- `data` : The data to set the uniform variable to.
+</div>
+
+### Unbind
+<div className="api-card">
+<ApiSig name="unbind" returns="None" />
+
+Unbinds the current shader state, reverting to the default render state.
 
 </div>

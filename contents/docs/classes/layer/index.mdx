@@ -1,0 +1,27 @@
+---
+title: Layer
+description: Layer is the base class for all tilemap layers. Access via the 'tilemap' submodule.
+---
+
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `name` | Layer name. | <code>str</code> |
+| `offset` | Per-layer drawing offset. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `opacity` | Layer opacity from 0.0 to 1.0. | <code>float</code> |
+| `type` | Layer type enum. | <code><a href="/docs/manual/constants#layertype">LayerType</a></code> |
+| `visible` | Whether the layer is visible. | <code>bool</code> |
+
+## Methods
+---
+
+### Draw
+<div className="api-card">
+<ApiSig name="draw" returns="None" />
+
+Draw the layer to the current renderer.
+
+</div>

@@ -1,167 +1,471 @@
 ---
 title: Ease
-description: Functions for easing animations and transitions.
+description: Easing functions and animation utilities
 ---
 
 ---
+
+## In Back
+<div className="api-card">
+<ApiSig name="in_back" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
+
+Back easing in (overshoot at start).
+
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
+
+</div>
+
+## In Bounce
+<div className="api-card">
+<ApiSig name="in_bounce" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
+
+Bounce easing in (bounces toward target).
+
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
+
+</div>
+
+## In Circ
+<div className="api-card">
+<ApiSig name="in_circ" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
+
+Circular easing in.
+
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
+
+</div>
+
+## In Cubic
+<div className="api-card">
+<ApiSig name="in_cubic" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
+
+Cubic easing in (very slow start).
+
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
+
+</div>
+
+## In Elastic
+<div className="api-card">
+<ApiSig name="in_elastic" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
+
+Elastic easing in (springy start).
+
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
+
+</div>
+
+## In Expo
+<div className="api-card">
+<ApiSig name="in_expo" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
+
+Exponential easing in.
+
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
+
+</div>
+
+## In Out Back
+<div className="api-card">
+<ApiSig name="in_out_back" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
+
+Back easing in and out.
+
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
+
+</div>
+
+## In Out Bounce
+<div className="api-card">
+<ApiSig name="in_out_bounce" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
+
+Bounce easing in and out.
+
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
+
+</div>
+
+## In Out Circ
+<div className="api-card">
+<ApiSig name="in_out_circ" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
+
+Circular easing in and out.
+
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
+
+</div>
+
+## In Out Cubic
+<div className="api-card">
+<ApiSig name="in_out_cubic" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
+
+Cubic easing in and out.
+
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
+
+</div>
+
+## In Out Elastic
+<div className="api-card">
+<ApiSig name="in_out_elastic" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
+
+Elastic easing in and out.
+
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
+
+</div>
+
+## In Out Expo
+<div className="api-card">
+<ApiSig name="in_out_expo" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
+
+Exponential easing in and out.
+
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
+
+</div>
+
+## In Out Quad
+<div className="api-card">
+<ApiSig name="in_out_quad" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
+
+Quadratic easing in and out.
+
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
+
+</div>
+
+## In Out Quart
+<div className="api-card">
+<ApiSig name="in_out_quart" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
+
+Quartic easing in and out.
+
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
+
+</div>
+
+## In Out Quint
+<div className="api-card">
+<ApiSig name="in_out_quint" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
+
+Quintic easing in and out.
+
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
+
+</div>
+
+## In Out Sin
+<div className="api-card">
+<ApiSig name="in_out_sin" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
+
+Sinusoidal easing in and out.
+
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
+
+</div>
+
+## In Quad
+<div className="api-card">
+<ApiSig name="in_quad" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
+
+Quadratic easing in (slow start).
+
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
+
+</div>
+
+## In Quart
+<div className="api-card">
+<ApiSig name="in_quart" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
+
+Quartic easing in.
+
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
+
+</div>
+
+## In Quint
+<div className="api-card">
+<ApiSig name="in_quint" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
+
+Quintic easing in.
+
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
+
+</div>
+
+## In Sin
+<div className="api-card">
+<ApiSig name="in_sin" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
+
+Sinusoidal easing in.
+
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
+
+</div>
 
 ## Linear
 <div className="api-card">
+<ApiSig name="linear" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
 
 Linear easing.
 
-<ApiSig name="linear" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<br />
+_**Args**_
+
+- `t` : Normalized time (0.0 to 1.0).
+_**Returns**_
+
+`float` : Eased result.
 
 </div>
 
-## Quad
+## Out Back
 <div className="api-card">
+<ApiSig name="out_back" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
 
-Quadratic easing.
+Back easing out (overshoot at end).
 
-<ApiSig name="in_quad" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<ApiSig name="out_quad" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<ApiSig name="in_out_quad" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<br />
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
 
 </div>
 
-## Cubic
+## Out Bounce
 <div className="api-card">
+<ApiSig name="out_bounce" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
 
-Cubic easing.
+Bounce easing out (bounces after start).
 
-<ApiSig name="in_cubic" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<ApiSig name="out_cubic" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<ApiSig name="in_out_cubic" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<br />
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
 
 </div>
 
-## Quart
+## Out Circ
 <div className="api-card">
+<ApiSig name="out_circ" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
 
-Quartic easing.
+Circular easing out.
 
-<ApiSig name="in_quart" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<ApiSig name="out_quart" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<ApiSig name="in_out_quart" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<br />
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
 
 </div>
 
-## Quint
+## Out Cubic
 <div className="api-card">
+<ApiSig name="out_cubic" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
 
-Quintic easing.
+Cubic easing out (fast then smooth).
 
-<ApiSig name="in_quint" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<ApiSig name="out_quint" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<ApiSig name="in_out_quint" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<br />
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
 
 </div>
 
-## Sin
+## Out Elastic
 <div className="api-card">
+<ApiSig name="out_elastic" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
 
-Sinusoidal easing.
+Elastic easing out (springy end).
 
-<ApiSig name="in_sin" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<ApiSig name="out_sin" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<ApiSig name="in_out_sin" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<br />
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
 
 </div>
 
-## Circ
+## Out Expo
 <div className="api-card">
+<ApiSig name="out_expo" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
 
-Circular easing.
+Exponential easing out.
 
-<ApiSig name="in_circ" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<ApiSig name="out_circ" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<ApiSig name="in_out_circ" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<br />
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
 
 </div>
 
-## Expo
+## Out Quad
 <div className="api-card">
+<ApiSig name="out_quad" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
 
-Exponential easing.
+Quadratic easing out (fast start).
 
-<ApiSig name="in_expo" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<ApiSig name="out_expo" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<ApiSig name="in_out_expo" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<br />
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
 
 </div>
 
-## Elastic
+## Out Quart
 <div className="api-card">
+<ApiSig name="out_quart" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
 
-Elastic easing.
+Quartic easing out.
 
-<ApiSig name="in_elastic" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<ApiSig name="out_elastic" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<ApiSig name="in_out_elastic" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<br />
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
 
 </div>
 
-## Back
+## Out Quint
 <div className="api-card">
+<ApiSig name="out_quint" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
 
-Back easing.
+Quintic easing out.
 
-<ApiSig name="in_back" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<ApiSig name="out_back" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<ApiSig name="in_out_back" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<br />
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
 
 </div>
 
-## Bounce
+## Out Sin
 <div className="api-card">
+<ApiSig name="out_sin" params={[{ name: "t", type: "SupportsFloat" }]} returns="float" />
 
-Bounce easing.
+Sinusoidal easing out.
 
-<ApiSig name="in_bounce" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<ApiSig name="out_bounce" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<ApiSig name="in_out_bounce" params={[{ name: "t", type: "float" }]} returns="float" />
-<br />
-<br />
+_**Args**_
+
+- `t` : Normalized time.
+_**Returns**_
+
+`float` : Eased result.
 
 </div>
