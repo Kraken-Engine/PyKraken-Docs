@@ -36,7 +36,7 @@ Create a `Text` object by passing a font, then set its content and color:
 # Create a text object with a font
 label = kn.Text(font)
 label.text = "Hello, World!"
-label.color = kn.color.WHITE
+label.color = kn.Color.WHITE
 
 # Create another with a custom color
 score_text = kn.Text(font)
@@ -70,7 +70,7 @@ To change the displayed text, simply update the `.text` property:
 score = 0
 score_text = kn.Text(font)
 score_text.text = f"Score: {score}"
-score_text.color = kn.color.WHITE
+score_text.color = kn.Color.WHITE
 
 # When score changes:
 score += 10
@@ -104,7 +104,7 @@ Shadows will only be drawn if `shadow_color.a > 0` and `shadow_offset` is not `(
 ```python
 # Once
 label = kn.Text(font)
-label.color = kn.color.WHITE
+label.color = kn.Color.WHITE
 label.shadow_offset = kn.Vec2(4, 4)
 label.shadow_color = kn.Color(0, 0, 0, 128)
 
@@ -137,10 +137,11 @@ Here's a full example with score display and title screen:
 ```python
 import pykraken as kn
 
-SCN_WIDTH, SCN_HEIGHT = SCN_SIZE = kn.Vec2(800, 600)
+SCN_WIDTH, SCN_HEIGHT = 800, 600
+SCN_SIZE = kn.Vec2(SCN_WIDTH, SCN_HEIGHT)
 
 kn.init()
-kn.window.create("Text Example", SCN_SIZE)
+kn.window.create("Text Example", SCN_WIDTH, SCN_HEIGHT)
 kn.time.set_target(60)
 
 # Load fonts
@@ -160,10 +161,10 @@ instructions.text = "Press SPACE to start"
 score = 0
 score_text = kn.Text(small_font)
 score_text.text = f"Score: {score}"
-score_text.color = kn.color.YELLOW
+score_text.color = kn.Color.YELLOW
 
 fps_text = kn.Text(small_font)
-fps_text.color = kn.color.GRAY
+fps_text.color = kn.Color.GRAY
 
 game_started = False
 player_rect = kn.Rect(0, 0, 40, 40)
@@ -173,36 +174,35 @@ while kn.window.is_open():
     kn.event.poll()
     dt = kn.time.get_delta()
 
+    kn.renderer.clear(kn.Color(20, 20, 40))
+
     if not game_started:
         # Title screen
         if kn.key.is_just_pressed(kn.K_SPACE):
             game_started = True
 
-        kn.renderer.clear((20, 20, 40))
-        title.draw((SCN_WIDTH / 2, SCN_HEIGHT / 3), kn.Anchor.CENTER)
+        title.draw(kn.Vec2(SCN_WIDTH / 2, SCN_HEIGHT / 3), kn.Anchor.CENTER)
         instructions.draw(SCN_SIZE / 2, kn.Anchor.CENTER)
     else:
         # Game screen
         if kn.key.is_pressed(kn.S_a):
-            player_rect.center += kn.Vec2(-300 * dt, 0)
+            player_rect.x -= 300 * dt
         if kn.key.is_pressed(kn.S_d):
-            player_rect.center += kn.Vec2(300 * dt, 0)
+            player_rect.x += 300 * dt
 
         # Score increases over time (for demo)
         score += 1
         score_text.text = f"Score: {score}"
 
-        kn.renderer.clear((20, 20, 40))
-
         # Draw player
-        kn.draw.rect(player_rect, kn.color.GREEN)
+        kn.draw.rect(player_rect, kn.Color.GREEN)
 
         # Draw score in top-left
-        score_text.draw((10, 10))
+        score_text.draw(kn.Vec2(10, 10))
 
         # Draw FPS in top-right
         fps_text.text = f"FPS: {int(kn.time.get_fps())}"
-        fps_text.draw((SCN_WIDTH - 10, 10), kn.Anchor.TOP_RIGHT)
+        fps_text.draw(kn.Vec2(SCN_WIDTH - 10, 10), kn.Anchor.TOP_RIGHT)
 
     kn.renderer.present()
 

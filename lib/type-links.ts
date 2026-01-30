@@ -1,6 +1,6 @@
 export const TYPE_LINKS = {
   Align: "/docs/manual/constants#align",
-  Anchor: "/docs/manual/constants#anchor",
+  Anchor: "/docs/classes/anchor",
   AnimationController: "/docs/classes/animation-controller",
   Audio: "/docs/classes/audio",
   AudioStream: "/docs/classes/audio-stream",
@@ -53,6 +53,7 @@ export const TYPE_LINKS = {
   Timer: "/docs/classes/timer",
   Transform: "/docs/classes/transform",
   Vec2: "/docs/classes/vec2",
+  Vertex: "/docs/classes/vertex",
   ViewportMode: "/docs/manual/constants#viewportmode",
 } as const;
 

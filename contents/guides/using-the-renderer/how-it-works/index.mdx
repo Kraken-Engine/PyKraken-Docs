@@ -22,7 +22,7 @@ Instead, we use "double buffer" rendering:
 ## Applying In Code
 When you create a window in Kraken, you also create a global renderer for that window:
 ```py
-kn.window.create("Game Window", (800, 600))  # Also creates renderer
+kn.window.create("Game Window", 800, 600)  # Also creates renderer
 ```
 
 To use the renderer, there's a `renderer` submodule with functions for drawing textures, presenting to the screen, and clearing the back buffer.
@@ -41,7 +41,7 @@ It also optionally accepts a color argument, either as a `Color` object, or indi
 ```py
 while kn.window.is_open():
     ...
-    kn.renderer.clear(kn.color.PURPLE)
+    kn.renderer.clear(kn.Color.PURPLE)
     # Drawing operations here
     ...
     kn.renderer.present()

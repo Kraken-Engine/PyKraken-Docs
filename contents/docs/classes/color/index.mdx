@@ -1,6 +1,6 @@
 ---
 title: Color
-description: Represents an RGBA color.
+description: Represents an RGBA color. Access via the '' submodule.
 ---
 
 ## Constructor
@@ -9,7 +9,6 @@ description: Represents an RGBA color.
 - <ApiSig name="Color" returns="Color" />
 - <ApiSig name="Color" multiline params={[{ name: "r", type: "SupportsInt" }, { name: "g", type: "SupportsInt" }, { name: "b", type: "SupportsInt" }, { name: "a", type: "SupportsInt", default: "255" }]} returns="Color" />
 - <ApiSig name="Color" params={[{ name: "hex", type: "str" }]} returns="Color" />
-- <ApiSig name="Color" params={[{ name: "sequence", type: "Sequence" }]} returns="Color" />
 
 Represents an RGBA color.
 </div>
@@ -19,6 +18,28 @@ Represents an RGBA color.
 
 | Name | Description | Type |
 | --- | --- | --- |
+| `BLACK` | `Color(0, 0, 0, 255)` | <code>ClassVar[<a href="/docs/classes/color">Color</a>]</code> |
+| `BLUE` | `Color(0, 0, 255, 255)` | <code>ClassVar[<a href="/docs/classes/color">Color</a>]</code> |
+| `BROWN` | `Color(139, 69, 19, 255)` | <code>ClassVar[<a href="/docs/classes/color">Color</a>]</code> |
+| `CYAN` | `Color(0, 255, 255, 255)` | <code>ClassVar[<a href="/docs/classes/color">Color</a>]</code> |
+| `DARK_GRAY` | `Color(64, 64, 64, 255)` | <code>ClassVar[<a href="/docs/classes/color">Color</a>]</code> |
+| `DARK_GREY` | `Color(64, 64, 64, 255)` | <code>ClassVar[<a href="/docs/classes/color">Color</a>]</code> |
+| `GRAY` | `Color(128, 128, 128, 255)` | <code>ClassVar[<a href="/docs/classes/color">Color</a>]</code> |
+| `GREEN` | `Color(0, 255, 0, 255)` | <code>ClassVar[<a href="/docs/classes/color">Color</a>]</code> |
+| `GREY` | `Color(128, 128, 128, 255)` | <code>ClassVar[<a href="/docs/classes/color">Color</a>]</code> |
+| `LIGHT_GRAY` | `Color(192, 192, 192, 255)` | <code>ClassVar[<a href="/docs/classes/color">Color</a>]</code> |
+| `LIGHT_GREY` | `Color(192, 192, 192, 255)` | <code>ClassVar[<a href="/docs/classes/color">Color</a>]</code> |
+| `MAGENTA` | `Color(255, 0, 255, 255)` | <code>ClassVar[<a href="/docs/classes/color">Color</a>]</code> |
+| `MAROON` | `Color(128, 0, 0, 255)` | <code>ClassVar[<a href="/docs/classes/color">Color</a>]</code> |
+| `NAVY` | `Color(0, 0, 128, 255)` | <code>ClassVar[<a href="/docs/classes/color">Color</a>]</code> |
+| `OLIVE` | `Color(128, 128, 0, 255)` | <code>ClassVar[<a href="/docs/classes/color">Color</a>]</code> |
+| `ORANGE` | `Color(255, 165, 0, 255)` | <code>ClassVar[<a href="/docs/classes/color">Color</a>]</code> |
+| `PINK` | `Color(255, 192, 203, 255)` | <code>ClassVar[<a href="/docs/classes/color">Color</a>]</code> |
+| `PURPLE` | `Color(128, 0, 128, 255)` | <code>ClassVar[<a href="/docs/classes/color">Color</a>]</code> |
+| `RED` | `Color(255, 0, 0, 255)` | <code>ClassVar[<a href="/docs/classes/color">Color</a>]</code> |
+| `TEAL` | `Color(0, 128, 128, 255)` | <code>ClassVar[<a href="/docs/classes/color">Color</a>]</code> |
+| `WHITE` | `Color(255, 255, 255, 255)` | <code>ClassVar[<a href="/docs/classes/color">Color</a>]</code> |
+| `YELLOW` | `Color(255, 255, 0, 255)` | <code>ClassVar[<a href="/docs/classes/color">Color</a>]</code> |
 | `a` | Alpha (transparency) channel value. | <code>int</code> |
 | `b` | Blue channel value. | <code>int</code> |
 | `g` | Green channel value. | <code>int</code> |

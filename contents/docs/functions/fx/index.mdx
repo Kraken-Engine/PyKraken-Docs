@@ -1,6 +1,6 @@
 ---
 title: Fx
-description: Effect factory functions for Orchestrator
+description: Effect factory functions for Orchestrator timeline animations.
 ---
 
 ---
@@ -23,7 +23,7 @@ _**Returns**_
 
 ## Move To
 <div className="api-card">
-<ApiSig name="move_to" multiline params={[{ name: "pos", type: "Any", default: "None" }, { name: "dur", type: "SupportsFloat", default: "0.0" }, { name: "ease", type: "Any", default: "None" }]} returns="Effect" />
+<ApiSig name="move_to" multiline params={[{ name: "pos", type: "Vec2" }, { name: "dur", type: "SupportsFloat", default: "0.0" }, { name: "ease", type: "Any", default: "None" }]} returns="Effect" />
 
 Create a move-to effect.
 
@@ -39,15 +39,35 @@ _**Returns**_
 
 </div>
 
+## Rotate By
+<div className="api-card">
+<ApiSig name="rotate_by" multiline params={[{ name: "delta", type: "SupportsFloat" }, { name: "clockwise", type: "bool", default: "True" }, { name: "dur", type: "SupportsFloat", default: "0.0" }, { name: "ease", type: "Any", default: "None" }]} returns="Effect" />
+
+Create a rotate-by effect.
+
+_**Args**_
+
+- `delta` : Delta angle in radians to rotate by in radians.
+- `clockwise` : Direction of rotation. True for clockwise, False for counterclockwise.
+- `dur` : Duration in seconds.
+- `ease` : Easing function (t -&gt; t).
+
+_**Returns**_
+
+`Effect` : The rotate-by effect.
+
+</div>
+
 ## Rotate To
 <div className="api-card">
-<ApiSig name="rotate_to" multiline params={[{ name: "angle", type: "SupportsFloat" }, { name: "dur", type: "SupportsFloat", default: "0.0" }, { name: "ease", type: "Any", default: "None" }]} returns="Effect" />
+<ApiSig name="rotate_to" multiline params={[{ name: "angle", type: "SupportsFloat" }, { name: "clockwise", type: "bool", default: "True" }, { name: "dur", type: "SupportsFloat", default: "0.0" }, { name: "ease", type: "Any", default: "None" }]} returns="Effect" />
 
 Create a rotate-to effect.
 
 _**Args**_
 
 - `angle` : Target angle in radians.
+- `clockwise` : Direction of rotation. True for clockwise, False for counterclockwise.
 - `dur` : Duration in seconds.
 - `ease` : Easing function (t -&gt; t).
 

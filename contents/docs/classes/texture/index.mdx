@@ -1,6 +1,6 @@
 ---
 title: Texture
-description: Represents a hardware-accelerated image that can be efficiently rendered.
+description: Represents a hardware-accelerated image that can be efficiently rendered. Access via the '' submodule.
 ---
 
 ## Constructor
@@ -19,24 +19,11 @@ Represents a hardware-accelerated image that can be efficiently rendered.
 | Name | Description | Type |
 | --- | --- | --- |
 | `alpha` | Get or set the alpha modulation of the texture as a float between `0.0` and `1.0`. | <code>float</code> |
+| `clip_area` | Get or set the clip area (atlas region) of the texture. | <code><a href="/docs/classes/rect">Rect</a></code> |
 | `flip` | The flip settings for horizontal and vertical mirroring. | <code><a href="/docs/classes/texture">Texture</a>.Flip</code> |
-| `size` | Get the dimensions of the texture as a Vec2 (width, height). | <code><a href="/docs/classes/vec2">Vec2</a></code> |
-| `tint` | Get or set the color tint applied to the texture during rendering. | <code><a href="/docs/classes/color">Color</a></code> |
 
 ## Methods
 ---
-
-### Get Rect
-<div className="api-card">
-<ApiSig name="get_rect" returns="Rect" />
-
-Get a rectangle representing the texture bounds.
-
-_**Returns**_
-
-`Rect` : A rectangle with position (0, 0) and the texture's dimensions.
-
-</div>
 
 ### Make Additive
 <div className="api-card">

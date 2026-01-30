@@ -1,6 +1,6 @@
 ---
 title: Polygon
-description: Represents a polygon shape defined by a sequence of points.
+description: Represents a polygon shape defined by a sequence of points. Access via the '' submodule.
 ---
 
 ## Constructor
@@ -18,7 +18,6 @@ Represents a polygon shape defined by a sequence of points.
 | Name | Description | Type |
 | --- | --- | --- |
 | `area` | Get the area of the polygon. | <code>float</code> |
-| `bounds` | Get the bounding rectangle of the polygon. | <code><a href="/docs/classes/rect">Rect</a></code> |
 | `centroid` | Get the centroid of the polygon. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `perimeter` | Get the perimeter of the polygon. | <code>float</code> |
 | `points` | The list of Vec2 points that define the polygon vertices. | <code>list[<a href="/docs/classes/vec2">Vec2</a>]</code> |
@@ -38,40 +37,51 @@ _**Returns**_
 
 </div>
 
+### Get Rect
+<div className="api-card">
+<ApiSig name="get_rect" returns="Rect" />
+
+Get the axis-aligned bounding rectangle of the polygon.
+_**Returns**_
+
+`Rect` : The bounding rectangle.
+
+</div>
+
 ### Rotate
 <div className="api-card">
-<ApiSig name="rotate" params={[{ name: "angle", type: "SupportsFloat" }, { name: "pivot", type: "Vec2" }]} returns="None" />
+<ApiSig name="rotate" params={[{ name: "angle", type: "SupportsFloat" }, { name: "pivot", type: "Any", default: "None" }]} returns="None" />
 
 Rotate the polygon around a pivot point.
 
 _**Args**_
 
 - `angle` : The rotation angle in radians.
-- `pivot` : The point to rotate around.
+- `pivot` : The normalized point relative to the polygon's bounding box to rotate around. Defaults to center (0.5, 0.5).
 
 </div>
 
 ### Scale
 <div className="api-card">
-<ApiSig name="scale" params={[{ name: "factor", type: "SupportsFloat" }, { name: "pivot", type: "Vec2" }]} returns="None" />
+<ApiSig name="scale" params={[{ name: "factor", type: "SupportsFloat" }, { name: "pivot", type: "Any", default: "None" }]} returns="None" />
 
 Scale the polygon uniformly from a pivot point.
 
 _**Args**_
 
 - `factor` : The scaling factor.
-- `pivot` : The point to scale from.
+- `pivot` : The normalized point relative to the polygon's bounding box to scale from. Defaults to center (0.5, 0.5).
 
 ---
 
-<ApiSig name="scale" params={[{ name: "factor", type: "Vec2" }, { name: "pivot", type: "Vec2" }]} returns="None" />
+<ApiSig name="scale" params={[{ name: "factor", type: "Vec2" }, { name: "pivot", type: "Any", default: "None" }]} returns="None" />
 
 Scale the polygon non-uniformly from a pivot point.
 
 _**Args**_
 
 - `factor` : The scaling factors for x and y.
-- `pivot` : The point to scale from.
+- `pivot` : The normalized point relative to the polygon's bounding box to scale from. Defaults to center (0.5, 0.5).
 
 </div>
 

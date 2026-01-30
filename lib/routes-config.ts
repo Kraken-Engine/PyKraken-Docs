@@ -25,6 +25,7 @@ export const DOC_ROUTES: EachRoute[] = [
     href: "/classes",
     noLink: true,
     items: [
+      { title: "Anchor", href: "/anchor" },
       { title: "AnimationController", href: "/animation-controller" },
       { title: "Audio", href: "/audio" },
       { title: "AudioStream", href: "/audio-stream" },
@@ -60,6 +61,7 @@ export const DOC_ROUTES: EachRoute[] = [
       { title: "Timer", href: "/timer" },
       { title: "Transform", href: "/transform" },
       { title: "Vec2", href: "/vec2" },
+      { title: "Vertex", href: "/vertex" },
     ],
   },
   {

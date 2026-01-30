@@ -1,6 +1,6 @@
 ---
 title: PixelArray
-description: Represents a 2D pixel buffer for image manipulation and blitting operations.
+description: Represents a 2D pixel buffer for image manipulation and blitting operations. Access via the '' submodule.
 ---
 
 ## Constructor
@@ -28,7 +28,7 @@ Represents a 2D pixel buffer for image manipulation and blitting operations.
 
 ### Blit
 <div className="api-card">
-<ApiSig name="blit" multiline params={[{ name: "pixel_array", type: "PixelArray" }, { name: "pos", type: "Vec2" }, { name: "anchor", type: "Anchor", default: "Anchor.CENTER" }, { name: "src", type: "Any", default: "None" }]} returns="None" />
+<ApiSig name="blit" multiline params={[{ name: "pixel_array", type: "PixelArray" }, { name: "pos", type: "Vec2" }, { name: "anchor", type: "Any", default: "None" }, { name: "src", type: "Any", default: "None" }]} returns="None" />
 
 Blit (copy) another pixel array onto this pixel array at the specified position with anchor alignment.
 
@@ -36,7 +36,7 @@ _**Args**_
 
 - `pixel_array` : The source pixel array to blit from.
 - `pos` : The position to blit to.
-- `anchor` : The anchor point for positioning. Defaults to CENTER.
+- `anchor` : The anchor point for positioning. Defaults to (0,0) TopLeft.
 - `src` : The source rectangle to blit from. Defaults to entire source pixel array.
 
 _**Raises**_

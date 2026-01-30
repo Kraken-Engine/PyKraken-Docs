@@ -20,7 +20,7 @@ Create an orchestrator with a target object:
 
 ```python
 # Create a transform to animate
-transform = kn.Transform(pos=(100, 300))
+transform = kn.Transform(pos=kn.Vec2(100, 300))
 
 # Create orchestrator targeting the transform
 orch = kn.Orchestrator(transform)
@@ -35,12 +35,14 @@ The target can be a `Transform` object or any object with a "transform" attribut
 Chain effects with `then()` for sequential animation:
 
 ```python
+from pykraken import fx
+
 # Create a bouncing ball animation
 (
-orch.then(fx.move_to((400, 100), dur=0.5))
-    .then(fx.move_to((400, 500), dur=0.5))
-    .then(fx.scale_to((1.2, 0.8), dur=0.1))  # Squash
-    .then(fx.scale_to((0.8, 1.2), dur=0.1))  # Stretch
+orch.then(fx.move_to(kn.Vec2(400, 100), dur=0.5))
+    .then(fx.move_to(kn.Vec2(400, 500), dur=0.5))
+    .then(fx.scale_to(kn.Vec2(1.2, 0.8), dur=0.1))  # Squash
+    .then(fx.scale_to(kn.Vec2(0.8, 1.2), dur=0.1))  # Stretch
     .then(fx.scale_to(1.0, dur=0.1))
 )
 ```
@@ -51,10 +53,12 @@ Run multiple effects simultaneously with `parallel()`.
 The duration of the parallel block is determined by the longest effect.
 
 ```python
+from pykraken import fx
+
 # Move and rotate at the same time
 # Entire sequence lasts 1.2 seconds
 orch.parallel(
-    fx.move_to((600, 300), dur=1.0),
+    fx.move_to(kn.Vec2(600, 300), dur=1.0),
     fx.rotate_to(kn.math.to_rad(180), dur=1.2),
 )
 ```
@@ -64,14 +68,28 @@ orch.parallel(
 Add easing for natural motion:
 
 ```python
+from pykraken import fx
+
 # Smooth start and end
-orch.then(fx.move_to((700, 300), dur=1.0, ease=kn.ease.in_out_quad))
+orch.then(fx.move_to(
+    kn.Vec2(700, 300),
+    dur=1.0,
+    ease=kn.ease.in_out_quad
+))
 
 # Bouncy ending
-orch.then(fx.move_to((100, 300), dur=1.0, ease=kn.ease.out_bounce))
+orch.then(fx.move_to(
+    kn.Vec2(100, 300),
+    dur=1.0,
+    ease=kn.ease.out_bounce
+))
 
 # Elastic overshoot
-orch.then(fx.scale_to(1.5, dur=1.0, ease=kn.ease.out_elastic))
+orch.then(fx.scale_to(
+    1.5,
+    dur=1.0,
+    ease=kn.ease.out_elastic
+))
 ```
 
 You can find more easing functions in the `kn.ease` submodule.

@@ -9,17 +9,17 @@ description: ObjectGroup is a layer containing placed MapObjects. Access via the
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `color` |  | <code><a href="/docs/classes/color">Color</a></code> |
-| `draw_order` |  | <code><a href="/docs/classes/object-group">ObjectGroup</a>.DrawOrder</code> |
-| `objects` |  | <code>MapObjectList</code> |
-| `opacity` |  | <code>float</code> |
+| `color` | Tint color for non-tile objects. | <code><a href="/docs/classes/color">Color</a></code> |
+| `draw_order` | Drawing order for objects in the group. | <code><a href="/docs/classes/object-group">ObjectGroup</a>.DrawOrder</code> |
+| `objects` | MapObjectList of objects in the group. | <code>list[<a href="/docs/classes/map-object">MapObject</a>]</code> |
+| `opacity` | Layer opacity from 0.0 to 1.0. | <code>float</code> |
 
 ## Methods
 ---
 
-### Render
+### Draw
 <div className="api-card">
-<ApiSig name="render" returns="None" />
+<ApiSig name="draw" returns="None" />
 
 Draw the object group.
 

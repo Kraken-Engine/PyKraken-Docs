@@ -23,14 +23,14 @@ If you need the same image multiple times (e.g. many enemies), reuse the same `T
 
 ## Drawing Textures
 The simplest draw call renders the texture at the origin `(0, 0)`.
-Use a `Transform` to control position, rotation, scale, and anchor:
+Use a `Transform` to control position, rotation, and scale:
 ```py
 # Draw at origin with default transform
 kn.renderer.draw(texture)
 
 # Draw with custom transform
 transform = kn.Transform(
-    pos=(150, 100),
+    pos=kn.Vec2(150, 100),
     angle=kn.math.to_rad(30)
 )
 kn.renderer.draw(texture, transform)
@@ -64,13 +64,24 @@ This means:
 
 The renderer accepts a source rectangle to select a portion of the texture to draw.
 ```py
+# Load the atlas texture
+atlas_texture = kn.Texture("atlas.png")
+
 heart_src = kn.Rect(0, 0, 32, 32)
+heart_transform = kn.Transform(pos=kn.Vec2(16, 16))
+
 power_src = kn.Rect(32, 0, 32, 32)
+power_transform = kn.Transform(pos=kn.Vec2(32, 32))
 
 while kn.window.is_open():
     ...
-    kn.renderer.draw(texture, kn.Transform(pos=kn.Vec2(16, 16)), src=heart_src)
-    kn.renderer.draw(texture, kn.Transform(pos=kn.Vec2(32, 32)), src=power_src)
+    # Draw heart icon from atlas
+    atlas_texture.clip_area = heart_src
+    kn.renderer.draw(atlas_texture, heart_transform)
+
+    # Draw power icon from atlas
+    atlas_texture.clip_area = power_src
+    kn.renderer.draw(atlas_texture, power_transform)
     ...
 ```
 

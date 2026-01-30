@@ -1,6 +1,6 @@
 ---
 title: AnimationController
-description: Manages and controls sprite animations with multiple animation sequences.
+description: Manages and controls sprite animations with multiple animation sequences. Access via the '' submodule.
 ---
 
 ## Constructor
@@ -16,8 +16,8 @@ Manages and controls sprite animations with multiple animation sequences.
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `clip` | The source rectangle (clip) for the current animation frame. | <code><a href="/docs/classes/rect">Rect</a></code> |
 | `current_animation_name` | The name of the currently active animation. | <code>str</code> |
+| `frame_area` | The clip area (atlas region) for the current animation frame. | <code><a href="/docs/classes/rect">Rect</a></code> |
 | `frame_index` | The current frame index in the animation sequence. | <code>int</code> |
 | `looping` | Whether the animation should loop when it reaches the end. | <code>bool</code> |
 | `playback_speed` | The playback speed multiplier for animation timing. | <code>float</code> |
@@ -25,6 +25,28 @@ Manages and controls sprite animations with multiple animation sequences.
 
 ## Methods
 ---
+
+### Add Sheet
+<div className="api-card">
+<ApiSig name="add_sheet" multiline params={[{ name: "frame_size", type: "Vec2" }, { name: "strips", type: "Sequence[SheetStrip]" }]} returns="None" />
+
+Add animations from a sprite sheet definition.
+
+Divides an atlas into horizontal strips, where each strip represents a different animation.
+Each strip is divided into equal-sized frames based on the specified frame size.
+Frames are read left-to-right within each strip, and strips are read top-to-bottom.
+
+_**Args**_
+
+- `frame_size` : Size of each frame as (width, height).
+- `strips` : List of strip definitions.
+
+_**Raises**_
+
+- `ValueError` : If frame size is not positive, no strips provided, frame count is not positive.
+- `RuntimeError` : If duplicate animation names exist.
+
+</div>
 
 ### Is Finished
 <div className="api-card">
@@ -39,28 +61,6 @@ with consistent results.
 _**Returns**_
 
 `bool` : True if the animation completed a loop during the last update.
-
-</div>
-
-### Load Sprite Sheet
-<div className="api-card">
-<ApiSig name="load_sprite_sheet" params={[{ name: "frame_size", type: "Vec2" }, { name: "strips", type: "SheetStripList" }]} returns="None" />
-
-Load one or more animations for a sprite sheet texture.
-
-Divides the sprite sheet into horizontal strips, where each strip represents a different
-animation. Each strip is divided into equal-sized frames based on the specified frame size.
-Frames are read left-to-right within each strip, and strips are read top-to-bottom.
-
-_**Args**_
-
-- `frame_size` : Size of each frame as (width, height).
-- `strips` : List of strip definitions.
-
-_**Raises**_
-
-- `ValueError` : If frame size is not positive, no strips provided, frame count is not positive.
-- `RuntimeError` : If duplicate animation names exist.
 
 </div>
 

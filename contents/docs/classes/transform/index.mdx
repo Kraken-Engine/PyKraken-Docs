@@ -1,14 +1,14 @@
 ---
 title: Transform
-description: Transform represents a 2D transformation with position, size, rotation, and scale.
+description: Transform represents a 2D transformation with position, rotation, and scale. Access via the '' submodule.
 ---
 
 ## Constructor
 <div className="api-card">
 
-- <ApiSig name="Transform" multiline params={[{ name: "pos", type: "Any", default: "None" }, { name: "size", type: "Any", default: "None" }, { name: "angle", type: "SupportsFloat", default: "0.0" }, { name: "scale", type: "Any", default: "None" }, { name: "anchor", type: "Anchor", default: "Anchor.TOP_LEFT" }, { name: "pivot", type: "Any", default: "None" }]} returns="Transform" />
+- <ApiSig name="Transform" multiline params={[{ name: "pos", type: "Any", default: "None" }, { name: "angle", type: "SupportsFloat", default: "0.0" }, { name: "scale", type: "Any", default: "None" }]} returns="Transform" />
 
-Transform represents a 2D transformation with position, size, rotation, and scale.
+Transform represents a 2D transformation with position, rotation, and scale.
 </div>
 
 ## Properties
@@ -16,9 +16,6 @@ Transform represents a 2D transformation with position, size, rotation, and scal
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `anchor` | The anchor point for positioning. | <code><a href="/docs/manual/constants#anchor">Anchor</a></code> |
 | `angle` | The rotation component in radians. | <code>float</code> |
-| `pivot` | The normalized pivot point for rotation. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `pos` | The position component as a Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `scale` | The scale component as a Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
-| `size` | The explicit size as a Vec2. If zero/empty, uses texture or source rect size. | <code><a href="/docs/classes/vec2">Vec2</a></code> |

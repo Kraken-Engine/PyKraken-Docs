@@ -1,6 +1,6 @@
 ---
 title: Text
-description: A text object for rendering text to the active renderer.
+description: A text object for rendering text to the active renderer. Access via the '' submodule.
 ---
 
 ## Constructor
@@ -30,7 +30,7 @@ A text object for rendering text to the active renderer.
 
 ### Draw
 <div className="api-card">
-<ApiSig name="draw" multiline params={[{ name: "pos", type: "Any", default: "None" }, { name: "anchor", type: "Anchor", default: "Anchor.TOP_LEFT" }]} returns="None" />
+<ApiSig name="draw" params={[{ name: "pos", type: "Any", default: "None" }, { name: "anchor", type: "Any", default: "None" }]} returns="None" />
 
 Draw the text to the renderer at the specified position with alignment.
 A shadow is drawn if shadow_color.a &gt; 0 and shadow_offset is not (0, 0).
@@ -38,7 +38,7 @@ A shadow is drawn if shadow_color.a &gt; 0 and shadow_offset is not (0, 0).
 _**Args**_
 
 - `pos` : The position in pixels. Defaults to (0, 0).
-- `anchor` : The anchor point for alignment. Defaults to TopLeft.
+- `anchor` : The anchor point for alignment (0.0-1.0). Defaults to top left (0, 0).
 
 _**Raises**_
 

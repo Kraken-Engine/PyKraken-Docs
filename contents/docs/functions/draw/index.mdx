@@ -7,7 +7,7 @@ description: Functions for drawing shape objects
 
 ## Circle
 <div className="api-card">
-<ApiSig name="circle" multiline params={[{ name: "circle", type: "Circle" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsInt", default: "0" }]} returns="None" />
+<ApiSig name="circle" multiline params={[{ name: "circle", type: "Circle" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsFloat", default: "0" }, { name: "num_segments", type: "SupportsInt", default: "36" }]} returns="None" />
 
 Draw a circle to the renderer.
 
@@ -15,8 +15,25 @@ _**Args**_
 
 - `circle` : The circle to draw.
 - `color` : The color of the circle.
-- `thickness` : The line thickness. If 0 or &gt;= radius, draws filled circle.
-                              Defaults to 0 (filled).
+- `thickness` : The line thickness. If &lt;= 0 or &gt;= radius, draws filled circle. Defaults to 0 (filled).
+- `num_segments` : Number of segments to approximate the circle.
+                                  Higher values yield smoother circles. Defaults to 36.
+
+</div>
+
+## Circles
+<div className="api-card">
+<ApiSig name="circles" multiline params={[{ name: "circles", type: "Sequence[Circle]" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsFloat", default: "0" }, { name: "num_segments", type: "SupportsInt", default: "36" }]} returns="None" />
+
+Draw an array of circles in bulk to the renderer.
+
+_**Args**_
+
+- `circles` : The circles to draw in bulk.
+- `color` : The color of the circles.
+- `thickness` : The line thickness. If &lt;= 0 or &gt;= radius, draws filled circle. Defaults to 0 (filled).
+- `num_segments` : Number of segments to approximate each circle.
+                                  Higher values yield smoother circles. Defaults to 36.
 
 </div>
 
@@ -32,6 +49,21 @@ _**Args**_
 - `color` : The color of the ellipse.
 - `filled` : Whether to draw a filled ellipse or just the outline.
                              Defaults to False (outline).
+
+</div>
+
+## Geometry
+<div className="api-card">
+<ApiSig name="geometry" multiline params={[{ name: "texture", type: "Texture | None" }, { name: "vertices", type: "Sequence[Vertex]" }, { name: "indices", type: "Any", default: "None" }]} returns="None" />
+
+Draw arbitrary geometry using vertices and optional indices.
+
+_**Args**_
+
+- `texture` : The texture to apply to the geometry. Can be None.
+- `vertices` : A list of Vertex objects.
+- `indices` : A list of indices defining the primitives.
+                                   If None or empty, vertices are drawn sequentially.
 
 </div>
 
@@ -68,7 +100,7 @@ _**Raises**_
 
 ## Points
 <div className="api-card">
-<ApiSig name="points" params={[{ name: "points", type: "Vec2List" }, { name: "color", type: "Color" }]} returns="None" />
+<ApiSig name="points" params={[{ name: "points", type: "Sequence[Vec2]" }, { name: "color", type: "Color" }]} returns="None" />
 
 Batch draw an array of points to the renderer.
 
@@ -107,7 +139,7 @@ _**Raises**_
 
 ## Polygon
 <div className="api-card">
-<ApiSig name="polygon" multiline params={[{ name: "polygon", type: "Polygon" }, { name: "color", type: "Color" }, { name: "filled", type: "bool", default: "False" }]} returns="None" />
+<ApiSig name="polygon" multiline params={[{ name: "polygon", type: "Polygon" }, { name: "color", type: "Color" }, { name: "filled", type: "bool", default: "True" }]} returns="None" />
 
 Draw a polygon to the renderer.
 
@@ -117,6 +149,21 @@ _**Args**_
 - `color` : The color of the polygon.
 - `filled` : Whether to draw a filled polygon or just the outline.
                              Defaults to False (outline). Works with both convex and concave polygons.
+
+</div>
+
+## Polygons
+<div className="api-card">
+<ApiSig name="polygons" multiline params={[{ name: "polygons", type: "Sequence[Polygon]" }, { name: "color", type: "Color" }, { name: "filled", type: "bool", default: "True" }]} returns="None" />
+
+Draw an array of polygons in bulk to the renderer.
+
+_**Args**_
+
+- `polygons` : The polygons to draw in bulk.
+- `color` : The color of the polygons.
+- `filled` : Whether to draw filled polygons or just the outlines.
+                             Defaults to True (filled). Works with both convex and concave polygons.
 
 </div>
 
@@ -136,7 +183,7 @@ _**Args**_
 
 ## Rects
 <div className="api-card">
-<ApiSig name="rects" multiline params={[{ name: "rects", type: "RectList" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsInt", default: "0" }]} returns="None" />
+<ApiSig name="rects" multiline params={[{ name: "rects", type: "Sequence[Rect]" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsInt", default: "0" }]} returns="None" />
 
 Batch draw an array of rectangles to the renderer.
 

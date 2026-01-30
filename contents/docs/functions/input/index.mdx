@@ -7,7 +7,7 @@ description: Input handling and action binding
 
 ## Bind
 <div className="api-card">
-<ApiSig name="bind" params={[{ name: "name", type: "str" }, { name: "actions", type: "InputActionList" }]} returns="None" />
+<ApiSig name="bind" multiline params={[{ name: "name", type: "str" }, { name: "actions", type: "Sequence[InputAction]" }]} returns="None" />
 
 Bind a name to a list of InputActions.
 

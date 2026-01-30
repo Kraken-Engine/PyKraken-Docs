@@ -9,15 +9,23 @@ description: TileLayer represents a grid of tiles within the map. Access via the
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `opacity` |  | <code>float</code> |
-| `tiles` |  | <code><a href="/docs/classes/tile-layer">TileLayer</a>.TileLayerTileList</code> |
+| `opacity` | Layer opacity from 0.0 to 1.0. | <code>float</code> |
+| `tiles` | TileLayerTileList of tiles in the layer grid. | <code>list[<a href="/docs/classes/tile-layer">TileLayer</a>.Tile]</code> |
 
 ## Methods
 ---
 
+### Draw
+<div className="api-card">
+<ApiSig name="draw" returns="None" />
+
+Draw the tile layer.
+
+</div>
+
 ### Get From Area
 <div className="api-card">
-<ApiSig name="get_from_area" params={[{ name: "area", type: "Rect" }]} returns="TileLayer.TileResultList" />
+<ApiSig name="get_from_area" params={[{ name: "area", type: "Rect" }]} returns="list[TileLayer.TileResult]" />
 
 Return tiles intersecting a Rect area.
 
@@ -44,13 +52,5 @@ _**Args**_
 _**Returns**_
 
 `Optional[TileLayer.TileResult]` : TileResult entry if a tile exists at the position, None otherwise.
-
-</div>
-
-### Render
-<div className="api-card">
-<ApiSig name="render" returns="None" />
-
-Draw the tile layer.
 
 </div>

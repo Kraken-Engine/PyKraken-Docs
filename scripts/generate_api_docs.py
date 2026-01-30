@@ -101,12 +101,19 @@ def iter_stub_files(pkg_root: Path) -> List[Path]:
         if "__pycache__" in path.parts:
             continue
         files.append(path)
+
+    # Include specific submodules that need explicit import (fx, shader_uniform)
+    for submodule in ["fx.py", "shader_uniform.py"]:
+        py_file = pkg_root / submodule
+        if py_file.exists():
+            files.append(py_file)
+
     return files
 
 
-def parse_module(path: Path) -> ast.Module:
+def parse_module(path: Path) -> Tuple[ast.Module, List[str]]:
     source = path.read_text(encoding="utf-8")
-    return ast.parse(source, filename=str(path))
+    return ast.parse(source, filename=str(path)), source.splitlines()
 
 
 def decorator_name(node: ast.AST) -> Optional[str]:
@@ -268,7 +275,7 @@ def summary_from_doc(doc: Optional[str], fallback: str) -> str:
     return text.splitlines()[0] if text else fallback
 
 
-def parse_stub_file(tree: ast.Module) -> Tuple[List[ClassInfo], List[FunctionSig], Optional[str]]:
+def parse_stub_file(tree: ast.Module, lines: List[str]) -> Tuple[List[ClassInfo], List[FunctionSig], Optional[str]]:
     module_doc = ast.get_docstring(tree)
     classes: List[ClassInfo] = []
     functions: List[FunctionSig] = []
@@ -277,7 +284,7 @@ def parse_stub_file(tree: ast.Module) -> Tuple[List[ClassInfo], List[FunctionSig
 
     for node in tree.body:
         if isinstance(node, ast.ClassDef):
-            parsed = parse_class(node)
+            parsed = parse_class(node, lines)
             if parsed:
                 classes.append(parsed)
         elif isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
@@ -288,7 +295,7 @@ def parse_stub_file(tree: ast.Module) -> Tuple[List[ClassInfo], List[FunctionSig
             continue
 
     for name, sigs in overload_buckets.items():
-        if name.startswith("_"):
+        if name.startswith("_") and not name.startswith("_fx_"):
             continue
         # Keep doc from first signature if present
         doc = next((s.doc for s in sigs if s.doc), None)
@@ -413,7 +420,7 @@ def process_sig(
     return new_sig
 
 
-def parse_class(node: ast.ClassDef) -> Optional[ClassInfo]:
+def parse_class(node: ast.ClassDef, lines: List[str]) -> Optional[ClassInfo]:
     if node.name.endswith("List"):
         return None
     is_enum = False
@@ -437,7 +444,18 @@ def parse_class(node: ast.ClassDef) -> Optional[ClassInfo]:
         if isinstance(item, ast.AnnAssign) and isinstance(item.target, ast.Name):
             if item.target.id.startswith("_"):
                 continue
-            prop_doc = next_doc if is_enum else None
+            prop_doc = next_doc
+
+            # Extract comment value if no docstring
+            if not prop_doc and not is_enum and hasattr(item, "lineno"):
+                line_idx = item.lineno - 1
+                if 0 <= line_idx < len(lines):
+                    line_content = lines[line_idx]
+                    if "# value =" in line_content:
+                        # Extract the part after "# value ="
+                        val = line_content.split("# value =", 1)[1].strip()
+                        prop_doc = f"`{val}`"
+
             info.properties.append(
                 PropertyInfo(
                     name=item.target.id,
@@ -641,6 +659,9 @@ def render_class_page(
         lines.append("| --- | --- | --- |")
         for prop in info.properties:
             desc = escape_outside_code(summary_from_doc(prop.doc, ""))
+            if not desc and prop.type and "ClassVar" in prop.type:
+                desc = "Static constant."
+
             type_str = prop.type or "Any"
             # For enums, if type matches class name, it's just the enum type
             formatted_type = format_type_for_table(type_str, classes_map)
@@ -828,11 +849,19 @@ def enrich_enum_member_docs(enums: List[ClassInfo], package_name: str) -> None:
 
 def module_name_from_path(pkg: str, pkg_root: Path, file_path: Path) -> str:
     rel = file_path.relative_to(pkg_root)
-    if rel.name == "__init__.pyi":
+    if rel.suffix not in (".pyi", ".py"):
         return pkg
-    if rel.suffix != ".pyi":
-        return pkg
+
+    # Handle __init__ files
     parts = list(rel.with_suffix("").parts)
+    if rel.name in ("__init__.pyi", "__init__.py"):
+        # If it's the top-level __init__, return just the package name
+        if len(parts) == 1:
+            return pkg
+        # Otherwise, include the parent directory path
+        return ".".join([pkg] + parts[:-1])
+
+    # Regular module files
     return ".".join([pkg] + parts)
 
 
@@ -925,8 +954,8 @@ def main() -> int:
     modules: Dict[str, ModuleInfo] = {}
 
     for stub in stub_files:
-        tree = parse_module(stub)
-        classes, functions, module_doc = parse_stub_file(tree)
+        tree, lines = parse_module(stub)
+        classes, functions, module_doc = parse_stub_file(tree, lines)
         module_name = module_name_from_path(pkg, pkg_root, stub)
 
         for cls in classes:
@@ -935,6 +964,50 @@ def main() -> int:
 
         if functions:
             modules[module_name] = ModuleInfo(name=module_name.split(".")[-1], doc=module_doc, functions=functions)
+
+    # Extract fx functions from _core module
+    core_module_name = f"{pkg}._core"
+    if core_module_name in modules:
+        fx_functions = []
+        core_module = modules[core_module_name]
+        for func in core_module.functions:
+            if func.name.startswith("_fx_"):
+                # Create a copy with the _fx_ prefix removed
+                fx_func = FunctionSig(
+                    name=func.name[4:],  # Remove "_fx_" prefix
+                    params=func.params,
+                    returns=func.returns,
+                    doc=func.doc
+                )
+                # Copy overloads if they exist
+                if hasattr(func, "__dict__") and "overloads" in func.__dict__:
+                    fx_func.__dict__["overloads"] = [
+                        FunctionSig(
+                            name=sig.name[4:],
+                            params=sig.params,
+                            returns=sig.returns,
+                            doc=sig.doc
+                        )
+                        for sig in func.__dict__["overloads"]
+                    ]
+                fx_functions.append(fx_func)
+
+        if fx_functions:
+            # Read docstring from fx.py if it exists
+            fx_py_path = pkg_root / "fx.py"
+            fx_doc = None
+            if fx_py_path.exists():
+                try:
+                    tree, lines = parse_module(fx_py_path)
+                    fx_doc = ast.get_docstring(tree)
+                except Exception:
+                    pass
+
+            modules[f"{pkg}.fx"] = ModuleInfo(
+                name="fx",
+                doc=fx_doc,
+                functions=fx_functions
+            )
 
     print(f"Parsed {len(classes_by_name)} class(es) and {len(modules)} module(s)")
 
@@ -973,7 +1046,8 @@ def main() -> int:
 
     generated_module_dirs: List[str] = []
     for mod in modules.values():
-        if mod.name == pkg:
+        # Skip the main package module and internal _core module
+        if mod.name == pkg or mod.name == "_core":
             continue
         slug = camel_to_kebab(mod.name)
         generated_module_dirs.append(slug)
@@ -995,7 +1069,7 @@ def main() -> int:
     updated_routes = update_routes_config(
         routes_path,
         sorted(c.name for c in normal_classes),
-        sorted({mod.name for mod in modules.values() if mod.name != pkg}),
+        sorted({mod.name for mod in modules.values() if mod.name not in (pkg, "_core")}),
     )
     if updated_routes:
         print(f"Updated routes config at {routes_path}")

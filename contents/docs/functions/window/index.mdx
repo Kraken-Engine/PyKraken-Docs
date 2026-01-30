@@ -18,14 +18,15 @@ This doesn't destroy the window immediately but sets the close flag.
 
 ## Create
 <div className="api-card">
-<ApiSig name="create" params={[{ name: "title", type: "str" }, { name: "size", type: "Vec2" }]} returns="None" />
+<ApiSig name="create" multiline params={[{ name: "title", type: "str" }, { name: "width", type: "SupportsInt" }, { name: "height", type: "SupportsInt" }]} returns="None" />
 
 Create a window with the requested title and resolution.
 
 _**Args**_
 
 - `title` : Non-empty title no longer than 255 characters.
-- `size` : The window size (width, height), both values must be positive.
+- `width` : The window width, must be positive.
+- `height` : The window height, must be positive.
 
 _**Raises**_
 
