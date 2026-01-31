@@ -15,8 +15,8 @@ export const DOC_ROUTES: EachRoute[] = [
     href: "/preface",
     noLink: true,
     items: [
-      { title: "How to Read the Docs", href: "" },
-      { title: "How to Build the Docs", href: "/building" }
+      { title: "Navigating the Docs", href: "" },
+      { title: "Building Docs", href: "/building" }
     ]
   },
   {
@@ -24,7 +24,6 @@ export const DOC_ROUTES: EachRoute[] = [
     href: "/manual",
     noLink: true,
     items: [
-      { title: "Introduction", href: "" },
       { title: "Keycode vs. Scancode", href: "/keycode-vs-scancode" },
       { title: "Constants", href: "/constants" },
       { title: "Event Attributes", href: "/event-attributes" },
