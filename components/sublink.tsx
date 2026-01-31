@@ -19,6 +19,7 @@ export default function SubLink({
   level,
   isSheet,
   tag,
+  separator,
 }: EachRoute & { level: number; isSheet: boolean }) {
   const path = usePathname();
   const [isOpen, setIsOpen] = useState(level == 0);
@@ -31,6 +32,7 @@ export default function SubLink({
     <Anchor
       activeClassName="text-primary dark:font-medium font-semibold"
       href={href}
+      className={cn(separator && "pb-[0.875rem] relative after:content-[''] after:absolute after:bottom-[0.3125rem] after:left-0 after:right-0 after:h-px after:bg-border")}
     >
       {title}
       {tag && (
@@ -59,7 +61,11 @@ export default function SubLink({
   );
 
   if (!items) {
-    return <div className="leftbar-sublink flex flex-col">{titleOrLink}</div>;
+    return (
+      <div className="leftbar-sublink flex flex-col">
+        {titleOrLink}
+      </div>
+    );
   }
 
   return (
