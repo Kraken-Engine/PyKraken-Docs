@@ -1,0 +1,105 @@
+---
+title: Framework Comparison
+description: How PyKraken compares to other Python game development libraries.
+---
+
+A comparison of PyKraken with other popular Python game frameworks to help you understand the differences and choose the right tool for your project.
+
+## Quick Comparison Table
+
+| | PyKraken | Pygame | Arcade | Pyglet |
+|---------|----------|---------|---------|---------|
+| **Rendering** | Hardware-accelerated | Software (experimental hardware) | Hardware-accelerated | Hardware-accelerated |
+| **Primary Focus** | 2D | 2D | 2D | 2D / limited 3D |
+| **Learning Curve** | Easy-Moderate | Easy | Easy-Moderate | Moderate |
+| **Performance** | Moderate-High | Low-Moderate | High | High |
+| **Built-in Physics** | Overlap & Containment | Overlap & Containment | Complete Physics | - |
+| **Shader Support** | Fragment only | - | Full pipeline | Full pipeline |
+| **Audio** | Simultaneous streams | Single stream | Single stream | Simultaneous streams |
+| **Video** | - | - | Yes (Pyglet) | Yes |
+| **Tile Maps** | Tiled | - | Tiled (JSON) | - |
+| **Animation** | Controller & Orchestrator | - | Animated Sprite | Image Animation |
+| **Active Development** | ✅ | ✅ (Community Edition) | ✅ | ✅ |
+
+---
+
+## Detailed Comparisons
+
+### PyKraken vs Pygame
+
+*Pygame* is the most established Python game library, having been around since 2000.
+This framework is how I got into Python and game development in general, with it being my go-to for many early projects.
+It remains a popular choice for beginners due to its simplicity and large community.
+
+**When to choose Pygame over PyKraken:**
+- You want the largest community and most tutorials
+- You need maximum compatibility (runs almost everywhere)
+- You prefer total control with a lower-level API
+- You're coming from a C/C++ SDL background
+
+**Code Comparison** - Loading and drawing a sprite:
+
+<p style={{marginBottom: -24}}><i>Pygame:</i></p>
+```python
+import pygame as pg
+
+pg.init()
+screen = pg.display.set_mode((800, 600))
+image = pg.image.load("sprite.png").convert_alpha()
+
+running = True
+while running:
+    for event in pg.event.get():
+        if event.type == pg.QUIT:
+            running = False
+
+    screen.blit(image, (100, 100))
+    pg.display.flip()
+
+pg.quit()
+```
+
+<p style={{marginBottom: -24}}><i>PyKraken:</i></p>
+```python
+import pykraken as kn
+
+kn.init()
+kn.window.create("Window", 800, 600)
+texture = kn.Texture("sprite.png")
+transform = kn.Transform(pos=kn.Vec2(100, 100))
+
+while kn.window.is_open():
+    kn.event.poll()
+    kn.renderer.clear()
+    kn.renderer.draw(texture, transform)
+    kn.renderer.present()
+
+kn.quit()
+```
+
+{/* ## Philosophy & Design */}
+
+---
+
+## Conclusion
+
+**Choose PyKraken if**:
+- You're building a 2D game (especially tile-based)
+- You want modern features (shaders, hardware acceleration, timeline animations)
+- You prefer a structured but flexible framework
+- Performance is important but you don't want to work at the OpenGL level
+
+**Consider alternatives if**:
+- You need 3D capabilities (Ursina, Panda3D)
+- You want the largest community (Pygame)
+- You need built-in physics engines (Arcade)
+- You want maximum low-level control (Pyglet, direct OpenGL)
+
+---
+
+<Note title="Disclaimer">
+This page is not meant to disparage other frameworks, but to help you pick the right tool for your needs.
+Choosing a framework is no different than choosing a programming language &mdash; it's about finding the best fit for your project and workflow.
+</Note>
+
+*This page is under development and will be filled out with more details over time.*

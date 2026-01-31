@@ -6,6 +6,7 @@ export type EachRoute = {
   noLink?: true; // noLink will create a route segment (section) but cannot be navigated
   items?: EachRoute[];
   tag?: string;
+  separator?: true; // adds a separator after this item
 };
 
 export const DOC_ROUTES: EachRoute[] = [
@@ -27,6 +28,7 @@ export const DOC_ROUTES: EachRoute[] = [
       { title: "Keycode vs. Scancode", href: "/keycode-vs-scancode" },
       { title: "Constants", href: "/constants" },
       { title: "Event Attributes", href: "/event-attributes" },
+      { title: "Framework Comparison", href: "/comparison" },
       { title: "Changelog", href: "/changelog" },
     ],
   },
@@ -35,7 +37,7 @@ export const DOC_ROUTES: EachRoute[] = [
     href: "/classes",
     noLink: true,
     items: [
-      { title: "Introduction", href: "" },
+      { title: "Overview", href: "", separator: true },
       { title: "Anchor", href: "/anchor" },
       { title: "AnimationController", href: "/animation-controller" },
       { title: "Audio", href: "/audio" },
@@ -80,7 +82,7 @@ export const DOC_ROUTES: EachRoute[] = [
     href: "/functions",
     noLink: true,
     items: [
-      { title: "Introduction", href: "" },
+      { title: "Overview", href: "", separator: true },
       { title: "Collision", href: "/collision" },
       { title: "Color", href: "/color" },
       { title: "Draw", href: "/draw" },

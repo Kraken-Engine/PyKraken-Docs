@@ -865,8 +865,11 @@ def module_name_from_path(pkg: str, pkg_root: Path, file_path: Path) -> str:
     return ".".join([pkg] + parts)
 
 
-def build_routes_items(titles_and_slugs: List[Tuple[str, str]]) -> str:
-    lines = [f"      {{ title: \"{title}\", href: \"/{slug}\" }}," for title, slug in titles_and_slugs]
+def build_routes_items(titles_and_slugs: List[Tuple[str, str]], prepend_overview: bool = False) -> str:
+    lines = []
+    if prepend_overview:
+        lines.append('      { title: "Overview", href: "", separator: true },')
+    lines.extend([f"      {{ title: \"{title}\", href: \"/{slug}\" }}," for title, slug in titles_and_slugs])
     return "\n".join(lines)
 
 
@@ -893,8 +896,8 @@ def update_routes_config(routes_path: Path, class_names: List[str], module_names
     module_items = [(snake_to_title(name), camel_to_kebab(name)) for name in module_names]
     module_items.sort(key=lambda x: x[0].lower())
 
-    updated = replace_routes_items(content, "Classes", build_routes_items(class_items))
-    updated = replace_routes_items(updated, "Functions", build_routes_items(module_items))
+    updated = replace_routes_items(content, "Classes", build_routes_items(class_items, prepend_overview=True))
+    updated = replace_routes_items(updated, "Functions", build_routes_items(module_items, prepend_overview=True))
 
     if updated != content:
         routes_path.write_text(updated, encoding="utf-8")
@@ -1094,6 +1097,16 @@ def prune_dirs(root: Path, keep_slugs: List[str]) -> None:
     for entry in root.iterdir():
         if entry.is_dir() and entry.name.lower() not in keep_set:
             shutil.rmtree(entry, ignore_errors=True)
+
+
+def should_skip_file(file_path: Path, root: Path) -> bool:
+    """Check if a file should be skipped during doc generation."""
+    # Skip the classes index file (but not individual class index files)
+    if file_path.name == "index.mdx":
+        rel_path = file_path.relative_to(root)
+        if rel_path == Path("classes/index.mdx"):
+            return True
+    return False
 
 
 if __name__ == "__main__":
