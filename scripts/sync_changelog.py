@@ -3,16 +3,16 @@
 Sync CHANGELOG.md from the PyKraken GitHub repo into docs.
 
 Usage:
-  python scripts/sync_changelog.py
+  python scripts/sync_changelog.py [--branch BRANCH]
 """
 
 from __future__ import annotations
 
+import argparse
 from pathlib import Path
 from urllib.request import urlopen
 import re
 
-RAW_CHANGELOG_URL = "https://raw.githubusercontent.com/Kraken-Engine/PyKraken/dev/CHANGELOG.md"
 MAX_VERSIONS = 10
 
 REMOVE_LINES = {
@@ -21,8 +21,9 @@ REMOVE_LINES = {
 }
 
 
-def fetch_changelog() -> str:
-    with urlopen(RAW_CHANGELOG_URL) as resp:
+def fetch_changelog(branch: str) -> str:
+    url = f"https://raw.githubusercontent.com/Kraken-Engine/PyKraken/{branch}/CHANGELOG.md"
+    with urlopen(url) as resp:
         data = resp.read()
     return data.decode("utf-8")
 
@@ -90,10 +91,14 @@ description: Release notes for PyKraken.
 
 
 def main() -> int:
-    content = fetch_changelog()
+    parser = argparse.ArgumentParser(description="Sync CHANGELOG.md from PyKraken.")
+    parser.add_argument("--branch", default="dev", help="Branch to sync from (default: dev)")
+    args = parser.parse_args()
+
+    content = fetch_changelog(args.branch)
     target = Path("contents") / "docs" / "manual" / "changelog" / "index.mdx"
     write_changelog(target, content)
-    print(f"Wrote changelog to {target}")
+    print(f"Wrote changelog to {target} (from branch: {args.branch})")
     return 0
 
 

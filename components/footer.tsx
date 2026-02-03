@@ -21,18 +21,17 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              durkisneer1
+              durkisneer1.
             </Link>
-            . Kraken Engine is open source and available on{""}
+            Kraken Engine is open source and available on{""}
             <Link
               className="px-1 underline underline-offset-2"
               href="https://github.com/durkisneer1/PyKraken"
               target="_blank"
               rel="noopener noreferrer"
             >
-              GitHub
+              GitHub.
             </Link>
-            .
           </p>
         </div>
       </div>
