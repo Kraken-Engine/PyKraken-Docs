@@ -15,7 +15,7 @@ A comparison of PyKraken with other popular Python game frameworks to help you u
 | **Performance** | Moderate-High | Low-Moderate | High | High |
 | **Built-in Physics** | Overlap & Containment | Overlap & Containment | Complete Physics | - |
 | **Shader Support** | Fragment only | - | Full pipeline | Full pipeline |
-| **Audio** | Simultaneous streams | Single stream | Single stream | Simultaneous streams |
+| **Audio** | Simultaneous streams | Single stream | Simultaneous streams | Simultaneous streams |
 | **Video** | - | - | Yes (Pyglet) | Yes |
 | **Tile Maps** | Tiled | - | Tiled (JSON) | - |
 | **Animation** | Controller & Orchestrator | - | Animated Sprite | Image Animation |
@@ -40,7 +40,7 @@ It remains a popular choice for beginners due to its simplicity and large commun
 **Code Comparison** - Loading and drawing a sprite:
 
 <p style={{marginBottom: -24}}><i>Pygame:</i></p>
-```python
+```python showLineNumbers
 import pygame as pg
 
 pg.init()
@@ -53,25 +53,25 @@ while running:
         if event.type == pg.QUIT:
             running = False
 
-    screen.blit(image, (100, 100))
+    screen.blit(image)
     pg.display.flip()
 
 pg.quit()
 ```
 
 <p style={{marginBottom: -24}}><i>PyKraken:</i></p>
-```python
+```python showLineNumbers
 import pykraken as kn
 
 kn.init()
 kn.window.create("Window", 800, 600)
 texture = kn.Texture("sprite.png")
-transform = kn.Transform(pos=kn.Vec2(100, 100))
 
 while kn.window.is_open():
     kn.event.poll()
+
     kn.renderer.clear()
-    kn.renderer.draw(texture, transform)
+    kn.renderer.draw(texture)
     kn.renderer.present()
 
 kn.quit()

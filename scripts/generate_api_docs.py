@@ -54,6 +54,7 @@ class ClassInfo:
     doc: Optional[str]
     module_name: Optional[str] = None
     is_enum: bool = False
+    bases: List[str] = field(default_factory=list)
     init_sigs: List[FunctionSig] = field(default_factory=list)
     properties: List[PropertyInfo] = field(default_factory=list)
     methods: List[FunctionSig] = field(default_factory=list)
@@ -428,7 +429,14 @@ def parse_class(node: ast.ClassDef, lines: List[str]) -> Optional[ClassInfo]:
         is_enum = True
 
     doc = ast.get_docstring(node)
-    info = ClassInfo(name=node.name, doc=doc, is_enum=is_enum)
+    bases = []
+    for base_node in node.bases:
+        base_name = render_annotation(base_node)
+        if base_name and base_name not in ("object", "ABC", "enum.Enum", "Enum"):
+            if not is_enum_base(base_node):
+                bases.append(base_name)
+
+    info = ClassInfo(name=node.name, doc=doc, is_enum=is_enum, bases=bases)
 
     init_overloads: Dict[str, List[FunctionSig]] = {}
     method_overloads: Dict[str, List[FunctionSig]] = {}
@@ -624,7 +632,8 @@ def render_class_page(
         submodule = current_module[len(package_name) + 1 :]
         submodule = submodule.replace("_core.", "").replace("_core", "")
         submodule = submodule.strip(".")
-        description = f"{description} Access via the '{submodule}' submodule."
+        if submodule:
+            description = f"{description} Access via the '{submodule}' submodule."
 
     lines: List[str] = []
     lines.append("---")
@@ -632,6 +641,20 @@ def render_class_page(
     lines.append(f"description: {description}")
     lines.append("---")
     lines.append("")
+
+    if info.bases:
+        inherited = []
+        for base in info.bases:
+            if base in classes_map:
+                slug = camel_to_kebab(base)
+                inherited.append(f"[{base}](/docs/classes/{slug})")
+            else:
+                # Still show if it's a relevant base but not in classes_map
+                # (though usually we'd want to link if it's an internal class)
+                inherited.append(f"`{base}`")
+        if inherited:
+            lines.append(f"Inherits from {', '.join(inherited)}.")
+            lines.append("")
 
     if info.init_sigs and not info.is_enum:
         lines.append("## Constructor")
