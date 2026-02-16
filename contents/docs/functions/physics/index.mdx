@@ -1,0 +1,63 @@
+---
+title: Physics
+description: Physics engine related classes and functions
+---
+
+<Note type="warning" title="Experimental API">
+  The physics submodule is a VERY experimental and new API that is highly susceptible to breaking changes in the future.
+</Note>
+
+---
+
+## Get Fixed Delta
+<div className="api-card">
+<ApiSig name="get_fixed_delta" returns="float" />
+
+Get the current fixed delta time for physics stepping.
+
+_**Returns**_
+
+`float` : The fixed time step in seconds.
+
+</div>
+
+## Get Max Substeps
+<div className="api-card">
+<ApiSig name="get_max_substeps" returns="int" />
+
+Get the current maximum number of substeps for physics stepping.
+
+_**Returns**_
+
+`int` : The number of substeps per time step.
+
+</div>
+
+## Set Fixed Delta
+<div className="api-card">
+<ApiSig name="set_fixed_delta" params={[{ name: "fixed_delta", type: "SupportsFloat" }]} returns="None" />
+
+Set the fixed delta time for automatic physics stepping. Default is 1/60 seconds (60 FPS).
+
+Setting this to a value greater than 0.0 enables automatic physics stepping
+in the engine backend. The physics will be updated with this fixed time step,
+using an accumulator to handle variable frame rates.
+
+_**Args**_
+
+- `fixed_delta` : The fixed time step in seconds (e.g., 1.0/60.0).
+                         Set to 0.0 to disable automatic stepping.
+
+</div>
+
+## Set Max Substeps
+<div className="api-card">
+<ApiSig name="set_max_substeps" params={[{ name: "max_substeps", type: "SupportsInt" }]} returns="None" />
+
+Set the maximum number of substeps for physics stepping.
+
+_**Args**_
+
+- `max_substeps` : The number of substeps per time step.
+
+</div>

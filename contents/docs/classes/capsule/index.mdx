@@ -1,0 +1,50 @@
+---
+title: Capsule
+description: Represents a capsule shape with two points and a radius.
+---
+
+## Constructor
+<div className="api-card">
+
+- <ApiSig name="Capsule" returns="Capsule" />
+- <ApiSig name="Capsule" params={[{ name: "p1", type: "Vec2" }, { name: "p2", type: "Vec2" }, { name: "radius", type: "SupportsFloat" }]} returns="Capsule" />
+- <ApiSig name="Capsule" multiline params={[{ name: "x1", type: "SupportsFloat" }, { name: "y1", type: "SupportsFloat" }, { name: "x2", type: "SupportsFloat" }, { name: "y2", type: "SupportsFloat" }, { name: "radius", type: "SupportsFloat" }]} returns="Capsule" />
+
+Represents a capsule shape with two points and a radius.
+</div>
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `p1` | The first point. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `p2` | The second point. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `radius` | The radius. | <code>float</code> |
+
+## Methods
+---
+
+### As Rect
+<div className="api-card">
+<ApiSig name="as_rect" returns="Rect" />
+
+Get the axis-aligned bounding box of the capsule.
+
+_**Returns**_
+
+`Rect` : The bounding box.
+
+</div>
+
+### Copy
+<div className="api-card">
+<ApiSig name="copy" returns="Capsule" />
+
+Create a copy of the capsule.
+
+_**Returns**_
+
+`Capsule` : The copy.
+
+</div>

@@ -11,49 +11,49 @@ Before you begin, make sure you have the following installed:
 
 * Node.js v18.12.0 or newer
   You can verify your Node.js version with:
-  ```
+  ```plaintext
   node --version
   ```
   Or install it from [here](https://nodejs.org/en/download)
 
 * pnpm (recommended package manager)
   If you don't have `pnpm` in your system, you can install it from [here](https://pnpm.io/installation)
-  
+
   You can verify the installation of `pnpm` by-
-  ```
+  ```plaintext
   pnpm --version
   ```
 
-  Other package managers like `npm`, `yarn` or `bun` can also be used but it is recommended to use `pnpm`.
+  Other package managers like `npm`, `yarn`, or `bun` can also be used but it is recommended to use `pnpm`.
 
 ## Clone the Repository
 
 After setting up the prerequisites, clone the documentation repository-
-```
+```plaintext
 git clone https://github.com/Kraken-Engine/PyKraken-Docs.git
 ```
 
 Then `cd` into it-
-```
+```plaintext
 cd PyKraken-Docs
 ```
 
 ## Install Dependencies
 
 Install all required dependencies using pnpm:
-```
+```plaintext
 pnpm install
 ```
 
 ## Start the Development Server
 
 To start the local development server, run:
-```
+```plaintext
 pnpm dev
 ```
 
 Once the server starts, you can view the documentation in your browser at:
-```
+```plaintext
 http://localhost:3000
 ```
 (If a different port is shown in the terminal, use that instead.)
@@ -65,7 +65,7 @@ http://localhost:3000
 
 * Dependency errors:
   If you're facing any dependancy issues, use `pnpm` and delete the `node_modules` folder, then reinstall:
-  ```
+  ```plaintext
   rm -rf node_modules
   pnpm install
   ```

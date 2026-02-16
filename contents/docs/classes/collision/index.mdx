@@ -1,0 +1,20 @@
+---
+title: Collision
+description: API reference for Collision. Access via the 'physics' submodule.
+---
+
+<Note type="warning" title="Experimental API">
+  The physics submodule is a VERY experimental and new API that is highly susceptible to breaking changes in the future.
+</Note>
+
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `approach_speed` | The speed at which the bodies approached each other. | <code>float</code> |
+| `body_a` | The first body involved in the collision. | <code><a href="/docs/classes/body">Body</a></code> |
+| `body_b` | The second body involved in the collision. | <code><a href="/docs/classes/body">Body</a></code> |
+| `normal` | The normal vector of the collision. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `point` | The point of impact in world coordinates. | <code><a href="/docs/classes/vec2">Vec2</a></code> |

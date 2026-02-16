@@ -1,0 +1,32 @@
+---
+title: Joint
+description: API reference for Joint. Access via the 'physics' submodule.
+---
+
+<Note type="warning" title="Experimental API">
+  The physics submodule is a VERY experimental and new API that is highly susceptible to breaking changes in the future.
+</Note>
+
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `body_a` | The first body attached to the joint. | <code><a href="/docs/classes/body">Body</a></code> |
+| `body_b` | The second body attached to the joint. | <code><a href="/docs/classes/body">Body</a></code> |
+| `collide_connected` | Whether the connected bodies should collide with each other. | <code>bool</code> |
+| `is_valid` | Indicates whether the joint is not destroyed. | <code>bool</code> |
+| `local_anchor_a` | The local anchor point relative to body A's origin. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `local_anchor_b` | The local anchor point relative to body B's origin. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+
+## Methods
+---
+
+### Destroy
+<div className="api-card">
+<ApiSig name="destroy" returns="None" />
+
+Destroy the joint manually.
+
+</div>

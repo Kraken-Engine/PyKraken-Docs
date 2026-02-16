@@ -139,6 +139,31 @@ def render_annotation(node: Optional[ast.AST]) -> Optional[str]:
     return text
 
 
+def clean_floats(text: str) -> str:
+    """Detects trailing zeros in decimals (at least two in a row) and cuts them off."""
+    if not text:
+        return text
+
+    def replacer(match):
+        val = match.group(0)
+        dot_idx = val.find(".")
+        if dot_idx == -1:
+            return val
+
+        # Look for "00" after the decimal point
+        zeros_match = re.search(r"00", val[dot_idx:])
+        if zeros_match:
+            cutoff = dot_idx + zeros_match.start()
+            new_val = val[:cutoff]
+            if new_val.endswith("."):
+                new_val += "0"
+            return new_val
+        return val
+
+    # Match floating point numbers
+    return re.sub(r"\d+\.\d+", replacer, text)
+
+
 def render_default(node: Optional[ast.AST]) -> Optional[str]:
     if node is None:
         return None
@@ -146,7 +171,7 @@ def render_default(node: Optional[ast.AST]) -> Optional[str]:
         text = ast.unparse(node)
         text = text.replace("pykraken._core.", "")
         text = text.replace("_core.", "")
-        return text
+        return clean_floats(text)
     except Exception:
         return None
 
@@ -273,6 +298,7 @@ def summary_from_doc(doc: Optional[str], fallback: str) -> str:
     if not doc:
         return fallback
     text = textwrap.dedent(doc).strip()
+    text = clean_floats(text)
     return text.splitlines()[0] if text else fallback
 
 
@@ -285,9 +311,7 @@ def parse_stub_file(tree: ast.Module, lines: List[str]) -> Tuple[List[ClassInfo]
 
     for node in tree.body:
         if isinstance(node, ast.ClassDef):
-            parsed = parse_class(node, lines)
-            if parsed:
-                classes.append(parsed)
+            classes.extend(parse_class(node, lines))
         elif isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
             sigs = parse_function_overloads(node, drop_first=False)
             for sig in sigs:
@@ -356,12 +380,13 @@ def escape_outside_code(text: str) -> str:
 
 
 def format_type_for_table(type_str: str, classes_map: Dict[str, ClassInfo]) -> str:
-    parts = re.split(r"(\b[a-zA-Z_][a-zA-Z0-9_]*\b)", type_str)
+    # Match whole identifiers possibly with dots: MapObject.ShapeType
+    parts = re.split(r"(\b[a-zA-Z_][a-zA-Z0-9_]*(?:\.[a-zA-Z_][a-zA-Z0-9_]*)*\b)", type_str)
     out = []
     for part in parts:
         if not part:
             continue
-        if re.match(r"^[a-zA-Z_][a-zA-Z0-9_]*$", part):
+        if re.match(r"^[a-zA-Z_][a-zA-Z0-9_.]*$", part):
             info = classes_map.get(part)
             if info:
                 if info.is_enum:
@@ -421,13 +446,14 @@ def process_sig(
     return new_sig
 
 
-def parse_class(node: ast.ClassDef, lines: List[str]) -> Optional[ClassInfo]:
+def parse_class(node: ast.ClassDef, lines: List[str], parent_name: str = "") -> List[ClassInfo]:
     if node.name.endswith("List"):
-        return None
+        return []
     is_enum = False
     if any(is_enum_base(base) for base in node.bases):
         is_enum = True
 
+    full_name = f"{parent_name}.{node.name}" if parent_name else node.name
     doc = ast.get_docstring(node)
     bases = []
     for base_node in node.bases:
@@ -436,13 +462,18 @@ def parse_class(node: ast.ClassDef, lines: List[str]) -> Optional[ClassInfo]:
             if not is_enum_base(base_node):
                 bases.append(base_name)
 
-    info = ClassInfo(name=node.name, doc=doc, is_enum=is_enum, bases=bases)
+    info = ClassInfo(name=full_name, doc=doc, is_enum=is_enum, bases=bases)
+    all_classes = [info]
 
     init_overloads: Dict[str, List[FunctionSig]] = {}
     method_overloads: Dict[str, List[FunctionSig]] = {}
 
     body = list(node.body)
     for idx, item in enumerate(body):
+        if isinstance(item, ast.ClassDef):
+            all_classes.extend(parse_class(item, lines, full_name))
+            continue
+
         next_item = body[idx + 1] if idx + 1 < len(body) else None
         next_doc: Optional[str] = None
         if isinstance(next_item, ast.Expr) and isinstance(next_item.value, ast.Constant):
@@ -489,7 +520,7 @@ def parse_class(node: ast.ClassDef, lines: List[str]) -> Optional[ClassInfo]:
                     info.properties.append(
                         PropertyInfo(
                             name=target.id,
-                            type=node.name,
+                            type=full_name,
                             doc=next_doc,
                         )
                     )
@@ -539,13 +570,14 @@ def parse_class(node: ast.ClassDef, lines: List[str]) -> Optional[ClassInfo]:
             merged.__dict__["overloads"] = sigs  # type: ignore
             info.methods.append(merged)
 
-    return info
+    return all_classes
 
 
 def format_docstring(doc: Optional[str]) -> str:
     if not doc:
         return ""
     text = textwrap.dedent(doc).strip()
+    text = clean_floats(text)
     if not text:
         return ""
 
@@ -621,6 +653,10 @@ def render_class_page(
     info: ClassInfo, package_name: str, classes_map: Dict[str, ClassInfo]
 ) -> str:
     title = info.name
+    if "." in title:
+        parts = title.split(".")
+        title = f"{parts[-1]} ({parts[0]})"
+
     description = summary_from_doc(info.doc, f"API reference for {info.name}.")
     current_module = info.module_name or ""
 
@@ -641,6 +677,19 @@ def render_class_page(
     lines.append(f"description: {description}")
     lines.append("---")
     lines.append("")
+
+    # Add physics disclaimer
+    is_physics = False
+    if current_module:
+        parts = current_module.split(".")
+        if "physics" in parts:
+            is_physics = True
+
+    if is_physics:
+        lines.append('<Note type="warning" title="Experimental API">')
+        lines.append("  The physics submodule is a VERY experimental and new API that is highly susceptible to breaking changes in the future.")
+        lines.append("</Note>")
+        lines.append("")
 
     if info.bases:
         inherited = []
@@ -749,6 +798,20 @@ def render_module_page(
     lines.append(f"description: {description}")
     lines.append("---")
     lines.append("")
+
+    # Add physics disclaimer
+    is_physics = False
+    if current_module:
+        parts = current_module.split(".")
+        if "physics" in parts:
+            is_physics = True
+
+    if is_physics:
+        lines.append('<Note type="warning" title="Experimental API">')
+        lines.append("  The physics submodule is a VERY experimental and new API that is highly susceptible to breaking changes in the future.")
+        lines.append("</Note>")
+        lines.append("")
+
     lines.append("---")
     lines.append("")
 
@@ -809,6 +872,9 @@ def render_constants_page(enums: List[ClassInfo]) -> str:
         # But let's just use the class name for clarity or a simple spread.
         # title = snake_to_title(camel_to_kebab(info.name).replace("-", "_"))
         title = info.name
+        if "." in title:
+            name_parts = title.split(".")
+            title = f"{name_parts[-1]} ({name_parts[0]})"
 
         lines.append(f"## {title}")
         if info.doc:
@@ -844,7 +910,15 @@ def enrich_enum_member_docs(enums: List[ClassInfo], package_name: str) -> None:
                 mod = importlib.import_module(module_name)
             except Exception:
                 continue
-            enum_cls = getattr(mod, enum_info.name, None)
+
+            # Handle nested names like MapObject.ShapeType
+            parts = enum_info.name.split(".")
+            enum_cls = mod
+            for part in parts:
+                enum_cls = getattr(enum_cls, part, None)
+                if enum_cls is None:
+                    break
+
             if enum_cls is not None:
                 break
 
@@ -913,7 +987,13 @@ def update_routes_config(routes_path: Path, class_names: List[str], module_names
 
     content = routes_path.read_text(encoding="utf-8")
 
-    class_items = [(name, camel_to_kebab(name)) for name in class_names]
+    def format_sidebar_name(name: str) -> str:
+        if "." in name:
+            parts = name.split(".")
+            return f"{parts[-1]} ({parts[0]})"
+        return name
+
+    class_items = [(format_sidebar_name(name), camel_to_kebab(name)) for name in class_names]
     class_items.sort(key=lambda x: x[0].lower())
 
     module_items = [(snake_to_title(name), camel_to_kebab(name)) for name in module_names]
@@ -939,7 +1019,7 @@ def write_type_links_file(
     lines: List[str] = []
     lines.append("export const TYPE_LINKS = {")
     for name, href in class_items:
-        lines.append(f"  {name}: \"{href}\",")
+        lines.append(f"  \"{name}\": \"{href}\",")
     lines.append("} as const;")
     lines.append("")
     lines.append("export type TypeLinkName = keyof typeof TYPE_LINKS;")

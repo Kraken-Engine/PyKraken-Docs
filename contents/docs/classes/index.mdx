@@ -5,16 +5,16 @@ description: Complete reference for all classes in Kraken Engine.
 
 Comprehensive documentation for all classes available in Kraken Engine. Each class page includes constructor signatures, methods, properties, and usage examples.
 
-## Animation & Sprites
+## Animation & Visual Effects
 - [AnimationController](/docs/classes/animation-controller) - Manages and controls sprite animations with multiple animation sequences
 - [Effect](/docs/classes/effect) - Base class for timeline effects (not directly instantiable, accessed via fx submodule)
 - [Orchestrator](/docs/classes/orchestrator) - Timeline animator for Transform objects
 - [SheetStrip](/docs/classes/sheet-strip) - A descriptor for one horizontal strip (row) in a sprite sheet
-- [Sprite](/docs/classes/sprite) - Abstract base class for drawable game objects with a texture and transform
 
 ## Audio
 - [Audio](/docs/classes/audio) - A decoded audio object that supports multiple simultaneous playbacks
-- [AudioStream](/docs/classes/audio-stream) - A streaming audio object for single-instance playback of large audio files
+- [Sample](/docs/classes/sample) - A sound effect sample loaded entirely into memory
+- [Stream](/docs/classes/stream) - A streaming audio resource intended for long music files
 
 ## Graphics & Rendering
 - [Camera](/docs/classes/camera) - Represents a 2D camera used for rendering
@@ -28,10 +28,29 @@ Comprehensive documentation for all classes available in Kraken Engine. Each cla
 
 ## Shapes
 - [Anchor](/docs/classes/anchor) - Anchor positions returning Vec2 values for alignment
+- [Capsule](/docs/classes/capsule) - A shape defined by a line segment and a radius
 - [Circle](/docs/classes/circle) - Represents a circle shape with position and radius
 - [Line](/docs/classes/line) - A 2D line segment defined by two points: A and B
 - [Polygon](/docs/classes/polygon) - Represents a polygon shape defined by a sequence of points
 - [Rect](/docs/classes/rect) - Represents a rectangle with position and size
+
+## Physics
+- [World](/docs/classes/world) - The main container for physics simulation
+- [Body](/docs/classes/body) - Base class for physics bodies (Rigid, Static, Character)
+- [RigidBody](/docs/classes/rigid-body) - A physics body influenced by forces and collisions
+- [StaticBody](/docs/classes/static-body) - A physics body that does not move but can be collided with
+- [CharacterBody](/docs/classes/character-body) - A specialized body for kinematic character movement
+- [CastHit](/docs/classes/cast-hit) - Result of a ray or shape cast in the physics world
+- [Collision](/docs/classes/collision) - Information about a contact point between two bodies
+- [Joint](/docs/classes/joint) - Base class for constraints between two bodies
+- [DistanceJoint](/docs/classes/distance-joint) - Maintains a fixed distance between two points on two bodies
+- [RevoluteJoint](/docs/classes/revolute-joint) - Constrains two bodies to share a common point (a hinge)
+- [PrismaticJoint](/docs/classes/prismatic-joint) - Limits movement to a single axis
+- [WeldJoint](/docs/classes/weld-joint) - Locks two bodies together as if they were one
+- [WheelJoint](/docs/classes/wheel-joint) - A joint for simulating vehicle wheels with suspension
+- [MotorJoint](/docs/classes/motor-joint) - Controls the relative motion between two bodies
+- [MouseJoint](/docs/classes/mouse-joint) - Used to pull a body towards a target point (mouse cursor)
+- [FilterJoint](/docs/classes/filter-joint) - A joint used to filter collisions between two bodies
 
 ## Shaders
 - [ShaderState](/docs/classes/shader-state) - Encapsulates a GPU shader and its associated render state

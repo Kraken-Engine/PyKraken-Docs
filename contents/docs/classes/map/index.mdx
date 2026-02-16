@@ -16,15 +16,18 @@ A TMX map with access to its layers and tilesets.
 
 | Name | Description | Type |
 | --- | --- | --- |
+| `all_layers` | LayerList of layers in the map. | <code>list[<a href="/docs/classes/layer">Layer</a>]</code> |
 | `background_color` | Map background color. | <code><a href="/docs/classes/color">Color</a></code> |
 | `bounds` | Map bounds in pixels. | <code><a href="/docs/classes/rect">Rect</a></code> |
 | `hex_side_length` | Hex side length for hex maps. | <code>float</code> |
-| `layers` | LayerList of layers in the map. | <code>list[<a href="/docs/classes/layer">Layer</a>]</code> |
+| `image_layers` | List of image layers in the map. | <code>list[<a href="/docs/classes/image-layer">ImageLayer</a>]</code> |
 | `map_size` | Map dimensions in tiles. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `object_groups` | List of object group layers in the map. | <code>list[<a href="/docs/classes/object-group">ObjectGroup</a>]</code> |
 | `orientation` | Map orientation enum. | <code><a href="/docs/manual/constants#maporientation">MapOrientation</a></code> |
 | `render_order` | Tile render order enum. | <code><a href="/docs/manual/constants#maprenderorder">MapRenderOrder</a></code> |
 | `stagger_axis` | Stagger axis enum for staggered/hex maps. | <code><a href="/docs/manual/constants#mapstaggeraxis">MapStaggerAxis</a></code> |
 | `stagger_index` | Stagger index enum for staggered/hex maps. | <code><a href="/docs/manual/constants#mapstaggerindex">MapStaggerIndex</a></code> |
+| `tile_layers` | List of tile layers in the map. | <code>list[<a href="/docs/classes/tile-layer">TileLayer</a>]</code> |
 | `tile_sets` | TileSetList of tilesets used by the map. | <code>list[<a href="/docs/classes/tile-set">TileSet</a>]</code> |
 | `tile_size` | Size of tiles in pixels. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 
@@ -36,6 +39,18 @@ A TMX map with access to its layers and tilesets.
 <ApiSig name="draw" returns="None" />
 
 Draw all layers.
+
+</div>
+
+### Get Layer
+<div className="api-card">
+<ApiSig name="get_layer" params={[{ name: "name", type: "str" }]} returns="Layer" />
+
+Get a layer by its name. Will return None if not found.
+
+_**Args**_
+
+- `name` : Name of the layer to retrieve.
 
 </div>
 

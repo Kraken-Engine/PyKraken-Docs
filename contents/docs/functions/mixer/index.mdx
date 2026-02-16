@@ -1,0 +1,67 @@
+---
+title: Mixer
+description: Sound mixer and audio management system.
+---
+
+---
+
+## Get Master Volume
+<div className="api-card">
+<ApiSig name="get_master_volume" returns="float" />
+
+Get the current global mixer gain.
+
+_**Returns**_
+
+`float` : Master volume (0.0 to 1.0).
+
+</div>
+
+## Load Sample
+<div className="api-card">
+<ApiSig name="load_sample" params={[{ name: "path", type: "str" }, { name: "predecode", type: "bool", default: "True" }]} returns="Sample" />
+
+Load an audio sample (SFX) from disk.
+
+_**Args**_
+
+- `path` : File path to load.
+- `predecode` : Whether to decode into memory now. Defaults to True.
+
+_**Returns**_
+
+`Sample` : The loaded audio object.
+
+</div>
+
+## Load Stream
+<div className="api-card">
+<ApiSig name="load_stream" params={[{ name: "path", type: "str" }, { name: "predecode", type: "bool", default: "False" }]} returns="Stream" />
+
+Load an audio stream (Music) from disk.
+
+_**Args**_
+
+- `path` : File path to load.
+- `predecode` : Whether to decode into memory now. Defaults to False.
+
+_**Returns**_
+
+`Stream` : The loaded audio object.
+
+</div>
+
+## Set Master Volume
+<div className="api-card">
+<ApiSig name="set_master_volume" params={[{ name: "volume", type: "SupportsFloat" }]} returns="None" />
+
+Set the global mixer gain.
+
+This affects all playing samples and streams. Individual audio volume
+is multiplied by this value. Default is 1.0.
+
+_**Args**_
+
+- `volume` : Master volume scalar (0.0 to 1.0).
+
+</div>

@@ -8,7 +8,7 @@ description: Represents a hardware-accelerated image that can be efficiently ren
 
 - <ApiSig name="Texture" multiline params={[{ name: "file_path", type: "str" }, { name: "scale_mode", type: "TextureScaleMode", default: "TextureScaleMode.DEFAULT" }, { name: "access", type: "TextureAccess", default: "TextureAccess.STATIC" }]} returns="Texture" />
 - <ApiSig name="Texture" multiline params={[{ name: "pixel_array", type: "PixelArray" }, { name: "scale_mode", type: "TextureScaleMode", default: "TextureScaleMode.DEFAULT" }, { name: "access", type: "TextureAccess", default: "TextureAccess.STATIC" }]} returns="Texture" />
-- <ApiSig name="Texture" multiline params={[{ name: "size", type: "Vec2" }, { name: "scale_mode", type: "TextureScaleMode", default: "TextureScaleMode.DEFAULT" }]} returns="Texture" />
+- <ApiSig name="Texture" multiline params={[{ name: "width", type: "SupportsInt" }, { name: "height", type: "SupportsInt" }, { name: "scale_mode", type: "TextureScaleMode", default: "TextureScaleMode.DEFAULT" }]} returns="Texture" />
 
 Represents a hardware-accelerated image that can be efficiently rendered.
 </div>
@@ -20,7 +20,11 @@ Represents a hardware-accelerated image that can be efficiently rendered.
 | --- | --- | --- |
 | `alpha` | Get or set the alpha modulation of the texture as a float between `0.0` and `1.0`. | <code>float</code> |
 | `clip_area` | Get or set the clip area (atlas region) of the texture. | <code><a href="/docs/classes/rect">Rect</a></code> |
-| `flip` | The flip settings for horizontal and vertical mirroring. | <code><a href="/docs/classes/texture">Texture</a>.Flip</code> |
+| `flip` | The flip settings for horizontal and vertical mirroring. | <code><a href="/docs/classes/texture.-flip">Texture.Flip</a></code> |
+| `height` | The height of the texture in pixels. | <code>int</code> |
+| `size` | The dimensions of the texture as a `Vec2`. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `tint` | Get or set the color tint applied to the texture. | <code><a href="/docs/classes/color">Color</a></code> |
+| `width` | The width of the texture in pixels. | <code>int</code> |
 
 ## Methods
 ---

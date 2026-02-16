@@ -5,9 +5,54 @@ description: Functions for drawing shape objects
 
 ---
 
+## Bezier
+<div className="api-card">
+<ApiSig name="bezier" multiline params={[{ name: "control_points", type: "Sequence[Vec2]" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsFloat", default: "1.0" }, { name: "num_segments", type: "SupportsInt", default: "24" }]} returns="None" />
+
+Draw a Bezier curve with 3 or 4 control points.
+
+_**Args**_
+
+- `control_points` : The control points (3 for quadratic, 4 for cubic).
+- `color` : The color of the curve.
+- `thickness` : The line thickness. Defaults to 1.0.
+- `num_segments` : Number of segments to approximate the curve. Defaults to 24.
+
+</div>
+
+## Capsule
+<div className="api-card">
+<ApiSig name="capsule" multiline params={[{ name: "capsule", type: "Capsule" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsFloat", default: "0" }, { name: "num_segments", type: "SupportsInt", default: "24" }]} returns="None" />
+
+Draw a capsule to the renderer.
+
+_**Args**_
+
+- `capsule` : The capsule to draw.
+- `color` : The color of the capsule.
+- `thickness` : The line thickness. If &lt;= 0 or &gt;= radius, draws filled capsule. Defaults to 0 (filled).
+- `num_segments` : Number of segments to approximate the capsule ends. Higher values yield smoother capsules. Defaults to 24.
+
+</div>
+
+## Capsules
+<div className="api-card">
+<ApiSig name="capsules" multiline params={[{ name: "capsules", type: "Sequence[Capsule]" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsFloat", default: "0" }, { name: "num_segments", type: "SupportsInt", default: "24" }]} returns="None" />
+
+Draw an array of capsules in bulk to the renderer.
+
+_**Args**_
+
+- `capsules` : The capsules to draw in bulk.
+- `color` : The color of the capsules.
+- `thickness` : The line thickness. If &lt;= 0 or &gt;= radius, draws filled capsules. Defaults to 0 (filled).
+- `num_segments` : Number of segments to approximate each capsule end. Higher values yield smoother capsules. Defaults to 24.
+
+</div>
+
 ## Circle
 <div className="api-card">
-<ApiSig name="circle" multiline params={[{ name: "circle", type: "Circle" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsFloat", default: "0" }, { name: "num_segments", type: "SupportsInt", default: "36" }]} returns="None" />
+<ApiSig name="circle" multiline params={[{ name: "circle", type: "Circle" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsFloat", default: "0" }, { name: "num_segments", type: "SupportsInt", default: "24" }]} returns="None" />
 
 Draw a circle to the renderer.
 
@@ -16,14 +61,13 @@ _**Args**_
 - `circle` : The circle to draw.
 - `color` : The color of the circle.
 - `thickness` : The line thickness. If &lt;= 0 or &gt;= radius, draws filled circle. Defaults to 0 (filled).
-- `num_segments` : Number of segments to approximate the circle.
-                                  Higher values yield smoother circles. Defaults to 36.
+- `num_segments` : Number of segments to approximate the circle. Higher values yield smoother circles. Defaults to 24.
 
 </div>
 
 ## Circles
 <div className="api-card">
-<ApiSig name="circles" multiline params={[{ name: "circles", type: "Sequence[Circle]" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsFloat", default: "0" }, { name: "num_segments", type: "SupportsInt", default: "36" }]} returns="None" />
+<ApiSig name="circles" multiline params={[{ name: "circles", type: "Sequence[Circle]" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsFloat", default: "0" }, { name: "num_segments", type: "SupportsInt", default: "24" }]} returns="None" />
 
 Draw an array of circles in bulk to the renderer.
 
@@ -32,14 +76,13 @@ _**Args**_
 - `circles` : The circles to draw in bulk.
 - `color` : The color of the circles.
 - `thickness` : The line thickness. If &lt;= 0 or &gt;= radius, draws filled circle. Defaults to 0 (filled).
-- `num_segments` : Number of segments to approximate each circle.
-                                  Higher values yield smoother circles. Defaults to 36.
+- `num_segments` : Number of segments to approximate each circle. Higher values yield smoother circles. Defaults to 24.
 
 </div>
 
 ## Ellipse
 <div className="api-card">
-<ApiSig name="ellipse" multiline params={[{ name: "bounds", type: "Rect" }, { name: "color", type: "Color" }, { name: "filled", type: "bool", default: "False" }]} returns="None" />
+<ApiSig name="ellipse" multiline params={[{ name: "bounds", type: "Rect" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsFloat", default: "0.0" }, { name: "num_segments", type: "SupportsInt", default: "24" }]} returns="None" />
 
 Draw an ellipse to the renderer.
 
@@ -47,8 +90,23 @@ _**Args**_
 
 - `bounds` : The bounding box of the ellipse.
 - `color` : The color of the ellipse.
-- `filled` : Whether to draw a filled ellipse or just the outline.
-                             Defaults to False (outline).
+- `thickness` : The line thickness. If &lt;= 0 or &gt;= radius, draws filled ellipse. Defaults to 0 (filled).
+- `num_segments` : Number of segments to approximate the ellipse. Higher values yield smoother ellipses. Defaults to 24.
+
+</div>
+
+## Ellipses
+<div className="api-card">
+<ApiSig name="ellipses" multiline params={[{ name: "bounds", type: "Sequence[Rect]" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsFloat", default: "0.0" }, { name: "num_segments", type: "SupportsInt", default: "24" }]} returns="None" />
+
+Draw an array of ellipses in bulk to the renderer.
+
+_**Args**_
+
+- `bounds` : The bounding boxes of the ellipses to draw in bulk.
+- `color` : The color of the ellipses.
+- `thickness` : The line thickness. If &lt;= 0 or &gt;= radius, draws filled ellipses. Defaults to 0 (filled).
+- `num_segments` : Number of segments to approximate each ellipse. Higher values yield smoother ellipses. Defaults to 24.
 
 </div>
 
@@ -69,7 +127,7 @@ _**Args**_
 
 ## Line
 <div className="api-card">
-<ApiSig name="line" multiline params={[{ name: "line", type: "Line" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsInt", default: "1" }]} returns="None" />
+<ApiSig name="line" multiline params={[{ name: "line", type: "Line" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsFloat", default: "1.0" }]} returns="None" />
 
 Draw a line to the renderer.
 
@@ -77,7 +135,21 @@ _**Args**_
 
 - `line` : The line to draw.
 - `color` : The color of the line.
-- `thickness` : The line thickness in pixels. Defaults to 1.
+- `thickness` : The line thickness in pixels. Defaults to 1.0.
+
+</div>
+
+## Lines
+<div className="api-card">
+<ApiSig name="lines" multiline params={[{ name: "lines", type: "Sequence[Line]" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsFloat", default: "1.0" }]} returns="None" />
+
+Batch draw an array of lines to the renderer.
+
+_**Args**_
+
+- `lines` : The lines to batch draw.
+- `color` : The color of the lines.
+- `thickness` : The line thickness in pixels. Defaults to 1.0.
 
 </div>
 
@@ -147,8 +219,7 @@ _**Args**_
 
 - `polygon` : The polygon to draw.
 - `color` : The color of the polygon.
-- `filled` : Whether to draw a filled polygon or just the outline.
-                             Defaults to False (outline). Works with both convex and concave polygons.
+- `filled` : Whether to draw a filled polygon or just the outline. Defaults to True.
 
 </div>
 
@@ -162,14 +233,28 @@ _**Args**_
 
 - `polygons` : The polygons to draw in bulk.
 - `color` : The color of the polygons.
-- `filled` : Whether to draw filled polygons or just the outlines.
-                             Defaults to True (filled). Works with both convex and concave polygons.
+- `filled` : Whether to draw filled polygons or just the outlines. Defaults to True (filled).
+
+</div>
+
+## Polyline
+<div className="api-card">
+<ApiSig name="polyline" multiline params={[{ name: "points", type: "Sequence[Vec2]" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsFloat", default: "1.0" }, { name: "closed", type: "bool", default: "False" }]} returns="None" />
+
+Draw connected line segments through a sequence of points.
+
+_**Args**_
+
+- `points` : The vertices of the polyline (must have at least 2).
+- `color` : The color of the polyline.
+- `thickness` : The line thickness in pixels. Defaults to 1.0.
+- `closed` : If True, connects the last point back to the first. Defaults to False.
 
 </div>
 
 ## Rect
 <div className="api-card">
-<ApiSig name="rect" multiline params={[{ name: "rect", type: "Rect" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsInt", default: "0" }]} returns="None" />
+<ApiSig name="rect" multiline params={[{ name: "rect", type: "Rect" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsInt", default: "0" }, { name: "border_radius", type: "SupportsFloat", default: "0.0" }, { name: "radius_top_left", type: "SupportsFloat", default: "-1.0" }, { name: "radius_top_right", type: "SupportsFloat", default: "-1.0" }, { name: "radius_bottom_right", type: "SupportsFloat", default: "-1.0" }, { name: "radius_bottom_left", type: "SupportsFloat", default: "-1.0" }]} returns="None" />
 
 Draw a rectangle to the renderer.
 
@@ -178,12 +263,17 @@ _**Args**_
 - `rect` : The rectangle to draw.
 - `color` : The color of the rectangle.
 - `thickness` : The border thickness. If 0 or &gt;= half width/height, draws filled rectangle. Defaults to 0 (filled).
+- `border_radius` : Uniform corner radius for all four corners. Defaults to 0.
+- `radius_top_left` : Override radius for the top-left corner. -1 to ignore.
+- `radius_top_right` : Override radius for the top-right corner. -1 to ignore.
+- `radius_bottom_right` : Override radius for the bottom-right corner. -1 to ignore.
+- `radius_bottom_left` : Override radius for the bottom-left corner. -1 to ignore.
 
 </div>
 
 ## Rects
 <div className="api-card">
-<ApiSig name="rects" multiline params={[{ name: "rects", type: "Sequence[Rect]" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsInt", default: "0" }]} returns="None" />
+<ApiSig name="rects" multiline params={[{ name: "rects", type: "Sequence[Rect]" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsInt", default: "0" }, { name: "border_radius", type: "SupportsFloat", default: "0.0" }, { name: "radius_top_left", type: "SupportsFloat", default: "-1.0" }, { name: "radius_top_right", type: "SupportsFloat", default: "-1.0" }, { name: "radius_bottom_right", type: "SupportsFloat", default: "-1.0" }, { name: "radius_bottom_left", type: "SupportsFloat", default: "-1.0" }]} returns="None" />
 
 Batch draw an array of rectangles to the renderer.
 
@@ -192,5 +282,27 @@ _**Args**_
 - `rects` : The rectangles to batch draw.
 - `color` : The color of the rectangles.
 - `thickness` : The border thickness of the rectangles. If 0 or &gt;= half width/height, draws filled rectangles. Defaults to 0 (filled).
+- `border_radius` : Uniform corner radius for all four corners. Defaults to 0.
+- `radius_top_left` : Override radius for the top-left corner of all rectangles. -1 to ignore.
+- `radius_top_right` : Override radius for the top-right corner of all rectangles. -1 to ignore.
+- `radius_bottom_right` : Override radius for the bottom-right corner of all rectangles. -1 to ignore.
+- `radius_bottom_left` : Override radius for the bottom-left corner of all rectangles. -1 to ignore.
+
+</div>
+
+## Sector
+<div className="api-card">
+<ApiSig name="sector" multiline params={[{ name: "circle", type: "Circle" }, { name: "start_angle", type: "SupportsFloat" }, { name: "end_angle", type: "SupportsFloat" }, { name: "color", type: "Color" }, { name: "thickness", type: "SupportsFloat", default: "0.0" }, { name: "num_segments", type: "SupportsInt", default: "24" }]} returns="None" />
+
+Draw a circular sector or arc.
+
+_**Args**_
+
+- `circle` : The circle defining the sector.
+- `start_angle` : The start angle in radians.
+- `end_angle` : The end angle in radians.
+- `color` : The color of the sector.
+- `thickness` : The line thickness. If &lt;= 0 or &gt;= radius, draws filled sector. Defaults to 0 (filled).
+- `num_segments` : Number of segments to approximate the arc. Defaults to 24.
 
 </div>

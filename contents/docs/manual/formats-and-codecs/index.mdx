@@ -1,0 +1,29 @@
+---
+title: Formats and Codecs
+description: Supported image formats and audio codecs in PyKraken.
+---
+
+PyKraken supports a wide variety of image and audio formats. Below is a comprehensive list of what is currently supported out of the box.
+
+## Image Formats
+
+The following image formats are supported for use with `Texture` and `PixelArray`:
+- **PNG** (.png) - Recommended for lossless images with transparency.
+- **JPEG** (.jpg, .jpeg) - Ideal for photos and high-detail images without transparency.
+- **BMP** (.bmp) - Standard Windows Bitmap format.
+- **QOI** (.qoi) - "Quite OK Image" format, fast lossless compression.
+- **SVG** (.svg) - Scalable Vector Graphics.
+- **TGA** (.tga) - Truevision TGA.
+
+## Audio Codecs
+
+The following codecs are supported for use with `Sample` and `Stream`:
+- **Vorbis** (.ogg) - Recommended for music streams and long clips.
+- **Opus** (.opus) - Modern, high-efficiency codec for voice and music.
+- **MP3** (.mp3) - Standard lossy audio format.
+- **FLAC** (.flac) - Free Lossless Audio Codec, ideal for high-fidelity audio.
+- **WAV** (.wav) - Uncompressed or standard PCM audio, ideal for short samples.
+
+---
+
+For loading these resources, see the [Mixer](/docs/functions/mixer) function reference and the [Texture](/docs/classes/texture) and [PixelArray](/docs/classes/pixel-array) class references.

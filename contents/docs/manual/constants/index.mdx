@@ -12,6 +12,15 @@ Horizontal alignment options for layout and text.
 | `LEFT` | Left alignment | `Align` |
 | `RIGHT` | Right alignment | `Align` |
 
+## AudioPriority
+Priority levels used for track acquisition.
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `MUSIC` | Highest priority level. | `AudioPriority` |
+| `SFX` | Standard priority level. | `AudioPriority` |
+| `UI` | Medium priority level. | `AudioPriority` |
+
 ## EventType
 SDL event type constants for input and system events.
 
@@ -357,6 +366,18 @@ TMX layer type values.
 | `OBJECT` | Object layer | `LayerType` |
 | `TILE` | Tile layer | `LayerType` |
 
+## ShapeType (MapObject)
+TMX object shape types.
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `ELLIPSE` | Ellipse shape | `MapObject.ShapeType` |
+| `POINT` | Point shape | `MapObject.ShapeType` |
+| `POLYGON` | Polygon shape | `MapObject.ShapeType` |
+| `POLYLINE` | Polyline shape | `MapObject.ShapeType` |
+| `RECTANGLE` | Rectangle shape | `MapObject.ShapeType` |
+| `TEXT` | Text object | `MapObject.ShapeType` |
+
 ## MapOrientation
 TMX map orientation values.
 
@@ -407,6 +428,14 @@ Mouse button identifiers.
 | `M_RIGHT` | Right mouse button | `MouseButton` |
 | `M_SIDE1` | First side mouse button | `MouseButton` |
 | `M_SIDE2` | Second side mouse button | `MouseButton` |
+
+## DrawOrder (ObjectGroup)
+Object drawing order for object layers.
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `INDEX` | Draw by object index | `ObjectGroup.DrawOrder` |
+| `TOP_DOWN` | Draw top-down by Y | `ObjectGroup.DrawOrder` |
 
 ## PenAxis
 Stylus/pen axis identifiers for pen motion data.

@@ -19,6 +19,8 @@ Represents a polygon shape defined by a sequence of points.
 | --- | --- | --- |
 | `area` | Get the area of the polygon. | <code>float</code> |
 | `centroid` | Get the centroid of the polygon. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `is_concave` | Check if the polygon is concave. | <code>bool</code> |
+| `is_convex` | Check if the polygon is convex. | <code>bool</code> |
 | `perimeter` | Get the perimeter of the polygon. | <code>float</code> |
 | `points` | The list of Vec2 points that define the polygon vertices. | <code>list[<a href="/docs/classes/vec2">Vec2</a>]</code> |
 
@@ -42,6 +44,7 @@ _**Returns**_
 <ApiSig name="get_rect" returns="Rect" />
 
 Get the axis-aligned bounding rectangle of the polygon.
+
 _**Returns**_
 
 `Rect` : The bounding rectangle.

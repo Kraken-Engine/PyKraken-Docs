@@ -1,0 +1,70 @@
+---
+title: CharacterBody
+description: API reference for CharacterBody. Access via the 'physics' submodule.
+---
+
+<Note type="warning" title="Experimental API">
+  The physics submodule is a VERY experimental and new API that is highly susceptible to breaking changes in the future.
+</Note>
+
+Inherits from [Body](/docs/classes/body).
+
+## Constructor
+<div className="api-card">
+
+- <ApiSig name="CharacterBody" params={[{ name: "world", type: "World" }]} returns="CharacterBody" />
+</div>
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `floor_max_angle` | Maximum angle (in radians) to consider a surface as a floor. Default is ~45 degrees. | <code>float</code> |
+| `floor_snap_distance` | Distance in pixels to probe downward for floor detection. Default is 5.0. | <code>float</code> |
+| `mass` | The mass of the character body. Default is 80.0. | <code>float</code> |
+| `velocity` | The velocity of the character body. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+
+## Methods
+---
+
+### Is On Ceiling
+<div className="api-card">
+<ApiSig name="is_on_ceiling" returns="bool" />
+
+Whether the character is currently touching a ceiling.
+
+</div>
+
+### Is On Floor
+<div className="api-card">
+<ApiSig name="is_on_floor" returns="bool" />
+
+Whether the character is currently on a floor surface.
+
+</div>
+
+### Is On Wall
+<div className="api-card">
+<ApiSig name="is_on_wall" returns="bool" />
+
+Whether the character is currently touching a wall.
+
+</div>
+
+### Move And Slide
+<div className="api-card">
+<ApiSig name="move_and_slide" params={[{ name: "delta", type: "SupportsFloat", default: "-1.0" }]} returns="None" />
+
+Perform movement and collision resolution for the character.
+
+This method moves the character according to the velocity property and resolves
+collisions by sliding along surfaces. It also updates the floor/ceiling/wall
+contact states.
+
+_**Args**_
+
+- `delta` : The time step to use for movement.
+                             Defaults to -1.0, which uses the frame delta.
+
+</div>

@@ -1,0 +1,50 @@
+---
+title: Stream
+description: A streaming audio resource intended for long music files. Access via the 'mixer' submodule.
+---
+
+Inherits from [Audio](/docs/classes/audio).
+
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `looping` | Whether the stream should loop when it reaches the end. | <code>bool</code> |
+| `playback_pos` | Current position in seconds. 0.0 if stopped/never played, paused position if paused. | <code>float</code> |
+
+## Methods
+---
+
+### Pause
+<div className="api-card">
+<ApiSig name="pause" returns="None" />
+
+Pause playback. Releases the hardware track but preserves position.
+
+</div>
+
+### Resume
+<div className="api-card">
+<ApiSig name="resume" params={[{ name: "fade_in", type: "SupportsFloat", default: "0.0" }]} returns="None" />
+
+Resume playback from a paused state.
+
+_**Args**_
+
+- `fade_in` : Duration in seconds to fade back in. Defaults to 0.0.
+
+</div>
+
+### Seek
+<div className="api-card">
+<ApiSig name="seek" params={[{ name: "seconds", type: "SupportsFloat" }]} returns="None" />
+
+Jump to a specific time in the audio file.
+
+_**Args**_
+
+- `seconds` : Target position in seconds from the start.
+
+</div>

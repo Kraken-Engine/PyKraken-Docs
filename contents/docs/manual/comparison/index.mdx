@@ -7,19 +7,18 @@ A comparison of PyKraken with other popular Python game frameworks to help you u
 
 ## Quick Comparison Table
 
-| | PyKraken | Pygame | Arcade | Pyglet |
+| | PyKraken | Pygame (-ce) | Arcade | Raylib (2D) |
 |---------|----------|---------|---------|---------|
 | **Rendering** | Hardware-accelerated | Software (experimental hardware) | Hardware-accelerated | Hardware-accelerated |
-| **Primary Focus** | 2D | 2D | 2D | 2D / limited 3D |
-| **Learning Curve** | Easy-Moderate | Easy | Easy-Moderate | Moderate |
-| **Performance** | Moderate-High | Low-Moderate | High | High |
-| **Built-in Physics** | Overlap & Containment | Overlap & Containment | Complete Physics | - |
-| **Shader Support** | Fragment only | - | Full pipeline | Full pipeline |
-| **Audio** | Simultaneous streams | Single stream | Simultaneous streams | Simultaneous streams |
-| **Video** | - | - | Yes (Pyglet) | Yes |
+| **Built-in Physics** | Box2D v3 (Experimental) | Basic Overlap/Containment | Pymunk | Physac |
+| **Shader Exposure** | Fragment only | - | Full Pipeline | Full Pipeline |
+| **Audio Streams** | Simultaneous | Single | Simultaneous | Simultaneous |
+| **Spatial Audio** | - | Manual Panning | Yes (Pyglet) | Manual Panning |
+| **Video** | - | - | Yes (Pyglet + FFmpeg) | - |
+| **Layout Tools** | - | - | UI Widgets | - |
 | **Tile Maps** | Tiled | - | Tiled (JSON) | - |
-| **Animation** | Controller & Orchestrator | - | Animated Sprite | Image Animation |
-| **Active Development** | ✅ | ✅ (Community Edition) | ✅ | ✅ |
+| **Sprite Animation** | Controller & Orchestrator | - | Animated Sprite | - |
+| **Licensing** | MIT | LGPL v2.1 | MIT | zlib/libpng |
 
 ---
 
@@ -53,6 +52,7 @@ while running:
         if event.type == pg.QUIT:
             running = False
 
+    screen.fill("black")
     screen.blit(image)
     pg.display.flip()
 
@@ -85,15 +85,14 @@ kn.quit()
 
 **Choose PyKraken if**:
 - You're building a 2D game (especially tile-based)
-- You want modern features (shaders, hardware acceleration, timeline animations)
+- You want modern features
 - You prefer a structured but flexible framework
-- Performance is important but you don't want to work at the OpenGL level
+- Performance is important but you don't want to work at the Vulkan level
 
 **Consider alternatives if**:
-- You need 3D capabilities (Ursina, Panda3D)
-- You want the largest community (Pygame)
-- You need built-in physics engines (Arcade)
-- You want maximum low-level control (Pyglet, direct OpenGL)
+- You need 3D capabilities
+- You want the largest community
+- You want maximum low-level control
 
 ---
 

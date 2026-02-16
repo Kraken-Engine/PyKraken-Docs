@@ -1,0 +1,43 @@
+---
+title: WheelJoint
+description: API reference for WheelJoint. Access via the 'physics' submodule.
+---
+
+<Note type="warning" title="Experimental API">
+  The physics submodule is a VERY experimental and new API that is highly susceptible to breaking changes in the future.
+</Note>
+
+Inherits from [Joint](/docs/classes/joint).
+
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `limit_enabled` | Whether the translation limits are enabled. | <code>bool</code> |
+| `lower_limit` | The lower translation limit. | <code>float</code> |
+| `max_motor_torque` | The maximum motor torque. | <code>float</code> |
+| `motor_enabled` | Whether the motor is enabled. | <code>bool</code> |
+| `motor_speed` | The target motor speed in radians per second. | <code>float</code> |
+| `motor_torque` | The current motor torque. | <code>float</code> |
+| `spring_damping_ratio` | The spring damping ratio. | <code>float</code> |
+| `spring_enabled` | Whether the spring is enabled. | <code>bool</code> |
+| `spring_hz` | The spring frequency in Hertz. | <code>float</code> |
+| `upper_limit` | The upper translation limit. | <code>float</code> |
+
+## Methods
+---
+
+### Set Limits
+<div className="api-card">
+<ApiSig name="set_limits" params={[{ name: "lower", type: "SupportsFloat" }, { name: "upper", type: "SupportsFloat" }]} returns="None" />
+
+Set the translation limits.
+
+_**Args**_
+
+- `lower` : The lower translation limit.
+- `upper` : The upper translation limit.
+
+</div>

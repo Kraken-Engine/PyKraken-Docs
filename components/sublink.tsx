@@ -22,7 +22,9 @@ export default function SubLink({
   separator,
 }: EachRoute & { level: number; isSheet: boolean }) {
   const path = usePathname();
-  const [isOpen, setIsOpen] = useState(level == 0);
+  const [isOpen, setIsOpen] = useState(
+    level == 0 && (title === "Preface" || title === "Getting Started")
+  );
 
   useEffect(() => {
     if (path == href || path.includes(href)) setIsOpen(true);

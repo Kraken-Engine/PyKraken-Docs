@@ -1,0 +1,343 @@
+---
+title: World
+description: API reference for World. Access via the 'physics' submodule.
+---
+
+<Note type="warning" title="Experimental API">
+  The physics submodule is a VERY experimental and new API that is highly susceptible to breaking changes in the future.
+</Note>
+
+## Constructor
+<div className="api-card">
+
+- <ApiSig name="World" params={[{ name: "gravity", type: "Vec2" }]} returns="World" />
+</div>
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `gravity` | The gravity vector of the world. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+
+## Methods
+---
+
+### Add Fixed Update
+<div className="api-card">
+<ApiSig name="add_fixed_update" params={[{ name: "callback", type: "Any" }]} returns="None" />
+
+Add a callback function to be executed during each physics step.
+
+</div>
+
+### Clear Fixed Updates
+<div className="api-card">
+<ApiSig name="clear_fixed_updates" returns="None" />
+
+Remove all registered fixed update callbacks.
+
+</div>
+
+### Create Distance Joint
+<div className="api-card">
+<ApiSig name="create_distance_joint" multiline params={[{ name: "body_a", type: "Body" }, { name: "body_b", type: "Body" }, { name: "anchor_a", type: "Vec2" }, { name: "anchor_b", type: "Vec2" }]} returns="DistanceJoint" />
+
+Create a distance joint between two bodies.
+
+_**Args**_
+
+- `body_a` : The first body.
+- `body_b` : The second body.
+- `anchor_a` : The anchor point on the first body in world coordinates.
+- `anchor_b` : The anchor point on the second body in world coordinates.
+
+_**Returns**_
+
+`DistanceJoint` : The created joint.
+
+</div>
+
+### Create Filter Joint
+<div className="api-card">
+<ApiSig name="create_filter_joint" params={[{ name: "body_a", type: "Body" }, { name: "body_b", type: "Body" }]} returns="FilterJoint" />
+
+Create a filter joint between two bodies to disable collision.
+
+_**Args**_
+
+- `body_a` : The first body.
+- `body_b` : The second body.
+
+_**Returns**_
+
+`FilterJoint` : The created joint.
+
+</div>
+
+### Create Motor Joint
+<div className="api-card">
+<ApiSig name="create_motor_joint" params={[{ name: "body_a", type: "Body" }, { name: "body_b", type: "Body" }]} returns="MotorJoint" />
+
+Create a motor joint between two bodies.
+
+_**Args**_
+
+- `body_a` : The first body.
+- `body_b` : The second body.
+
+_**Returns**_
+
+`MotorJoint` : The created joint.
+
+</div>
+
+### Create Mouse Joint
+<div className="api-card">
+<ApiSig name="create_mouse_joint" multiline params={[{ name: "ground_body", type: "Body" }, { name: "pulled_body", type: "Body" }, { name: "target", type: "Vec2" }]} returns="MouseJoint" />
+
+Create a mouse joint between a ground body and a target body.
+
+_**Args**_
+
+- `ground_body` : The ground body (usually a static body).
+- `pulled_body` : The body to be pulled and moved to the target.
+- `target` : The initial target point in world coordinates.
+
+_**Returns**_
+
+`MouseJoint` : The created joint.
+
+</div>
+
+### Create Prismatic Joint
+<div className="api-card">
+<ApiSig name="create_prismatic_joint" multiline params={[{ name: "body_a", type: "Body" }, { name: "body_b", type: "Body" }, { name: "anchor", type: "Vec2" }, { name: "axis", type: "Vec2" }]} returns="PrismaticJoint" />
+
+Create a prismatic joint between two bodies.
+
+_**Args**_
+
+- `body_a` : The first body.
+- `body_b` : The second body.
+- `anchor` : The anchor point in world coordinates.
+- `axis` : The axis of movement in world coordinates.
+
+_**Returns**_
+
+`PrismaticJoint` : The created joint.
+
+</div>
+
+### Create Revolute Joint
+<div className="api-card">
+<ApiSig name="create_revolute_joint" params={[{ name: "body_a", type: "Body" }, { name: "body_b", type: "Body" }, { name: "anchor", type: "Vec2" }]} returns="RevoluteJoint" />
+
+Create a revolute joint between two bodies.
+
+_**Args**_
+
+- `body_a` : The first body.
+- `body_b` : The second body.
+- `anchor` : The anchor point in world coordinates.
+
+_**Returns**_
+
+`RevoluteJoint` : The created joint.
+
+</div>
+
+### Create Weld Joint
+<div className="api-card">
+<ApiSig name="create_weld_joint" params={[{ name: "body_a", type: "Body" }, { name: "body_b", type: "Body" }, { name: "anchor", type: "Vec2" }]} returns="WeldJoint" />
+
+Create a weld joint between two bodies.
+
+_**Args**_
+
+- `body_a` : The first body.
+- `body_b` : The second body.
+- `anchor` : The anchor point in world coordinates.
+
+_**Returns**_
+
+`WeldJoint` : The created joint.
+
+</div>
+
+### Create Wheel Joint
+<div className="api-card">
+<ApiSig name="create_wheel_joint" multiline params={[{ name: "body_a", type: "Body" }, { name: "body_b", type: "Body" }, { name: "anchor", type: "Vec2" }, { name: "axis", type: "Vec2" }]} returns="WheelJoint" />
+
+Create a wheel joint between two bodies.
+
+_**Args**_
+
+- `body_a` : The first body.
+- `body_b` : The second body.
+- `anchor` : The anchor point in world coordinates.
+- `axis` : The axis of movement in world coordinates.
+
+_**Returns**_
+
+`WheelJoint` : The created joint.
+
+</div>
+
+### Fixed Callback
+<div className="api-card">
+<ApiSig name="fixed_callback" params={[{ name: "callback", type: "Any" }]} returns="Any" />
+
+A decorator to register a function as a physics update callback.
+
+</div>
+
+### From Map Layer
+<div className="api-card">
+<ApiSig name="from_map_layer" params={[{ name: "layer", type: "tilemap.Layer" }]} returns="StaticBody" />
+
+Create a single StaticBody from a TileMap ObjectGroup layer.
+
+This method iterates through all rectangular and polygonal objects in the
+specified layer and adds them as colliders to a new StaticBody. Points,
+lines, and ellipses are discarded.
+
+_**Args**_
+
+- `layer` : The TileMap ObjectGroup layer.
+
+_**Returns**_
+
+`StaticBody` : The created static body with all shapes attached.
+
+</div>
+
+### Get Collisions
+<div className="api-card">
+<ApiSig name="get_collisions" returns="list[Collision]" />
+
+Get all collision events that occurred during the last physics step.
+
+Note:
+    This only includes hit events. The list is cleared after each call.
+
+_**Returns**_
+
+`list[Collision]` : A list of collision events.
+
+</div>
+
+### Query Aabb
+<div className="api-card">
+<ApiSig name="query_aabb" params={[{ name: "rect", type: "Rect" }]} returns="list[Body]" />
+
+Find all bodies that overlap with the specified rectangular area.
+
+_**Args**_
+
+- `rect` : The rectangular area to query.
+
+_**Returns**_
+
+`list[Body]` : A list of bodies overlapping the area.
+
+</div>
+
+### Query Point
+<div className="api-card">
+<ApiSig name="query_point" params={[{ name: "point", type: "Vec2" }]} returns="list[Body]" />
+
+Find all bodies that contain the specified point.
+
+_**Args**_
+
+- `point` : The point to query in world coordinates.
+
+_**Returns**_
+
+`list[Body]` : A list of bodies at the point.
+
+</div>
+
+### Ray Cast
+<div className="api-card">
+<ApiSig name="ray_cast" params={[{ name: "origin", type: "Vec2" }, { name: "translation", type: "Vec2" }]} returns="list[CastHit]" />
+
+Cast a ray into the world and find all bodies that intersect it.
+
+_**Args**_
+
+- `origin` : The starting point of the ray.
+- `translation` : The direction and length of the ray.
+
+_**Returns**_
+
+`list[RayCastHit]` : A list of hits, sorted by distance (fraction).
+
+</div>
+
+### Shape Cast
+<div className="api-card">
+<ApiSig name="shape_cast" multiline params={[{ name: "circle", type: "Circle" }, { name: "transform", type: "Transform" }, { name: "translation", type: "Vec2" }]} returns="list[CastHit]" />
+
+Cast a circular shape into the world.
+
+_**Args**_
+
+- `circle` : The circular shape.
+- `transform` : The initial transform of the shape.
+- `translation` : The movement vector.
+
+_**Returns**_
+
+`list[ShapeCastHit]` : A list of hits, sorted by distance.
+
+---
+
+<ApiSig name="shape_cast" multiline params={[{ name: "capsule", type: "Capsule" }, { name: "transform", type: "Transform" }, { name: "translation", type: "Vec2" }]} returns="list[CastHit]" />
+
+Cast a capsule shape into the world.
+
+_**Args**_
+
+- `capsule` : The capsule shape.
+- `transform` : The initial transform of the shape.
+- `translation` : The movement vector.
+
+_**Returns**_
+
+`list[ShapeCastHit]` : A list of hits, sorted by distance.
+
+---
+
+<ApiSig name="shape_cast" multiline params={[{ name: "polygon", type: "Polygon" }, { name: "transform", type: "Transform" }, { name: "translation", type: "Vec2" }]} returns="list[CastHit]" />
+
+Cast a polygonal shape into the world.
+
+_**Args**_
+
+- `polygon` : The polygonal shape.
+- `transform` : The initial transform of the shape.
+- `translation` : The movement vector.
+
+_**Returns**_
+
+`list[ShapeCastHit]` : A list of hits, sorted by distance.
+
+---
+
+<ApiSig name="shape_cast" multiline params={[{ name: "rect", type: "Rect" }, { name: "transform", type: "Transform" }, { name: "translation", type: "Vec2" }]} returns="list[CastHit]" />
+
+Cast a rectangular shape into the world.
+
+_**Args**_
+
+- `rect` : The rectangular shape.
+- `transform` : The initial transform of the shape.
+- `translation` : The movement vector.
+
+_**Returns**_
+
+`list[ShapeCastHit]` : A list of hits, sorted by distance.
+
+</div>

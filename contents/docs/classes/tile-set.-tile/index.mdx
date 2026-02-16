@@ -1,0 +1,15 @@
+---
+title: Tile (TileSet)
+description: Tile represents a single tile entry within a TileSet. Access via the 'tilemap' submodule.
+---
+
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `clip_area` | Source rectangle of the tile within the tileset texture. | <code><a href="/docs/classes/rect">Rect</a></code> |
+| `id` | Local tile id within the tileset. | <code>int</code> |
+| `probability` | Probability used for weighted/random tile placement. | <code>int</code> |
+| `terrain_indices` | TerrainIndices for each corner of the tile. | <code>Annotated[list[int], 'FixedSize(4)']</code> |

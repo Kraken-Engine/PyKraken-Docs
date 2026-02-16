@@ -28,7 +28,7 @@ Manages and controls sprite animations with multiple animation sequences.
 
 ### Add Sheet
 <div className="api-card">
-<ApiSig name="add_sheet" multiline params={[{ name: "frame_size", type: "Vec2" }, { name: "strips", type: "Sequence[SheetStrip]" }]} returns="None" />
+<ApiSig name="add_sheet" multiline params={[{ name: "frame_width", type: "SupportsInt" }, { name: "frame_height", type: "SupportsInt" }, { name: "strips", type: "Sequence[SheetStrip]" }]} returns="None" />
 
 Add animations from a sprite sheet definition.
 
@@ -38,7 +38,8 @@ Frames are read left-to-right within each strip, and strips are read top-to-bott
 
 _**Args**_
 
-- `frame_size` : Size of each frame as (width, height).
+- `frame_width` : The width of each frame in pixels.
+- `frame_height` : The height of each frame in pixels.
 - `strips` : List of strip definitions.
 
 _**Raises**_

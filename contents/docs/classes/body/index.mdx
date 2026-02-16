@@ -1,0 +1,113 @@
+---
+title: Body
+description: API reference for Body. Access via the 'physics' submodule.
+---
+
+<Note type="warning" title="Experimental API">
+  The physics submodule is a VERY experimental and new API that is highly susceptible to breaking changes in the future.
+</Note>
+
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `collision_layer` | The body's collision layer (category bits). | <code>int</code> |
+| `collision_mask` | The body's collision mask. | <code>int</code> |
+| `is_valid` | Indicates whether the body is not destroyed. | <code>bool</code> |
+| `pos` | The position of the body in world coordinates. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `rotation` | The rotation of the body in radians. | <code>float</code> |
+
+## Methods
+---
+
+### Add Collider
+<div className="api-card">
+<ApiSig name="add_collider" multiline params={[{ name: "circle", type: "Circle" }, { name: "density", type: "SupportsFloat", default: "1.0" }, { name: "friction", type: "SupportsFloat", default: "0.2" }, { name: "restitution", type: "SupportsFloat", default: "0.0" }, { name: "enable_events", type: "bool", default: "False" }, { name: "is_sensor", type: "bool", default: "False" }]} returns="None" />
+
+Add a circular collider to the body.
+
+_**Args**_
+
+- `circle` : The circular shape to add as a collider.
+- `density` : The density of the collider. Defaults to 1.0.
+- `friction` : The friction coefficient of the collider. Defaults to 0.2.
+- `restitution` : The restitution (bounciness) of the collider. Defaults to 0.0.
+- `enable_events` : Whether to enable hit events for this collider. Defaults to False.
+- `is_sensor` : Whether the collider is a sensor. Defaults to False.
+
+---
+
+<ApiSig name="add_collider" multiline params={[{ name: "polygon", type: "Polygon" }, { name: "density", type: "SupportsFloat", default: "1.0" }, { name: "friction", type: "SupportsFloat", default: "0.2" }, { name: "restitution", type: "SupportsFloat", default: "0.0" }, { name: "enable_events", type: "bool", default: "False" }, { name: "is_sensor", type: "bool", default: "False" }]} returns="None" />
+
+Add a polygonal collider to the body.
+
+_**Args**_
+
+- `polygon` : The polygonal shape to add as a collider.
+- `density` : The density of the collider. Defaults to 1.0.
+- `friction` : The friction coefficient of the collider. Defaults to 0.2.
+- `restitution` : The restitution (bounciness) of the collider. Defaults to 0.0.
+- `enable_events` : Whether to enable hit events for this collider. Defaults to False.
+- `is_sensor` : Whether the collider is a sensor. Defaults to False.
+
+---
+
+<ApiSig name="add_collider" multiline params={[{ name: "rect", type: "Rect" }, { name: "density", type: "SupportsFloat", default: "1.0" }, { name: "friction", type: "SupportsFloat", default: "0.2" }, { name: "restitution", type: "SupportsFloat", default: "0.0" }, { name: "enable_events", type: "bool", default: "False" }, { name: "is_sensor", type: "bool", default: "False" }]} returns="None" />
+
+Add a rectangular collider to the body.
+
+_**Args**_
+
+- `rect` : The rectangular shape to add as a collider.
+- `density` : The density of the collider. Defaults to 1.0.
+- `friction` : The friction coefficient of the collider. Defaults to 0.2.
+- `restitution` : The restitution (bounciness) of the collider. Defaults to 0.0.
+- `enable_events` : Whether to enable hit events for this collider. Defaults to False.
+- `is_sensor` : Whether the collider is a sensor. Defaults to False.
+
+---
+
+<ApiSig name="add_collider" multiline params={[{ name: "capsule", type: "Capsule" }, { name: "density", type: "SupportsFloat", default: "1.0" }, { name: "friction", type: "SupportsFloat", default: "0.2" }, { name: "restitution", type: "SupportsFloat", default: "0.0" }, { name: "enable_events", type: "bool", default: "False" }, { name: "is_sensor", type: "bool", default: "False" }]} returns="None" />
+
+Add a capsule collider to the body.
+
+_**Args**_
+
+- `capsule` : The capsule shape to add as a collider.
+- `density` : The density of the collider. Defaults to 1.0.
+- `friction` : The friction coefficient of the collider. Defaults to 0.2.
+- `restitution` : The restitution (bounciness) of the collider. Defaults to 0.0.
+- `enable_events` : Whether to enable hit events for this collider. Defaults to False.
+- `is_sensor` : Whether the collider is a sensor. Defaults to False.
+
+</div>
+
+### Debug Draw
+<div className="api-card">
+<ApiSig name="debug_draw" returns="None" />
+
+Draw all colliders attached to the body (debug/development only).
+
+</div>
+
+### Destroy
+<div className="api-card">
+<ApiSig name="destroy" returns="None" />
+
+Destroy the body manually.
+
+</div>
+
+### Get Transform
+<div className="api-card">
+<ApiSig name="get_transform" returns="Transform" />
+
+Get the current transform of the body (position, rotation, and scale).
+
+_**Returns**_
+
+`Transform` : The current transform of the body.
+
+</div>

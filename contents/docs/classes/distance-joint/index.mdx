@@ -1,0 +1,45 @@
+---
+title: DistanceJoint
+description: API reference for DistanceJoint. Access via the 'physics' submodule.
+---
+
+<Note type="warning" title="Experimental API">
+  The physics submodule is a VERY experimental and new API that is highly susceptible to breaking changes in the future.
+</Note>
+
+Inherits from [Joint](/docs/classes/joint).
+
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `current_length` | The current length between the anchors. | <code>float</code> |
+| `length` | The rest length of the joint. | <code>float</code> |
+| `limit_enabled` | Whether the length limits are enabled. | <code>bool</code> |
+| `max_length` | The maximum length limit. | <code>float</code> |
+| `max_motor_force` | The maximum motor force. | <code>float</code> |
+| `min_length` | The minimum length limit. | <code>float</code> |
+| `motor_enabled` | Whether the motor is enabled. | <code>bool</code> |
+| `motor_force` | The current motor force. | <code>float</code> |
+| `motor_speed` | The target motor speed. | <code>float</code> |
+| `spring_damping_ratio` | The spring damping ratio. | <code>float</code> |
+| `spring_enabled` | Whether the spring is enabled. | <code>bool</code> |
+| `spring_hz` | The spring frequency in Hertz. | <code>float</code> |
+
+## Methods
+---
+
+### Set Length Range
+<div className="api-card">
+<ApiSig name="set_length_range" multiline params={[{ name: "min_length", type: "SupportsFloat" }, { name: "max_length", type: "SupportsFloat" }]} returns="None" />
+
+Set the minimum and maximum length limits.
+
+_**Args**_
+
+- `min_length` : The minimum length.
+- `max_length` : The maximum length.
+
+</div>
