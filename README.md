@@ -65,7 +65,7 @@ Contributions to improve the documentation are welcome! Please ensure:
 - Markdown formatting follows the existing style
 - Links and references are valid
 
-For detailed information on building the documentation locally, visit: https://docs.krakenengine.org/docs/preface/building
+For detailed information on building the documentation locally, visit: https://krakenengine.org/docs/preface/building
 
 ## License
 

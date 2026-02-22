@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://docs.krakenengine.org',
+  siteUrl: 'https://krakenengine.org',
   generateRobotsTxt: true,
   additionalPaths: async () => [
     { loc: '/docs' },
