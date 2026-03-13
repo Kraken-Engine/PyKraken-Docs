@@ -1,6 +1,6 @@
 ---
 title: MouseJoint
-description: API reference for MouseJoint. Access via the 'physics' submodule.
+description: A joint that pulls a body toward a world-space target point using a spring. Access via the 'physics' submodule.
 ---
 
 <Note type="warning" title="Experimental API">
@@ -15,7 +15,7 @@ Inherits from [Joint](/docs/classes/joint).
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `max_force` | The maximum constraint force. | <code>float</code> |
-| `spring_damping_ratio` | The spring damping ratio. | <code>float</code> |
-| `spring_hz` | The spring frequency in Hertz. | <code>float</code> |
 | `target` | The target point in world coordinates. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `spring_hz` | The spring frequency in Hertz. | <code>float</code> |
+| `spring_damping_ratio` | The spring damping ratio. | <code>float</code> |
+| `max_force` | The maximum constraint force. | <code>float</code> |

@@ -11,8 +11,8 @@ Inherits from [Audio](/docs/classes/audio).
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `looping` | Whether the stream should loop when it reaches the end. | <code>bool</code> |
 | `playback_pos` | Current position in seconds. 0.0 if stopped/never played, paused position if paused. | <code>float</code> |
+| `looping` | Whether the stream should loop when it reaches the end. | <code>bool</code> |
 
 ## Methods
 ---
@@ -27,7 +27,7 @@ Pause playback. Releases the hardware track but preserves position.
 
 ### Resume
 <div className="api-card">
-<ApiSig name="resume" params={[{ name: "fade_in", type: "SupportsFloat", default: "0.0" }]} returns="None" />
+<ApiSig name="resume" params={[{ name: "fade_in", type: "float", default: "0.0" }]} returns="None" />
 
 Resume playback from a paused state.
 
@@ -39,7 +39,7 @@ _**Args**_
 
 ### Seek
 <div className="api-card">
-<ApiSig name="seek" params={[{ name: "seconds", type: "SupportsFloat" }]} returns="None" />
+<ApiSig name="seek" params={[{ name: "seconds", type: "float" }]} returns="None" />
 
 Jump to a specific time in the audio file.
 

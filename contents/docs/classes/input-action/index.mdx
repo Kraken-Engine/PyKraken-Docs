@@ -9,8 +9,8 @@ description: Represents a single input trigger such as a key, mouse button, or g
 - <ApiSig name="InputAction" params={[{ name: "scancode", type: "Scancode" }]} returns="InputAction" />
 - <ApiSig name="InputAction" params={[{ name: "keycode", type: "Keycode" }]} returns="InputAction" />
 - <ApiSig name="InputAction" params={[{ name: "mouse_button", type: "MouseButton" }]} returns="InputAction" />
-- <ApiSig name="InputAction" multiline params={[{ name: "gamepad_button", type: "GamepadButton" }, { name: "slot", type: "SupportsInt", default: "0" }]} returns="InputAction" />
-- <ApiSig name="InputAction" multiline params={[{ name: "gamepad_axis", type: "GamepadAxis" }, { name: "is_positive", type: "bool" }, { name: "slot", type: "SupportsInt", default: "0" }]} returns="InputAction" />
+- <ApiSig name="InputAction" multiline params={[{ name: "gamepad_button", type: "GamepadButton" }, { name: "slot", type: "int", default: "0" }]} returns="InputAction" />
+- <ApiSig name="InputAction" multiline params={[{ name: "gamepad_axis", type: "GamepadAxis" }, { name: "is_positive", type: "bool" }, { name: "slot", type: "int", default: "0" }]} returns="InputAction" />
 
 Represents a single input trigger such as a key, mouse button, or gamepad control.
 </div>

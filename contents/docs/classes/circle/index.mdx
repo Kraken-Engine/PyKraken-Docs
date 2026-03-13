@@ -7,9 +7,9 @@ description: Represents a circle shape with position and radius.
 <div className="api-card">
 
 - <ApiSig name="Circle" returns="Circle" />
-- <ApiSig name="Circle" params={[{ name: "radius", type: "SupportsFloat" }]} returns="Circle" />
-- <ApiSig name="Circle" params={[{ name: "pos", type: "Vec2" }, { name: "radius", type: "SupportsFloat" }]} returns="Circle" />
-- <ApiSig name="Circle" multiline params={[{ name: "x", type: "SupportsFloat" }, { name: "y", type: "SupportsFloat" }, { name: "radius", type: "SupportsFloat" }]} returns="Circle" />
+- <ApiSig name="Circle" params={[{ name: "radius", type: "float" }]} returns="Circle" />
+- <ApiSig name="Circle" params={[{ name: "pos", type: "Vec2" }, { name: "radius", type: "float" }]} returns="Circle" />
+- <ApiSig name="Circle" params={[{ name: "x", type: "float" }, { name: "y", type: "float" }, { name: "radius", type: "float" }]} returns="Circle" />
 
 Represents a circle shape with position and radius.
 </div>
@@ -19,10 +19,10 @@ Represents a circle shape with position and radius.
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `area` | Return the area of the circle. | <code>float</code> |
-| `circumference` | Return the circumference of the circle. | <code>float</code> |
 | `pos` | The center position of the circle as a Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `radius` | The radius of the circle. | <code>float</code> |
+| `area` | Return the area of the circle. | <code>float</code> |
+| `circumference` | Return the circumference of the circle. | <code>float</code> |
 
 ## Methods
 ---

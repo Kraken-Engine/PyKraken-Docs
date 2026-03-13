@@ -5,6 +5,23 @@ description: Rectangle related functions
 
 ---
 
+## Move
+<div className="api-card">
+<ApiSig name="move" params={[{ name: "rect", type: "Rect" }, { name: "offset", type: "Vec2" }]} returns="Rect" />
+
+Move a rectangle by the given offset.
+
+_**Args**_
+
+- `rect` : The rectangle to move.
+- `offset` : The offset to move by as (dx, dy).
+
+_**Returns**_
+
+`Rect` : A new rectangle moved by the offset.
+
+</div>
+
 ## Clamp
 <div className="api-card">
 <ApiSig name="clamp" params={[{ name: "rect", type: "Rect" }, { name: "min", type: "Vec2" }, { name: "max", type: "Vec2" }]} returns="Rect" />
@@ -46,26 +63,9 @@ _**Raises**_
 
 </div>
 
-## Move
-<div className="api-card">
-<ApiSig name="move" params={[{ name: "rect", type: "Rect" }, { name: "offset", type: "Vec2" }]} returns="Rect" />
-
-Move a rectangle by the given offset.
-
-_**Args**_
-
-- `rect` : The rectangle to move.
-- `offset` : The offset to move by as (dx, dy).
-
-_**Returns**_
-
-`Rect` : A new rectangle moved by the offset.
-
-</div>
-
 ## Scale By
 <div className="api-card">
-<ApiSig name="scale_by" params={[{ name: "rect", type: "Rect" }, { name: "factor", type: "SupportsFloat" }]} returns="Rect" />
+<ApiSig name="scale_by" params={[{ name: "rect", type: "Rect" }, { name: "factor", type: "float" }]} returns="Rect" />
 
 Scale a rectangle by a uniform factor.
 

@@ -6,7 +6,7 @@ description: A timer for tracking countdown durations with pause/resume function
 ## Constructor
 <div className="api-card">
 
-- <ApiSig name="Timer" params={[{ name: "duration", type: "SupportsFloat" }]} returns="Timer" />
+- <ApiSig name="Timer" params={[{ name: "duration", type: "float" }]} returns="Timer" />
 
 A timer for tracking countdown durations with pause/resume functionality.
 </div>
@@ -17,12 +17,23 @@ A timer for tracking countdown durations with pause/resume functionality.
 | Name | Description | Type |
 | --- | --- | --- |
 | `done` | bool: True if the timer has finished counting down, False otherwise. | <code>bool</code> |
+| `time_remaining` | float: The remaining time in seconds before the timer completes. | <code>float</code> |
 | `elapsed_time` | float: The time elapsed since the timer was started, in seconds. | <code>float</code> |
 | `progress` | float: The completion progress of the timer as a value between 0.0 and 1.0. | <code>float</code> |
-| `time_remaining` | float: The remaining time in seconds before the timer completes. | <code>float</code> |
 
 ## Methods
 ---
+
+### Start
+<div className="api-card">
+<ApiSig name="start" returns="None" />
+
+Start or restart the timer countdown.
+
+This begins the countdown from the full duration. If the timer was previously
+started, this will reset it back to the beginning.
+
+</div>
 
 ### Pause
 <div className="api-card">
@@ -33,17 +44,6 @@ Pause the timer countdown.
 The timer will stop counting down but retain its current state. Use resume()
 to continue the countdown from where it was paused. Has no effect if the
 timer is not started or already paused.
-
-</div>
-
-### Reset
-<div className="api-card">
-<ApiSig name="reset" returns="None" />
-
-Reset the timer to its initial state.
-
-Stops the timer and resets it back to its initial, unstarted state.
-The timer can be started again with `start()` after being reset.
 
 </div>
 
@@ -58,13 +58,13 @@ timer is not started or not currently paused.
 
 </div>
 
-### Start
+### Reset
 <div className="api-card">
-<ApiSig name="start" returns="None" />
+<ApiSig name="reset" returns="None" />
 
-Start or restart the timer countdown.
+Reset the timer to its initial state.
 
-This begins the countdown from the full duration. If the timer was previously
-started, this will reset it back to the beginning.
+Stops the timer and resets it back to its initial, unstarted state.
+The timer can be started again with `start()` after being reset.
 
 </div>

@@ -1,0 +1,51 @@
+---
+title: Camera
+description: Functions in camera.
+---
+
+---
+
+## Get Active Pos
+<div className="api-card">
+<ApiSig name="get_active_pos" returns="Vec2" />
+
+Get the position of the currently active camera.
+If no camera is active, returns (0, 0).
+
+_**Returns**_
+
+`Vec2` : The position of the active camera.
+
+</div>
+
+## World To Screen
+<div className="api-card">
+<ApiSig name="world_to_screen" params={[{ name: "world_pos", type: "Vec2" }]} returns="Vec2" />
+
+Convert a world position to a screen position using the active camera's translation.
+
+_**Args**_
+
+- `world_pos` : The world position to convert.
+
+_**Returns**_
+
+`Vec2` : The resulting screen position.
+
+</div>
+
+## Screen To World
+<div className="api-card">
+<ApiSig name="screen_to_world" params={[{ name: "screen_pos", type: "Vec2" }]} returns="Vec2" />
+
+Convert a screen position to a world position using the active camera's translation.
+
+_**Args**_
+
+- `screen_pos` : The screen position to convert.
+
+_**Returns**_
+
+`Vec2` : The resulting world position.
+
+</div>

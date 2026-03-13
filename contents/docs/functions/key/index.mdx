@@ -5,6 +5,36 @@ description: Keyboard key state checks
 
 ---
 
+## Is Pressed
+<div className="api-card">
+<ApiSig name="is_pressed" params={[{ name: "scancode", type: "Scancode" }]} returns="bool" />
+
+Check if a key is currently held down (by scancode).
+
+_**Args**_
+
+- `scancode` : The physical key (e.g., S_w).
+
+_**Returns**_
+
+`bool` : True if the key is held.
+
+---
+
+<ApiSig name="is_pressed" params={[{ name: "keycode", type: "Keycode" }]} returns="bool" />
+
+Check if a key is currently held down (by keycode).
+
+_**Args**_
+
+- `keycode` : The symbolic key (e.g., K_SPACE).
+
+_**Returns**_
+
+`bool` : True if the key is held.
+
+</div>
+
 ## Is Just Pressed
 <div className="api-card">
 <ApiSig name="is_just_pressed" params={[{ name: "scancode", type: "Scancode" }]} returns="bool" />
@@ -62,35 +92,5 @@ _**Args**_
 _**Returns**_
 
 `bool` : True if the key was newly released.
-
-</div>
-
-## Is Pressed
-<div className="api-card">
-<ApiSig name="is_pressed" params={[{ name: "scancode", type: "Scancode" }]} returns="bool" />
-
-Check if a key is currently held down (by scancode).
-
-_**Args**_
-
-- `scancode` : The physical key (e.g., S_w).
-
-_**Returns**_
-
-`bool` : True if the key is held.
-
----
-
-<ApiSig name="is_pressed" params={[{ name: "keycode", type: "Keycode" }]} returns="bool" />
-
-Check if a key is currently held down (by keycode).
-
-_**Args**_
-
-- `keycode` : The symbolic key (e.g., K_SPACE).
-
-_**Returns**_
-
-`bool` : True if the key is held.
 
 </div>

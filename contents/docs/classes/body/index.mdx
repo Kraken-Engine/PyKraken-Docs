@@ -1,6 +1,6 @@
 ---
 title: Body
-description: API reference for Body. Access via the 'physics' submodule.
+description: Base class for all physics bodies. Access via the 'physics' submodule.
 ---
 
 <Note type="warning" title="Experimental API">
@@ -13,18 +13,18 @@ description: API reference for Body. Access via the 'physics' submodule.
 
 | Name | Description | Type |
 | --- | --- | --- |
+| `pos` | The position of the body in world coordinates. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `rotation` | The rotation of the body in radians. | <code>float</code> |
 | `collision_layer` | The body's collision layer (category bits). | <code>int</code> |
 | `collision_mask` | The body's collision mask. | <code>int</code> |
 | `is_valid` | Indicates whether the body is not destroyed. | <code>bool</code> |
-| `pos` | The position of the body in world coordinates. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
-| `rotation` | The rotation of the body in radians. | <code>float</code> |
 
 ## Methods
 ---
 
 ### Add Collider
 <div className="api-card">
-<ApiSig name="add_collider" multiline params={[{ name: "circle", type: "Circle" }, { name: "density", type: "SupportsFloat", default: "1.0" }, { name: "friction", type: "SupportsFloat", default: "0.2" }, { name: "restitution", type: "SupportsFloat", default: "0.0" }, { name: "enable_events", type: "bool", default: "False" }, { name: "is_sensor", type: "bool", default: "False" }]} returns="None" />
+<ApiSig name="add_collider" multiline params={[{ name: "circle", type: "Circle" }, { name: "density", type: "float", default: "1.0" }, { name: "friction", type: "float", default: "0.2" }, { name: "restitution", type: "float", default: "0.0" }, { name: "enable_events", type: "bool", default: "False" }, { name: "is_sensor", type: "bool", default: "False" }]} returns="None" />
 
 Add a circular collider to the body.
 
@@ -39,7 +39,7 @@ _**Args**_
 
 ---
 
-<ApiSig name="add_collider" multiline params={[{ name: "polygon", type: "Polygon" }, { name: "density", type: "SupportsFloat", default: "1.0" }, { name: "friction", type: "SupportsFloat", default: "0.2" }, { name: "restitution", type: "SupportsFloat", default: "0.0" }, { name: "enable_events", type: "bool", default: "False" }, { name: "is_sensor", type: "bool", default: "False" }]} returns="None" />
+<ApiSig name="add_collider" multiline params={[{ name: "polygon", type: "Polygon" }, { name: "density", type: "float", default: "1.0" }, { name: "friction", type: "float", default: "0.2" }, { name: "restitution", type: "float", default: "0.0" }, { name: "enable_events", type: "bool", default: "False" }, { name: "is_sensor", type: "bool", default: "False" }]} returns="None" />
 
 Add a polygonal collider to the body.
 
@@ -54,7 +54,7 @@ _**Args**_
 
 ---
 
-<ApiSig name="add_collider" multiline params={[{ name: "rect", type: "Rect" }, { name: "density", type: "SupportsFloat", default: "1.0" }, { name: "friction", type: "SupportsFloat", default: "0.2" }, { name: "restitution", type: "SupportsFloat", default: "0.0" }, { name: "enable_events", type: "bool", default: "False" }, { name: "is_sensor", type: "bool", default: "False" }]} returns="None" />
+<ApiSig name="add_collider" multiline params={[{ name: "rect", type: "Rect" }, { name: "density", type: "float", default: "1.0" }, { name: "friction", type: "float", default: "0.2" }, { name: "restitution", type: "float", default: "0.0" }, { name: "enable_events", type: "bool", default: "False" }, { name: "is_sensor", type: "bool", default: "False" }]} returns="None" />
 
 Add a rectangular collider to the body.
 
@@ -69,7 +69,7 @@ _**Args**_
 
 ---
 
-<ApiSig name="add_collider" multiline params={[{ name: "capsule", type: "Capsule" }, { name: "density", type: "SupportsFloat", default: "1.0" }, { name: "friction", type: "SupportsFloat", default: "0.2" }, { name: "restitution", type: "SupportsFloat", default: "0.0" }, { name: "enable_events", type: "bool", default: "False" }, { name: "is_sensor", type: "bool", default: "False" }]} returns="None" />
+<ApiSig name="add_collider" multiline params={[{ name: "capsule", type: "Capsule" }, { name: "density", type: "float", default: "1.0" }, { name: "friction", type: "float", default: "0.2" }, { name: "restitution", type: "float", default: "0.0" }, { name: "enable_events", type: "bool", default: "False" }, { name: "is_sensor", type: "bool", default: "False" }]} returns="None" />
 
 Add a capsule collider to the body.
 
@@ -81,6 +81,18 @@ _**Args**_
 - `restitution` : The restitution (bounciness) of the collider. Defaults to 0.0.
 - `enable_events` : Whether to enable hit events for this collider. Defaults to False.
 - `is_sensor` : Whether the collider is a sensor. Defaults to False.
+
+</div>
+
+### Get Transform
+<div className="api-card">
+<ApiSig name="get_transform" returns="Transform" />
+
+Get the current transform of the body (position, rotation, and scale).
+
+_**Returns**_
+
+`Transform` : The current transform of the body.
 
 </div>
 
@@ -97,17 +109,5 @@ Draw all colliders attached to the body (debug/development only).
 <ApiSig name="destroy" returns="None" />
 
 Destroy the body manually.
-
-</div>
-
-### Get Transform
-<div className="api-card">
-<ApiSig name="get_transform" returns="Transform" />
-
-Get the current transform of the body (position, rotation, and scale).
-
-_**Returns**_
-
-`Transform` : The current transform of the body.
 
 </div>

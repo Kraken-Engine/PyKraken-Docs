@@ -5,18 +5,6 @@ description: Sound mixer and audio management system.
 
 ---
 
-## Get Master Volume
-<div className="api-card">
-<ApiSig name="get_master_volume" returns="float" />
-
-Get the current global mixer gain.
-
-_**Returns**_
-
-`float` : Master volume (0.0 to 1.0).
-
-</div>
-
 ## Load Sample
 <div className="api-card">
 <ApiSig name="load_sample" params={[{ name: "path", type: "str" }, { name: "predecode", type: "bool", default: "True" }]} returns="Sample" />
@@ -53,7 +41,7 @@ _**Returns**_
 
 ## Set Master Volume
 <div className="api-card">
-<ApiSig name="set_master_volume" params={[{ name: "volume", type: "SupportsFloat" }]} returns="None" />
+<ApiSig name="set_master_volume" params={[{ name: "volume", type: "float" }]} returns="None" />
 
 Set the global mixer gain.
 
@@ -63,5 +51,17 @@ is multiplied by this value. Default is 1.0.
 _**Args**_
 
 - `volume` : Master volume scalar (0.0 to 1.0).
+
+</div>
+
+## Get Master Volume
+<div className="api-card">
+<ApiSig name="get_master_volume" returns="float" />
+
+Get the current global mixer gain.
+
+_**Returns**_
+
+`float` : Master volume (0.0 to 1.0).
 
 </div>

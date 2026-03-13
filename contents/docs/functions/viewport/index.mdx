@@ -1,13 +1,13 @@
 ---
 title: Viewport
-description: Viewport management functions
+description: Functions in viewport.
 ---
 
 ---
 
 ## Layout
 <div className="api-card">
-<ApiSig name="layout" multiline params={[{ name: "count", type: "SupportsInt" }, { name: "mode", type: "ViewportMode", default: "ViewportMode.VERTICAL" }]} returns="list[Rect]" />
+<ApiSig name="layout" multiline params={[{ name: "count", type: "int" }, { name: "mode", type: "ViewportMode", default: "ViewportMode.VERTICAL" }]} returns="list[Rect]" />
 
 Layout the screen into multiple viewports.
 The viewports are created with the current renderer target resolution in mind.

@@ -9,15 +9,15 @@ description: Abstract base class for all audio resources. Access via the 'mixer'
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `playing` | True if currently playing. | <code>bool</code> |
 | `volume` | Volume scalar (0.0 to 1.0). | <code>float</code> |
+| `playing` | True if currently playing. | <code>bool</code> |
 
 ## Methods
 ---
 
 ### Play
 <div className="api-card">
-<ApiSig name="play" params={[{ name: "fade_in", type: "SupportsFloat", default: "0.0" }]} returns="None" />
+<ApiSig name="play" params={[{ name: "fade_in", type: "float", default: "0.0" }]} returns="None" />
 
 Start audio playback.
 
@@ -29,7 +29,7 @@ _**Args**_
 
 ### Stop
 <div className="api-card">
-<ApiSig name="stop" params={[{ name: "fade_out", type: "SupportsFloat", default: "0.0" }]} returns="None" />
+<ApiSig name="stop" params={[{ name: "fade_out", type: "float", default: "0.0" }]} returns="None" />
 
 Stop all playing instances of this audio.
 

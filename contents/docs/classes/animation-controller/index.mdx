@@ -19,16 +19,16 @@ Manages and controls sprite animations with multiple animation sequences.
 | `current_animation_name` | The name of the currently active animation. | <code>str</code> |
 | `frame_area` | The clip area (atlas region) for the current animation frame. | <code><a href="/docs/classes/rect">Rect</a></code> |
 | `frame_index` | The current frame index in the animation sequence. | <code>int</code> |
-| `looping` | Whether the animation should loop when it reaches the end. | <code>bool</code> |
-| `playback_speed` | The playback speed multiplier for animation timing. | <code>float</code> |
 | `progress` | The normalized progress through the current animation. | <code>float</code> |
+| `playback_speed` | The playback speed multiplier for animation timing. | <code>float</code> |
+| `looping` | Whether the animation should loop when it reaches the end. | <code>bool</code> |
 
 ## Methods
 ---
 
 ### Add Sheet
 <div className="api-card">
-<ApiSig name="add_sheet" multiline params={[{ name: "frame_width", type: "SupportsInt" }, { name: "frame_height", type: "SupportsInt" }, { name: "strips", type: "Sequence[SheetStrip]" }]} returns="None" />
+<ApiSig name="add_sheet" multiline params={[{ name: "frame_width", type: "int" }, { name: "frame_height", type: "int" }, { name: "strips", type: "Sequence[SheetStrip]" }]} returns="None" />
 
 Add animations from a sprite sheet definition.
 
@@ -49,29 +49,22 @@ _**Raises**_
 
 </div>
 
-### Is Finished
+### Set
 <div className="api-card">
-<ApiSig name="is_finished" returns="bool" />
+<ApiSig name="set" params={[{ name: "name", type: "str" }]} returns="None" />
 
-Check if the animation completed a full loop during the last update.
+Set the current active animation by name without affecting playback state.
 
-Returns True if the animation looped back to the beginning during the most recent
-frame update. This method is const and can be called multiple times per frame
-with consistent results.
+Switches to the specified animation while preserving the current frame index and
+playback state (paused/playing). Useful for seamless animation transitions.
 
-_**Returns**_
+_**Args**_
 
-`bool` : True if the animation completed a loop during the last update.
+- `name` : The name of the animation to activate.
 
-</div>
+_**Raises**_
 
-### Pause
-<div className="api-card">
-<ApiSig name="pause" returns="None" />
-
-Pause the animation playback.
-
-Stops animation frame advancement while preserving the current frame position.
+- `ValueError` : If the specified animation name is not found.
 
 </div>
 
@@ -95,7 +88,7 @@ _**Raises**_
 
 ### Play From
 <div className="api-card">
-<ApiSig name="play_from" params={[{ name: "frame_index", type: "SupportsInt" }]} returns="None" />
+<ApiSig name="play_from" params={[{ name: "frame_index", type: "int" }]} returns="None" />
 
 Start playing the current animation from a specific frame.
 
@@ -112,14 +105,19 @@ _**Raises**_
 
 </div>
 
-### Resume
+### Is Finished
 <div className="api-card">
-<ApiSig name="resume" returns="None" />
+<ApiSig name="is_finished" returns="bool" />
 
-Resume paused animation playback.
+Check if the animation completed a full loop during the last update.
 
-Resumes animation frame advancement if the playback speed is greater than 0.
-Does nothing if the animation is already playing or playback speed is 0.
+Returns True if the animation looped back to the beginning during the most recent
+frame update. This method is const and can be called multiple times per frame
+with consistent results.
+
+_**Returns**_
+
+`bool` : True if the animation completed a loop during the last update.
 
 </div>
 
@@ -133,21 +131,23 @@ Sets the animation back to frame 0 and resets loop detection state.
 
 </div>
 
-### Set
+### Pause
 <div className="api-card">
-<ApiSig name="set" params={[{ name: "name", type: "str" }]} returns="None" />
+<ApiSig name="pause" returns="None" />
 
-Set the current active animation by name without affecting playback state.
+Pause the animation playback.
 
-Switches to the specified animation while preserving the current frame index and
-playback state (paused/playing). Useful for seamless animation transitions.
+Stops animation frame advancement while preserving the current frame position.
 
-_**Args**_
+</div>
 
-- `name` : The name of the animation to activate.
+### Resume
+<div className="api-card">
+<ApiSig name="resume" returns="None" />
 
-_**Raises**_
+Resume paused animation playback.
 
-- `ValueError` : If the specified animation name is not found.
+Resumes animation frame advancement if the playback speed is greater than 0.
+Does nothing if the animation is already playing or playback speed is 0.
 
 </div>

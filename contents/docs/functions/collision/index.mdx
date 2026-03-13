@@ -5,98 +5,6 @@ description: Collision detection functions
 
 ---
 
-## Contains
-<div className="api-card">
-<ApiSig name="contains" params={[{ name: "outer", type: "Rect" }, { name: "inner", type: "Rect" }]} returns="bool" />
-
-Check whether one rectangle completely contains another rectangle.
-
-_**Args**_
-
-- `outer` : The outer rectangle.
-- `inner` : The inner rectangle.
-
-_**Returns**_
-
-`bool` : True if the outer rectangle completely contains the inner rectangle.
-
----
-
-<ApiSig name="contains" params={[{ name: "rect", type: "Rect" }, { name: "circle", type: "Circle" }]} returns="bool" />
-
-Check whether a rectangle completely contains a circle.
-
-_**Args**_
-
-- `rect` : The rectangle.
-- `circle` : The circle.
-
-_**Returns**_
-
-`bool` : True if the rectangle completely contains the circle.
-
----
-
-<ApiSig name="contains" params={[{ name: "rect", type: "Rect" }, { name: "line", type: "Line" }]} returns="bool" />
-
-Check whether a rectangle completely contains a line.
-
-_**Args**_
-
-- `rect` : The rectangle.
-- `line` : The line.
-
-_**Returns**_
-
-`bool` : True if the rectangle completely contains the line.
-
----
-
-<ApiSig name="contains" params={[{ name: "outer", type: "Circle" }, { name: "inner", type: "Circle" }]} returns="bool" />
-
-Check whether one circle completely contains another circle.
-
-_**Args**_
-
-- `outer` : The outer circle.
-- `inner` : The inner circle.
-
-_**Returns**_
-
-`bool` : True if the outer circle completely contains the inner circle.
-
----
-
-<ApiSig name="contains" params={[{ name: "circle", type: "Circle" }, { name: "rect", type: "Rect" }]} returns="bool" />
-
-Check whether a circle completely contains a rectangle.
-
-_**Args**_
-
-- `circle` : The circle.
-- `rect` : The rectangle.
-
-_**Returns**_
-
-`bool` : True if the circle completely contains the rectangle.
-
----
-
-<ApiSig name="contains" params={[{ name: "circle", type: "Circle" }, { name: "line", type: "Line" }]} returns="bool" />
-
-Check whether a circle completely contains a line.
-
-_**Args**_
-
-- `circle` : The circle.
-- `line` : The line.
-
-_**Returns**_
-
-`bool` : True if the circle completely contains the line.
-
-</div>
-
 ## Overlap
 <div className="api-card">
 <ApiSig name="overlap" params={[{ name: "a", type: "Rect" }, { name: "b", type: "Rect" }]} returns="bool" />
@@ -351,5 +259,97 @@ _**Args**_
 _**Returns**_
 
 `bool` : True if the rectangle and polygon overlap.
+
+</div>
+
+## Contains
+<div className="api-card">
+<ApiSig name="contains" params={[{ name: "outer", type: "Rect" }, { name: "inner", type: "Rect" }]} returns="bool" />
+
+Check whether one rectangle completely contains another rectangle.
+
+_**Args**_
+
+- `outer` : The outer rectangle.
+- `inner` : The inner rectangle.
+
+_**Returns**_
+
+`bool` : True if the outer rectangle completely contains the inner rectangle.
+
+---
+
+<ApiSig name="contains" params={[{ name: "rect", type: "Rect" }, { name: "circle", type: "Circle" }]} returns="bool" />
+
+Check whether a rectangle completely contains a circle.
+
+_**Args**_
+
+- `rect` : The rectangle.
+- `circle` : The circle.
+
+_**Returns**_
+
+`bool` : True if the rectangle completely contains the circle.
+
+---
+
+<ApiSig name="contains" params={[{ name: "rect", type: "Rect" }, { name: "line", type: "Line" }]} returns="bool" />
+
+Check whether a rectangle completely contains a line.
+
+_**Args**_
+
+- `rect` : The rectangle.
+- `line` : The line.
+
+_**Returns**_
+
+`bool` : True if the rectangle completely contains the line.
+
+---
+
+<ApiSig name="contains" params={[{ name: "outer", type: "Circle" }, { name: "inner", type: "Circle" }]} returns="bool" />
+
+Check whether one circle completely contains another circle.
+
+_**Args**_
+
+- `outer` : The outer circle.
+- `inner` : The inner circle.
+
+_**Returns**_
+
+`bool` : True if the outer circle completely contains the inner circle.
+
+---
+
+<ApiSig name="contains" params={[{ name: "circle", type: "Circle" }, { name: "rect", type: "Rect" }]} returns="bool" />
+
+Check whether a circle completely contains a rectangle.
+
+_**Args**_
+
+- `circle` : The circle.
+- `rect` : The rectangle.
+
+_**Returns**_
+
+`bool` : True if the circle completely contains the rectangle.
+
+---
+
+<ApiSig name="contains" params={[{ name: "circle", type: "Circle" }, { name: "line", type: "Line" }]} returns="bool" />
+
+Check whether a circle completely contains a line.
+
+_**Args**_
+
+- `circle` : The circle.
+- `line` : The line.
+
+_**Returns**_
+
+`bool` : True if the circle completely contains the line.
 
 </div>

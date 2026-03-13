@@ -1,6 +1,6 @@
 ---
 title: CastHit
-description: API reference for CastHit. Access via the 'physics' submodule.
+description: Result of a ray cast or shape cast query. Access via the 'physics' submodule.
 ---
 
 <Note type="warning" title="Experimental API">
@@ -14,6 +14,6 @@ description: API reference for CastHit. Access via the 'physics' submodule.
 | Name | Description | Type |
 | --- | --- | --- |
 | `body` | The body that was hit. | <code><a href="/docs/classes/body">Body</a></code> |
-| `fraction` | The fraction along the cast path at which the hit occurred. | <code>float</code> |
-| `normal` | The normal vector of the hit surface. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `point` | The point of the hit in world coordinates. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `normal` | The normal vector of the hit surface. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `fraction` | The fraction along the cast path at which the hit occurred. | <code>float</code> |

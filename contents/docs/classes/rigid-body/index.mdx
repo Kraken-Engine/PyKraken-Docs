@@ -1,6 +1,6 @@
 ---
 title: RigidBody
-description: API reference for RigidBody. Access via the 'physics' submodule.
+description: A dynamic physics body that responds to forces, impulses, and collisions. Access via the 'physics' submodule.
 ---
 
 <Note type="warning" title="Experimental API">
@@ -13,6 +13,8 @@ Inherits from [Body](/docs/classes/body).
 <div className="api-card">
 
 - <ApiSig name="RigidBody" params={[{ name: "world", type: "World" }]} returns="RigidBody" />
+
+A dynamic physics body that responds to forces, impulses, and collisions.
 </div>
 
 ## Properties
@@ -20,28 +22,23 @@ Inherits from [Body](/docs/classes/body).
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `angular_damping` | The angular damping of the body. | <code>float</code> |
-| `angular_velocity` | The angular velocity of the body. | <code>float</code> |
-| `fixed_rotation` | Whether the body has fixed rotation. | <code>bool</code> |
-| `is_awake` | Whether the body is currently awake and simulating. | <code>bool</code> |
-| `is_bullet` | Whether CCD is enabled for this body. | <code>bool</code> |
-| `linear_damping` | The linear damping of the body. | <code>float</code> |
 | `linear_velocity` | The linear velocity of the body. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `angular_velocity` | The angular velocity of the body. | <code>float</code> |
+| `linear_damping` | The linear damping of the body. | <code>float</code> |
+| `angular_damping` | The angular damping of the body. | <code>float</code> |
+| `fixed_rotation` | Whether the body has fixed rotation. | <code>bool</code> |
+| `is_bullet` | Whether CCD is enabled for this body. | <code>bool</code> |
+| `is_awake` | Whether the body is currently awake and simulating. | <code>bool</code> |
 | `mass` | The mass of the body. | <code>float</code> |
 
 ## Methods
 ---
 
-### Apply Angular Impulse
+### Wake
 <div className="api-card">
-<ApiSig name="apply_angular_impulse" params={[{ name: "impulse", type: "SupportsFloat" }, { name: "wake", type: "bool", default: "True" }]} returns="None" />
+<ApiSig name="wake" returns="None" />
 
-Apply an angular impulse to the body.
-
-_**Args**_
-
-- `impulse` : The angular impulse to apply.
-- `wake` : Whether to wake the body if it's sleeping. Defaults to True.
+Manually wake the body from sleep.
 
 </div>
 
@@ -68,6 +65,19 @@ Apply a force to the center of mass of the body.
 _**Args**_
 
 - `force` : The force vector to apply.
+- `wake` : Whether to wake the body if it's sleeping. Defaults to True.
+
+</div>
+
+### Apply Torque
+<div className="api-card">
+<ApiSig name="apply_torque" params={[{ name: "torque", type: "float" }, { name: "wake", type: "bool", default: "True" }]} returns="None" />
+
+Apply a torque to the body.
+
+_**Args**_
+
+- `torque` : The torque to apply.
 - `wake` : Whether to wake the body if it's sleeping. Defaults to True.
 
 </div>
@@ -99,23 +109,15 @@ _**Args**_
 
 </div>
 
-### Apply Torque
+### Apply Angular Impulse
 <div className="api-card">
-<ApiSig name="apply_torque" params={[{ name: "torque", type: "SupportsFloat" }, { name: "wake", type: "bool", default: "True" }]} returns="None" />
+<ApiSig name="apply_angular_impulse" params={[{ name: "impulse", type: "float" }, { name: "wake", type: "bool", default: "True" }]} returns="None" />
 
-Apply a torque to the body.
+Apply an angular impulse to the body.
 
 _**Args**_
 
-- `torque` : The torque to apply.
+- `impulse` : The angular impulse to apply.
 - `wake` : Whether to wake the body if it's sleeping. Defaults to True.
-
-</div>
-
-### Wake
-<div className="api-card">
-<ApiSig name="wake" returns="None" />
-
-Manually wake the body from sleep.
 
 </div>

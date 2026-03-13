@@ -1,105 +1,30 @@
 ---
 title: Gamepad
-description: Gamepad input handling functions
+description: Functions in gamepad.
 ---
 
 ---
 
-## Get Connected Slots
+## Is Pressed
 <div className="api-card">
-<ApiSig name="get_connected_slots" returns="list[int]" />
+<ApiSig name="is_pressed" params={[{ name: "button", type: "GamepadButton" }, { name: "slot", type: "int", default: "0" }]} returns="bool" />
 
-Get a list of connected gamepad slot indices.
-
-_**Returns**_
-
-`list[int]` : A list of slot IDs with active gamepads.
-
-</div>
-
-## Get Deadzone
-<div className="api-card">
-<ApiSig name="get_deadzone" params={[{ name: "slot", type: "SupportsInt", default: "0" }]} returns="float" />
-
-Get the current dead zone value for a gamepad's analog sticks.
+Check if a gamepad button is currently being held down.
 
 _**Args**_
 
+- `button` : The button code.
 - `slot` : Gamepad slot ID (default is 0).
 
 _**Returns**_
 
-`float` : Deadzone threshold.
-
-</div>
-
-## Get Left Stick
-<div className="api-card">
-<ApiSig name="get_left_stick" params={[{ name: "slot", type: "SupportsInt", default: "0" }]} returns="Vec2" />
-
-Get the left analog stick position.
-
-_**Args**_
-
-- `slot` : Gamepad slot ID (default is 0).
-
-_**Returns**_
-
-`Vec2` : A vector of stick input normalized to [-1, 1], or (0, 0) if inside dead zone.
-
-</div>
-
-## Get Left Trigger
-<div className="api-card">
-<ApiSig name="get_left_trigger" params={[{ name: "slot", type: "SupportsInt", default: "0" }]} returns="float" />
-
-Get the left trigger's current pressure value.
-
-_**Args**_
-
-- `slot` : Gamepad slot ID (default is 0).
-
-_**Returns**_
-
-`float` : Trigger value in range [0.0, 1.0].
-
-</div>
-
-## Get Right Stick
-<div className="api-card">
-<ApiSig name="get_right_stick" params={[{ name: "slot", type: "SupportsInt", default: "0" }]} returns="Vec2" />
-
-Get the right analog stick position.
-
-_**Args**_
-
-- `slot` : Gamepad slot ID (default is 0).
-
-_**Returns**_
-
-`Vec2` : A vector of stick input normalized to [-1, 1], or (0, 0) if inside dead zone.
-
-</div>
-
-## Get Right Trigger
-<div className="api-card">
-<ApiSig name="get_right_trigger" params={[{ name: "slot", type: "SupportsInt", default: "0" }]} returns="float" />
-
-Get the right trigger's current pressure value.
-
-_**Args**_
-
-- `slot` : Gamepad slot ID (default is 0).
-
-_**Returns**_
-
-`float` : Trigger value in range [0.0, 1.0].
+`bool` : True if the button is pressed.
 
 </div>
 
 ## Is Just Pressed
 <div className="api-card">
-<ApiSig name="is_just_pressed" multiline params={[{ name: "button", type: "GamepadButton" }, { name: "slot", type: "SupportsInt", default: "0" }]} returns="bool" />
+<ApiSig name="is_just_pressed" params={[{ name: "button", type: "GamepadButton" }, { name: "slot", type: "int", default: "0" }]} returns="bool" />
 
 Check if a gamepad button was pressed during this frame.
 
@@ -116,7 +41,7 @@ _**Returns**_
 
 ## Is Just Released
 <div className="api-card">
-<ApiSig name="is_just_released" multiline params={[{ name: "button", type: "GamepadButton" }, { name: "slot", type: "SupportsInt", default: "0" }]} returns="bool" />
+<ApiSig name="is_just_released" params={[{ name: "button", type: "GamepadButton" }, { name: "slot", type: "int", default: "0" }]} returns="bool" />
 
 Check if a gamepad button was released during this frame.
 
@@ -131,26 +56,73 @@ _**Returns**_
 
 </div>
 
-## Is Pressed
+## Get Left Stick
 <div className="api-card">
-<ApiSig name="is_pressed" multiline params={[{ name: "button", type: "GamepadButton" }, { name: "slot", type: "SupportsInt", default: "0" }]} returns="bool" />
+<ApiSig name="get_left_stick" params={[{ name: "slot", type: "int", default: "0" }]} returns="Vec2" />
 
-Check if a gamepad button is currently being held down.
+Get the left analog stick position.
 
 _**Args**_
 
-- `button` : The button code.
 - `slot` : Gamepad slot ID (default is 0).
 
 _**Returns**_
 
-`bool` : True if the button is pressed.
+`Vec2` : A vector of stick input normalized to [-1, 1], or (0, 0) if inside dead zone.
+
+</div>
+
+## Get Right Stick
+<div className="api-card">
+<ApiSig name="get_right_stick" params={[{ name: "slot", type: "int", default: "0" }]} returns="Vec2" />
+
+Get the right analog stick position.
+
+_**Args**_
+
+- `slot` : Gamepad slot ID (default is 0).
+
+_**Returns**_
+
+`Vec2` : A vector of stick input normalized to [-1, 1], or (0, 0) if inside dead zone.
+
+</div>
+
+## Get Left Trigger
+<div className="api-card">
+<ApiSig name="get_left_trigger" params={[{ name: "slot", type: "int", default: "0" }]} returns="float" />
+
+Get the left trigger's current pressure value.
+
+_**Args**_
+
+- `slot` : Gamepad slot ID (default is 0).
+
+_**Returns**_
+
+`float` : Trigger value in range [0.0, 1.0].
+
+</div>
+
+## Get Right Trigger
+<div className="api-card">
+<ApiSig name="get_right_trigger" params={[{ name: "slot", type: "int", default: "0" }]} returns="float" />
+
+Get the right trigger's current pressure value.
+
+_**Args**_
+
+- `slot` : Gamepad slot ID (default is 0).
+
+_**Returns**_
+
+`float` : Trigger value in range [0.0, 1.0].
 
 </div>
 
 ## Set Deadzone
 <div className="api-card">
-<ApiSig name="set_deadzone" multiline params={[{ name: "deadzone", type: "SupportsFloat" }, { name: "slot", type: "SupportsInt", default: "0" }]} returns="None" />
+<ApiSig name="set_deadzone" params={[{ name: "deadzone", type: "float" }, { name: "slot", type: "int", default: "0" }]} returns="None" />
 
 Set the dead zone threshold for a gamepad's analog sticks.
 
@@ -158,5 +130,33 @@ _**Args**_
 
 - `deadzone` : Value from 0.0 to 1.0 where movement is ignored.
 - `slot` : Gamepad slot ID (default is 0).
+
+</div>
+
+## Get Deadzone
+<div className="api-card">
+<ApiSig name="get_deadzone" params={[{ name: "slot", type: "int", default: "0" }]} returns="float" />
+
+Get the current dead zone value for a gamepad's analog sticks.
+
+_**Args**_
+
+- `slot` : Gamepad slot ID (default is 0).
+
+_**Returns**_
+
+`float` : Deadzone threshold.
+
+</div>
+
+## Get Connected Slots
+<div className="api-card">
+<ApiSig name="get_connected_slots" returns="list[int]" />
+
+Get a list of connected gamepad slot indices.
+
+_**Returns**_
+
+`list[int]` : A list of slot IDs with active gamepads.
 
 </div>

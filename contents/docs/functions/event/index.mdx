@@ -1,9 +1,23 @@
 ---
 title: Event
-description: Input event handling
+description: Functions in event.
 ---
 
 ---
+
+## Poll
+<div className="api-card">
+<ApiSig name="poll" returns="list[Event]" />
+
+Poll for all pending user input events.
+
+This clears input states and returns a list of events that occurred since the last call.
+
+_**Returns**_
+
+`list[Event]` : A list of input event objects.
+
+</div>
 
 ## New Custom
 <div className="api-card">
@@ -18,20 +32,6 @@ _**Returns**_
 _**Raises**_
 
 - `RuntimeError` : If registration fails.
-
-</div>
-
-## Poll
-<div className="api-card">
-<ApiSig name="poll" returns="list[Event]" />
-
-Poll for all pending user input events.
-
-This clears input states and returns a list of events that occurred since the last call.
-
-_**Returns**_
-
-`list[Event]` : A list of input event objects.
 
 </div>
 
@@ -54,7 +54,7 @@ _**Raises**_
 
 ## Schedule
 <div className="api-card">
-<ApiSig name="schedule" multiline params={[{ name: "event", type: "Event" }, { name: "delay_ms", type: "SupportsInt" }, { name: "repeat", type: "bool", default: "False" }]} returns="None" />
+<ApiSig name="schedule" multiline params={[{ name: "event", type: "Event" }, { name: "delay_ms", type: "int" }, { name: "repeat", type: "bool", default: "False" }]} returns="None" />
 
 Schedule a custom event to be pushed after a delay. Will overwrite any existing timer for the same event.
 
@@ -69,6 +69,18 @@ _**Raises**_
 
 - `ValueError` : If the event is not a custom event type.
 - `RuntimeError` : If the timer could not be created.
+
+</div>
+
+## Unschedule
+<div className="api-card">
+<ApiSig name="unschedule" params={[{ name: "event", type: "Event" }]} returns="None" />
+
+Cancel a scheduled event timer.
+
+_**Args**_
+
+- `event` : The custom event whose timer should be cancelled.
 
 </div>
 
@@ -93,17 +105,5 @@ Stop text input for TEXT_INPUT and TEXT_EDITING events.
 _**Raises**_
 
 - `RuntimeError` : If text input could not be stopped.
-
-</div>
-
-## Unschedule
-<div className="api-card">
-<ApiSig name="unschedule" params={[{ name: "event", type: "Event" }]} returns="None" />
-
-Cancel a scheduled event timer.
-
-_**Args**_
-
-- `event` : The custom event whose timer should be cancelled.
 
 </div>

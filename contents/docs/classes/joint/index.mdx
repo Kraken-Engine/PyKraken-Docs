@@ -1,6 +1,6 @@
 ---
 title: Joint
-description: API reference for Joint. Access via the 'physics' submodule.
+description: Base class for all physics joints. Access via the 'physics' submodule.
 ---
 
 <Note type="warning" title="Experimental API">
@@ -13,12 +13,12 @@ description: API reference for Joint. Access via the 'physics' submodule.
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `body_a` | The first body attached to the joint. | <code><a href="/docs/classes/body">Body</a></code> |
-| `body_b` | The second body attached to the joint. | <code><a href="/docs/classes/body">Body</a></code> |
 | `collide_connected` | Whether the connected bodies should collide with each other. | <code>bool</code> |
-| `is_valid` | Indicates whether the joint is not destroyed. | <code>bool</code> |
 | `local_anchor_a` | The local anchor point relative to body A's origin. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `local_anchor_b` | The local anchor point relative to body B's origin. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `body_a` | The first body attached to the joint. | <code><a href="/docs/classes/body">Body</a></code> |
+| `body_b` | The second body attached to the joint. | <code><a href="/docs/classes/body">Body</a></code> |
+| `is_valid` | Indicates whether the joint is not destroyed. | <code>bool</code> |
 
 ## Methods
 ---

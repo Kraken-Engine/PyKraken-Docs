@@ -6,7 +6,7 @@ description: Encapsulates a GPU shader and its associated render state.
 ## Constructor
 <div className="api-card">
 
-- <ApiSig name="ShaderState" multiline params={[{ name: "fragment_file_path", type: "str" }, { name: "uniform_buffer_count", type: "SupportsInt", default: "0" }]} returns="ShaderState" />
+- <ApiSig name="ShaderState" multiline params={[{ name: "fragment_file_path", type: "str" }, { name: "uniform_buffer_count", type: "int", default: "0" }]} returns="ShaderState" />
 
 Encapsulates a GPU shader and its associated render state.
 </div>
@@ -22,9 +22,17 @@ Binds this shader state to the current render pass, making it active for subsequ
 
 </div>
 
+### Unbind
+<div className="api-card">
+<ApiSig name="unbind" returns="None" />
+
+Unbinds the current shader state, reverting to the default render state.
+
+</div>
+
 ### Set Uniform
 <div className="api-card">
-<ApiSig name="set_uniform" params={[{ name: "binding", type: "SupportsInt" }, { name: "data", type: "Buffer" }]} returns="None" />
+<ApiSig name="set_uniform" multiline params={[{ name: "binding", type: "int" }, { name: "data", type: "Annotated[NDArray, dict(order='C', device='cpu')]" }]} returns="None" />
 
 Set uniform data for the fragment shader at the specified binding point.
 
@@ -32,13 +40,5 @@ _**Args**_
 
 - `binding` : Uniform buffer binding index.
 - `data` : Buffer or bytes object containing the uniform data to upload.
-
-</div>
-
-### Unbind
-<div className="api-card">
-<ApiSig name="unbind" returns="None" />
-
-Unbinds the current shader state, reverting to the default render state.
 
 </div>

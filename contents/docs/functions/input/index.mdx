@@ -18,20 +18,15 @@ _**Args**_
 
 </div>
 
-## Get Axis
+## Unbind
 <div className="api-card">
-<ApiSig name="get_axis" params={[{ name: "negative", type: "str" }, { name: "positive", type: "str" }]} returns="float" />
+<ApiSig name="unbind" params={[{ name: "name", type: "str" }]} returns="None" />
 
-Get a 1D axis value based on two opposing input actions.
+Unbind a previously registered input name.
 
 _**Args**_
 
-- `negative` : Name of the negative direction action (e.g. "left").
-- `positive` : Name of the positive direction action (e.g. "right").
-
-_**Returns**_
-
-`float` : Value in range [-1.0, 1.0] based on input.
+- `name` : The binding name to remove.
 
 </div>
 
@@ -53,6 +48,39 @@ _**Args**_
 _**Returns**_
 
 `Vec2` : A normalized vector representing the intended direction.
+
+</div>
+
+## Get Axis
+<div className="api-card">
+<ApiSig name="get_axis" params={[{ name: "negative", type: "str" }, { name: "positive", type: "str" }]} returns="float" />
+
+Get a 1D axis value based on two opposing input actions.
+
+_**Args**_
+
+- `negative` : Name of the negative direction action (e.g. "left").
+- `positive` : Name of the positive direction action (e.g. "right").
+
+_**Returns**_
+
+`float` : Value in range [-1.0, 1.0] based on input.
+
+</div>
+
+## Is Pressed
+<div className="api-card">
+<ApiSig name="is_pressed" params={[{ name: "name", type: "str" }]} returns="bool" />
+
+Check if the given action is currently being held.
+
+_**Args**_
+
+- `name` : The name of the bound input.
+
+_**Returns**_
+
+`bool` : True if any action bound to the name is pressed.
 
 </div>
 
@@ -85,33 +113,5 @@ _**Args**_
 _**Returns**_
 
 `bool` : True if released this frame only.
-
-</div>
-
-## Is Pressed
-<div className="api-card">
-<ApiSig name="is_pressed" params={[{ name: "name", type: "str" }]} returns="bool" />
-
-Check if the given action is currently being held.
-
-_**Args**_
-
-- `name` : The name of the bound input.
-
-_**Returns**_
-
-`bool` : True if any action bound to the name is pressed.
-
-</div>
-
-## Unbind
-<div className="api-card">
-<ApiSig name="unbind" params={[{ name: "name", type: "str" }]} returns="None" />
-
-Unbind a previously registered input name.
-
-_**Args**_
-
-- `name` : The binding name to remove.
 
 </div>

@@ -103,11 +103,29 @@ def iter_stub_files(pkg_root: Path) -> List[Path]:
             continue
         files.append(path)
 
+    # Also include .py stubs if present (some installs ship .py instead of .pyi)
+    for path in pkg_root.rglob("*.py"):
+        if "__pycache__" in path.parts:
+            continue
+        # Avoid compiled extensions or package __init__ reimports
+        if path.suffix.lower() == ".py":
+            files.append(path)
+
     # Include specific submodules that need explicit import (fx, shader_uniform)
     for submodule in ["fx.py", "shader_uniform.py"]:
         py_file = pkg_root / submodule
         if py_file.exists():
             files.append(py_file)
+
+    # For compiled extension modules (e.g. .pyd/.so) sometimes a separate .pyi is placed
+    # next to the compiled file. Look for common compiled extensions and include any
+    # sibling .pyi/.py files that match the stem.
+    for ext in (".pyd", ".so", ".dll"):
+        for bin_path in pkg_root.rglob(f"*{ext}"):
+            stem = bin_path.stem
+            for candidate in (bin_path.with_suffix(".pyi"), bin_path.with_suffix(".py")):
+                if candidate.exists():
+                    files.append(candidate)
 
     return files
 
@@ -129,14 +147,9 @@ def render_annotation(node: Optional[ast.AST]) -> Optional[str]:
     if node is None:
         return None
     try:
-        text = ast.unparse(node)
+        return ast.unparse(node)
     except Exception:
         return None
-    text = text.replace("typing.", "")
-    text = text.replace("collections.abc.", "")
-    text = text.replace("pykraken._core.", "")
-    text = text.replace("_core.", "")
-    return text
 
 
 def clean_floats(text: str) -> str:
@@ -169,8 +182,6 @@ def render_default(node: Optional[ast.AST]) -> Optional[str]:
         return None
     try:
         text = ast.unparse(node)
-        text = text.replace("pykraken._core.", "")
-        text = text.replace("_core.", "")
         return clean_floats(text)
     except Exception:
         return None
@@ -666,7 +677,7 @@ def render_class_page(
         and current_module.startswith(f"{package_name}.")
     ):
         submodule = current_module[len(package_name) + 1 :]
-        submodule = submodule.replace("_core.", "").replace("_core", "")
+        submodule = submodule.replace("_pykraken.", "").replace("_pykraken", "")
         submodule = submodule.strip(".")
         if submodule:
             description = f"{description} Access via the '{submodule}' submodule."
@@ -945,7 +956,13 @@ def enrich_enum_member_docs(enums: List[ClassInfo], package_name: str) -> None:
 
 
 def module_name_from_path(pkg: str, pkg_root: Path, file_path: Path) -> str:
-    rel = file_path.relative_to(pkg_root)
+    try:
+        rel = file_path.relative_to(pkg_root)
+    except Exception:
+        # If the file isn't under the package root (e.g. stub placed elsewhere),
+        # fall back to using the package name only.
+        return pkg
+
     if rel.suffix not in (".pyi", ".py"):
         return pkg
 
@@ -1051,8 +1068,23 @@ def main() -> int:
     pkg_root, entry_file = find_package_root(pkg)
     stub_files = iter_stub_files(pkg_root)
     if not stub_files:
-        # fall back to parsing the runtime source if no .pyi found
-        stub_files = [entry_file]
+        # Try to fall back to parsing a nearby .pyi/.py sibling to the compiled
+        # extension if present. Avoid trying to read binary extension files directly.
+        candidates = []
+        for cand in (entry_file.with_suffix(".pyi"), entry_file.with_suffix(".py")):
+            if cand.exists():
+                candidates.append(cand)
+
+        if candidates:
+            stub_files = candidates
+        else:
+            # If entry_file is a normal .py/.pyi file, use it; otherwise abort with message.
+            if entry_file.suffix in (".py", ".pyi"):
+                stub_files = [entry_file]
+            else:
+                raise RuntimeError(
+                    f"No .pyi/.py stub files found for package '{pkg}' under {pkg_root}"
+                )
 
     print(f"Found {len(stub_files)} stub file(s) under {pkg_root}")
 
@@ -1070,50 +1102,6 @@ def main() -> int:
 
         if functions:
             modules[module_name] = ModuleInfo(name=module_name.split(".")[-1], doc=module_doc, functions=functions)
-
-    # Extract fx functions from _core module
-    core_module_name = f"{pkg}._core"
-    if core_module_name in modules:
-        fx_functions = []
-        core_module = modules[core_module_name]
-        for func in core_module.functions:
-            if func.name.startswith("_fx_"):
-                # Create a copy with the _fx_ prefix removed
-                fx_func = FunctionSig(
-                    name=func.name[4:],  # Remove "_fx_" prefix
-                    params=func.params,
-                    returns=func.returns,
-                    doc=func.doc
-                )
-                # Copy overloads if they exist
-                if hasattr(func, "__dict__") and "overloads" in func.__dict__:
-                    fx_func.__dict__["overloads"] = [
-                        FunctionSig(
-                            name=sig.name[4:],
-                            params=sig.params,
-                            returns=sig.returns,
-                            doc=sig.doc
-                        )
-                        for sig in func.__dict__["overloads"]
-                    ]
-                fx_functions.append(fx_func)
-
-        if fx_functions:
-            # Read docstring from fx.py if it exists
-            fx_py_path = pkg_root / "fx.py"
-            fx_doc = None
-            if fx_py_path.exists():
-                try:
-                    tree, lines = parse_module(fx_py_path)
-                    fx_doc = ast.get_docstring(tree)
-                except Exception:
-                    pass
-
-            modules[f"{pkg}.fx"] = ModuleInfo(
-                name="fx",
-                doc=fx_doc,
-                functions=fx_functions
-            )
 
     print(f"Parsed {len(classes_by_name)} class(es) and {len(modules)} module(s)")
 
@@ -1152,8 +1140,8 @@ def main() -> int:
 
     generated_module_dirs: List[str] = []
     for mod in modules.values():
-        # Skip the main package module and internal _core module
-        if mod.name == pkg or mod.name == "_core":
+        # Skip the main package module and internal _pykraken module
+        if mod.name == pkg or mod.name == "_pykraken":
             continue
         slug = camel_to_kebab(mod.name)
         generated_module_dirs.append(slug)
@@ -1175,7 +1163,7 @@ def main() -> int:
     updated_routes = update_routes_config(
         routes_path,
         sorted(c.name for c in normal_classes),
-        sorted({mod.name for mod in modules.values() if mod.name not in (pkg, "_core")}),
+        sorted({mod.name for mod in modules.values() if mod.name not in (pkg, "_pykraken")}),
     )
     if updated_routes:
         print(f"Updated routes config at {routes_path}")

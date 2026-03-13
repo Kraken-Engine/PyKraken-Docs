@@ -1,24 +1,13 @@
 ---
 title: Window
-description: Window related functions
+description: Functions in window.
 ---
 
 ---
-
-## Close
-<div className="api-card">
-<ApiSig name="close" returns="None" />
-
-Close the window.
-
-Marks the window as closed, typically used to signal the main loop to exit.
-This doesn't destroy the window immediately but sets the close flag.
-
-</div>
 
 ## Create
 <div className="api-card">
-<ApiSig name="create" multiline params={[{ name: "title", type: "str" }, { name: "width", type: "SupportsInt" }, { name: "height", type: "SupportsInt" }]} returns="None" />
+<ApiSig name="create" params={[{ name: "title", type: "str" }, { name: "width", type: "int" }, { name: "height", type: "int" }]} returns="None" />
 
 Create a window with the requested title and resolution.
 
@@ -35,15 +24,54 @@ _**Raises**_
 
 </div>
 
-## Get Scale
+## Is Open
 <div className="api-card">
-<ApiSig name="get_scale" returns="int" />
+<ApiSig name="is_open" returns="bool" />
 
-Get the scale of the window relative to the renderer resolution.
+Report whether the window is currently open.
 
 _**Returns**_
 
-`int` : The window's scale
+`bool` : True if the window is open and active.
+
+</div>
+
+## Close
+<div className="api-card">
+<ApiSig name="close" returns="None" />
+
+Close the window.
+
+Marks the window as closed, typically used to signal the main loop to exit.
+This doesn't destroy the window immediately but sets the close flag.
+
+</div>
+
+## Set Fullscreen
+<div className="api-card">
+<ApiSig name="set_fullscreen" params={[{ name: "fullscreen", type: "bool" }]} returns="None" />
+
+Set the fullscreen mode of the window.
+
+_**Args**_
+
+- `fullscreen` : True to enable fullscreen mode, False for windowed mode.
+
+_**Raises**_
+
+- `RuntimeError` : If the window is not initialized or fullscreen mode cannot be changed.
+
+</div>
+
+## Is Fullscreen
+<div className="api-card">
+<ApiSig name="is_fullscreen" returns="bool" />
+
+Check if the window is in fullscreen mode.
+
+_**Returns**_
+
+`bool` : True if the window is currently in fullscreen mode.
 
 _**Raises**_
 
@@ -59,7 +87,23 @@ Get the current size of the window.
 
 _**Returns**_
 
-`tuple[float, float]` : The window size as (width, height).
+`Vec2` : The window size as (width, height).
+
+_**Raises**_
+
+- `RuntimeError` : If the window is not initialized.
+
+</div>
+
+## Get Scale
+<div className="api-card">
+<ApiSig name="get_scale" returns="int" />
+
+Get the scale of the window relative to the renderer resolution.
+
+_**Returns**_
+
+`int` : The window's scale
 
 _**Raises**_
 
@@ -83,63 +127,20 @@ _**Raises**_
 
 </div>
 
-## Is Fullscreen
+## Set Title
 <div className="api-card">
-<ApiSig name="is_fullscreen" returns="bool" />
+<ApiSig name="set_title" params={[{ name: "title", type: "str" }]} returns="None" />
 
-Check if the window is in fullscreen mode.
-
-_**Returns**_
-
-`bool` : True if the window is currently in fullscreen mode.
-
-_**Raises**_
-
-- `RuntimeError` : If the window is not initialized.
-
-</div>
-
-## Is Open
-<div className="api-card">
-<ApiSig name="is_open" returns="bool" />
-
-Report whether the window is currently open.
-
-_**Returns**_
-
-`bool` : True if the window is open and active.
-
-</div>
-
-## Save Screenshot
-<div className="api-card">
-<ApiSig name="save_screenshot" params={[{ name: "path", type: "str" }]} returns="None" />
-
-Save a screenshot of the current frame to a file.
+Set the title of the window.
 
 _**Args**_
 
-- `path` : The path to save the screenshot to.
+- `title` : The new window title. Must be non-empty and &lt;= 255 characters.
 
 _**Raises**_
 
-- `RuntimeError` : If the window is not initialized or the screenshot cannot be saved.
-
-</div>
-
-## Set Fullscreen
-<div className="api-card">
-<ApiSig name="set_fullscreen" params={[{ name: "fullscreen", type: "bool" }]} returns="None" />
-
-Set the fullscreen mode of the window.
-
-_**Args**_
-
-- `fullscreen` : True to enable fullscreen mode, False for windowed mode.
-
-_**Raises**_
-
-- `RuntimeError` : If the window is not initialized or fullscreen mode cannot be changed.
+- `RuntimeError` : If the window is not initialized or title setting fails.
+- `ValueError` : If title is empty or exceeds 255 characters.
 
 </div>
 
@@ -159,19 +160,18 @@ _**Raises**_
 
 </div>
 
-## Set Title
+## Save Screenshot
 <div className="api-card">
-<ApiSig name="set_title" params={[{ name: "title", type: "str" }]} returns="None" />
+<ApiSig name="save_screenshot" params={[{ name: "path", type: "str" }]} returns="None" />
 
-Set the title of the window.
+Save a screenshot of the current frame to a file.
 
 _**Args**_
 
-- `title` : The new window title. Must be non-empty and &lt;= 255 characters.
+- `path` : The path to save the screenshot to.
 
 _**Raises**_
 
-- `RuntimeError` : If the window is not initialized or title setting fails.
-- `ValueError` : If title is empty or exceeds 255 characters.
+- `RuntimeError` : If the window is not initialized or the screenshot cannot be saved.
 
 </div>

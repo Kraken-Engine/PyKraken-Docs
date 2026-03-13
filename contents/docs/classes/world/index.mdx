@@ -1,6 +1,6 @@
 ---
 title: World
-description: API reference for World. Access via the 'physics' submodule.
+description: A physics world that manages bodies, joints, and collision detection. Access via the 'physics' submodule.
 ---
 
 <Note type="warning" title="Experimental API">
@@ -11,6 +11,8 @@ description: API reference for World. Access via the 'physics' submodule.
 <div className="api-card">
 
 - <ApiSig name="World" params={[{ name: "gravity", type: "Vec2" }]} returns="World" />
+
+A physics world that manages bodies, joints, and collision detection.
 </div>
 
 ## Properties
@@ -23,11 +25,39 @@ description: API reference for World. Access via the 'physics' submodule.
 ## Methods
 ---
 
+### From Map Layer
+<div className="api-card">
+<ApiSig name="from_map_layer" params={[{ name: "layer", type: "tilemap.Layer" }]} returns="StaticBody" />
+
+Create a single StaticBody from a TileMap ObjectGroup layer.
+
+This method iterates through all rectangular and polygonal objects in the
+specified layer and adds them as colliders to a new StaticBody. Points,
+lines, and ellipses are discarded.
+
+_**Args**_
+
+- `layer` : The TileMap ObjectGroup layer.
+
+_**Returns**_
+
+`StaticBody` : The created static body with all shapes attached.
+
+</div>
+
 ### Add Fixed Update
 <div className="api-card">
-<ApiSig name="add_fixed_update" params={[{ name: "callback", type: "Any" }]} returns="None" />
+<ApiSig name="add_fixed_update" params={[{ name: "callback", type: "Callable[[], None]" }]} returns="None" />
 
 Add a callback function to be executed during each physics step.
+
+</div>
+
+### Fixed Callback
+<div className="api-card">
+<ApiSig name="fixed_callback" params={[{ name: "callback", type: "Callable[[], None]" }]} returns="Callable[[], None]" />
+
+A decorator to register a function as a physics update callback.
 
 </div>
 
@@ -184,37 +214,9 @@ _**Returns**_
 
 </div>
 
-### Fixed Callback
-<div className="api-card">
-<ApiSig name="fixed_callback" params={[{ name: "callback", type: "Any" }]} returns="Any" />
-
-A decorator to register a function as a physics update callback.
-
-</div>
-
-### From Map Layer
-<div className="api-card">
-<ApiSig name="from_map_layer" params={[{ name: "layer", type: "tilemap.Layer" }]} returns="StaticBody" />
-
-Create a single StaticBody from a TileMap ObjectGroup layer.
-
-This method iterates through all rectangular and polygonal objects in the
-specified layer and adds them as colliders to a new StaticBody. Points,
-lines, and ellipses are discarded.
-
-_**Args**_
-
-- `layer` : The TileMap ObjectGroup layer.
-
-_**Returns**_
-
-`StaticBody` : The created static body with all shapes attached.
-
-</div>
-
 ### Get Collisions
 <div className="api-card">
-<ApiSig name="get_collisions" returns="list[Collision]" />
+<ApiSig name="get_collisions" returns="'std::vector<kn::physics::Collision,std::allocator<kn::physics::Collision> >'" />
 
 Get all collision events that occurred during the last physics step.
 
@@ -227,25 +229,9 @@ _**Returns**_
 
 </div>
 
-### Query Aabb
-<div className="api-card">
-<ApiSig name="query_aabb" params={[{ name: "rect", type: "Rect" }]} returns="list[Body]" />
-
-Find all bodies that overlap with the specified rectangular area.
-
-_**Args**_
-
-- `rect` : The rectangular area to query.
-
-_**Returns**_
-
-`list[Body]` : A list of bodies overlapping the area.
-
-</div>
-
 ### Query Point
 <div className="api-card">
-<ApiSig name="query_point" params={[{ name: "point", type: "Vec2" }]} returns="list[Body]" />
+<ApiSig name="query_point" params={[{ name: "point", type: "Vec2" }]} returns="'std::vector<kn::physics::Body,std::allocator<kn::physics::Body> >'" />
 
 Find all bodies that contain the specified point.
 
@@ -259,9 +245,25 @@ _**Returns**_
 
 </div>
 
+### Query Aabb
+<div className="api-card">
+<ApiSig name="query_aabb" params={[{ name: "rect", type: "Rect" }]} returns="'std::vector<kn::physics::Body,std::allocator<kn::physics::Body> >'" />
+
+Find all bodies that overlap with the specified rectangular area.
+
+_**Args**_
+
+- `rect` : The rectangular area to query.
+
+_**Returns**_
+
+`list[Body]` : A list of bodies overlapping the area.
+
+</div>
+
 ### Ray Cast
 <div className="api-card">
-<ApiSig name="ray_cast" params={[{ name: "origin", type: "Vec2" }, { name: "translation", type: "Vec2" }]} returns="list[CastHit]" />
+<ApiSig name="ray_cast" params={[{ name: "origin", type: "Vec2" }, { name: "translation", type: "Vec2" }]} returns="'std::vector<kn::physics::CastHit,std::allocator<kn::physics::CastHit> >'" />
 
 Cast a ray into the world and find all bodies that intersect it.
 
@@ -278,7 +280,7 @@ _**Returns**_
 
 ### Shape Cast
 <div className="api-card">
-<ApiSig name="shape_cast" multiline params={[{ name: "circle", type: "Circle" }, { name: "transform", type: "Transform" }, { name: "translation", type: "Vec2" }]} returns="list[CastHit]" />
+<ApiSig name="shape_cast" multiline params={[{ name: "circle", type: "Circle" }, { name: "transform", type: "Transform" }, { name: "translation", type: "Vec2" }]} returns="'std::vector<kn::physics::CastHit,std::allocator<kn::physics::CastHit> >'" />
 
 Cast a circular shape into the world.
 
@@ -294,7 +296,7 @@ _**Returns**_
 
 ---
 
-<ApiSig name="shape_cast" multiline params={[{ name: "capsule", type: "Capsule" }, { name: "transform", type: "Transform" }, { name: "translation", type: "Vec2" }]} returns="list[CastHit]" />
+<ApiSig name="shape_cast" multiline params={[{ name: "capsule", type: "Capsule" }, { name: "transform", type: "Transform" }, { name: "translation", type: "Vec2" }]} returns="'std::vector<kn::physics::CastHit,std::allocator<kn::physics::CastHit> >'" />
 
 Cast a capsule shape into the world.
 
@@ -310,7 +312,7 @@ _**Returns**_
 
 ---
 
-<ApiSig name="shape_cast" multiline params={[{ name: "polygon", type: "Polygon" }, { name: "transform", type: "Transform" }, { name: "translation", type: "Vec2" }]} returns="list[CastHit]" />
+<ApiSig name="shape_cast" multiline params={[{ name: "polygon", type: "Polygon" }, { name: "transform", type: "Transform" }, { name: "translation", type: "Vec2" }]} returns="'std::vector<kn::physics::CastHit,std::allocator<kn::physics::CastHit> >'" />
 
 Cast a polygonal shape into the world.
 
@@ -326,7 +328,7 @@ _**Returns**_
 
 ---
 
-<ApiSig name="shape_cast" multiline params={[{ name: "rect", type: "Rect" }, { name: "transform", type: "Transform" }, { name: "translation", type: "Vec2" }]} returns="list[CastHit]" />
+<ApiSig name="shape_cast" multiline params={[{ name: "rect", type: "Rect" }, { name: "transform", type: "Transform" }, { name: "translation", type: "Vec2" }]} returns="'std::vector<kn::physics::CastHit,std::allocator<kn::physics::CastHit> >'" />
 
 Cast a rectangular shape into the world.
 

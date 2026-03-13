@@ -1,6 +1,6 @@
 ---
 title: Color
-description: Color utility functions and predefined color constants.
+description: Functions in color.
 ---
 
 ---
@@ -35,7 +35,7 @@ _**Returns**_
 
 ## From Hsv
 <div className="api-card">
-<ApiSig name="from_hsv" multiline params={[{ name: "h", type: "SupportsFloat" }, { name: "s", type: "SupportsFloat" }, { name: "v", type: "SupportsFloat" }, { name: "a", type: "SupportsFloat", default: "1.0" }]} returns="Color" />
+<ApiSig name="from_hsv" multiline params={[{ name: "h", type: "float" }, { name: "s", type: "float" }, { name: "v", type: "float" }, { name: "a", type: "float", default: "1.0" }]} returns="Color" />
 
 Create a Color from HSV(A) values.
 
@@ -48,22 +48,28 @@ _**Args**_
 
 </div>
 
-## Grayscale
+## Lerp
 <div className="api-card">
-<ApiSig name="grayscale" params={[{ name: "color", type: "Color" }]} returns="Color" />
+<ApiSig name="lerp" params={[{ name: "a", type: "Color" }, { name: "b", type: "Color" }, { name: "t", type: "float" }]} returns="Color" />
 
-Convert a color to grayscale.
+Linearly interpolate between two colors.
+
+Performs component-wise linear interpolation between start and end colors.
+All RGBA channels are interpolated independently.
 
 _**Args**_
 
-- `color` : The color to convert.
+- `a` : Start color (when t=0.0).
+- `b` : End color (when t=1.0).
+- `t` : Blend factor. Values outside [0,1] will extrapolate.
 
 _**Returns**_
 
-`Color` : New Color object representing the grayscale version.
+`Color` : New interpolated color.
 
-`Example` :
-    grayscale(Color(255, 0, 0))  # Returns Color(76, 76, 76, 255)
+`Examples` :
+    lerp(Color.RED, Color.BLUE, 0.5)    # Purple (halfway between red and blue)
+    lerp(Color.BLACK, Color.WHITE, 0.25) # Dark gray
 
 </div>
 
@@ -88,27 +94,21 @@ _**Returns**_
 
 </div>
 
-## Lerp
+## Grayscale
 <div className="api-card">
-<ApiSig name="lerp" params={[{ name: "a", type: "Color" }, { name: "b", type: "Color" }, { name: "t", type: "SupportsFloat" }]} returns="Color" />
+<ApiSig name="grayscale" params={[{ name: "color", type: "Color" }]} returns="Color" />
 
-Linearly interpolate between two colors.
-
-Performs component-wise linear interpolation between start and end colors.
-All RGBA channels are interpolated independently.
+Convert a color to grayscale.
 
 _**Args**_
 
-- `a` : Start color (when t=0.0).
-- `b` : End color (when t=1.0).
-- `t` : Blend factor. Values outside [0,1] will extrapolate.
+- `color` : The color to convert.
 
 _**Returns**_
 
-`Color` : New interpolated color.
+`Color` : New Color object representing the grayscale version.
 
-`Examples` :
-    lerp(Color.RED, Color.BLUE, 0.5)    # Purple (halfway between red and blue)
-    lerp(Color.BLACK, Color.WHITE, 0.25) # Dark gray
+`Example` :
+    grayscale(Color(255, 0, 0))  # Returns Color(76, 76, 76, 255)
 
 </div>

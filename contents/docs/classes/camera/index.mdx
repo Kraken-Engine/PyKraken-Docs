@@ -8,7 +8,7 @@ description: Represents a 2D camera used for rendering.
 
 - <ApiSig name="Camera" returns="Camera" />
 - <ApiSig name="Camera" params={[{ name: "pos", type: "Vec2" }]} returns="Camera" />
-- <ApiSig name="Camera" params={[{ name: "x", type: "SupportsFloat" }, { name: "y", type: "SupportsFloat" }]} returns="Camera" />
+- <ApiSig name="Camera" params={[{ name: "x", type: "float" }, { name: "y", type: "float" }]} returns="Camera" />
 
 Represents a 2D camera used for rendering.
 </div>
@@ -30,5 +30,37 @@ Represents a 2D camera used for rendering.
 Set this camera as the active one for rendering.
 
 Only one camera can be active at a time.
+
+</div>
+
+### World To Screen
+<div className="api-card">
+<ApiSig name="world_to_screen" params={[{ name: "world_pos", type: "Vec2" }]} returns="Vec2" />
+
+Convert a world position to a screen position using this camera's translation.
+
+_**Args**_
+
+- `world_pos` : The world position to convert.
+
+_**Returns**_
+
+`Vec2` : The resulting screen position.
+
+</div>
+
+### Screen To World
+<div className="api-card">
+<ApiSig name="screen_to_world" params={[{ name: "screen_pos", type: "Vec2" }]} returns="Vec2" />
+
+Convert a screen position to a world position using this camera's translation.
+
+_**Args**_
+
+- `screen_pos` : The screen position to convert.
+
+_**Returns**_
+
+`Vec2` : The resulting world position.
 
 </div>
