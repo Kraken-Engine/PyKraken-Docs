@@ -1,15 +1,15 @@
 ---
 title: Line
-description: A 2D line segment defined by two points: A and B.
+description: "A 2D line segment defined by two points: A and B."
 ---
 
 ## Constructor
 <div className="api-card">
 
 - <ApiSig name="Line" returns="Line" />
-- <ApiSig name="Line" multiline params={[{ name: "ax", type: "SupportsFloat" }, { name: "ay", type: "SupportsFloat" }, { name: "bx", type: "SupportsFloat" }, { name: "by", type: "SupportsFloat" }]} returns="Line" />
-- <ApiSig name="Line" multiline params={[{ name: "ax", type: "SupportsFloat" }, { name: "ay", type: "SupportsFloat" }, { name: "b", type: "Vec2" }]} returns="Line" />
-- <ApiSig name="Line" multiline params={[{ name: "a", type: "Vec2" }, { name: "bx", type: "SupportsFloat" }, { name: "by", type: "SupportsFloat" }]} returns="Line" />
+- <ApiSig name="Line" multiline params={[{ name: "ax", type: "float" }, { name: "ay", type: "float" }, { name: "bx", type: "float" }, { name: "by", type: "float" }]} returns="Line" />
+- <ApiSig name="Line" params={[{ name: "ax", type: "float" }, { name: "ay", type: "float" }, { name: "b", type: "Vec2" }]} returns="Line" />
+- <ApiSig name="Line" params={[{ name: "a", type: "Vec2" }, { name: "bx", type: "float" }, { name: "by", type: "float" }]} returns="Line" />
 - <ApiSig name="Line" params={[{ name: "a", type: "Vec2" }, { name: "b", type: "Vec2" }]} returns="Line" />
 
 A 2D line segment defined by two points: A and B.
@@ -21,9 +21,9 @@ A 2D line segment defined by two points: A and B.
 | Name | Description | Type |
 | --- | --- | --- |
 | `a` | Get or set point A as a tuple or Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `b` | Get or set point B as a tuple or Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `ax` | X-coordinate of point A. | <code>float</code> |
 | `ay` | Y-coordinate of point A. | <code>float</code> |
-| `b` | Get or set point B as a tuple or Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `bx` | X-coordinate of point B. | <code>float</code> |
 | `by` | Y-coordinate of point B. | <code>float</code> |
 | `length` | The Euclidean length of the line segment. | <code>float</code> |
