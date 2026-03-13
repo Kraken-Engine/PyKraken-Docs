@@ -50,7 +50,6 @@ export const DOC_ROUTES: EachRoute[] = [
       { title: "Collision", href: "/collision" },
       { title: "Color", href: "/color" },
       { title: "DistanceJoint", href: "/distance-joint" },
-      { title: "EasingAnimation", href: "/easing-animation" },
       { title: "Effect", href: "/effect" },
       { title: "Event", href: "/event" },
       { title: "FilterJoint", href: "/filter-joint" },
@@ -93,6 +92,7 @@ export const DOC_ROUTES: EachRoute[] = [
       { title: "TileSet", href: "/tile-set" },
       { title: "Timer", href: "/timer" },
       { title: "Transform", href: "/transform" },
+      { title: "Tween", href: "/tween" },
       { title: "Vec2", href: "/vec2" },
       { title: "Vertex", href: "/vertex" },
       { title: "WeldJoint", href: "/weld-joint" },
@@ -106,6 +106,7 @@ export const DOC_ROUTES: EachRoute[] = [
     noLink: true,
     items: [
       { title: "Overview", href: "", separator: true },
+      { title: "Camera", href: "/camera" },
       { title: "Collision", href: "/collision" },
       { title: "Color", href: "/color" },
       { title: "Draw", href: "/draw" },
