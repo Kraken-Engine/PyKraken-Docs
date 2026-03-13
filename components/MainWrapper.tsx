@@ -41,6 +41,7 @@ export default function MainWrapper({ children }: { children: React.ReactNode })
             muted
             loop
             playsInline
+            poster="/images/bg-thumbnail.webp"
             className={`fixed top-0 left-0 w-screen h-screen object-cover z-[-1] pointer-events-none ${isDark ? 'opacity-20' : 'opacity-15'
               }`}
           >

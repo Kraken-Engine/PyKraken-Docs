@@ -92,7 +92,7 @@ description: Release notes for PyKraken.
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Sync CHANGELOG.md from PyKraken.")
-    parser.add_argument("--branch", default="dev", help="Branch to sync from (default: dev)")
+    parser.add_argument("--branch", help="Branch to sync from (default: dev)")
     args = parser.parse_args()
 
     content = fetch_changelog(args.branch)

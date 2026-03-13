@@ -1,0 +1,34 @@
+---
+title: The Input Types
+---
+
+The Kraken Engine provides three main input types to handle various forms of user input:
+1. **Keyboard**: For handling key presses and releases.
+2. **Mouse**: For tracking mouse movement, button clicks, and scroll events.
+3. **Gamepad**: For managing game controller inputs, including buttons and analog sticks.
+
+*Pen and camera input planned to be properly supported in the future.*
+
+## Keycode vs. Scancode
+
+Both keycodes and scancodes are used to handle keyboard input, but they serve different purposes.
+Keycodes are the character that the key represents (having "K_" as a prefix), while scancodes are the physical location of the key on the keyboard (having "S_" as a prefix).
+
+For example, the "Q" key on a QWERTY keyboard has a keycode of `K_q` and a scancode of `S_q`, whereas AZERTY keyboards would have a keycode of `K_a` instead.
+
+### When to Use Either
+| Scenario | Keycode (`K_`) | Scancode (`S_`) |
+|-|-|-|
+| **Menu navigation**                     | ✅ Works naturally with the user's keyboard layout            | ❌ Physical key positions may not match expected letters |
+| **Text input**                          | ✅ Respects the user's language and layout (ideal for typing) | ❌ Breaks on non-QWERTY keyboards                        |
+| **Gameplay movement**                   | ❌ Depends on user's layout (e.g., AZERTY vs QWERTY)          | ✅ Consistent physical keys across all layouts           |
+| **Developer shortcuts / debug hotkeys** | ❌ May vary between keyboard layouts                          | ✅ Always maps to the same physical key positions        |
+
+## The Gamepad System
+
+The gamepad system in Kraken is designed to be flexible and intuitive, supporting up to 4 controllers simultaneously.
+Gamepad constants can be found having "C_" as a prefix, such as `C_WEST` for the "X" button on an Xbox controller or the "Square" button on a PlayStation controller.
+
+Connected gamepads have IDs from 0-3, which can be used to differentiate between multiple controllers.
+If your game has gamepads often connecting and disconnecting, it is recommended to use `kn.gamepad.get_connected_slots()` to check
+which slots are currently occupied by connected controllers before trying to read input from them.

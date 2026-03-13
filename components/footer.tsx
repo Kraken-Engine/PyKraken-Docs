@@ -26,7 +26,7 @@ export function Footer() {
             Kraken Engine is open source and available on{""}
             <Link
               className="px-1 underline underline-offset-2"
-              href="https://github.com/durkisneer1/PyKraken"
+              href="https://github.com/Kraken-Engine/PyKraken"
               target="_blank"
               rel="noopener noreferrer"
             >
