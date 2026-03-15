@@ -26,7 +26,7 @@ transform = kn.Transform(pos=kn.Vec2(100, 300))
 orch = kn.Orchestrator(transform)
 ```
 
-The target can be a `Transform` object or any object with a "transform" attribute of type `Transform` (like sprites).
+The target can be a `Transform` object or any object with a "transform" attribute of type `Transform`.
 
 ## Sequencing Effects
 
@@ -59,7 +59,7 @@ from pykraken import fx
 # Entire sequence lasts 1.2 seconds
 orch.parallel(
     fx.move_to(kn.Vec2(600, 300), dur=1.0),
-    fx.rotate_to(kn.math.to_rad(180), dur=1.2),
+    fx.rotate_to(180 * kn.math.DEG2RAD, dur=1.2),
 )
 ```
 
@@ -92,7 +92,7 @@ orch.then(fx.scale_to(
 ))
 ```
 
-You can find more easing functions in the `kn.ease` submodule.
+You can find more easing functions in the [`kn.ease`](/docs/functions/ease) submodule.
 
 ## Playing Animations
 

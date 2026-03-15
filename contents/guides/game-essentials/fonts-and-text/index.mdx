@@ -99,7 +99,6 @@ font.outline = 1  # 1px outline
 
 ## Drop Shadows
 Text objects support drop shadows via the `shadow_color` and `shadow_offset` properties.
-Shadows will only be drawn if `shadow_color.a > 0` and `shadow_offset` is not `(0, 0)`.
 
 ```python
 # Once
@@ -205,7 +204,7 @@ while kn.window.is_open():
         score_text.draw(score_pos)
 
         # Draw FPS in top-right
-        fps_text.text = f"FPS: {int(kn.time.get_fps())}"
+        fps_text.text = f"FPS: {kn.time.get_fps():.0f}"
         fps_text.draw(fps_pos, kn.Anchor.TOP_RIGHT)
 
     kn.renderer.present()

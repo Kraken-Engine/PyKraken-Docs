@@ -34,10 +34,10 @@ Multiply velocity by delta time to keep movement frame-rate independent.
 import pykraken as kn
 
 kn.init()
-kn.window.create("Movement Demo", (800, 600))
+kn.window.create("Movement Demo", 800, 600)
 bg_color = kn.Color("#222")
 
-circle = kn.Circle(kn.Vec2(400, 300), 20)
+circle = kn.Circle(400, 300, 20)
 direction = kn.Vec2.RIGHT  # (1, 0)
 speed = 200  # pixels per second
 

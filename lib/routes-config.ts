@@ -169,6 +169,7 @@ export const GUIDE_ROUTES: EachRoute[] = [
     noLink: true,
     items: [
       { title: "Vectors for Game Physics", href: "/vector-physics" },
+      { title: "Spritesheet Animation", href: "/spritesheet-animation"},
       { title: "Fonts and Text", href: "/fonts-and-text" },
       { title: "Using the Orchestrator", href: "/using-orchestrator" },
     ]
