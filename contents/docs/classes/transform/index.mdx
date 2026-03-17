@@ -6,7 +6,8 @@ description: Transform represents a 2D transformation with position, rotation, a
 ## Constructor
 <div className="api-card">
 
-- <ApiSig name="Transform" multiline params={[{ name: "pos", type: "Vec2 | None", default: "None" }, { name: "angle", type: "float", default: "0.0" }, { name: "scale", type: "object | None", default: "None" }]} returns="Transform" />
+- <ApiSig name="Transform" multiline params={[{ name: "pos", type: "Vec2", default: "..." }, { name: "angle", type: "float", default: "0.0" }, { name: "scale", type: "Vec2", default: "..." }]} returns="Transform" />
+- <ApiSig name="Transform" multiline params={[{ name: "pos", type: "Vec2", default: "..." }, { name: "angle", type: "float", default: "0.0" }, { name: "scale", type: "float", default: "1.0" }]} returns="Transform" />
 
 Transform represents a 2D transformation with position, rotation, and scale.
 </div>

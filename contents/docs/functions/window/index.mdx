@@ -7,7 +7,7 @@ description: Functions in window.
 
 ## Create
 <div className="api-card">
-<ApiSig name="create" params={[{ name: "title", type: "str" }, { name: "width", type: "int" }, { name: "height", type: "int" }]} returns="None" />
+<ApiSig name="create" multiline params={[{ name: "title", type: "str" }, { name: "width", type: "int" }, { name: "height", type: "int" }, { name: "handle_close", type: "bool", default: "True" }]} returns="None" />
 
 Create a window with the requested title and resolution.
 
@@ -16,6 +16,7 @@ _**Args**_
 - `title` : Non-empty title no longer than 255 characters.
 - `width` : The window width, must be positive.
 - `height` : The window height, must be positive.
+- `handle_close` : Whether to automatically handle the window quit event.
 
 _**Raises**_
 
