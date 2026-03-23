@@ -270,7 +270,7 @@ def params_to_mdx(params: List[Param]) -> str:
     for p in params:
         parts = [f'name: "{escape_attr(p.name)}"']
         if p.type:
-            parts.append(f'type: "{escape_attr(p.type)}"')
+            parts.append(f'type: "{escape_attr(simplify_type(p.type))}"')
         if p.default is not None:
             parts.append(f'default: "{escape_attr(p.default)}"')
         items.append("{ " + ", ".join(parts) + " }")
@@ -286,7 +286,7 @@ def mdx_api_sig(name: str, sig: FunctionSig) -> str:
     if params is not None and params != "[]":
         parts.append(f"params={{{params}}}")
     if sig.returns:
-        parts.append(f'returns="{escape_attr(sig.returns)}"')
+        parts.append(f'returns="{escape_attr(simplify_type(sig.returns))}"')
     return " ".join(parts) + " />"
 
 
@@ -297,7 +297,16 @@ def camel_to_kebab(name: str) -> str:
 
 
 def constants_anchor(name: str) -> str:
-    slug = name.lower().replace(" ", "-")
+    # For enums nested inside classes (e.g. CharacterBody.MotionMode)
+    # produce anchors in the form `motionmode-characterbody` so they
+    # match the constants page anchors used in the docs.
+    if "." in name:
+        parts = name.split(".")
+        last = parts[-1]
+        parent = parts[-2]
+        slug = f"{last}-{parent}".lower().replace(" ", "-")
+    else:
+        slug = name.lower().replace(" ", "-")
     return re.sub(r"[^a-z0-9-]", "", slug)
 
 
@@ -363,6 +372,7 @@ def escape_html(text: str) -> str:
         .replace(">", "&gt;")
         .replace("{", "&#123;")
         .replace("}", "&#125;")
+        .replace("|", "&#124;")
     )
 
 
@@ -436,6 +446,55 @@ def format_type_for_sig(
     # But previous code had `format_type_for_sig`.
     # Let's restore `process_sig` logic.
     return type_str
+
+
+def simplify_type(type_str: Optional[str]) -> str:
+    """Shorten long annotation strings (especially Annotated[NDArray[..., dict(...)]]).
+
+    - For `Annotated[X, dict(...)]` return just `X`.
+    - Collapse long `dict(...)` and parenthesis contents to `...` when needed.
+    - Keep other types unchanged.
+    """
+    if not type_str:
+        return ""
+    s = type_str
+    # Simplify Annotated[...] -> keep the first top-level item before the first comma
+    if "Annotated[" in s:
+        i = s.find("Annotated[") + len("Annotated[")
+        # find matching closing bracket for this Annotated[] (simple stack)
+        depth = 0
+        end = None
+        for j in range(i, len(s)):
+            if s[j] == "[":
+                depth += 1
+            elif s[j] == "]":
+                if depth == 0:
+                    end = j
+                    break
+                depth -= 1
+        content = s[i:end] if end is not None else s[i:]
+        # find top-level comma in content
+        depth2 = 0
+        comma_idx = None
+        for k, ch in enumerate(content):
+            if ch in "[(":
+                depth2 += 1
+            elif ch in ")]":
+                depth2 -= 1
+            elif ch == "," and depth2 == 0:
+                comma_idx = k
+                break
+        if comma_idx is not None:
+            left = content[:comma_idx].strip()
+            s = s.replace(s[s.find("Annotated["): (end + 1) if end is not None else len(s)], left)
+
+    # Collapse long dict(...) or parenthesis contents
+    s = re.sub(r"dict\([^\)]{30,}\)", "dict(...)", s)
+    s = re.sub(r"\([^\)]{50,}\)", "(...)", s)
+    # If still too long, truncate with ellipsis
+    if len(s) > 120:
+        s = s[:120] + "..."
+    return s
 
 
 def process_sig(

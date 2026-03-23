@@ -32,7 +32,7 @@ Unbinds the current shader state, reverting to the default render state.
 
 ### Set Uniform
 <div className="api-card">
-<ApiSig name="set_uniform" multiline params={[{ name: "binding", type: "int" }, { name: "data", type: "Annotated[NDArray, dict(order='C', device='cpu')]" }]} returns="None" />
+<ApiSig name="set_uniform" multiline params={[{ name: "binding", type: "int" }, { name: "data", type: "NDArray" }]} returns="None" />
 
 Set uniform data for the fragment shader at the specified binding point.
 

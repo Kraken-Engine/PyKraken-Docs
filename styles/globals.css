@@ -503,7 +503,6 @@ nav[aria-label="On this page"] {
     border-radius: var(--radius);
     padding: 2px 6px;
     font-size: 0.95em;
-    /* white-space: nowrap; */
 }
 
 .api-sig .keyword {
@@ -748,6 +747,7 @@ aside>div>div>div>div>div>div>div>div {
     border-radius: var(--radius) !important;
     padding: 1.25em 1em;
     height: fit-content;
+    max-height: 60vh;
     box-shadow:
         0 8px 12px 0 rgba(120, 180, 255, 0.1),
         inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
@@ -811,9 +811,8 @@ aside>div>div>div>div>div>div>div>div {
 }
 
 .api-sig--block {
-    width: max-content;
     background: var(--code-bg, hsl(220 13% 18%));
-    border: 1px solid var(--border, hsl(220 10% 28%));
+    border: 1px solid var(--border);
     border-radius: var(--radius);
     max-width: 100%;
 }
@@ -821,7 +820,6 @@ aside>div>div>div>div>div>div>div>div {
 .api-sig--block code {
     background: transparent !important;
     border: none !important;
-    white-space: nowrap;
 }
 
 .api-sig--block .keyword {

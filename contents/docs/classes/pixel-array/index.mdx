@@ -75,13 +75,14 @@ _**Raises**_
 
 ### Get At
 <div className="api-card">
-<ApiSig name="get_at" params={[{ name: "coord", type: "Vec2" }]} returns="Color" />
+<ApiSig name="get_at" params={[{ name: "x", type: "int" }, { name: "y", type: "int" }]} returns="Color" />
 
 Get the color of a pixel at the specified coordinates.
 
 _**Args**_
 
-- `coord` : The coordinates of the pixel as (x, y).
+- `x` : The x-coordinate of the pixel.
+- `y` : The y-coordinate of the pixel.
 
 _**Returns**_
 
@@ -95,13 +96,14 @@ _**Raises**_
 
 ### Set At
 <div className="api-card">
-<ApiSig name="set_at" params={[{ name: "coord", type: "Vec2" }, { name: "color", type: "Color" }]} returns="None" />
+<ApiSig name="set_at" params={[{ name: "x", type: "int" }, { name: "y", type: "int" }, { name: "color", type: "Color" }]} returns="None" />
 
 Set the color of a pixel at the specified coordinates.
 
 _**Args**_
 
-- `coord` : The coordinates of the pixel as (x, y).
+- `x` : The x-coordinate of the pixel.
+- `y` : The y-coordinate of the pixel.
 - `color` : The color to set the pixel to.
 
 _**Raises**_

@@ -262,6 +262,14 @@ _**Returns**_
 
 </div>
 
+### Floor
+<div className="api-card">
+<ApiSig name="floor" returns="None" />
+
+Floor both components of this Vec2 in-place.
+
+</div>
+
 ### Floored
 <div className="api-card">
 <ApiSig name="floored" returns="Vec2" />
@@ -271,6 +279,14 @@ Return a new Vec2 with both components floored to the nearest integer.
 _**Returns**_
 
 `Vec2` : A new vector with floored components.
+
+</div>
+
+### Ceil
+<div className="api-card">
+<ApiSig name="ceil" returns="None" />
+
+Ceil both components of this Vec2 in-place.
 
 </div>
 
@@ -286,6 +302,14 @@ _**Returns**_
 
 </div>
 
+### Round
+<div className="api-card">
+<ApiSig name="round" returns="None" />
+
+Round both components of this Vec2 in-place.
+
+</div>
+
 ### Rounded
 <div className="api-card">
 <ApiSig name="rounded" returns="Vec2" />
@@ -295,6 +319,38 @@ Return a new Vec2 with both components rounded to the nearest integer.
 _**Returns**_
 
 `Vec2` : A new vector with rounded components.
+
+</div>
+
+### Slide
+<div className="api-card">
+<ApiSig name="slide" params={[{ name: "normal", type: "Vec2" }]} returns="None" />
+
+Slide this Vec2 along a surface defined by a normal vector.
+
+_**Args**_
+
+- `normal` : The normal vector defining the surface.
+
+_**Returns**_
+
+`Vec2` : A new vector slid along the surface.
+
+</div>
+
+### Slid
+<div className="api-card">
+<ApiSig name="slid" params={[{ name: "normal", type: "Vec2" }]} returns="Vec2" />
+
+Return a new Vec2 slid along a surface defined by a normal vector.
+
+_**Args**_
+
+- `normal` : The normal vector defining the surface.
+
+_**Returns**_
+
+`Vec2` : A new vector slid along the surface.
 
 </div>
 

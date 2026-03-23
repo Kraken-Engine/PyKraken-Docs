@@ -139,7 +139,8 @@ Read pixel data from the renderer within the specified rectangle.
 
 _**Args**_
 
-- `src` : The rectangle area to read pixels from. Defaults to entire renderer if None.
+- `src` : The rectangle area to read pixels from.
+        Defaults to entire renderer if None or area has no width or height.
 
 _**Returns**_
 
@@ -169,7 +170,7 @@ _**Args**_
 
 ---
 
-<ApiSig name="draw_batch" multiline params={[{ name: "texture", type: "Texture" }, { name: "transforms", type: "Annotated[NDArray[numpy.float64], dict(shape=(None, None), order='C', device='cpu', writable=False)]" }, { name: "anchor", type: "Vec2", default: "..." }, { name: "pivot", type: "Vec2", default: "..." }]} returns="None" />
+<ApiSig name="draw_batch" multiline params={[{ name: "texture", type: "Texture" }, { name: "transforms", type: "NDArray[numpy.float64]" }, { name: "anchor", type: "Vec2", default: "..." }, { name: "pivot", type: "Vec2", default: "..." }]} returns="None" />
 
 Render a texture multiple times using a NumPy array for maximum throughput.
 

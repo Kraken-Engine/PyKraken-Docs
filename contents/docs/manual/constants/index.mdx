@@ -21,6 +21,14 @@ Priority levels used for track acquisition.
 | `UI` | Medium priority level. | `AudioPriority` |
 | `SFX` | Standard priority level. | `AudioPriority` |
 
+## MotionMode (CharacterBody)
+The motion mode for the character body.
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `GROUNDED` | The character is affected by gravity and can stand on floors. | `CharacterBody.MotionMode` |
+| `FLOATING` | The character is not affected by gravity and can move freely in the air. | `CharacterBody.MotionMode` |
+
 ## EventType
 SDL event type constants for input and system events.
 
@@ -43,11 +51,15 @@ SDL event type constants for input and system events.
 | `DISPLAY_CURRENT_MODE_CHANGED` | Current display mode changed | `EventType` |
 | `DISPLAY_CONTENT_SCALE_CHANGED` | Display content scale changed | `EventType` |
 | `DISPLAY_USABLE_BOUNDS_CHANGED` | Usable display bounds changed | `EventType` |
+| `DISPLAY_FIRST` | First display event | `EventType` |
+| `DISPLAY_LAST` | Last display event | `EventType` |
 | `WINDOW_SHOWN` | Window shown | `EventType` |
 | `WINDOW_HIDDEN` | Window hidden | `EventType` |
 | `WINDOW_EXPOSED` | Window needs redraw | `EventType` |
 | `WINDOW_MOVED` | Window moved | `EventType` |
 | `WINDOW_RESIZED` | Window resized | `EventType` |
+| `WINDOW_PIXEL_SIZE_CHANGED` | Window pixel size changed | `EventType` |
+| `WINDOW_METAL_VIEW_RESIZED` | Window Metal view resized | `EventType` |
 | `WINDOW_MINIMIZED` | Window minimized | `EventType` |
 | `WINDOW_MAXIMIZED` | Window maximized | `EventType` |
 | `WINDOW_RESTORED` | Window restored | `EventType` |
@@ -66,6 +78,8 @@ SDL event type constants for input and system events.
 | `WINDOW_LEAVE_FULLSCREEN` | Left fullscreen | `EventType` |
 | `WINDOW_DESTROYED` | Window destroyed | `EventType` |
 | `WINDOW_HDR_STATE_CHANGED` | HDR state changed | `EventType` |
+| `WINDOW_FIRST` | First window event | `EventType` |
+| `WINDOW_LAST` | Last window event | `EventType` |
 | `KEY_DOWN` | Key pressed or repeating while held | `EventType` |
 | `KEY_UP` | Key released | `EventType` |
 | `TEXT_EDITING` | Text editing in progress | `EventType` |
@@ -82,6 +96,15 @@ SDL event type constants for input and system events.
 | `MOUSE_WHEEL` | Mouse wheel scrolled | `EventType` |
 | `MOUSE_ADDED` | Mouse connected | `EventType` |
 | `MOUSE_REMOVED` | Mouse disconnected | `EventType` |
+| `JOYSTICK_AXIS_MOTION` | Joystick axis motion | `EventType` |
+| `JOYSTICK_BALL_MOTION` | Joystick trackball motion | `EventType` |
+| `JOYSTICK_HAT_MOTION` | Joystick hat motion | `EventType` |
+| `JOYSTICK_BUTTON_DOWN` | Joystick button pressed | `EventType` |
+| `JOYSTICK_BUTTON_UP` | Joystick button released | `EventType` |
+| `JOYSTICK_ADDED` | Joystick connected | `EventType` |
+| `JOYSTICK_REMOVED` | Joystick disconnected | `EventType` |
+| `JOYSTICK_BATTERY_UPDATED` | Joystick battery updated | `EventType` |
+| `JOYSTICK_UPDATE_COMPLETE` | Joystick update complete | `EventType` |
 | `GAMEPAD_AXIS_MOTION` | Gamepad axis moved | `EventType` |
 | `GAMEPAD_BUTTON_DOWN` | Gamepad button pressed | `EventType` |
 | `GAMEPAD_BUTTON_UP` | Gamepad button released | `EventType` |
@@ -126,6 +149,13 @@ SDL event type constants for input and system events.
 | `PINCH_BEGIN` | Pinch gesture began | `EventType` |
 | `PINCH_UPDATE` | Pinch gesture updated | `EventType` |
 | `PINCH_END` | Pinch gesture ended | `EventType` |
+| `PRIVATE0` | Private event 0 | `EventType` |
+| `PRIVATE1` | Private event 1 | `EventType` |
+| `PRIVATE2` | Private event 2 | `EventType` |
+| `PRIVATE3` | Private event 3 | `EventType` |
+| `POLL_SENTINEL` | Internal poll sentinel | `EventType` |
+| `USER` | User event base | `EventType` |
+| `LAST` | Last event value | `EventType` |
 
 ## FontHint
 Font hinting modes for controlling how fonts are rendered.

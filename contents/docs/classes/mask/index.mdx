@@ -39,13 +39,14 @@ _**Returns**_
 
 ### Get At
 <div className="api-card">
-<ApiSig name="get_at" params={[{ name: "pos", type: "Vec2" }]} returns="bool" />
+<ApiSig name="get_at" params={[{ name: "x", type: "int" }, { name: "y", type: "int" }]} returns="bool" />
 
 Get the pixel value at a specific position.
 
 _**Args**_
 
-- `pos` : The position to check.
+- `x` : The x-coordinate of the position to check.
+- `y` : The y-coordinate of the position to check.
 
 _**Returns**_
 
@@ -55,13 +56,14 @@ _**Returns**_
 
 ### Set At
 <div className="api-card">
-<ApiSig name="set_at" params={[{ name: "pos", type: "Vec2" }, { name: "value", type: "bool" }]} returns="None" />
+<ApiSig name="set_at" params={[{ name: "x", type: "int" }, { name: "y", type: "int" }, { name: "value", type: "bool" }]} returns="None" />
 
 Set the pixel value at a specific position.
 
 _**Args**_
 
-- `pos` : The position to set.
+- `x` : The x-coordinate of the position to set.
+- `y` : The y-coordinate of the position to set.
 - `value` : The pixel value (True for solid, False for transparent).
 
 </div>

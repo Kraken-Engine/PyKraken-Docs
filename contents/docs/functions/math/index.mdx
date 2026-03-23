@@ -164,3 +164,21 @@ _**Returns**_
 `float` : The angle between the vectors in radians [0, π].
 
 </div>
+
+## Move Toward
+<div className="api-card">
+<ApiSig name="move_toward" multiline params={[{ name: "current", type: "float" }, { name: "target", type: "float" }, { name: "delta", type: "float" }]} returns="float" />
+
+Move a value toward a target by a maximum delta.
+
+_**Args**_
+
+- `current` : The current value.
+- `target` : The target value.
+- `delta` : The maximum amount to move toward the target.
+
+_**Returns**_
+
+`float` : The new value after moving toward the target.
+
+</div>

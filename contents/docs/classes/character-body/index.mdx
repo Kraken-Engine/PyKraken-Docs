@@ -22,37 +22,21 @@ A kinematic physics body designed for player-controlled characters.
 
 | Name | Description | Type |
 | --- | --- | --- |
+| `motion_mode` | The motion mode of the character. | <code><a href="/docs/manual/constants#motionmode-characterbody">CharacterBody.MotionMode</a></code> |
 | `velocity` | The velocity of the character body. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
-| `mass` | The mass of the character body. Default is 80.0. | <code>float</code> |
-| `floor_max_angle` | Maximum angle (in radians) to consider a surface as a floor. Default is ~45 degrees. | <code>float</code> |
-| `floor_snap_distance` | Distance in pixels to probe downward for floor detection. Default is 5.0. | <code>float</code> |
+| `mass` | The simulated mass of the character for pushing rigid bodies. | <code>float</code> |
+| `max_speed` | The maximum speed the character can move. | <code>float</code> |
+| `acceleration` | The acceleration applied when moving. | <code>float</code> |
+| `friction` | The friction applied when on the ground. | <code>float</code> |
+| `stop_speed` | The speed threshold below which the character will stop moving. | <code>float</code> |
+| `air_steer` | The control factor for steering while in the air (0.0 to 1.0). | <code>float</code> |
+| `capsule_shape` | The capsule shape used for ground detection and collision casting. | <code><a href="/docs/classes/capsule">Capsule</a></code> |
+| `on_floor` | Whether the character is currently on a floor surface. | <code>bool</code> |
+| `on_ceiling` | Whether the character is currently touching a ceiling. | <code>bool</code> |
+| `on_wall` | Whether the character is currently touching a wall. | <code>bool</code> |
 
 ## Methods
 ---
-
-### Is On Floor
-<div className="api-card">
-<ApiSig name="is_on_floor" returns="bool" />
-
-Whether the character is currently on a floor surface.
-
-</div>
-
-### Is On Ceiling
-<div className="api-card">
-<ApiSig name="is_on_ceiling" returns="bool" />
-
-Whether the character is currently touching a ceiling.
-
-</div>
-
-### Is On Wall
-<div className="api-card">
-<ApiSig name="is_on_wall" returns="bool" />
-
-Whether the character is currently touching a wall.
-
-</div>
 
 ### Move And Slide
 <div className="api-card">
