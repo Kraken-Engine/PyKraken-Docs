@@ -1,13 +1,13 @@
 ---
 title: Gamepad
-description: Functions in gamepad.
+description: Gamepad input handling functions
 ---
 
 ---
 
 ## Is Pressed
 <div className="api-card">
-<ApiSig name="is_pressed" params={[{ name: "button", type: "GamepadButton" }, { name: "slot", type: "int", default: "0" }]} returns="bool" />
+<ApiSig name="is_pressed" multiline params={[{ name: "button", type: "GamepadButton" }, { name: "slot", type: "int", default: "0" }]} returns="bool" />
 
 Check if a gamepad button is currently being held down.
 
@@ -24,7 +24,7 @@ _**Returns**_
 
 ## Is Just Pressed
 <div className="api-card">
-<ApiSig name="is_just_pressed" params={[{ name: "button", type: "GamepadButton" }, { name: "slot", type: "int", default: "0" }]} returns="bool" />
+<ApiSig name="is_just_pressed" multiline params={[{ name: "button", type: "GamepadButton" }, { name: "slot", type: "int", default: "0" }]} returns="bool" />
 
 Check if a gamepad button was pressed during this frame.
 
@@ -41,7 +41,7 @@ _**Returns**_
 
 ## Is Just Released
 <div className="api-card">
-<ApiSig name="is_just_released" params={[{ name: "button", type: "GamepadButton" }, { name: "slot", type: "int", default: "0" }]} returns="bool" />
+<ApiSig name="is_just_released" multiline params={[{ name: "button", type: "GamepadButton" }, { name: "slot", type: "int", default: "0" }]} returns="bool" />
 
 Check if a gamepad button was released during this frame.
 

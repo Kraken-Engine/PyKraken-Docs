@@ -6,7 +6,7 @@ description: Encapsulates a GPU shader and its associated render state.
 ## Constructor
 <div className="api-card">
 
-- <ApiSig name="ShaderState" multiline params={[{ name: "fragment_file_path", type: "str" }, { name: "uniform_buffer_count", type: "int", default: "0" }]} returns="ShaderState" />
+- <ApiSig name="ShaderState" multiline params={[{ name: "fragment_file_path", type: "str | os.PathLike[str]" }, { name: "uniform_buffer_count", type: "int", default: "0" }]} returns="ShaderState" />
 
 Encapsulates a GPU shader and its associated render state.
 </div>

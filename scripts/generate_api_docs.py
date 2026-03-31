@@ -401,6 +401,9 @@ def escape_outside_code(text: str) -> str:
 
 
 def format_type_for_table(type_str: str, classes_map: Dict[str, ClassInfo]) -> str:
+    # Strip private module prefixes used in stubs
+    type_str = type_str.replace("_pykraken.", "")
+
     # Match whole identifiers possibly with dots: MapObject.ShapeType
     parts = re.split(r"(\b[a-zA-Z_][a-zA-Z0-9_]*(?:\.[a-zA-Z_][a-zA-Z0-9_]*)*\b)", type_str)
     out = []
@@ -457,7 +460,10 @@ def simplify_type(type_str: Optional[str]) -> str:
     """
     if not type_str:
         return ""
-    s = type_str
+    
+    # Strip private module prefixes from stubs
+    s = type_str.replace("_pykraken.", "")
+
     # Simplify Annotated[...] -> keep the first top-level item before the first comma
     if "Annotated[" in s:
         i = s.find("Annotated[") + len("Annotated[")

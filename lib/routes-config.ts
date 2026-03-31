@@ -41,6 +41,7 @@ export const DOC_ROUTES: EachRoute[] = [
       { title: "Anchor", href: "/anchor" },
       { title: "AnimationController", href: "/animation-controller" },
       { title: "Audio", href: "/audio" },
+      { title: "Batcher", href: "/batcher" },
       { title: "Body", href: "/body" },
       { title: "Camera", href: "/camera" },
       { title: "Capsule", href: "/capsule" },

@@ -7,7 +7,7 @@ description: Functions for rendering graphics
 
 ## Set Default Scale Mode
 <div className="api-card">
-<ApiSig name="set_default_scale_mode" params={[{ name: "scale_mode", type: "TextureScaleMode" }]} returns="None" />
+<ApiSig name="set_default_scale_mode" multiline params={[{ name: "scale_mode", type: "TextureScaleMode" }]} returns="None" />
 
 Set the default TextureScaleMode for new textures. The factory default is TextureScaleMode.LINEAR.
 
@@ -49,8 +49,9 @@ _**Raises**_
 <div className="api-card">
 <ApiSig name="present" returns="None" />
 
-Present the rendered content to the screen. This finalizes the current frame and displays it. Should be called after
-all drawing operations for the frame are complete.
+Present the rendered content to the screen.
+This finalizes the current frame and displays it.
+Should be called after all drawing operations for the frame are complete.
 
 </div>
 
@@ -87,7 +88,7 @@ _**Returns**_
 
 ## Set Target
 <div className="api-card">
-<ApiSig name="set_target" params={[{ name: "target", type: "Texture | None", default: "None" }]} returns="None" />
+<ApiSig name="set_target" multiline params={[{ name: "target", type: "Texture | None", default: "None" }]} returns="None" />
 
 Set the current render target to the provided Texture.
 
@@ -116,7 +117,7 @@ _**Args**_
 
 ---
 
-<ApiSig name="draw" params={[{ name: "texture", type: "Texture" }, { name: "dst", type: "Rect" }]} returns="None" />
+<ApiSig name="draw" multiline params={[{ name: "texture", type: "Texture" }, { name: "dst", type: "Rect" }]} returns="None" />
 
 Render a texture stretched into a destination rectangle.
 
@@ -154,25 +155,28 @@ _**Raises**_
 
 ## Draw Batch
 <div className="api-card">
-<ApiSig name="draw_batch" multiline params={[{ name: "texture", type: "Texture" }, { name: "transforms", type: "Sequence[Transform]" }, { name: "anchor", type: "Vec2", default: "..." }, { name: "pivot", type: "Vec2", default: "..." }]} returns="None" />
+<ApiSig name="draw_batch" multiline params={[{ name: "texture", type: "Texture" }, { name: "transforms", type: "Sequence[Transform]" }, { name: "anchor", type: "Vec2", default: "..." }, { name: "pivot", type: "Vec2", default: "..." }, { name: "clip_rects", type: "Sequence[Rect] | None", default: "None" }]} returns="None" />
 
 Render a texture multiple times with different transforms in a single batch call.
 
-This is significantly faster than calling draw() in a loop because it avoids
+This is much faster than calling draw() in a loop because it avoids
 per-call Python/C++ dispatch overhead.
 
 _**Args**_
 
 - `texture` : The texture to render.
 - `transforms` : A list of transforms (position, rotation, scale).
+- `clip_rects` : Per-instance clip rectangles. If provided, these override
+        the texture's clip area for each instance. If None, all instances use the texture's clip area.
 - `anchor` : The anchor point (0.0-1.0). Defaults to top left (0, 0).
 - `pivot` : The rotation pivot (0.0-1.0). Defaults to center (0.5, 0.5).
 
 ---
 
-<ApiSig name="draw_batch" multiline params={[{ name: "texture", type: "Texture" }, { name: "transforms", type: "NDArray[numpy.float64]" }, { name: "anchor", type: "Vec2", default: "..." }, { name: "pivot", type: "Vec2", default: "..." }]} returns="None" />
+<ApiSig name="draw_batch" multiline params={[{ name: "texture", type: "Texture" }, { name: "transforms", type: "NDArray[numpy.float64]" }, { name: "anchor", type: "Vec2", default: "..." }, { name: "pivot", type: "Vec2", default: "..." }, { name: "batcher", type: "Batcher | None", default: "None" }]} returns="None" />
 
-Render a texture multiple times using a NumPy array for maximum throughput.
+Render a texture multiple times using a NumPy array for maximum throughput. This is *the* fastest way to render large batches of sprites,
+being significantly faster than the list-based draw_batch() due to no-copy viewing of contiguous array data.
 
 Each row of the array describes one instance. The number of columns determines
 the layout:
@@ -181,16 +185,18 @@ the layout:
 - **3 columns** ``[x, y, angle]`` — position + rotation (scale=1).
 - **4 columns** ``[x, y, angle, scale]`` — position + rotation + uniform scale.
 - **5 columns** ``[x, y, angle, scale_x, scale_y]`` — full transform.
+- **9 columns** ``[x, y, angle, scale_x, scale_y, clip_left, clip_top, clip_width, clip_height]`` — full transform + per-instance clip rect.
 
 _**Args**_
 
 - `texture` : The texture to render.
-- `transforms` : float64 array with shape ``(N, 2|3|4|5)``.
+- `transforms` : float64 array with shape ``(N, 2|3|4|5|9)``.
 - `anchor` : The anchor point (0.0-1.0). Defaults to top left (0, 0).
 - `pivot` : The rotation pivot (0.0-1.0). Defaults to center (0.5, 0.5).
+- `batcher` : Pre-allocated rendering buffer for higher performance.
 
 _**Raises**_
 
-- `ValueError` : If the array does not have 2, 3, 4, or 5 columns.
+- `ValueError` : If the array does not have 2, 3, 4, 5, or 9 columns.
 
 </div>

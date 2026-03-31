@@ -7,7 +7,7 @@ description: Represents a 2D pixel buffer for image manipulation and blitting op
 <div className="api-card">
 
 - <ApiSig name="PixelArray" params={[{ name: "size", type: "Vec2" }]} returns="PixelArray" />
-- <ApiSig name="PixelArray" params={[{ name: "file_path", type: "str" }]} returns="PixelArray" />
+- <ApiSig name="PixelArray" multiline params={[{ name: "file_path", type: "str | os.PathLike[str]" }]} returns="PixelArray" />
 
 Represents a 2D pixel buffer for image manipulation and blitting operations.
 </div>

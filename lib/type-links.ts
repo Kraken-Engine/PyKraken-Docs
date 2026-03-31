@@ -4,6 +4,7 @@ export const TYPE_LINKS = {
   "AnimationController": "/docs/classes/animation-controller",
   "Audio": "/docs/classes/audio",
   "AudioPriority": "/docs/manual/constants#audiopriority",
+  "Batcher": "/docs/classes/batcher",
   "Body": "/docs/classes/body",
   "Camera": "/docs/classes/camera",
   "Capsule": "/docs/classes/capsule",

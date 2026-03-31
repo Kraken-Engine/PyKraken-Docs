@@ -6,7 +6,7 @@ description: Represents a hardware-accelerated image that can be efficiently ren
 ## Constructor
 <div className="api-card">
 
-- <ApiSig name="Texture" multiline params={[{ name: "file_path", type: "str" }, { name: "scale_mode", type: "TextureScaleMode", default: "TextureScaleMode.DEFAULT" }, { name: "access", type: "TextureAccess", default: "TextureAccess.STATIC" }]} returns="Texture" />
+- <ApiSig name="Texture" multiline params={[{ name: "file_path", type: "str | os.PathLike[str]" }, { name: "scale_mode", type: "TextureScaleMode", default: "TextureScaleMode.DEFAULT" }, { name: "access", type: "TextureAccess", default: "TextureAccess.STATIC" }]} returns="Texture" />
 - <ApiSig name="Texture" multiline params={[{ name: "pixel_array", type: "PixelArray" }, { name: "scale_mode", type: "TextureScaleMode", default: "TextureScaleMode.DEFAULT" }, { name: "access", type: "TextureAccess", default: "TextureAccess.STATIC" }]} returns="Texture" />
 - <ApiSig name="Texture" multiline params={[{ name: "width", type: "int" }, { name: "height", type: "int" }, { name: "scale_mode", type: "TextureScaleMode", default: "TextureScaleMode.DEFAULT" }]} returns="Texture" />
 

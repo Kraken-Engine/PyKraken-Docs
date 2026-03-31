@@ -1,0 +1,36 @@
+---
+title: Batcher
+description: A reusable memory buffer for batched rendering, designed for maximum throughput. Access via the 'renderer' submodule.
+---
+
+## Constructor
+<div className="api-card">
+
+- <ApiSig name="Batcher" returns="Batcher" />
+
+A reusable memory buffer for batched rendering, designed for maximum throughput.
+</div>
+
+## Methods
+---
+
+### Preallocate
+<div className="api-card">
+<ApiSig name="preallocate" params={[{ name: "n_sprites", type: "int" }]} returns="None" />
+
+Preallocate internal buffers for a specific number of sprites.
+This prevents runtime allocations when drawing large batches.
+
+_**Args**_
+
+- `n_sprites` : The number of sprites to preallocate capacity for.
+
+</div>
+
+### Free
+<div className="api-card">
+<ApiSig name="free" returns="None" />
+
+Free the allocated internal memory.
+
+</div>

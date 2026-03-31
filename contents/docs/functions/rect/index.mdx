@@ -7,7 +7,7 @@ description: Rectangle related functions
 
 ## Move
 <div className="api-card">
-<ApiSig name="move" params={[{ name: "rect", type: "Rect" }, { name: "offset", type: "Vec2" }]} returns="Rect" />
+<ApiSig name="move" multiline params={[{ name: "rect", type: "Rect" }, { name: "offset", type: "Vec2" }]} returns="Rect" />
 
 Move a rectangle by the given offset.
 
@@ -24,7 +24,7 @@ _**Returns**_
 
 ## Clamp
 <div className="api-card">
-<ApiSig name="clamp" params={[{ name: "rect", type: "Rect" }, { name: "min", type: "Vec2" }, { name: "max", type: "Vec2" }]} returns="Rect" />
+<ApiSig name="clamp" multiline params={[{ name: "rect", type: "Rect" }, { name: "min", type: "Vec2" }, { name: "max", type: "Vec2" }]} returns="Rect" />
 
 Clamp a rectangle to be within the specified bounds.
 
@@ -44,7 +44,7 @@ _**Raises**_
 
 ---
 
-<ApiSig name="clamp" params={[{ name: "rect", type: "Rect" }, { name: "other", type: "Rect" }]} returns="Rect" />
+<ApiSig name="clamp" multiline params={[{ name: "rect", type: "Rect" }, { name: "other", type: "Rect" }]} returns="Rect" />
 
 Clamp a rectangle to be within another rectangle.
 
@@ -84,7 +84,7 @@ _**Raises**_
 
 ---
 
-<ApiSig name="scale_by" params={[{ name: "rect", type: "Rect" }, { name: "factor", type: "Vec2" }]} returns="Rect" />
+<ApiSig name="scale_by" multiline params={[{ name: "rect", type: "Rect" }, { name: "factor", type: "Vec2" }]} returns="Rect" />
 
 Scale a rectangle by different factors for width and height.
 

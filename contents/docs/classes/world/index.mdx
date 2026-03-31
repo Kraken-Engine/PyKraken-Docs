@@ -27,7 +27,7 @@ A physics world that manages bodies, joints, and collision detection.
 
 ### From Map Layer
 <div className="api-card">
-<ApiSig name="from_map_layer" params={[{ name: "layer", type: "tilemap.Layer" }]} returns="StaticBody" />
+<ApiSig name="from_map_layer" multiline params={[{ name: "layer", type: "tilemap.Layer" }]} returns="StaticBody" />
 
 Create a single StaticBody from a TileMap ObjectGroup layer.
 
@@ -165,7 +165,7 @@ _**Returns**_
 
 ### Create Revolute Joint
 <div className="api-card">
-<ApiSig name="create_revolute_joint" params={[{ name: "body_a", type: "Body" }, { name: "body_b", type: "Body" }, { name: "anchor", type: "Vec2" }]} returns="RevoluteJoint" />
+<ApiSig name="create_revolute_joint" multiline params={[{ name: "body_a", type: "Body" }, { name: "body_b", type: "Body" }, { name: "anchor", type: "Vec2" }]} returns="RevoluteJoint" />
 
 Create a revolute joint between two bodies.
 
@@ -183,7 +183,7 @@ _**Returns**_
 
 ### Create Weld Joint
 <div className="api-card">
-<ApiSig name="create_weld_joint" params={[{ name: "body_a", type: "Body" }, { name: "body_b", type: "Body" }, { name: "anchor", type: "Vec2" }]} returns="WeldJoint" />
+<ApiSig name="create_weld_joint" multiline params={[{ name: "body_a", type: "Body" }, { name: "body_b", type: "Body" }, { name: "anchor", type: "Vec2" }]} returns="WeldJoint" />
 
 Create a weld joint between two bodies.
 
@@ -267,7 +267,7 @@ _**Returns**_
 
 ### Ray Cast
 <div className="api-card">
-<ApiSig name="ray_cast" params={[{ name: "origin", type: "Vec2" }, { name: "translation", type: "Vec2" }]} returns="list[CastHit]" />
+<ApiSig name="ray_cast" multiline params={[{ name: "origin", type: "Vec2" }, { name: "translation", type: "Vec2" }]} returns="list[CastHit]" />
 
 Cast a ray into the world and find all bodies that intersect it.
 

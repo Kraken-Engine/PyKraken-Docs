@@ -36,7 +36,7 @@ A TMX map with access to its layers and tilesets.
 
 ### Load
 <div className="api-card">
-<ApiSig name="load" params={[{ name: "tmx_path", type: "str" }]} returns="None" />
+<ApiSig name="load" multiline params={[{ name: "tmx_path", type: "str | os.PathLike[str]" }]} returns="None" />
 
 Load a TMX file from path.
 

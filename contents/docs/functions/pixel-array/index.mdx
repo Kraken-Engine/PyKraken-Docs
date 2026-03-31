@@ -1,6 +1,6 @@
 ---
 title: Pixel Array
-description: Functions in pixel_array.
+description: Functions for manipulating PixelArray objects
 ---
 
 ---
@@ -29,7 +29,7 @@ _**Raises**_
 
 ## Scale To
 <div className="api-card">
-<ApiSig name="scale_to" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "size", type: "Vec2" }]} returns="PixelArray" />
+<ApiSig name="scale_to" multiline params={[{ name: "pixel_array", type: "PixelArray" }, { name: "size", type: "Vec2" }]} returns="PixelArray" />
 
 Scale a pixel array to a new exact size.
 
@@ -50,7 +50,7 @@ _**Raises**_
 
 ## Scale By
 <div className="api-card">
-<ApiSig name="scale_by" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "factor", type: "float" }]} returns="PixelArray" />
+<ApiSig name="scale_by" multiline params={[{ name: "pixel_array", type: "PixelArray" }, { name: "factor", type: "float" }]} returns="PixelArray" />
 
 Scale a pixel array by a given factor.
 
@@ -73,7 +73,7 @@ _**Raises**_
 
 ## Rotate
 <div className="api-card">
-<ApiSig name="rotate" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "angle", type: "float" }]} returns="PixelArray" />
+<ApiSig name="rotate" multiline params={[{ name: "pixel_array", type: "PixelArray" }, { name: "angle", type: "float" }]} returns="PixelArray" />
 
 Rotate a pixel array by a given angle.
 
@@ -148,7 +148,7 @@ _**Raises**_
 
 ## Invert
 <div className="api-card">
-<ApiSig name="invert" params={[{ name: "pixel_array", type: "PixelArray" }]} returns="PixelArray" />
+<ApiSig name="invert" multiline params={[{ name: "pixel_array", type: "PixelArray" }]} returns="PixelArray" />
 
 Invert the colors of a pixel array.
 
@@ -171,7 +171,7 @@ _**Raises**_
 
 ## Grayscale
 <div className="api-card">
-<ApiSig name="grayscale" params={[{ name: "pixel_array", type: "PixelArray" }]} returns="PixelArray" />
+<ApiSig name="grayscale" multiline params={[{ name: "pixel_array", type: "PixelArray" }]} returns="PixelArray" />
 
 Convert a pixel array to grayscale.
 
