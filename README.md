@@ -4,6 +4,37 @@ Official documentation website for **Kraken Engine** (PyKraken) - a Python game 
 
 ## Getting Started
 
+First clone the documentation to your machine-
+```bash
+git clone https://github.com/Kraken-Engine/PyKraken-Docs.git
+cd PyKraken-Docs
+```
+
+Then follow the building method your prefer, either via [Docker](#building-with-docker) or [manually](#building-manually).
+
+
+## Building with Docker
+
+### Prerequisites
+
+- Docker
+
+### Building
+
+Building for local / development purposes-
+```bash
+docker-compose -f docker-compose.dev.yml up
+```
+
+To build for production-
+```bash
+docker-compose up
+```
+
+The site will be available at `http://localhost:3000`
+
+## Building Manually
+
 ### Prerequisites
 
 - Node.js (v18 or higher recommended)
@@ -11,26 +42,20 @@ Official documentation website for **Kraken Engine** (PyKraken) - a Python game 
 
 ### Installation
 
+Install the dependencies with `pnpm`-
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd pykraken-docs
-
-# Install dependencies
 pnpm install
 ```
 
-### Development
+### Building
 
+Building for local / development purposes-
 ```bash
 # Start the development server
 pnpm dev
 ```
 
-The site will be available at `http://localhost:3000`
-
-### Building
-
+To build for production-
 ```bash
 # Create a production build
 pnpm build
@@ -38,6 +63,8 @@ pnpm build
 # Preview the production build
 pnpm start
 ```
+
+The site will be available at `http://localhost:3000`
 
 ## Documentation Structure
 
