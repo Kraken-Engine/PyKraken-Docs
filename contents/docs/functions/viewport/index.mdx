@@ -7,7 +7,7 @@ description: Viewport management functions
 
 ## Layout
 <div className="api-card">
-<ApiSig name="layout" multiline params={[{ name: "count", type: "int" }, { name: "mode", type: "ViewportMode", default: "_pykraken.ViewportMode.VERTICAL" }]} returns="list[Rect]" />
+<ApiSig name="layout" multiline params={[{ name: "count", type: "int" }, { name: "mode", type: "ViewportMode", default: "ViewportMode.VERTICAL" }]} returns="list[Rect]" />
 
 Layout the screen into multiple viewports.
 The viewports are created with the current renderer target resolution in mind.

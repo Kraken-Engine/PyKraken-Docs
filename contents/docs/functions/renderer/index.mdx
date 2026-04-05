@@ -55,11 +55,11 @@ Should be called after all drawing operations for the frame are complete.
 
 </div>
 
-## Set Present Resolution
+## Set Virtual Resolution
 <div className="api-card">
-<ApiSig name="set_present_resolution" params={[{ name: "width", type: "int" }, { name: "height", type: "int" }]} returns="None" />
+<ApiSig name="set_virtual_resolution" params={[{ name: "width", type: "int" }, { name: "height", type: "int" }]} returns="None" />
 
-Set a custom resolution for rendering. This creates an internal render target of the specified size,
+Set a virtual resolution for rendering. This creates an internal render target of the specified size,
 and all rendering will be done to that target, which is then scaled up to the actual screen resolution when presented.
 
 _**Args**_
@@ -70,6 +70,39 @@ _**Args**_
 _**Raises**_
 
 - `ValueError` : If width or height are not positive integers.
+
+</div>
+
+## Unset Virtual Resolution
+<div className="api-card">
+<ApiSig name="unset_virtual_resolution" returns="None" />
+
+Unset any previously configured virtual resolution and restore rendering directly to the output.
+
+</div>
+
+## Get Virtual Resolution
+<div className="api-card">
+<ApiSig name="get_virtual_resolution" returns="Vec2" />
+
+Get the currently configured virtual resolution (the internal render target size).
+If no virtual resolution is set, this returns the current output resolution.
+
+_**Returns**_
+
+`Vec2` : The width and height of the virtual resolution in pixels.
+
+</div>
+
+## Get Output Resolution
+<div className="api-card">
+<ApiSig name="get_output_resolution" returns="Vec2" />
+
+Get the renderer's output/presenting resolution (the actual window or output size).
+
+_**Returns**_
+
+`Vec2` : The output width and height in pixels.
 
 </div>
 

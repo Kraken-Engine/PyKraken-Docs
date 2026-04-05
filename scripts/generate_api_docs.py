@@ -241,9 +241,11 @@ def build_params(args: ast.arguments, drop_first: bool) -> List[Param]:
 def should_multiline(params: List[Param]) -> bool:
     if len(params) > 3:
         return True
+
     for p in params:
         if p.type and len(p.type) > 18:
             return True
+
     # Estimate signature length for readability
     def render_param(p: Param) -> str:
         parts = [p.name]
@@ -254,9 +256,7 @@ def should_multiline(params: List[Param]) -> bool:
         return "".join(parts)
 
     sig_len = len(", ".join(render_param(p) for p in params))
-    if sig_len > 42:
-        return True
-    return False
+    return sig_len > 42
 
 
 def escape_attr(value: str) -> str:
@@ -272,7 +272,7 @@ def params_to_mdx(params: List[Param]) -> str:
         if p.type:
             parts.append(f'type: "{escape_attr(simplify_type(p.type))}"')
         if p.default is not None:
-            parts.append(f'default: "{escape_attr(p.default)}"')
+            parts.append(f'default: "{escape_attr(simplify_type(p.default))}"')
         items.append("{ " + ", ".join(parts) + " }")
     return "[" + ", ".join(items) + "]"
 
@@ -402,7 +402,7 @@ def escape_outside_code(text: str) -> str:
 
 def format_type_for_table(type_str: str, classes_map: Dict[str, ClassInfo]) -> str:
     # Strip private module prefixes used in stubs
-    type_str = type_str.replace("_pykraken.", "")
+    type_str = type_str.replace("pykraken.", "")
 
     # Match whole identifiers possibly with dots: MapObject.ShapeType
     parts = re.split(r"(\b[a-zA-Z_][a-zA-Z0-9_]*(?:\.[a-zA-Z_][a-zA-Z0-9_]*)*\b)", type_str)
@@ -460,9 +460,9 @@ def simplify_type(type_str: Optional[str]) -> str:
     """
     if not type_str:
         return ""
-    
+
     # Strip private module prefixes from stubs
-    s = type_str.replace("_pykraken.", "")
+    s = type_str.replace("pykraken.", "")
 
     # Simplify Annotated[...] -> keep the first top-level item before the first comma
     if "Annotated[" in s:

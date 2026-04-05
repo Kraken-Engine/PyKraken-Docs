@@ -64,9 +64,26 @@ _**Args**_
 
 </div>
 
-### Translate
+### Rotated
 <div className="api-card">
-<ApiSig name="translate" params={[{ name: "offset", type: "Vec2" }]} returns="None" />
+<ApiSig name="rotated" params={[{ name: "angle", type: "float" }, { name: "pivot", type: "Vec2", default: "..." }]} returns="Polygon" />
+
+Return a rotated copy of the polygon.
+
+_**Args**_
+
+- `angle` : The rotation angle in radians.
+- `pivot` : The normalized point relative to the polygon's bounding box to rotate around. Defaults to center (0.5, 0.5).
+
+_**Returns**_
+
+`Polygon` : A new polygon that is a rotated version of this polygon.
+
+</div>
+
+### Move
+<div className="api-card">
+<ApiSig name="move" params={[{ name: "offset", type: "Vec2" }]} returns="None" />
 
 Move the polygon by an offset.
 
@@ -76,9 +93,9 @@ _**Args**_
 
 </div>
 
-### Scale
+### Scale By
 <div className="api-card">
-<ApiSig name="scale" params={[{ name: "factor", type: "float" }, { name: "pivot", type: "Vec2", default: "..." }]} returns="None" />
+<ApiSig name="scale_by" params={[{ name: "factor", type: "float" }, { name: "pivot", type: "Vec2", default: "..." }]} returns="None" />
 
 Scale the polygon uniformly from a pivot point.
 
@@ -89,7 +106,7 @@ _**Args**_
 
 ---
 
-<ApiSig name="scale" params={[{ name: "factor", type: "Vec2" }, { name: "pivot", type: "Vec2", default: "..." }]} returns="None" />
+<ApiSig name="scale_by" params={[{ name: "factor", type: "Vec2" }, { name: "pivot", type: "Vec2", default: "..." }]} returns="None" />
 
 Scale the polygon non-uniformly from a pivot point.
 
@@ -97,5 +114,37 @@ _**Args**_
 
 - `factor` : The scaling factors for x and y.
 - `pivot` : The normalized point relative to the polygon's bounding box to scale from. Defaults to center (0.5, 0.5).
+
+</div>
+
+### Scaled By
+<div className="api-card">
+<ApiSig name="scaled_by" params={[{ name: "factor", type: "float" }, { name: "pivot", type: "Vec2", default: "..." }]} returns="Polygon" />
+
+Return a uniformly scaled copy of the polygon.
+
+_**Args**_
+
+- `factor` : The scaling factor.
+- `pivot` : The normalized point relative to the polygon's bounding box to scale from. Defaults to center (0.5, 0.5).
+
+_**Returns**_
+
+`Polygon` : A new polygon that is a scaled version of this polygon.
+
+---
+
+<ApiSig name="scaled_by" params={[{ name: "factor", type: "Vec2" }, { name: "pivot", type: "Vec2", default: "..." }]} returns="Polygon" />
+
+Return a non-uniformly scaled copy of the polygon.
+
+_**Args**_
+
+- `factor` : The scaling factors for x and y.
+- `pivot` : The normalized point relative to the polygon's bounding box to scale from. Defaults to center (0.5, 0.5).
+
+_**Returns**_
+
+`Polygon` : A new polygon that is a scaled version of this polygon.
 
 </div>

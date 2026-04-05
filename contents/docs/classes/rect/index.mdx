@@ -29,6 +29,7 @@ Represents a rectangle with position and size.
 | `right` | The x coordinate of the right edge. | <code>float</code> |
 | `top` | The y coordinate of the top edge. | <code>float</code> |
 | `bottom` | The y coordinate of the bottom edge. | <code>float</code> |
+| `pos` | The position of the top-left corner as (x, y). | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `size` | The size of the rectangle as (width, height). | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `top_left` | The position of the top-left corner as (x, y). | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `top_mid` | The position of the top-middle point as (x, y). | <code><a href="/docs/classes/vec2">Vec2</a></code> |
@@ -64,6 +65,22 @@ Move the rectangle by the given offset.
 _**Args**_
 
 - `offset` : The offset to move by as (dx, dy).
+
+</div>
+
+### Moved
+<div className="api-card">
+<ApiSig name="moved" params={[{ name: "offset", type: "Vec2" }]} returns="Rect" />
+
+Return a new Rect moved by the given offset.
+
+_**Args**_
+
+- `offset` : The offset to move by.
+
+_**Returns**_
+
+`Rect` : A new rectangle moved by the offset.
 
 </div>
 
@@ -129,6 +146,37 @@ _**Raises**_
 
 </div>
 
+### Clamped
+<div className="api-card">
+<ApiSig name="clamped" params={[{ name: "other", type: "Rect" }]} returns="Rect" />
+
+Return a new Rect clamped within another rectangle.
+
+_**Args**_
+
+- `other` : The rectangle to clamp within.
+
+_**Returns**_
+
+`Rect` : A new clamped rectangle.
+
+---
+
+<ApiSig name="clamped" params={[{ name: "min", type: "Vec2" }, { name: "max", type: "Vec2" }]} returns="Rect" />
+
+Return a new Rect clamped within the specified bounds.
+
+_**Args**_
+
+- `min` : The minimum bounds as (min_x, min_y).
+- `max` : The maximum bounds as (max_x, max_y).
+
+_**Returns**_
+
+`Rect` : A new clamped rectangle.
+
+</div>
+
 ### Scale By
 <div className="api-card">
 <ApiSig name="scale_by" params={[{ name: "factor", type: "float" }]} returns="None" />
@@ -159,6 +207,36 @@ _**Raises**_
 
 </div>
 
+### Scaled By
+<div className="api-card">
+<ApiSig name="scaled_by" params={[{ name: "factor", type: "float" }]} returns="Rect" />
+
+Return a new Rect scaled by a uniform factor.
+
+_**Args**_
+
+- `factor` : The scaling factor (must be &gt; 0).
+
+_**Returns**_
+
+`Rect` : A new scaled rectangle.
+
+---
+
+<ApiSig name="scaled_by" params={[{ name: "factor", type: "Vec2" }]} returns="Rect" />
+
+Return a new Rect scaled by different factors for width and height.
+
+_**Args**_
+
+- `factor` : The scaling factors as (scale_x, scale_y).
+
+_**Returns**_
+
+`Rect` : A new scaled rectangle.
+
+</div>
+
 ### Scale To
 <div className="api-card">
 <ApiSig name="scale_to" params={[{ name: "size", type: "Vec2" }]} returns="None" />
@@ -172,5 +250,45 @@ _**Args**_
 _**Raises**_
 
 - `ValueError` : If width or height is &lt;= 0.
+
+</div>
+
+### Scaled To
+<div className="api-card">
+<ApiSig name="scaled_to" params={[{ name: "size", type: "Vec2" }]} returns="Rect" />
+
+Return a new Rect scaled to the specified size.
+
+_**Args**_
+
+- `size` : The new size as (width, height).
+
+_**Returns**_
+
+`Rect` : A new scaled rectangle.
+
+</div>
+
+### Get Corners
+<div className="api-card">
+<ApiSig name="get_corners" returns="list[Vec2]" />
+
+Get the corners of the rectangle.
+
+_**Returns**_
+
+`List[Vec2]` : A list of the four corners in the order: top-left, top-right, bottom-right, bottom-left.
+
+</div>
+
+### Get Edges
+<div className="api-card">
+<ApiSig name="get_edges" returns="list[Line]" />
+
+Get the edges of the rectangle as Line segments.
+
+_**Returns**_
+
+`List[Line]` : A list of the four edges as Line objects in the order: top, right, bottom, left.
 
 </div>
