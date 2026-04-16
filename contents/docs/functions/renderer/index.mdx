@@ -81,6 +81,19 @@ Unset any previously configured virtual resolution and restore rendering directl
 
 </div>
 
+## Set Render Backend
+<div className="api-card">
+<ApiSig name="set_render_backend" multiline params={[{ name: "backend", type: "RenderBackend" }]} returns="None" />
+
+Set the renderer backend to use for future initialization.
+This must be called before creating the window/renderer, otherwise it will have no effect.
+
+_**Args**_
+
+- `backend` : One of the RenderBackend enum values.
+
+</div>
+
 ## Get Virtual Resolution
 <div className="api-card">
 <ApiSig name="get_virtual_resolution" returns="Vec2" />
@@ -165,24 +178,22 @@ _**Args**_
 
 </div>
 
-## Read Pixels
+## Draw 9Slice
 <div className="api-card">
-<ApiSig name="read_pixels" params={[{ name: "src", type: "Rect", default: "..." }]} returns="PixelArray" />
+<ApiSig name="draw_9slice" multiline params={[{ name: "texture", type: "Texture" }, { name: "dst", type: "Rect" }, { name: "slice", type: "Rect" }, { name: "anchor", type: "Vec2", default: "..." }, { name: "pivot", type: "Vec2", default: "..." }]} returns="None" />
 
-Read pixel data from the renderer within the specified rectangle.
+Render a texture using 9-slice scaling (9-grid).
+
+This divides the texture into 9 regions: 4 corners (unscaled), 4 edges (scaled in one axis),
+and 1 center (scaled in both axes).
 
 _**Args**_
 
-- `src` : The rectangle area to read pixels from.
-        Defaults to entire renderer if None or area has no width or height.
-
-_**Returns**_
-
-`PixelArray` : An array containing the pixel data.
-
-_**Raises**_
-
-- `RuntimeError` : If reading pixels fails.
+- `texture` : The source texture.
+- `dst` : The destination rectangle on screen.
+- `slice` : A rectangle defining the slice widths/heights (left_width, top_height, right_width, bottom_height).
+- `anchor` : The anchor point. Defaults to top left.
+- `pivot` : The rotation pivot. Defaults to center.
 
 </div>
 
@@ -231,5 +242,26 @@ _**Args**_
 _**Raises**_
 
 - `ValueError` : If the array does not have 2, 3, 4, 5, or 9 columns.
+
+</div>
+
+## Read Pixels
+<div className="api-card">
+<ApiSig name="read_pixels" params={[{ name: "src", type: "Rect", default: "..." }]} returns="PixelArray" />
+
+Read pixel data from the renderer within the specified rectangle.
+
+_**Args**_
+
+- `src` : The rectangle area to read pixels from.
+        Defaults to entire renderer if None or area has no width or height.
+
+_**Returns**_
+
+`PixelArray` : An array containing the pixel data.
+
+_**Raises**_
+
+- `RuntimeError` : If reading pixels fails.
 
 </div>

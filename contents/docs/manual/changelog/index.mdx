@@ -9,6 +9,95 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.7.1] - 2026-04-15
+
+<a id="added171"></a>
+### Added
+- New `renderer.draw_9slice` function for drawing 9-slice textures.
+- New `ui` submodule for designing and rendering user interfaces:
+  - `Direction` enum for specifying layout direction.
+  - `Align` enum for specifying alignment within containers.
+  - `Style` class for defining reusable style properties.
+  - `root`, `stack`, `row`, and `column` container functions for structuring UI elements.
+  - `button`, `label`, and `image` functions for common UI elements.
+- Physics `World` class now has a `debug_draw` method with extra configurable options for visualizing physics bodies and joints.
+- New `Polygon` constructor for creating regular polygons by specifying the number of sides and radius.
+- Added `restart` method to the `Timer` class for resetting and starting the timer in one call.
+- `Tween` has a new `current_pos` read-only property for getting the current interpolated position.
+- `fx.Effect` class now has a `clone` method for creating a copy of an effect with the same properties.
+- The `pykraken` package now comes with a cli tool for:
+  - Building exe files from Python scripts (with PyInstaller as a dependency).
+  - Baking HLSL scripts into SPV, MSL, and DXIL shaders.
+- `renderer` submodule now has a `set_render_backend` function for manually setting the rendering backend instead of relying on automatic selection.
+- New `RenderBackend` enum for specifying rendering backends.
+- `camera.unset()` function for unsetting the active camera.
+
+<a id="changed171"></a>
+### Changed
+- Renamed `Align` enum to `TextAlign` for specificity.
+- Physics `World` constructor's gravity parameter is now optional and defaults to zero gravity.
+- `fx.Effect` objects are now stateful, single-use objects to be consumed by an `Orchestrator` timeline, rather than reusable templates.
+- Rename `ShaderState` class to `Shader` for simplicity.
+
+<a id="removed171"></a>
+### Removed
+- Physics `Body` types no longer have a `debug_draw` method.
+- `Tween` class no longer has a `step` method as timing is handled by the engine.
+
+<a id="fixed171"></a>
+### Fixed
+- `Orchestrator` objects were copied upon calling `parallel` and `then` methods, causing effects to not be added to the original orchestrator timeline. Now returns reference to the original orchestrator.
+- Some images wouldn't render when drawn while a shader was binded. This was due to unpredictable pixel formats when
+loading images that shaders didn't like. Solved by forcing an RGBA32 format on all loaded images.
+- PyInstaller builds were broken since moving to Nanobind due to different naming conventions. They've been fixed and tested to work again.
+- Fixed bug with tilemaps regarding tile id's not being mapped correctly to their tileset, causing wrong tiles to be drawn.
+- Isometric, hexagonal, and staggered maps render correctly now.
+- Tile rotation and flipping bug fixed.
+- Fixed colorkeyed PixelArray → Texture sometimes not retaining the colorkey transparency.
+
+
+---
+
+## [1.7.0] - 2026-04-07
+
+<a id="added170"></a>
+### Added
+- New `diameter` and edge position properties for the `Circle` class; `left`, `right`, `top`, and `bottom`.
+- More `Line` methods:
+  - `moved` for non-mutating version of `move`.
+  - `get_midpoint` for the line's midpoint.
+  - `get_perpendicular` for a line's perpendicular bisector.
+  - `get_angle` for the line's angle in radians.
+  - `get_closest_point` for finding the closest point on the line to a given point.
+- More `Polygon` methods:
+  - `rotated` for non-mutating version of `rotate`.
+  - `scaled_by` for non-mutating version of `scale_by`.
+- More `Rect` methods and properties:
+  - `pos` property as a clearer alias for `top_left`.
+  - `moved` for non-mutating version of `move`.
+  - `clamped` for a non-mutating version of `clamp`.
+  - `scaled_by` for non-mutating version of `scale_by`.
+  - `scaled_to` for non-mutating version of `scale_to`.
+  - `get_corners` for getting the positions of all four corners as a list of `Vec2` objects.
+  - `get_edges` for getting the edges of the rectangle as a list of `Line` objects.
+- New `renderer` functions for more advanced configuration:
+  - `unset_virtual_resolution()` for unsetting a previously set virtual resolution and returning to using the actual render target resolution.
+  - `get_virtual_resolution()` for getting the currently set virtual resolution.
+  - `get_output_resolution()` for getting the actual output resolution of the renderer.
+
+<a id="changed170"></a>
+### Changed
+- `Polygon`'s `transform` method renamed to `move` and `scale` methods renamed to `scale_by` for consistency with other shapes.
+- `renderer` submodule's `set_present_resolution` function renamed to `set_virtual_resolution` for clarity.
+- `on_floor`, `on_ceiling`, and `on_wall` properties of `CharacterBody` changed from read-only properties to regular methods: `is_on_floor()`, `is_on_ceiling()`, and `is_on_wall()`.
+
+<a id="removed170"></a>
+### Removed
+- `line` and `rect` submodules removed in favor of non-mutating methods in the `Line` and `Rect` classes.
+
+
+---
+
 ## [1.6.5] - 2026-03-31
 
 <a id="added165"></a>

@@ -4,13 +4,12 @@ description: A comprehensive list of constants used in the Kraken Engine.
 ---
 
 ## Align
-Horizontal alignment options for layout and text.
-
 | Name | Description | Type |
 | --- | --- | --- |
-| `LEFT` | Left alignment | `Align` |
-| `CENTER` | Center alignment | `Align` |
-| `RIGHT` | Right alignment | `Align` |
+| `START` | Align children to the start of the container. | `Align` |
+| `CENTER` | Align children to the center of the container. | `Align` |
+| `END` | Align children to the end of the container. | `Align` |
+| `STRETCH` | Stretch children to fill the container. | `Align` |
 
 ## AudioPriority
 Priority levels used for track acquisition.
@@ -28,6 +27,12 @@ The motion mode for the character body.
 | --- | --- | --- |
 | `GROUNDED` | The character is affected by gravity and can stand on floors. | `CharacterBody.MotionMode` |
 | `FLOATING` | The character is not affected by gravity and can move freely in the air. | `CharacterBody.MotionMode` |
+
+## Direction
+| Name | Description | Type |
+| --- | --- | --- |
+| `HORIZONTAL` | Layout children horizontally. | `Direction` |
+| `VERTICAL` | Layout children vertically. | `Direction` |
 
 ## EventType
 SDL event type constants for input and system events.
@@ -206,6 +211,7 @@ Gamepad device type identifiers.
 
 | Name | Description | Type |
 | --- | --- | --- |
+| `C_UNKNOWN` | Unknown gamepad type | `GamepadType` |
 | `C_STANDARD` | Standard gamepad | `GamepadType` |
 | `C_XBOX_360` | Xbox 360 gamepad | `GamepadType` |
 | `C_XBOX_ONE` | Xbox One gamepad | `GamepadType` |
@@ -216,6 +222,7 @@ Gamepad device type identifiers.
 | `C_SWITCH_JOYCON_LEFT` | Nintendo Switch Joy-Con left | `GamepadType` |
 | `C_SWITCH_JOYCON_RIGHT` | Nintendo Switch Joy-Con right | `GamepadType` |
 | `C_SWITCH_JOYCON_PAIR` | Nintendo Switch Joy-Con pair | `GamepadType` |
+| `C_GAMECUBE` | Nintendo GameCube controller | `GamepadType` |
 
 ## Keycode
 Keyboard keycodes representing logical keys.
@@ -480,6 +487,15 @@ Stylus/pen axis identifiers for pen motion data.
 | `P_SLIDER` | Pen slider axis | `PenAxis` |
 | `P_TANGENTIAL_PRESSURE` | Pen tangential pressure | `PenAxis` |
 
+## RenderBackend
+| Name | Description | Type |
+| --- | --- | --- |
+| `AUTO` | Auto select the best available GPU backend. | `RenderBackend` |
+| `LEGACY` | Use the legacy OpenGL backend. | `RenderBackend` |
+| `VULKAN` | Use the Vulkan backend. | `RenderBackend` |
+| `METAL` | Use the Metal backend. | `RenderBackend` |
+| `DIRECT3D12` | Use the Direct3D 12 backend. | `RenderBackend` |
+
 ## Scancode
 Keyboard scancodes representing physical key locations.
 
@@ -636,6 +652,15 @@ Edge handling behavior for PixelArray scrolling.
 | `SMEAR` | Clamp edge pixels when scrolling | `ScrollMode` |
 | `ERASE` | Erase pixels that scroll out | `ScrollMode` |
 | `REPEAT` | Wrap pixels when scrolling | `ScrollMode` |
+
+## TextAlign
+Horizontal alignment options for text.
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `LEFT` | Left alignment | `TextAlign` |
+| `CENTER` | Center alignment | `TextAlign` |
+| `RIGHT` | Right alignment | `TextAlign` |
 
 ## TextureAccess
 Texture access mode for GPU textures.

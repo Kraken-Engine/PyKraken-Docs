@@ -4,13 +4,13 @@ description: A physics world that manages bodies, joints, and collision detectio
 ---
 
 <Note type="warning" title="Experimental API">
-  The physics submodule is a VERY experimental and new API that is highly susceptible to breaking changes in the future.
+  The physics submodule is an experimental and new API that is highly susceptible to breaking changes in the future.
 </Note>
 
 ## Constructor
 <div className="api-card">
 
-- <ApiSig name="World" params={[{ name: "gravity", type: "Vec2" }]} returns="World" />
+- <ApiSig name="World" params={[{ name: "gravity", type: "Vec2", default: "..." }]} returns="World" />
 
 A physics world that manages bodies, joints, and collision detection.
 </div>
@@ -24,6 +24,32 @@ A physics world that manages bodies, joints, and collision detection.
 
 ## Methods
 ---
+
+### Debug Draw
+<div className="api-card">
+<ApiSig name="debug_draw" multiline params={[{ name: "color", type: "Color", default: "..." }, { name: "filled_shapes", type: "bool", default: "False" }, { name: "shapes", type: "bool", default: "True" }, { name: "joints", type: "bool", default: "True" }, { name: "joint_extras", type: "bool", default: "True" }, { name: "bounds", type: "bool", default: "False" }, { name: "mass", type: "bool", default: "False" }, { name: "body_names", type: "bool", default: "False" }, { name: "contacts", type: "bool", default: "False" }, { name: "graph_colors", type: "bool", default: "False" }, { name: "contact_normals", type: "bool", default: "False" }, { name: "contact_impulses", type: "bool", default: "False" }, { name: "contact_features", type: "bool", default: "False" }, { name: "friction_impulses", type: "bool", default: "False" }, { name: "islands", type: "bool", default: "False" }]} returns="None" />
+
+Draw physics debug geometry. If shapes are disabled, the filled_shapes option is ignored.
+
+_**Args**_
+
+- `color` : The color to use for drawing. Defaults to red.
+- `filled_shapes` : Whether to draw filled shapes. Defaults to False.
+- `shapes` : Whether to draw collider shapes. Defaults to True.
+- `joints` : Whether to draw joints. Defaults to True.
+- `joint_extras` : Whether to draw extra joint info like limits. Defaults to True.
+- `bounds` : Whether to draw body AABBs. Defaults to False.
+- `mass` : Whether to draw mass indicators. Defaults to False.
+- `body_names` : Whether to draw body names. Defaults to False.
+- `contacts` : Whether to draw contact points. Defaults to False.
+- `graph_colors` : Whether to use graph colors for contact points. Defaults to False.
+- `contact_normals` : Whether to draw contact normals. Defaults to False.
+- `contact_impulses` : Whether to draw contact impulse vectors. Defaults to False.
+- `contact_features` : Whether to draw contact feature points. Defaults to False.
+- `friction_impulses` : Whether to draw friction impulse vectors. Defaults to False.
+- `islands` : Whether to color bodies by island. Defaults to False.
+
+</div>
 
 ### From Map Layer
 <div className="api-card">

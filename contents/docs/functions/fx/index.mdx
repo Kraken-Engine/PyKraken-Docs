@@ -25,19 +25,37 @@ _**Returns**_
 
 ## Scale To
 <div className="api-card">
-<ApiSig name="scale_to" multiline params={[{ name: "scale", type: "object | None", default: "None" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float] | None", default: "None" }]} returns="Effect" />
+<ApiSig name="scale_to" multiline params={[{ name: "scale", type: "Vec2" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float] | None", default: "None" }]} returns="Effect" />
 
 Create a scale-to effect.
 
 _**Args**_
 
-- `scale` : Target scale. A single number applies to both axes.
+- `scale` : Target scale exact dimensions.
 - `dur` : Duration in seconds.
 - `ease` : Easing function (t -&gt; t).
 
 _**Returns**_
 
 `Effect` : The scale-to effect.
+
+</div>
+
+## Scale By
+<div className="api-card">
+<ApiSig name="scale_by" multiline params={[{ name: "scale", type: "float" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float] | None", default: "None" }]} returns="Effect" />
+
+Create a scale-by effect.
+
+_**Args**_
+
+- `scale` : Delta scalar to apply to the scale.
+- `dur` : Duration in seconds.
+- `ease` : Easing function (t -&gt; t).
+
+_**Returns**_
+
+`Effect` : The scale-by effect.
 
 </div>
 

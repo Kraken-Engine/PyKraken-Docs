@@ -160,3 +160,19 @@ _**Returns**_
 `list[int]` : A list of slot IDs with active gamepads.
 
 </div>
+
+## Get Type
+<div className="api-card">
+<ApiSig name="get_type" params={[{ name: "slot", type: "int", default: "0" }]} returns="GamepadType" />
+
+Get the type of gamepad connected in a given slot.
+
+_**Args**_
+
+- `slot` : Gamepad slot ID (default is 0).
+
+_**Returns**_
+
+`GamepadType` : An enum value representing the gamepad type, or Unknown if no gamepad is connected.
+
+</div>

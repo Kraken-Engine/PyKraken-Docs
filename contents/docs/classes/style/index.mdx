@@ -1,0 +1,36 @@
+---
+title: Style
+description: Container for UI appearance, layout, and sizing settings. Access via the 'ui' submodule.
+---
+
+<Note type="warning" title="Experimental API">
+  The ui submodule is an experimental and new API that is highly susceptible to breaking changes in the future.
+</Note>
+
+## Constructor
+<div className="api-card">
+
+- <ApiSig name="Style" multiline params={[{ name: "background_color", type: "Color | None", default: "None" }, { name: "texture", type: "Texture | None", default: "None" }, { name: "slice", type: "Rect", default: "..." }, { name: "offset", type: "Vec2", default: "..." }, { name: "font", type: "Font | None", default: "None" }, { name: "text_color", type: "Color | None", default: "None" }, { name: "padding", type: "float", default: "0.0" }, { name: "margin", type: "float", default: "0.0" }, { name: "gap", type: "float", default: "0.0" }, { name: "border_width", type: "int", default: "0" }, { name: "border_radius", type: "float", default: "0.0" }, { name: "border_color", type: "Color | None", default: "None" }, { name: "width", type: "float | None", default: "None" }, { name: "height", type: "float | None", default: "None" }]} returns="Style" />
+
+Container for UI appearance, layout, and sizing settings.
+</div>
+
+## Properties
+<hr style={{marginBottom: 0}} />
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `background_color` | The background color of the element (if no texture is provided). | <code><a href="/docs/classes/color">Color</a> &#124; None</code> |
+| `texture` | The texture to use for the element. | <code><a href="/docs/classes/texture">Texture</a></code> |
+| `slice` | The region of the texture to use. | <code><a href="/docs/classes/rect">Rect</a></code> |
+| `offset` | The offset of the element within its parent. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `font` | The font to use for text rendering. | <code><a href="/docs/classes/font">Font</a></code> |
+| `text_color` | The color of the text. | <code><a href="/docs/classes/color">Color</a> &#124; None</code> |
+| `padding` | The padding around the element. | <code>float</code> |
+| `margin` | The margin around the element. | <code>float</code> |
+| `gap` | The gap between child elements. | <code>float</code> |
+| `border_width` | The width of the border. | <code>int</code> |
+| `border_radius` | The radius of the border corners. | <code>float</code> |
+| `border_color` | The color of the border. | <code><a href="/docs/classes/color">Color</a> &#124; None</code> |
+| `width` | The width of the element. | <code>float &#124; None</code> |
+| `height` | The height of the element. | <code>float &#124; None</code> |

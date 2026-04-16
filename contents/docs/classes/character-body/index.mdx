@@ -4,7 +4,7 @@ description: A kinematic physics body designed for player-controlled characters.
 ---
 
 <Note type="warning" title="Experimental API">
-  The physics submodule is a VERY experimental and new API that is highly susceptible to breaking changes in the future.
+  The physics submodule is an experimental and new API that is highly susceptible to breaking changes in the future.
 </Note>
 
 Inherits from [Body](/docs/classes/body).
@@ -31,9 +31,6 @@ A kinematic physics body designed for player-controlled characters.
 | `stop_speed` | The speed threshold below which the character will stop moving. | <code>float</code> |
 | `air_steer` | The control factor for steering while in the air (0.0 to 1.0). | <code>float</code> |
 | `capsule_shape` | The capsule shape used for ground detection and collision casting. | <code><a href="/docs/classes/capsule">Capsule</a></code> |
-| `on_floor` | Whether the character is currently on a floor surface. | <code>bool</code> |
-| `on_ceiling` | Whether the character is currently touching a ceiling. | <code>bool</code> |
-| `on_wall` | Whether the character is currently touching a wall. | <code>bool</code> |
 
 ## Methods
 ---
@@ -52,5 +49,41 @@ _**Args**_
 
 - `delta` : The time step to use for movement.
                              Defaults to -1.0, which uses the frame delta.
+
+</div>
+
+### Is On Floor
+<div className="api-card">
+<ApiSig name="is_on_floor" returns="bool" />
+
+Check if the character is currently in contact with the floor.
+
+_**Returns**_
+
+`bool` : True if the character is on the floor, False otherwise.
+
+</div>
+
+### Is On Ceiling
+<div className="api-card">
+<ApiSig name="is_on_ceiling" returns="bool" />
+
+Check if the character is currently in contact with the ceiling.
+
+_**Returns**_
+
+`bool` : True if the character is on the ceiling, False otherwise.
+
+</div>
+
+### Is On Wall
+<div className="api-card">
+<ApiSig name="is_on_wall" returns="bool" />
+
+Check if the character is currently in contact with a wall.
+
+_**Returns**_
+
+`bool` : True if the character is on a wall, False otherwise.
 
 </div>

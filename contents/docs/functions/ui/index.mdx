@@ -1,0 +1,143 @@
+---
+title: Ui
+description: A declarative UI and layout submodule.
+---
+
+<Note type="warning" title="Experimental API">
+  The ui submodule is an experimental and new API that is highly susceptible to breaking changes in the future.
+</Note>
+
+---
+
+## Root
+<div className="api-card">
+<ApiSig name="root" multiline params={[{ name: "bounds", type: "Rect" }, { name: "direction", type: "Direction", default: "Direction.VERTICAL" }, { name: "align", type: "Align", default: "Align.START" }, { name: "justify", type: "Align", default: "Align.START" }]} returns="_RootContext" />
+
+Create a root UI context for the current frame.
+
+The root defines the available bounds for the UI tree and controls the
+default layout direction and alignment. Use it as a context manager.
+
+_**Args**_
+
+- `bounds` : The available region for the UI.
+- `direction` : The root layout direction. Defaults to Vertical.
+- `align` : Cross-axis alignment for root children. Defaults to Start.
+- `justify` : Main-axis justification for root children. Defaults to Start.
+
+_**Returns**_
+
+`_RootContext` : A context manager that finalizes the UI when exited.
+
+</div>
+
+## Row
+<div className="api-card">
+<ApiSig name="row" multiline params={[{ name: "style", type: "Style | None", default: "None" }, { name: "gap", type: "float", default: "0.0" }, { name: "padding", type: "float", default: "0.0" }, { name: "align", type: "Align", default: "Align.START" }, { name: "justify", type: "Align", default: "Align.START" }]} returns="_Context" />
+
+Create a horizontal container.
+
+Children are laid out left to right unless the active direction or alignment
+settings are changed on the returned context.
+
+_**Args**_
+
+- `style` : Base style for the container.
+- `gap` : Space between child elements. Defaults to 0.0.
+- `padding` : Inner padding of the container. Defaults to 0.0.
+- `align` : Cross-axis alignment for children. Defaults to Start.
+- `justify` : Main-axis justification for children. Defaults to Start.
+
+_**Returns**_
+
+`_Context` : A context manager for the row.
+
+</div>
+
+## Column
+<div className="api-card">
+<ApiSig name="column" multiline params={[{ name: "style", type: "Style | None", default: "None" }, { name: "gap", type: "float", default: "0.0" }, { name: "padding", type: "float", default: "0.0" }, { name: "align", type: "Align", default: "Align.START" }, { name: "justify", type: "Align", default: "Align.START" }]} returns="_Context" />
+
+Create a vertical container.
+
+Children are laid out top to bottom unless alignment or spacing overrides are
+applied on the returned context.
+
+_**Args**_
+
+- `style` : Base style for the container.
+- `gap` : Space between child elements. Defaults to 0.0.
+- `padding` : Inner padding of the container. Defaults to 0.0.
+- `align` : Cross-axis alignment for children. Defaults to Start.
+- `justify` : Main-axis justification for children. Defaults to Start.
+
+_**Returns**_
+
+`_Context` : A context manager for the column.
+
+</div>
+
+## Stack
+<div className="api-card">
+<ApiSig name="stack" multiline params={[{ name: "style", type: "Style | None", default: "None" }, { name: "padding", type: "float", default: "0.0" }, { name: "align", type: "Align", default: "Align.START" }, { name: "justify", type: "Align", default: "Align.START" }]} returns="_Context" />
+
+Create an overlapping container.
+
+Stack children share the same container space instead of being arranged in a
+linear flow.
+
+_**Args**_
+
+- `style` : Base style for the container.
+- `padding` : Inner padding of the container. Defaults to 0.0.
+- `align` : Alignment for children inside the stack. Defaults to Start.
+- `justify` : Justification for children inside the stack. Defaults to Start.
+
+_**Returns**_
+
+`_Context` : A context manager for the stack.
+
+</div>
+
+## Panel
+<div className="api-card">
+<ApiSig name="panel" params={[{ name: "style", type: "Style", default: "..." }]} returns="None" />
+
+Create a non-interactive container element.
+
+Panels draw their background, texture, and borders using the provided style.
+
+</div>
+
+## Button
+<div className="api-card">
+<ApiSig name="button" params={[{ name: "text", type: "str" }, { name: "style", type: "Style", default: "..." }]} returns="bool" />
+
+Create a clickable text button.
+
+The button is evaluated against the previous frame's bounds and returns True
+when it is clicked during the current frame.
+
+_**Args**_
+
+- `text` : The label displayed on the button.
+- `style` : Visual and layout settings for the button.
+
+_**Returns**_
+
+`bool` : True if the button was clicked this frame, otherwise False.
+
+</div>
+
+## Label
+<div className="api-card">
+<ApiSig name="label" params={[{ name: "text", type: "str" }, { name: "style", type: "Style", default: "..." }]} returns="None" />
+
+Create a non-interactive text label.
+
+_**Args**_
+
+- `text` : The text to display.
+- `style` : Visual and layout settings for the label.
+
+</div>

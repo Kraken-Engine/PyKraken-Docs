@@ -1,0 +1,42 @@
+---
+title: Shaders
+description: Functions in shaders.
+---
+
+---
+
+## Bake
+<div className="api-card">
+<ApiSig name="bake" multiline params={[{ name: "fragment_path", type: "str | os.PathLike[str]" }, { name: "output_base_path", type: "str | os.PathLike[str]" }]} returns="None" />
+
+Bake a shader from HLSL source to SPIR-V, DXIL, and MSL formats.
+
+It is recommended to use the pykraken cli tool for shader baking rather than calling this directly.
+
+_**Args**_
+
+- `fragment_path` : Base file name of the input HLSL shader.
+- `output_base_path` : Base file name to use for the generated outputs. The generated files will have .spv, .dxil, and .msl extensions.
+
+</div>
+
+## Load
+<div className="api-card">
+<ApiSig name="load" multiline params={[{ name: "fragment_base_path", type: "str | os.PathLike[str]" }, { name: "uniform_buffer_count", type: "int", default: "0" }]} returns="Shader" />
+
+Load a shader from disk and prepare its render state.
+
+_**Args**_
+
+- `fragment_base_path` : Base file name of the fragment shader. The appropriate backend extension will be appended automatically.
+- `uniform_buffer_count` : Number of uniform buffers used by the shader. Default is 0.
+
+_**Returns**_
+
+`Shader` : A new Shader instance.
+
+_**Raises**_
+
+- `RuntimeError` : If the shader cannot be loaded or created.
+
+</div>

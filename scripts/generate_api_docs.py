@@ -340,7 +340,7 @@ def parse_stub_file(tree: ast.Module, lines: List[str]) -> Tuple[List[ClassInfo]
             continue
 
     for name, sigs in overload_buckets.items():
-        if name.startswith("_") and not name.startswith("_fx_"):
+        if name.startswith("_"):
             continue
         # Keep doc from first signature if present
         doc = next((s.doc for s in sigs if s.doc), None)
@@ -754,18 +754,15 @@ def render_class_page(
     lines.append("---")
     lines.append("")
 
-    # Add physics disclaimer
-    is_physics = False
-    if current_module:
-        parts = current_module.split(".")
-        if "physics" in parts:
-            is_physics = True
-
-    if is_physics:
-        lines.append('<Note type="warning" title="Experimental API">')
-        lines.append("  The physics submodule is a VERY experimental and new API that is highly susceptible to breaking changes in the future.")
-        lines.append("</Note>")
-        lines.append("")
+    # Add disclaimer
+    parts = set(current_module.split(".")) if current_module else set()
+    if mod := next((p for p in ["physics", "ui"] if p in parts), None):
+        lines.extend([
+            '<Note type="warning" title="Experimental API">',
+            f"  The {mod} submodule is an experimental and new API that is highly susceptible to breaking changes in the future.",
+            "</Note>",
+            ""
+        ])
 
     if info.bases:
         inherited = []
@@ -875,18 +872,15 @@ def render_module_page(
     lines.append("---")
     lines.append("")
 
-    # Add physics disclaimer
-    is_physics = False
-    if current_module:
-        parts = current_module.split(".")
-        if "physics" in parts:
-            is_physics = True
-
-    if is_physics:
-        lines.append('<Note type="warning" title="Experimental API">')
-        lines.append("  The physics submodule is a VERY experimental and new API that is highly susceptible to breaking changes in the future.")
-        lines.append("</Note>")
-        lines.append("")
+    # Add disclaimer
+    parts = set(current_module.split(".")) if current_module else set()
+    if mod := next((p for p in ["physics", "ui"] if p in parts), None):
+        lines.extend([
+            '<Note type="warning" title="Experimental API">',
+            f"  The {mod} submodule is an experimental and new API that is highly susceptible to breaking changes in the future.",
+            "</Note>",
+            ""
+        ])
 
     lines.append("---")
     lines.append("")
@@ -1175,10 +1169,15 @@ def main() -> int:
     classes_dir.mkdir(parents=True, exist_ok=True)
     functions_dir.mkdir(parents=True, exist_ok=True)
 
-    # Separate enums
+    # Separate enums and skip some classes
     normal_classes: List[ClassInfo] = []
     enums: List[ClassInfo] = []
     for cls in classes_by_name.values():
+        if cls.module_name and cls.module_name.split(".")[-1] == "cli":
+            continue
+        if cls.name.split('.')[-1] == "TerrainIndices":
+            continue
+
         if cls.is_enum:
             enums.append(cls)
         else:
@@ -1206,7 +1205,7 @@ def main() -> int:
     generated_module_dirs: List[str] = []
     for mod in modules.values():
         # Skip the main package module and internal _pykraken module
-        if mod.name == pkg or mod.name == "_pykraken":
+        if mod.name in [pkg, "_pykraken", "cli"]:
             continue
         slug = camel_to_kebab(mod.name)
         generated_module_dirs.append(slug)
@@ -1228,7 +1227,7 @@ def main() -> int:
     updated_routes = update_routes_config(
         routes_path,
         sorted(c.name for c in normal_classes),
-        sorted({mod.name for mod in modules.values() if mod.name not in (pkg, "_pykraken")}),
+        sorted({mod.name for mod in modules.values() if mod.name not in (pkg, "_pykraken", "cli")}),
     )
     if updated_routes:
         print(f"Updated routes config at {routes_path}")
