@@ -19,8 +19,13 @@ Inherits from [Layer](/docs/classes/layer).
 
 ### Draw
 <div className="api-card">
-<ApiSig name="draw" returns="None" />
+<ApiSig name="draw" multiline params={[{ name: "angle", type: "float", default: "0.0" }, { name: "pivot", type: "Vec2", default: "..." }]} returns="None" />
 
 Draw the image layer.
+
+_**Args**_
+
+- `angle` : Rotation angle in degrees. Defaults to 0.0.
+- `pivot` : Rotation pivot as normalized coordinates relative to the map size. Defaults to (0.5, 0.5).
 
 </div>

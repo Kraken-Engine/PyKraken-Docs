@@ -8,7 +8,7 @@ description: Represents a polygon shape defined by a sequence of points.
 
 - <ApiSig name="Polygon" returns="Polygon" />
 - <ApiSig name="Polygon" params={[{ name: "points", type: "Sequence[Vec2]" }]} returns="Polygon" />
-- <ApiSig name="Polygon" params={[{ name: "n", type: "int" }, { name: "radius", type: "float" }]} returns="Polygon" />
+- <ApiSig name="Polygon" multiline params={[{ name: "n", type: "int" }, { name: "radius", type: "float" }, { name: "centroid", type: "Vec2", default: "..." }]} returns="Polygon" />
 
 Represents a polygon shape defined by a sequence of points.
 </div>
@@ -19,9 +19,9 @@ Represents a polygon shape defined by a sequence of points.
 | Name | Description | Type |
 | --- | --- | --- |
 | `points` | The list of Vec2 points that define the polygon vertices. | <code>list[<a href="/docs/classes/vec2">Vec2</a>]</code> |
+| `centroid` | Get or set the centroid of the polygon. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `perimeter` | Get the perimeter of the polygon. | <code>float</code> |
 | `area` | Get the area of the polygon. | <code>float</code> |
-| `centroid` | Get the centroid of the polygon. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `is_convex` | Check if the polygon is convex. | <code>bool</code> |
 | `is_concave` | Check if the polygon is concave. | <code>bool</code> |
 
@@ -54,27 +54,25 @@ _**Returns**_
 
 ### Rotate
 <div className="api-card">
-<ApiSig name="rotate" params={[{ name: "angle", type: "float" }, { name: "pivot", type: "Vec2", default: "..." }]} returns="None" />
+<ApiSig name="rotate" params={[{ name: "angle", type: "float" }]} returns="None" />
 
-Rotate the polygon around a pivot point.
+Rotate the polygon around its centroid.
 
 _**Args**_
 
 - `angle` : The rotation angle in radians.
-- `pivot` : The normalized point relative to the polygon's bounding box to rotate around. Defaults to center (0.5, 0.5).
 
 </div>
 
 ### Rotated
 <div className="api-card">
-<ApiSig name="rotated" params={[{ name: "angle", type: "float" }, { name: "pivot", type: "Vec2", default: "..." }]} returns="Polygon" />
+<ApiSig name="rotated" params={[{ name: "angle", type: "float" }]} returns="Polygon" />
 
 Return a rotated copy of the polygon.
 
 _**Args**_
 
 - `angle` : The rotation angle in radians.
-- `pivot` : The normalized point relative to the polygon's bounding box to rotate around. Defaults to center (0.5, 0.5).
 
 _**Returns**_
 
@@ -96,38 +94,35 @@ _**Args**_
 
 ### Scale By
 <div className="api-card">
-<ApiSig name="scale_by" params={[{ name: "factor", type: "float" }, { name: "pivot", type: "Vec2", default: "..." }]} returns="None" />
+<ApiSig name="scale_by" params={[{ name: "factor", type: "float" }]} returns="None" />
 
-Scale the polygon uniformly from a pivot point.
+Scale the polygon uniformly from its centroid.
 
 _**Args**_
 
 - `factor` : The scaling factor.
-- `pivot` : The normalized point relative to the polygon's bounding box to scale from. Defaults to center (0.5, 0.5).
 
 ---
 
-<ApiSig name="scale_by" params={[{ name: "factor", type: "Vec2" }, { name: "pivot", type: "Vec2", default: "..." }]} returns="None" />
+<ApiSig name="scale_by" params={[{ name: "factor", type: "Vec2" }]} returns="None" />
 
-Scale the polygon non-uniformly from a pivot point.
+Scale the polygon non-uniformly from its centroid.
 
 _**Args**_
 
 - `factor` : The scaling factors for x and y.
-- `pivot` : The normalized point relative to the polygon's bounding box to scale from. Defaults to center (0.5, 0.5).
 
 </div>
 
 ### Scaled By
 <div className="api-card">
-<ApiSig name="scaled_by" params={[{ name: "factor", type: "float" }, { name: "pivot", type: "Vec2", default: "..." }]} returns="Polygon" />
+<ApiSig name="scaled_by" params={[{ name: "factor", type: "float" }]} returns="Polygon" />
 
 Return a uniformly scaled copy of the polygon.
 
 _**Args**_
 
 - `factor` : The scaling factor.
-- `pivot` : The normalized point relative to the polygon's bounding box to scale from. Defaults to center (0.5, 0.5).
 
 _**Returns**_
 
@@ -135,14 +130,13 @@ _**Returns**_
 
 ---
 
-<ApiSig name="scaled_by" params={[{ name: "factor", type: "Vec2" }, { name: "pivot", type: "Vec2", default: "..." }]} returns="Polygon" />
+<ApiSig name="scaled_by" params={[{ name: "factor", type: "Vec2" }]} returns="Polygon" />
 
 Return a non-uniformly scaled copy of the polygon.
 
 _**Args**_
 
 - `factor` : The scaling factors for x and y.
-- `pivot` : The normalized point relative to the polygon's bounding box to scale from. Defaults to center (0.5, 0.5).
 
 _**Returns**_
 

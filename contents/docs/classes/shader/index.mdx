@@ -3,6 +3,13 @@ title: Shader
 description: Encapsulates a GPU shader and its associated render state. Access via the 'shaders' submodule.
 ---
 
+## Constructor
+<div className="api-card">
+
+- <ApiSig name="Shader" multiline params={[{ name: "fragment_base_path", type: "str | os.PathLike[str]" }, { name: "uniform_buffer_count", type: "int", default: "0" }, { name: "sampler_count", type: "int", default: "1" }]} returns="Shader" />
+
+Encapsulates a GPU shader and its associated render state.
+</div>
 
 ## Methods
 ---
@@ -12,6 +19,10 @@ description: Encapsulates a GPU shader and its associated render state. Access v
 <ApiSig name="bind" returns="None" />
 
 Binds this shader state to the current render pass, making it active for subsequent draw calls.
+
+_**Raises**_
+
+- `RuntimeError` : If the shader state cannot be bound.
 
 </div>
 
@@ -25,13 +36,37 @@ Unbinds the current shader state, reverting to the default render state.
 
 ### Set Uniform
 <div className="api-card">
-<ApiSig name="set_uniform" multiline params={[{ name: "binding", type: "int" }, { name: "data", type: "NDArray" }]} returns="None" />
+<ApiSig name="set_uniform" params={[{ name: "binding", type: "int" }, { name: "data", type: "Buffer" }]} returns="None" />
 
 Set uniform data for the fragment shader at the specified binding point.
 
 _**Args**_
 
 - `binding` : Uniform buffer binding index.
-- `data` : Buffer or bytes object containing the uniform data to upload.
+- `data` : Buffer-compatible object containing the uniform bytes.
+
+_**Raises**_
+
+- `TypeError` : If the object does not provide compatible uniform data.
+- `RuntimeError` : If the uniform data cannot be set.
+
+</div>
+
+### Set Texture Sampler
+<div className="api-card">
+<ApiSig name="set_texture_sampler" multiline params={[{ name: "binding", type: "int" }, { name: "texture", type: "Texture" }, { name: "sampler", type: "Sampler" }]} returns="None" />
+
+Set the texture and sampler used for a fragment shader texture binding.
+
+_**Args**_
+
+- `binding` : Sampler binding index.
+- `texture` : Texture to bind. Must have the `ShaderSampled` usage flag.
+- `sampler` : Sampler to use for the texture.
+
+_**Raises**_
+
+- `RuntimeError` : If the texture is not usable as a shader resource.
+- `ValueError` : If the binding index is out of range.
 
 </div>

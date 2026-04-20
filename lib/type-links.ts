@@ -20,6 +20,7 @@ export const TYPE_LINKS = {
   "Event": "/docs/classes/event",
   "EventType": "/docs/manual/constants#eventtype",
   "FilterJoint": "/docs/classes/filter-joint",
+  "FilterMode": "/docs/manual/constants#filtermode",
   "Font": "/docs/classes/font",
   "FontHint": "/docs/manual/constants#fonthint",
   "GamepadAxis": "/docs/manual/constants#gamepadaxis",
@@ -56,10 +57,10 @@ export const TYPE_LINKS = {
   "RevoluteJoint": "/docs/classes/revolute-joint",
   "RigidBody": "/docs/classes/rigid-body",
   "Sample": "/docs/classes/sample",
+  "Sampler": "/docs/classes/sampler",
   "Scancode": "/docs/manual/constants#scancode",
   "ScrollMode": "/docs/manual/constants#scrollmode",
   "Shader": "/docs/classes/shader",
-  "ShaderUniform": "/docs/classes/shader-uniform",
   "SheetStrip": "/docs/classes/sheet-strip",
   "StaticBody": "/docs/classes/static-body",
   "Stream": "/docs/classes/stream",
@@ -70,7 +71,7 @@ export const TYPE_LINKS = {
   "Texture": "/docs/classes/texture",
   "Texture.Flip": "/docs/classes/texture.-flip",
   "TextureAccess": "/docs/manual/constants#textureaccess",
-  "TextureScaleMode": "/docs/manual/constants#texturescalemode",
+  "TextureUsage": "/docs/manual/constants#textureusage",
   "TileLayer": "/docs/classes/tile-layer",
   "TileLayer.Tile": "/docs/classes/tile-layer.-tile",
   "TileLayer.TileResult": "/docs/classes/tile-layer.-tile-result",
@@ -86,6 +87,7 @@ export const TYPE_LINKS = {
   "WeldJoint": "/docs/classes/weld-joint",
   "WheelJoint": "/docs/classes/wheel-joint",
   "World": "/docs/classes/world",
+  "WrapMode": "/docs/manual/constants#wrapmode",
 } as const;
 
 export type TypeLinkName = keyof typeof TYPE_LINKS;

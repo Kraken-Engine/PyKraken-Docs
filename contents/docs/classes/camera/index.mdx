@@ -6,9 +6,7 @@ description: Represents a 2D camera used for rendering.
 ## Constructor
 <div className="api-card">
 
-- <ApiSig name="Camera" returns="Camera" />
-- <ApiSig name="Camera" params={[{ name: "pos", type: "Vec2" }]} returns="Camera" />
-- <ApiSig name="Camera" params={[{ name: "x", type: "float" }, { name: "y", type: "float" }]} returns="Camera" />
+- <ApiSig name="Camera" params={[{ name: "set_active", type: "bool", default: "False" }]} returns="Camera" />
 
 Represents a 2D camera used for rendering.
 </div>
@@ -18,10 +16,36 @@ Represents a 2D camera used for rendering.
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `pos` | Get or set the camera's position. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `world_pos` | Get or set the camera's world position. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `local_pos` | Get or set the camera position in camera-local space. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `angle` | Get or set the camera angle in radians. | <code>float</code> |
 
 ## Methods
 ---
+
+### Move Local
+<div className="api-card">
+<ApiSig name="move_local" params={[{ name: "delta", type: "Vec2" }]} returns="None" />
+
+Move the camera by a delta in camera-local (screen) space.
+
+_**Args**_
+
+- `delta` : Local movement delta.
+
+</div>
+
+### Move World
+<div className="api-card">
+<ApiSig name="move_world" params={[{ name: "delta", type: "Vec2" }]} returns="None" />
+
+Move the camera by a delta in world space.
+
+_**Args**_
+
+- `delta` : World movement delta.
+
+</div>
 
 ### Set
 <div className="api-card">

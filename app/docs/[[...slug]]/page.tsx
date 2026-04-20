@@ -50,11 +50,30 @@ export async function generateMetadata(props: PageProps) {
     if (!res) return {};
     const { title, description } = res;
     const canonicalPath = pathName ? `/docs/${pathName}` : "/docs";
+    const fullUrl = `https://krakenengine.org${canonicalPath}`;
     return {
         title,
         description,
         alternates: {
-            canonical: canonicalPath,
+            canonical: fullUrl,
+        },
+        openGraph: {
+            title,
+            description,
+            url: fullUrl,
+            images: [
+                {
+                    url: "https://krakenengine.org/opengraph-image",
+                    alt: title,
+                },
+            ],
+            type: "article",
+        },
+        twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+            images: ["https://krakenengine.org/twitter-image"],
         },
     };
 }

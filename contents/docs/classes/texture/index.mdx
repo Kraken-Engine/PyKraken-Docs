@@ -6,9 +6,9 @@ description: Represents a hardware-accelerated image that can be efficiently ren
 ## Constructor
 <div className="api-card">
 
-- <ApiSig name="Texture" multiline params={[{ name: "file_path", type: "str | os.PathLike[str]" }, { name: "scale_mode", type: "TextureScaleMode", default: "TextureScaleMode.DEFAULT" }, { name: "access", type: "TextureAccess", default: "TextureAccess.STATIC" }]} returns="Texture" />
-- <ApiSig name="Texture" multiline params={[{ name: "pixel_array", type: "PixelArray" }, { name: "scale_mode", type: "TextureScaleMode", default: "TextureScaleMode.DEFAULT" }, { name: "access", type: "TextureAccess", default: "TextureAccess.STATIC" }]} returns="Texture" />
-- <ApiSig name="Texture" multiline params={[{ name: "width", type: "int" }, { name: "height", type: "int" }, { name: "scale_mode", type: "TextureScaleMode", default: "TextureScaleMode.DEFAULT" }]} returns="Texture" />
+- <ApiSig name="Texture" multiline params={[{ name: "file_path", type: "str | os.PathLike[str]" }, { name: "filter", type: "FilterMode", default: "FilterMode.DEFAULT" }, { name: "access", type: "TextureAccess", default: "TextureAccess.STATIC" }, { name: "usage", type: "TextureUsage", default: "TextureUsage.DRAWABLE" }]} returns="Texture" />
+- <ApiSig name="Texture" multiline params={[{ name: "pixel_array", type: "PixelArray" }, { name: "filter", type: "FilterMode", default: "FilterMode.DEFAULT" }, { name: "access", type: "TextureAccess", default: "TextureAccess.STATIC" }, { name: "usage", type: "TextureUsage", default: "TextureUsage.DRAWABLE" }]} returns="Texture" />
+- <ApiSig name="Texture" multiline params={[{ name: "width", type: "int" }, { name: "height", type: "int" }, { name: "filter", type: "FilterMode", default: "FilterMode.DEFAULT" }, { name: "usage", type: "TextureUsage", default: "TextureUsage.DRAWABLE" }]} returns="Texture" />
 
 Represents a hardware-accelerated image that can be efficiently rendered.
 </div>
@@ -18,6 +18,7 @@ Represents a hardware-accelerated image that can be efficiently rendered.
 
 | Name | Description | Type |
 | --- | --- | --- |
+| `usage` | The usage flags describing how the texture can be used. | <code><a href="/docs/manual/constants#textureusage">TextureUsage</a></code> |
 | `flip` | The flip settings for horizontal and vertical mirroring. | <code><a href="/docs/classes/texture.-flip">Texture.Flip</a></code> |
 | `alpha` | Get or set the alpha modulation of the texture as a float between `0.0` and `1.0`. | <code>float</code> |
 | `clip_area` | Get or set the clip area (atlas region) of the texture. | <code><a href="/docs/classes/rect">Rect</a></code> |
@@ -28,6 +29,22 @@ Represents a hardware-accelerated image that can be efficiently rendered.
 
 ## Methods
 ---
+
+### Has Usage
+<div className="api-card">
+<ApiSig name="has_usage" params={[{ name: "usage", type: "TextureUsage" }]} returns="bool" />
+
+Check whether the texture was created with a specific usage flag.
+
+_**Args**_
+
+- `usage` : Usage flag to test.
+
+_**Returns**_
+
+`bool` : True if the usage flag is present.
+
+</div>
 
 ### Get Rect
 <div className="api-card">

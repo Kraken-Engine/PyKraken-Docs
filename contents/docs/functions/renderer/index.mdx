@@ -5,27 +5,27 @@ description: Functions for rendering graphics
 
 ---
 
-## Set Default Scale Mode
+## Set Default Filter Mode
 <div className="api-card">
-<ApiSig name="set_default_scale_mode" multiline params={[{ name: "scale_mode", type: "TextureScaleMode" }]} returns="None" />
+<ApiSig name="set_default_filter_mode" multiline params={[{ name: "filter", type: "FilterMode" }]} returns="None" />
 
-Set the default TextureScaleMode for new textures. The factory default is TextureScaleMode.LINEAR.
+Set the default FilterMode for new textures. The factory default is FilterMode::Default.
 
 _**Args**_
 
-- `scale_mode` : The default scaling/filtering mode to use for new textures.
+- `filter` : The default scaling/filtering mode to use for new textures.
 
 </div>
 
-## Get Default Scale Mode
+## Get Default Filter Mode
 <div className="api-card">
-<ApiSig name="get_default_scale_mode" returns="TextureScaleMode" />
+<ApiSig name="get_default_filter_mode" returns="FilterMode" />
 
-Get the current default TextureScaleMode for new textures.
+Get the current default FilterMode for new textures.
 
 _**Returns**_
 
-`TextureScaleMode` : The current default scaling/filtering mode.
+`FilterMode` : The current default scaling/filtering mode.
 
 </div>
 
@@ -163,18 +163,20 @@ _**Args**_
 
 ---
 
-<ApiSig name="draw" multiline params={[{ name: "texture", type: "Texture" }, { name: "dst", type: "Rect" }]} returns="None" />
+<ApiSig name="draw" multiline params={[{ name: "texture", type: "Texture" }, { name: "dst", type: "Rect" }, { name: "angle", type: "float", default: "0.0" }, { name: "pivot", type: "Vec2", default: "..." }]} returns="None" />
 
-Render a texture stretched into a destination rectangle.
+Render a texture stretched into a destination rectangle without a camera's transform applied.
 
 This is a simpler alternative to the transform-based draw when you only
-need to place a texture at a specific screen rectangle without rotation.
+need to place a texture at a specific screen rectangle.
 The source region is determined by the texture's clip area.
 
 _**Args**_
 
 - `texture` : The texture to render.
 - `dst` : Destination rectangle on screen.
+- `angle` : The rotation angle in degrees. Defaults to 0.0.
+- `pivot` : The rotation pivot (0.0-1.0). Defaults to center (0.5, 0.5).
 
 </div>
 
@@ -182,7 +184,7 @@ _**Args**_
 <div className="api-card">
 <ApiSig name="draw_9slice" multiline params={[{ name: "texture", type: "Texture" }, { name: "dst", type: "Rect" }, { name: "slice", type: "Rect" }, { name: "anchor", type: "Vec2", default: "..." }, { name: "pivot", type: "Vec2", default: "..." }]} returns="None" />
 
-Render a texture using 9-slice scaling (9-grid).
+Render a texture using 9-slice scaling (9-grid). The camera's transform is not applied to this draw.
 
 This divides the texture into 9 regions: 4 corners (unscaled), 4 edges (scaled in one axis),
 and 1 center (scaled in both axes).

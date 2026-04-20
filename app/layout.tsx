@@ -22,9 +22,34 @@ const monoFont = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kraken Engine Docs",
-  description: "Official documentation for building with Kraken Engine.",
+  title: {
+    default: "Kraken Engine — 2D Game Engine for Python",
+    template: "%s | Kraken Engine",
+  },
+  description:
+    "Kraken Engine — modern, flexible 2D game engine in Python. Docs, tutorials, API reference, and examples for rapid game development.",
   metadataBase: new URL("https://krakenengine.org"),
+  openGraph: {
+    title: "Kraken Engine — 2D Game Engine for Python",
+    description:
+      "Modern, flexible 2D game engine designed for rapid development and creative control.",
+    url: "https://krakenengine.org/",
+    siteName: "Kraken Engine",
+    images: [
+      {
+        url: "https://krakenengine.org/opengraph-image",
+        alt: "Kraken Engine",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kraken Engine — 2D Game Engine for Python",
+    description:
+      "Modern, flexible 2D game engine designed for rapid development and creative control.",
+    images: ["https://krakenengine.org/twitter-image"],
+  },
 };
 
 export default function RootLayout({
@@ -37,6 +62,31 @@ export default function RootLayout({
       <head>
         <meta name="google-site-verification" content="51FuVdeHR3lVbkJUCjnjv7_5yL4qFHENyflOnr8j9Hs" />
         <meta name="algolia-site-verification" content="A64DA3DC7E5E03DB" />
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                name: "Kraken Engine",
+                url: "https://krakenengine.org/",
+                logo: "https://krakenengine.org/images/knicon.svg",
+                sameAs: [
+                  "https://github.com/krakenengine",
+                ],
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                url: "https://krakenengine.org/",
+                name: "Kraken Engine Docs",
+                publisher: { "@type": "Organization", name: "Kraken Engine" },
+              },
+            ]),
+          }}
+        />
         <link
           rel="stylesheet"
           type="text/css"

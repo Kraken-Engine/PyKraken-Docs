@@ -162,6 +162,16 @@ SDL event type constants for input and system events.
 | `USER` | User event base | `EventType` |
 | `LAST` | Last event value | `EventType` |
 
+## FilterMode
+Texture scaling and filtering modes.
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `NEAREST` | Nearest-neighbor scaling | `FilterMode` |
+| `LINEAR` | Linear filtering | `FilterMode` |
+| `PIXEL_ART` | Pixel-art friendly scaling | `FilterMode` |
+| `DEFAULT` | Renderer default scaling | `FilterMode` |
+
 ## FontHint
 Font hinting modes for controlling how fonts are rendered.
 
@@ -670,15 +680,13 @@ Texture access mode for GPU textures.
 | `STATIC` | Static texture | `TextureAccess` |
 | `TARGET` | Render target texture | `TextureAccess` |
 
-## TextureScaleMode
-Texture scaling and filtering modes.
+## TextureUsage
+Texture usage flags describing how a texture can be used.
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `NEAREST` | Nearest-neighbor scaling | `TextureScaleMode` |
-| `LINEAR` | Linear filtering | `TextureScaleMode` |
-| `PIXEL_ART` | Pixel-art friendly scaling | `TextureScaleMode` |
-| `DEFAULT` | Renderer default scaling | `TextureScaleMode` |
+| `DRAWABLE` | Renderer texture storage | `TextureUsage` |
+| `SHADER_SAMPLED` | GPU shader-sampled texture | `TextureUsage` |
 
 ## ViewportMode
 Viewport layout mode for split-screen layouts.
@@ -687,3 +695,12 @@ Viewport layout mode for split-screen layouts.
 | --- | --- | --- |
 | `VERTICAL` | Split viewports vertically | `ViewportMode` |
 | `HORIZONTAL` | Split viewports horizontally | `ViewportMode` |
+
+## WrapMode
+Texture address mode used by shader samplers.
+
+| Name | Description | Type |
+| --- | --- | --- |
+| `CLAMP` | Clamp texture coordinates to the edge | `WrapMode` |
+| `MIRROR` | Mirror texture coordinates | `WrapMode` |
+| `REPEAT` | Repeat texture coordinates | `WrapMode` |

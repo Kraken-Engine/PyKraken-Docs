@@ -6,7 +6,7 @@ description: A TMX map with access to its layers and tilesets. Access via the 't
 ## Constructor
 <div className="api-card">
 
-- <ApiSig name="Map" returns="Map" />
+- <ApiSig name="Map" params={[{ name: "tmx_path", type: "str | os.PathLike", default: "''" }]} returns="Map" />
 
 A TMX map with access to its layers and tilesets.
 </div>
@@ -48,9 +48,14 @@ _**Args**_
 
 ### Draw
 <div className="api-card">
-<ApiSig name="draw" returns="None" />
+<ApiSig name="draw" multiline params={[{ name: "angle", type: "float", default: "0.0" }, { name: "pivot", type: "Vec2", default: "..." }]} returns="None" />
 
 Draw all layers.
+
+_**Args**_
+
+- `angle` : Rotation angle in degrees to apply to the entire map. Defaults to 0.0.
+- `pivot` : Pivot point for rotation, as normalized coordinates relative to the map size. Defaults to (0.5, 0.5).
 
 </div>
 
