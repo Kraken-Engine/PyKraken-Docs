@@ -44,6 +44,51 @@ score_text.text = "Score: 0"
 score_text.color = kn.Color(255, 200, 0)
 ```
 
+## Keep the Font Alive
+
+A `Text` object uses the `Font` you pass into it, but it does not keep that font alive for you.
+In Python terms: keep a normal reference to the font for as long as any text object using it still exists.
+
+The following snippet is good practice for handling fonts and text.
+The `font` variable stays around, so `label` can keep drawing safely:
+
+```python
+font = kn.Font("fonts/arial.ttf", 24)
+label = kn.Text(font)
+label.text = "Ready"
+```
+
+Whereas in this next snippet, the `font` variable goes out of scope and `label` looses sight of it:
+
+```python
+def make_label():
+    font = kn.Font("fonts/arial.ttf", 24)
+    label = kn.Text(font)
+    label.text = "Ready"
+    return label
+
+label = make_label()
+```
+
+When `make_label()` returns, the local `font` variable can disappear.
+The `Text` object still knows which font it was created with, but the original `Font` object may no longer be alive when you draw.
+
+If you make text in a helper function, return or store the font too:
+
+```python
+def make_label():
+    font = kn.Font("fonts/arial.ttf", 24)
+    label = kn.Text(font)
+    label.text = "Ready"
+    return font, label
+
+label_font, label = make_label()
+```
+
+<Note title="Rule of thumb">
+Store fonts in the same place you store the text objects that use them: module variables, scene attributes, UI state, or any other object that lives as long as the text.
+</Note>
+
 ## Drawing Text
 
 Text objects have their own `draw()` method:
@@ -144,7 +189,7 @@ kn.init()
 kn.window.create("Text Example", SCN_WIDTH, SCN_HEIGHT)
 kn.time.set_target(60)
 
-# Load fonts
+# Load fonts. Keep these variables alive while the Text objects below exist.
 small_font = kn.Font("fonts/arial.ttf", 20)
 medium_font = kn.Font("fonts/arial.ttf", 32)
 large_font = kn.Font("fonts/arial.ttf", 64)
