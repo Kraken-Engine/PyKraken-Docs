@@ -1,5 +1,6 @@
 ---
 title: Using the Orchestrator
+description: Animation beyond imagination. Give life to cutscenes.
 ---
 
 The `Orchestrator` creates smooth animations and sequences by applying effects to `Transform` objects over time.
@@ -26,7 +27,7 @@ transform = kn.Transform(pos=kn.Vec2(100, 300))
 orch = kn.Orchestrator(transform)
 ```
 
-The target can be a `Transform` object or any object with a "transform" attribute of type `Transform`.
+The target must be a `Transform` object.
 
 ## Sequencing Effects
 
@@ -62,6 +63,38 @@ orch.parallel(
     fx.rotate_to(180 * kn.math.DEG2RAD, dur=1.2),
 )
 ```
+
+### Effect Behavior
+
+Effects returned by factory functions like `fx.move_to`, `fx.rotate_to`, and `fx.scale_to` are single-use objects.
+When you pass an effect to `then()` or `parallel()`, that orchestrator consumes it as part of its timeline.
+
+That means this is the right pattern:
+
+```python
+orch.then(fx.move_to(kn.Vec2(400, 100), dur=0.5))
+orch.then(fx.move_to(kn.Vec2(100, 300), dur=0.5))
+```
+
+Avoid reusing the same effect object in multiple timeline steps:
+
+```python
+hop = fx.move_to(kn.Vec2(400, 100), dur=0.5)
+
+orch.then(hop)
+orch.then(hop)  # Do not reuse an already-consumed effect.
+```
+
+If you intentionally want the same effect settings in more than one place, clone it before giving it to another timeline step:
+
+```python
+hop = fx.move_to(kn.Vec2(400, 100), dur=0.5)
+
+orch.then(hop.clone())
+orch.then(hop.clone())
+```
+
+See [`Effect.clone`](/docs/classes/effect#clone) for the API reference.
 
 ## Easing Functions
 
