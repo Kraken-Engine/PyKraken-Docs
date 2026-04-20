@@ -160,7 +160,7 @@ export const GUIDE_ROUTES: EachRoute[] = [
     noLink: true,
     items: [
       { title: "What is a Shader?", href: "/what-is-a-shader" },
-      { title: "Using Shader States", href: "/using-shader-states" },
+      { title: "Using Shaders", href: "/using-shaders" },
       { title: "Uniforms", href: "/uniforms" },
     ]
   },

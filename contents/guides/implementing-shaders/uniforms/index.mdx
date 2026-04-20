@@ -1,33 +1,21 @@
 ---
 title: Uniforms
+description: Pass CPU-side data into Kraken fragment shaders.
 ---
 
-As described in the [What is a Shader?](./what-is-a-shader) page, uniforms are simply data that is constant for a single draw call, sent from the CPU to the GPU.
-In Kraken, uniform data can be stored and sent to the GPU using `ShaderUniform`-inherited objects.
+Uniforms are small packets of data you send from Python to a shader.
+Use them for values that change per frame or per draw call: time, tint, strength, resolution, offsets, thresholds, and similar effect controls.
 
-## Creating a Uniform Buffer
+`Shader.set_uniform(binding, data)` accepts a buffer-like object containing the exact bytes your shader expects.
+That can be `bytes`, `bytearray`, `memoryview`, or a small class that exposes bytes through a method or property you control.
 
-To create a uniform buffer, you need to define a class that inherits from `ShaderUniform`.
-Here's an example of a uniform buffer with commonly used data types:
-```py
-class MyUniform(kn.ShaderUniform):
-    value: float
-    offset: tuple[float, float]
-    color: tuple[float, float, float, float]
-```
-It can then be instantiated and updated like so:
-```py
-my_uniform = MyUniform(value=1.0, offset=(0.0, 0.0), color=(1.0, 1.0, 1.0, 1.0))
+## Match the Shader Layout
 
-# To update the uniform values
-my_uniform.value = 2.5
-my_uniform.offset = (10.0, 20.0)
-```
+The Python bytes and the shader uniform block must have the same field order, sizes, and padding.
+For portable fragment uniforms, prefer packing values into 16-byte groups, such as `float4` in HLSL or `vec4` in GLSL.
 
-## Defining Uniforms in Shaders
-
-In your shader code, you need to define the uniform buffer to match the structure of your `ShaderUniform` class.
-Here's how you would define the `MyUniform` in both HLSL and GLSL:
+This shader expects one uniform buffer at binding `0`.
+The buffer is a single `float4`: time, strength, scale, and an unused padding value.
 
 <Tabs defaultValue="hlsl">
     <TabsList>
@@ -35,38 +23,100 @@ Here's how you would define the `MyUniform` in both HLSL and GLSL:
         <TabsTrigger value="glsl">GLSL</TabsTrigger>
     </TabsList>
     <TabsContent value="hlsl">
-    ```hlsl:my_shader.frag.hlsl
-    cbuffer MyUniform : register(b0, space3) {
-        float value;
-        float2 offset;
-        float4 color;
+    ```hlsl:wind.frag.hlsl showLineNumbers
+    cbuffer WindUniform : register(b0, space3) {
+        float4 wind; // x = time, y = strength, z = scale, w = unused
     };
     ```
     </TabsContent>
     <TabsContent value="glsl">
-    ```glsl:my_shader.frag.glsl
-    layout(set = 3, binding = 0) uniform MyUniform {
-        float value;
-        vec2 offset;
-        vec4 color;
+    ```glsl:wind.frag.glsl showLineNumbers
+    layout(set = 3, binding = 0) uniform WindUniform {
+        vec4 wind; // x = time, y = strength, z = scale, w = unused
     };
     ```
     </TabsContent>
 </Tabs>
 
-## Binding Uniforms
+The matching Python data can be packed with `struct`:
 
-When creating a `ShaderState`, you need to specify the number of uniform buffers it will use.
-For example, if your shader uses one uniform buffer, you would create the `ShaderState` like this:
 ```py
-my_shader = kn.ShaderState(
-    fragment_file_path="path/to/my_shader.frag.spv",
-    uniform_buffer_count=1,  # One uniform buffer (MyUniform)
-    sampler_count=1
+import struct
+
+def pack_wind_uniform(time: float, strength: float, scale: float) -> bytes:
+    return struct.pack("<4f", time, strength, scale, 0.0)
+```
+
+`"<4f"` means four little-endian 32-bit floats.
+That produces 16 bytes, matching the shader's `float4` or `vec4`.
+
+## A Small Data Structure
+
+For anything you update every frame, a tiny data structure keeps the code pleasant without hiding the byte layout.
+
+```py
+from dataclasses import dataclass
+import struct
+
+@dataclass
+class WindUniform:
+    time: float = 0.0
+    strength: float = 1.0
+    scale: float = 0.1
+
+    def to_bytes(self) -> bytes:
+        return struct.pack("<4f", self.time, self.strength, self.scale, 0.0)
+```
+
+Then create the shader with one uniform buffer:
+
+```py
+wind_shader = kn.Shader(
+    "assets/shaders/wind.frag",
+    uniform_buffer_count=1,
+    sampler_count=2,
 )
 ```
 
-Then, after binding the shader state, you can bind the uniform buffer to a specific binding point at any point (usually once per frame):
+Update and send the uniform before drawing with the shader:
+
 ```py
-my_shader.set_uniform(binding=0, data=my_uniform.to_bytes())
+wind = WindUniform(strength=0.8, scale=0.1)
+
+wind.time = kn.time.get_elapsed()
+wind_shader.set_uniform(0, wind.to_bytes())
 ```
+
+The `0` in `set_uniform(0, ...)` matches `register(b0, space3)` in HLSL and `layout(set = 3, binding = 0)` in GLSL.
+
+## Multiple Uniform Buffers
+
+If you use more than one uniform buffer, keep the bindings explicit and sequential:
+
+```hlsl
+cbuffer WindUniform : register(b0, space3) {
+    float4 wind;
+};
+
+cbuffer ColorUniform : register(b1, space3) {
+    float4 tint;
+};
+```
+
+```py
+shader = kn.Shader(
+    "assets/shaders/effect.frag",
+    uniform_buffer_count=2,
+    sampler_count=1,
+)
+
+shader.set_uniform(0, wind_uniform.to_bytes())
+shader.set_uniform(1, tint_uniform.to_bytes())
+```
+
+The constructor count is not optional bookkeeping.
+It tells Kraken how many uniform bindings the shader will use, so set it to the highest binding you use plus one.
+
+<Note title="Common mistake">
+Changing a Python object does not update the GPU by itself. After changing fields like `time` or `strength`, call `shader.set_uniform(binding, data)` with freshly packed bytes.
+</Note>

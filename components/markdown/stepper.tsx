@@ -6,7 +6,7 @@ export function Stepper({ children }: PropsWithChildren) {
   const length = Children.count(children);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col mdx-stepper">
       {Children.map(children, (child, index) => {
         return (
           <div

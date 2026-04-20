@@ -3,22 +3,130 @@ title: What is a Shader?
 description: An introduction to shaders and their role in graphics rendering.
 ---
 
-**Shaders** are small programs that run on the GPU (Graphics Processing Unit) and are responsible for rendering graphics in a game or application.
-They allow developers to control the *visual appearance* of objects by manipulating how they are drawn on the screen.
+A **shader** is a small GPU program that changes how something is drawn.
+In Kraken, custom shaders are used as fragment effects;
+they receive the color, texture coordinates, textures, samplers, and uniform data for a draw call, then return the final pixel color.
 
-### Types of Shaders
-Shaders are typically written in specialized programming languages such as *GLSL* (OpenGL Shading Language) or *HLSL* (High-Level Shading Language).
-There are several types of shaders, but the most common ones are:
-* **Vertex Shaders**: These shaders process each vertex of a 3D model, transforming its position in 3D space to 2D screen coordinates.
-They can also manipulate vertex attributes like color, texture coordinates, and normals.
-* **Fragment Shaders**: Also known as pixel shaders, these shaders determine the color and other attributes of each pixel on the screen.
-They are responsible for effects like lighting, texturing, and color blending.
-* **Compute Shaders**: These shaders are used for general-purpose computing tasks on the GPU, allowing for parallel processing of data.
-They are not directly involved in rendering graphics but can be used for tasks like physics simulations, image processing, and more.
+That makes them a good fit for effects like:
 
-### Uniforms, Textures, and Buffers
-Shaders often rely on external data to perform their calculations. This data can come in the form of:
-* **Uniforms**: These are constant values that are passed to the shader from the CPU.
-They can include transformation matrices, lighting parameters, or any other data that remains constant for a draw call.
-* **Textures**: These are images or data that can be sampled by the shader to apply patterns, colors, or other effects to the rendered objects.
-* **Buffers**: These are blocks of memory that store large amounts of data, such as vertex attributes or other information that the shader needs to access.
+- tinting or recoloring sprites
+- screen-space distortion
+- palette swaps
+- water, heat haze, grass wind, or light pulses
+- combining a base texture with one or more mask/noise textures
+
+Kraken currently exposes custom **fragment shaders** only.
+You do not write a custom vertex pipeline or compute shader for this feature yet, so most shader work in Kraken answers one question:
+> Given this pixel and the data I bound, what color should it become?
+
+## The Pieces
+
+A fragment shader usually reads from three kinds of inputs:
+
+- **Texture samplers**: Textures paired with samplers, such as a sprite texture plus nearest or linear filtering.
+- **Uniform buffers**: Small pieces of CPU-side data that stay constant for a draw call or frame, such as time, color, strength, or resolution.
+- **Interpolated inputs**: Values Kraken's renderer passes into the fragment shader, such as vertex color and UV coordinates.
+
+Here is a tiny HLSL fragment shader that samples one texture and returns it:
+
+```hlsl:simple.frag.hlsl showLineNumbers
+Texture2D spriteTex : register(t0, space2);
+SamplerState spriteSamp : register(s0, space2);
+
+struct PSInput {
+    float4 v_color : COLOR0;
+    float2 v_uv    : TEXCOORD0;
+};
+
+struct PSOutput {
+    float4 o_color : SV_Target;
+};
+
+PSOutput main(PSInput input) {
+    PSOutput output;
+    output.o_color = spriteTex.Sample(spriteSamp, input.v_uv) * input.v_color;
+    return output;
+}
+```
+
+The texture and sampler are binding `0`.
+The `v_color` and `v_uv` fields are values supplied by Kraken's default draw path.
+The output is a single color for the pixel being rendered.
+
+## Shader Languages
+
+Kraken's shader baker, `pykraken bake`, accepts **HLSL** input and produces the platform shader files Kraken needs.
+This is the recommended path.
+
+```powershell
+pykraken bake shaders/simple.frag.hlsl -o assets/shaders
+```
+
+You can still write GLSL, but Kraken does not bake GLSL for you.
+If you choose GLSL, compile it yourself into the format your target platform needs,
+then load the resulting shader by its base path with `kn.shaders.Shader`.
+
+<Note title="Use HLSL unless you have a reason not to">
+HLSL gives you the smoothest Kraken workflow because `pykraken bake` can generate the runtime shader files for you. GLSL is for users who already have their own shader compilation step.
+</Note>
+
+## Binding Rules Matter
+
+Shader resource bindings must be authored in a specific order.
+If the shader compiles but samples the wrong texture, reads empty uniform data, or behaves differently on another backend, this is the first thing to check.
+
+Kraken's current custom shader API binds fragment resources only, so these are the rules you will use most often:
+
+### HLSL DXIL Fragment Shaders
+
+- Sampled textures use `register(t0, space2)`, `register(t1, space2)`, and so on.
+- Samplers use matching indices: `register(s0, space2)`, `register(s1, space2)`, and so on.
+- Uniform buffers use `register(b0, space3)`, `register(b1, space3)`, and so on.
+
+```hlsl
+Texture2D baseTex  : register(t0, space2);
+Texture2D noiseTex : register(t1, space2);
+
+SamplerState baseSamp  : register(s0, space2);
+SamplerState noiseSamp : register(s1, space2);
+
+cbuffer WindUniform : register(b0, space3) {
+    float4 wind;
+};
+```
+
+### GLSL SPIR-V Fragment Shaders
+
+- Sampled textures are in resource set `2`.
+- Uniform buffers are in resource set `3`.
+- Within each set, bindings start at `0` and increase from there.
+
+```glsl
+layout(set = 2, binding = 0) uniform sampler2D baseTex;
+layout(set = 2, binding = 1) uniform sampler2D noiseTex;
+
+layout(set = 3, binding = 0) uniform WindUniform {
+    vec4 wind;
+};
+```
+
+### MSL Fragment Shaders
+
+- `[[texture]]` entries are sampled textures.
+- `[[sampler]]` entries use indices matching the sampled textures.
+- `[[buffer]]` entries list uniform buffers.
+
+If you are using HLSL with Kraken's baker, you normally do not write these MSL bindings by hand.
+
+## HLSL Input Semantics
+
+For HLSL source, it must accept one vertex color and one vertex texture coordinate as such:
+
+```hlsl
+struct PSInput {
+    float4 v_color : COLOR0;
+    float2 v_uv    : TEXCOORD0;
+};
+```
+
+Keeping this convention in your shader source makes the generated platform shaders line up consistently.

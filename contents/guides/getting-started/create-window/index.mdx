@@ -1,12 +1,31 @@
 ---
 title: Creating a Window
+description: Build your first Kraken application by creating a game window.
 ---
 
 Congratulations on getting Kraken Engine installed!
+This page helps you launch your first window with in-depth descriptions of what each line means.
 
-This page aims to get you in the hang of launching your first window with in-depth descriptions of what each line means.
+## Quickstart with the CLI (Optional)
+
+If you want a ready-to-run window template, you can generate one with the built-in CLI:
+
+```bash
+pykraken init my_project
+cd my_project && python main.py
+```
+
+*Usage:*
+```plaintext
+pykraken init [-h] [-f] [--demo] [path]
+```
+- `path`: Folder to create the project in (defaults to current directory)
+- `-f`, `--force`: Overwrite an existing `main.py`
+- `--demo`: Generate starter code with text and shape rendering
 
 ## Starter Code Snippet
+
+If you prefer to write it manually, use the following:
 
 ```python:main.py showLineNumbers
 import pykraken as kn
@@ -16,6 +35,8 @@ kn.window.create("Kraken Example", 900, 500)
 
 while kn.window.is_open():
     kn.event.poll()
+    kn.renderer.clear()
+    kn.renderer.present()
 
 kn.quit()
 ```
@@ -27,12 +48,16 @@ Let's break down the key components that make this program function:
 
 1. **Initializing Kraken Engine**
     - `kn.init()` prepares the underlying frameworks and features, ensuring the engine is ready to deliver everything it promises.
-2. **Creating the Window**
+1. **Creating the Window**
     - `kn.window.create("Kraken Example", 900, 500)` creates the window with a size of 900x500 pixels and a title of "Kraken Example".
-3. **Looping and Event Polling**
+1. **Looping and Event Polling**
     - The `while kn.window.is_open():` loop keeps the application running as long as the window is open.
     Inside it, `kn.event.poll()` updates internal event states like keyboard, mouse, and controller user input.
-4. **Cleanly Quitting the Application**
+1. **Rendering**
+    - `kn.renderer.clear()` overwrites the back buffer's pixels to prepare for new drawing operations.
+1. **Presenting the Frame**
+    - `kn.renderer.present()` copies the back buffer to the screen with any drawing commands issued since the last clear.
+1. **Cleanly Quitting the Application**
     - Once the window is closed, exiting the main loop, `kn.quit()` safely shuts down the engine and frees any resources in use.
 
-This template establishes a foundation for more advanced game logic and rendering.
+*This template establishes a foundation for more advanced game logic and rendering.*

@@ -23,14 +23,14 @@ const monoFont = Space_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Kraken Engine — 2D Game Engine for Python",
+    default: "Kraken Engine - 2D Game Engine for Python",
     template: "%s | Kraken Engine",
   },
   description:
-    "Kraken Engine — modern, flexible 2D game engine in Python. Docs, tutorials, API reference, and examples for rapid game development.",
+    "Kraken Engine - modern, flexible 2D game engine in Python. Docs, tutorials, API reference, and examples for rapid game development.",
   metadataBase: new URL("https://krakenengine.org"),
   openGraph: {
-    title: "Kraken Engine — 2D Game Engine for Python",
+    title: "Kraken Engine - 2D Game Engine for Python",
     description:
       "Modern, flexible 2D game engine designed for rapid development and creative control.",
     url: "https://krakenengine.org/",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kraken Engine — 2D Game Engine for Python",
+    title: "Kraken Engine - 2D Game Engine for Python",
     description:
       "Modern, flexible 2D game engine designed for rapid development and creative control.",
     images: ["https://krakenengine.org/twitter-image"],

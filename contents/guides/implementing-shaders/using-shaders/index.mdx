@@ -1,0 +1,210 @@
+---
+title: Using Shaders
+description: Guide to loading and applying fragment shaders in Kraken.
+---
+
+Kraken shaders are loaded with `kn.shaders.Shader`.
+A shader object owns the compiled fragment shader plus the render state needed to use it for later draw calls.
+
+```py
+import pykraken as kn
+
+invert_shader = kn.shaders.Shader(
+    "assets/shaders/invert.frag",
+    uniform_buffer_count=0,
+    sampler_count=1,
+)
+```
+
+Pass the shader **base path** to `Shader`, not a source file path.
+For example, if your baked outputs include `assets/shaders/invert.frag.spv`, pass `"assets/shaders/invert.frag"`.
+Kraken picks the platform file it needs at runtime.
+
+## Bake HLSL Shaders
+
+The recommended workflow is:
+
+1. Write the fragment shader in HLSL.
+2. Bake it with `pykraken bake`.
+3. Load the baked shader by base path with `Shader`.
+4. Bind any texture samplers and uniforms before drawing with it.
+
+```powershell
+pykraken bake shaders/invert.frag.hlsl -o assets/shaders
+```
+
+The CLI accepts one input file and an optional output directory:
+
+```text
+pykraken bake [-h] [-o OUT] [-v] input
+```
+
+<Note>
+`pykraken bake` currently works for HLSL only. GLSL shaders are still allowed,
+but you must compile them yourself and place the compiled output
+where `Shader` can load it by base path.
+</Note>
+
+## A One-Texture Fragment Shader
+
+This shader inverts the color of the texture being drawn.
+It uses one texture sampler and no uniforms.
+
+<Tabs defaultValue="hlsl">
+    <TabsList>
+        <TabsTrigger value="hlsl">HLSL</TabsTrigger>
+        <TabsTrigger value="glsl">GLSL</TabsTrigger>
+    </TabsList>
+    <TabsContent value="hlsl">
+    ```hlsl:invert.frag.hlsl showLineNumbers
+    Texture2D spriteTex : register(t0, space2);
+    SamplerState spriteSamp : register(s0, space2);
+
+    struct PSInput {
+        float4 v_color : COLOR0;
+        float2 v_uv    : TEXCOORD0;
+    };
+
+    struct PSOutput {
+        float4 o_color : SV_Target;
+    };
+
+    PSOutput main(PSInput input) {
+        float4 color = spriteTex.Sample(spriteSamp, input.v_uv) * input.v_color;
+        color.rgb = 1.0 - color.rgb;
+
+        PSOutput output;
+        output.o_color = color;
+        return output;
+    }
+    ```
+    </TabsContent>
+    <TabsContent value="glsl">
+    ```glsl:invert.frag.glsl showLineNumbers
+    #version 450
+
+    layout(set = 2, binding = 0) uniform sampler2D spriteTex;
+
+    layout(location = 0) in vec4 v_color;
+    layout(location = 1) in vec2 v_uv;
+
+    layout(location = 0) out vec4 o_color;
+
+    void main() {
+        vec4 color = texture(spriteTex, v_uv) * v_color;
+        color.rgb = 1.0 - color.rgb;
+        o_color = color;
+    }
+    ```
+    </TabsContent>
+</Tabs>
+
+Load it with one sampler slot:
+
+```py
+invert_shader = kn.shaders.Shader(
+    "assets/shaders/invert.frag",
+    uniform_buffer_count=0,
+    sampler_count=1,
+)
+```
+
+Since the only texture and sampler we have are in binding `0`,
+we don't need to explicitly set it in code nor make the texture a shader samplable one.
+Thus, we can load it like normal:
+
+```py
+sprite_texture = kn.Texture("assets/player.png")
+```
+
+## Drawing With a Shader
+
+`bind()` makes the shader active for later draw calls.
+`unbind()` returns rendering to the default shader state.
+
+```py
+invert_shader.bind()
+kn.renderer.draw(sprite_texture)
+invert_shader.unbind()
+
+kn.renderer.draw(sprite_texture)  # Draws normally again.
+```
+
+Bind the shader as tightly as possible around the draw calls that need it.
+That keeps later rendering from accidentally inheriting the effect.
+
+## Multiple Texture Samplers
+
+When a shader uses multiple textures, the binding numbers must match on both sides.
+This wind-style fragment shader reads a base grass texture from binding `0` and a noise texture from binding `1`.
+
+```hlsl:windy_grass.frag.hlsl showLineNumbers
+Texture2D grassTex : register(t0, space2);
+Texture2D noiseTex : register(t1, space2);
+
+SamplerState grassSamp : register(s0, space2);
+SamplerState noiseSamp : register(s1, space2);
+
+cbuffer WindUniform : register(b0, space3) {
+    float4 wind; // x = time, y = strength, z = scale, w = unused
+};
+
+struct PSInput {
+    float4 v_color : TEXCOORD0;
+    float2 v_uv    : TEXCOORD1;
+};
+
+struct PSOutput {
+    float4 o_color : SV_Target;
+};
+
+PSOutput main(PSInput input) {
+    float time = wind.x;
+    float strength = wind.y;
+    float scale = wind.z;
+
+    float2 windCoord = input.v_uv * scale + float2(time * 0.04, time * 0.02);
+    float gust = smoothstep(0.1, 0.9, noiseTex.Sample(noiseSamp, windCoord).r);
+    gust = pow(gust, 0.7);
+
+    float2 distortion = float2(gust * 0.03, gust * 0.015) * strength;
+    distortion.x += sin(time * 8.0 + input.v_uv.y * 20.0) * 0.003 * gust;
+
+    float4 grass = grassTex.Sample(grassSamp, input.v_uv + distortion);
+    float3 rgb = grass.rgb * input.v_color.rgb + gust * 0.08;
+
+    PSOutput output;
+    output.o_color = float4(rgb, grass.a * input.v_color.a);
+    return output;
+}
+```
+
+The matching Python setup declares two sampler slots and one uniform buffer:
+
+```py
+wind_shader = kn.Shader(
+    "assets/shaders/windy_grass.frag",
+    uniform_buffer_count=1,
+    sampler_count=2,
+)
+
+# No SHADER_SAMPLED flag needed
+grass_texture = kn.Texture("assets/grass.png")
+
+# Not to be drawn, so no DRAWABLE flag
+noise_texture = kn.Texture(
+    "assets/wind_noise.png",
+    usage=kn.TextureUsage.SHADER_SAMPLED,
+)
+noise_sampler = kn.Sampler(wrap_u=kn.WrapMode.REPEAT, wrap_v=kn.WrapMode.REPEAT)
+wind_shader.set_texture_sampler(1, noise_texture, noise_sampler)
+
+# Then, in the game loop
+wind_shader.bind()
+kn.renderer.draw(grass_texture)
+wind_shader.unbind()
+```
+
+The `sampler_count` value is the number of texture/sampler pairs your shader expects.
+The `uniform_buffer_count` value is the number of uniform buffers your shader expects.
+If either count is too small, binding a higher index will fail.

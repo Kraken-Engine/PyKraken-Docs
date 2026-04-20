@@ -7,9 +7,9 @@ Comprehensive documentation for all classes available in Kraken Engine. Each cla
 
 ## Animation & Visual Effects
 - [AnimationController](/docs/classes/animation-controller) - Manages and controls sprite animations with multiple animation sequences
-- [Effect](/docs/classes/effect) - Base class for timeline effects (not directly instantiable, accessed via fx submodule)
-- [Orchestrator](/docs/classes/orchestrator) - Timeline animator for Transform objects
-- [SheetStrip](/docs/classes/sheet-strip) - A descriptor for one horizontal strip (row) in a sprite sheet
+- [Effect](/docs/classes/effect) - Base class for timeline effects (access via the `fx` submodule)
+- [Orchestrator](/docs/classes/orchestrator) - Timeline animator for `Transform` objects
+- [SheetStrip](/docs/classes/sheet-strip) - Descriptor for one horizontal strip (row) in a sprite sheet
 
 ## Audio
 - [Audio](/docs/classes/audio) - A decoded audio object that supports multiple simultaneous playbacks
@@ -17,6 +17,7 @@ Comprehensive documentation for all classes available in Kraken Engine. Each cla
 - [Stream](/docs/classes/stream) - A streaming audio resource intended for long music files
 
 ## Graphics & Rendering
+- [Batcher](/docs/classes/batcher) - GPU draw batching helper for preallocating draw memory and improving throughput
 - [Camera](/docs/classes/camera) - Represents a 2D camera used for rendering
 - [Color](/docs/classes/color) - Represents an RGBA color
 - [Font](/docs/classes/font) - A font typeface for rendering text
@@ -27,7 +28,7 @@ Comprehensive documentation for all classes available in Kraken Engine. Each cla
 - [Vertex](/docs/classes/vertex) - A vertex with position, color, and texture coordinates
 
 ## Shapes
-- [Anchor](/docs/classes/anchor) - Anchor positions returning Vec2 values for alignment
+- [Anchor](/docs/classes/anchor) - Anchor positions returning `Vec2` values for alignment
 - [Capsule](/docs/classes/capsule) - A shape defined by a line segment and a radius
 - [Circle](/docs/classes/circle) - Represents a circle shape with position and radius
 - [Line](/docs/classes/line) - A 2D line segment defined by two points: A and B
@@ -36,7 +37,7 @@ Comprehensive documentation for all classes available in Kraken Engine. Each cla
 
 ## Physics
 - [World](/docs/classes/world) - The main container for physics simulation
-- [Body](/docs/classes/body) - Base class for physics bodies (Rigid, Static, Character)
+- [Body](/docs/classes/body) - Base class for physics bodies
 - [RigidBody](/docs/classes/rigid-body) - A physics body influenced by forces and collisions
 - [StaticBody](/docs/classes/static-body) - A physics body that does not move but can be collided with
 - [CharacterBody](/docs/classes/character-body) - A specialized body for kinematic character movement
@@ -53,18 +54,19 @@ Comprehensive documentation for all classes available in Kraken Engine. Each cla
 - [FilterJoint](/docs/classes/filter-joint) - A joint used to filter collisions between two bodies
 
 ## Shaders
-- [ShaderState](/docs/classes/shader-state) - Encapsulates a GPU shader and its associated render state
+- [Sampler](/docs/classes/sampler) - Describes sampling parameters for reading textures in shaders
+- [Shader](/docs/classes/shader) - Encapsulates a GPU shader and its associated render state
 - [ShaderUniform](/docs/classes/shader-uniform) - Base model for shader uniform data structures
 
 ## Tile Maps & Objects
-- [ImageLayer](/docs/classes/image-layer) - ImageLayer displays a single image as a layer
-- [Layer](/docs/classes/layer) - Layer is the base class for all tilemap layers
+- [ImageLayer](/docs/classes/image-layer) - `ImageLayer` displays a single image as a layer
+- [Layer](/docs/classes/layer) - `Layer` is the base class for all tilemap layers
 - [Map](/docs/classes/map) - A TMX map with access to its layers and tilesets
-- [MapObject](/docs/classes/map-object) - MapObject represents a placed object on an object layer
-- [ObjectGroup](/docs/classes/object-group) - ObjectGroup is a layer containing placed MapObjects
-- [TextProperties](/docs/classes/text-properties) - TextProperties holds styling for text objects on the map
-- [TileLayer](/docs/classes/tile-layer) - TileLayer represents a grid of tiles within the map
-- [TileSet](/docs/classes/tile-set) - TileSet represents a collection of tiles and associated metadata
+- [MapObject](/docs/classes/map-object) - `MapObject` represents a placed object on an object layer
+- [ObjectGroup](/docs/classes/object-group) - `ObjectGroup` is a layer containing placed `MapObject`s
+- [TextProperties](/docs/classes/text-properties) - `TextProperties` holds styling for text objects on the map
+- [TileLayer](/docs/classes/tile-layer) - `TileLayer` represents a grid of tiles within the map
+- [TileSet](/docs/classes/tile-set) - `TileSet` represents a collection of tiles and associated metadata
 
 ## Events
 - [Event](/docs/classes/event) - Represents a single input event such as keyboard, mouse, or gamepad activity
@@ -73,9 +75,9 @@ Comprehensive documentation for all classes available in Kraken Engine. Each cla
 - [InputAction](/docs/classes/input-action) - Represents a single input trigger such as a key, mouse button, or gamepad control
 
 ## Math & Utilities
-- [PolarCoordinate](/docs/classes/polar-coordinate) - PolarCoordinate models a polar coordinate pair
+- [PolarCoordinate](/docs/classes/polar-coordinate) - `PolarCoordinate` models a polar coordinate pair
 - [Timer](/docs/classes/timer) - A timer for tracking countdown durations with pause/resume functionality
-- [Transform](/docs/classes/transform) - Transform represents a 2D transformation with position, rotation, and scale
+- [Transform](/docs/classes/transform) - `Transform` represents a 2D transformation with position, rotation, and scale
 - [Tween](/docs/classes/tween) - A class for interpolating values over time with various easing functions
 - [Vec2](/docs/classes/vec2) - A 2D vector representing Cartesian coordinates
 

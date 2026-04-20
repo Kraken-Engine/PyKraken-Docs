@@ -7,7 +7,7 @@ export default function Pre({
   ...rest
 }: ComponentProps<"pre"> & { raw?: string }) {
   return (
-    <div className="my-5 relative group">
+    <div className="mdx-pre my-5 relative group">
       <div className="absolute top-3 right-2.5 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
         <Copy content={raw!} />
       </div>

@@ -1,21 +1,42 @@
 ---
 title: Installation
+description: Step-by-step instructions to install Kraken Engine on your system.
 ---
 
 Before starting, ensure you have a [Python](https://www.python.org/downloads/) version installed that is supported by Kraken Engine,
 which is Python 3.12 and above.
 
+## Create a Virtual Environment
+
+This step is optional and you can skip to [installation](#install-via-pypi) if you wish.
+Using a virtual environment helps keep project dependencies isolated.
+
+*On Linux:*
+```plaintext
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+*On Windows (PowerShell):*
+```plaintext
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+```
+
 ## Install via PyPI
-To get started, you can install Kraken from PyPI using `pip`.
+To get started, install Kraken Engine from PyPI.
 <Stepper>
   <StepperItem title="Download and Install From PyPI">
-    Begin by entering the following command into a terminal:
+    Use the command for your operating system:
 
     ```plaintext
+    # Windows and Linux
     pip install kraken-engine
+
+    # macOS
+    pip3 install kraken-engine
     ```
   </StepperItem>
-
   <StepperItem title="Import Module Into an Editor">
     After installing, import the module into a code editor as `pykraken`:
 
@@ -32,5 +53,9 @@ You're now ready to start writing your first Kraken script!
 To update Kraken Engine to the latest version, use the following command:
 
 ```plaintext
+# Windows and Linux
 pip install --upgrade kraken-engine
+
+# macOS
+pip3 install --upgrade kraken-engine
 ```
