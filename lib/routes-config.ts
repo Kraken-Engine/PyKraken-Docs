@@ -162,6 +162,7 @@ export const GUIDE_ROUTES: EachRoute[] = [
       { title: "What is a Shader?", href: "/what-is-a-shader" },
       { title: "Using Shaders", href: "/using-shaders" },
       { title: "Uniforms", href: "/uniforms" },
+      { title: "Texture Samplers", href: "/texture-samplers" },
     ]
   },
   {

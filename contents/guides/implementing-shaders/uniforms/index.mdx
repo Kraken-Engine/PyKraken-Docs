@@ -71,7 +71,7 @@ class WindUniform:
 Then create the shader with one uniform buffer:
 
 ```py
-wind_shader = kn.Shader(
+wind_shader = kn.shaders.Shader(
     "assets/shaders/wind.frag",
     uniform_buffer_count=1,
     sampler_count=2,
@@ -104,7 +104,7 @@ cbuffer ColorUniform : register(b1, space3) {
 ```
 
 ```py
-shader = kn.Shader(
+shader = kn.shaders.Shader(
     "assets/shaders/effect.frag",
     uniform_buffer_count=2,
     sampler_count=1,

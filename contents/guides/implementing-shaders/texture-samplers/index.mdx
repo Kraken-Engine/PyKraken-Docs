@@ -1,0 +1,140 @@
+---
+title: Texture Samplers
+description: Bind extra textures and sampler settings to Kraken fragment shaders.
+---
+
+Most custom shaders only need the texture being drawn.
+That texture is already available at binding `0`, so a shader that only reads `t0/s0` does not need any extra setup.
+
+Texture samplers become important when a shader needs **additional** textures, such as a noise map,
+mask, palette, LUT, dissolve ramp, normal map, or any other image that is not the draw texture itself.
+Those extra textures are bound with the `Shader.set_texture_sampler` method.
+
+## Binding Zero Is Special
+
+When you call `kn.renderer.draw(texture)`, that draw texture is the shader's first sampled texture and sampler:
+
+```hlsl
+Texture2D drawTex : register(t0, space2);
+SamplerState drawSamp : register(s0, space2);
+```
+
+You do not need to call `set_texture_sampler(0, ...)` for that normal draw texture.
+Use `set_texture_sampler` for bindings after zero.
+
+## Extra Texture Bindings
+
+This wind-style shader samples the drawn grass texture at binding `0` and a noise texture at binding `1`.
+The noise texture drives the UV distortion.
+
+```hlsl:windy_grass.frag.hlsl showLineNumbers
+Texture2D grassTex : register(t0, space2);
+Texture2D noiseTex : register(t1, space2);
+
+SamplerState grassSamp : register(s0, space2);
+SamplerState noiseSamp : register(s1, space2);
+
+cbuffer WindUniform : register(b0, space3) {
+    float4 wind; // x = time, y = strength, z = scale, w = unused
+};
+
+struct PSInput {
+    float4 v_color : COLOR0;
+    float2 v_uv    : TEXCOORD0;
+};
+
+struct PSOutput {
+    float4 o_color : SV_Target;
+};
+
+PSOutput main(PSInput input) {
+    float time = wind.x;
+    float strength = wind.y;
+    float scale = wind.z;
+
+    float2 windCoord = input.v_uv * scale + float2(time * 0.04, time * 0.02);
+    float gust = smoothstep(0.1, 0.9, noiseTex.Sample(noiseSamp, windCoord).r);
+    gust = pow(gust, 0.7);
+
+    float2 distortion = float2(gust * 0.03, gust * 0.015) * strength;
+    distortion.x += sin(time * 8.0 + input.v_uv.y * 20.0) * 0.003 * gust;
+
+    float4 grass = grassTex.Sample(grassSamp, input.v_uv + distortion);
+    float3 rgb = grass.rgb * input.v_color.rgb + gust * 0.08;
+
+    PSOutput output;
+    output.o_color = float4(rgb, grass.a * input.v_color.a);
+    return output;
+}
+```
+
+The matching Python setup declares two sampler slots, but only explicitly binds slot `1`.
+Slot `0` comes from the texture passed to `kn.renderer.draw`.
+
+```py
+import pykraken as kn
+
+wind_shader = kn.shaders.Shader(
+    "assets/shaders/windy_grass.frag",
+    uniform_buffer_count=1,
+    sampler_count=2,
+)
+
+grass_texture = kn.Texture("assets/grass.png")
+
+noise_texture = kn.Texture(
+    "assets/wind_noise.png",
+    usage=kn.TextureUsage.SHADER_SAMPLED,
+)
+noise_sampler = kn.shaders.Sampler(
+    wrap_u=kn.WrapMode.REPEAT,
+    wrap_v=kn.WrapMode.REPEAT,
+)
+
+wind_shader.set_texture_sampler(1, noise_texture, noise_sampler)
+```
+
+Then draw the grass texture while the shader is bound:
+
+```py
+wind_shader.bind()
+kn.renderer.draw(grass_texture)
+wind_shader.unbind()
+```
+
+## Sampler Settings
+
+`kn.shaders.Sampler` describes how a texture is sampled.
+Use it when the extra texture needs specific filtering or wrapping behavior.
+
+```py
+noise_sampler = kn.shaders.Sampler(
+    min_filter=kn.FilterMode.LINEAR,
+    mag_filter=kn.FilterMode.LINEAR,
+    wrap_u=kn.WrapMode.REPEAT,
+    wrap_v=kn.WrapMode.REPEAT,
+)
+```
+
+For scrolling noise, repeating wrap modes are usually useful.
+For masks, palettes, and lookup textures, clamping is often safer.
+
+## Texture Usage
+
+Textures passed to `set_texture_sampler` must be created with `TextureUsage.SHADER_SAMPLED`.
+
+```py
+lookup_texture = kn.Texture(
+    "assets/palette.png",
+    usage=kn.TextureUsage.SHADER_SAMPLED,
+)
+```
+
+If the same texture will also be drawn with `kn.renderer.draw`, include both usage flags:
+
+```py
+sampled_and_drawn = kn.Texture(
+    "assets/effect_source.png",
+    usage=kn.TextureUsage.DRAWABLE | kn.TextureUsage.SHADER_SAMPLED,
+)
+```

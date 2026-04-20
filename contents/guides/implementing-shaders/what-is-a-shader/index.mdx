@@ -75,6 +75,11 @@ HLSL gives you the smoothest Kraken workflow because `pykraken bake` can generat
 Shader resource bindings must be authored in a specific order.
 If the shader compiles but samples the wrong texture, reads empty uniform data, or behaves differently on another backend, this is the first thing to check.
 
+<Note>
+Kraken currently exposes sampled textures and uniform buffers for custom shaders.
+Storage textures and storage buffers are not implemented yet.
+</Note>
+
 Kraken's current custom shader API binds fragment resources only, so these are the rules you will use most often:
 
 ### HLSL DXIL Fragment Shaders
@@ -120,7 +125,7 @@ If you are using HLSL with Kraken's baker, you normally do not write these MSL b
 
 ## HLSL Input Semantics
 
-For HLSL source, it must accept one vertex color and one vertex texture coordinate as such:
+For HLSL source, the fragment input should accept one vertex color and one vertex texture coordinate as such:
 
 ```hlsl
 struct PSInput {
