@@ -34,6 +34,7 @@ export default function SubLink({
     <Anchor
       activeClassName="text-primary dark:font-medium font-semibold"
       href={href}
+      prefetch={false}
       className={cn(separator && "pb-[0.875rem] relative after:content-[''] after:absolute after:bottom-[0.3125rem] after:left-0 after:right-0 after:h-px after:bg-border")}
     >
       {title}
