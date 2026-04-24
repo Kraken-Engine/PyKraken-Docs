@@ -9,7 +9,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [1.7.2] - TBA
+## [1.7.3] - TBA
+
+<a id="added173"></a>
+### Added
+- `tilemap.Map` constructor now accepts an optional path to load on creation.
+- Camera rotation is now supported by modifying its `transform.angle` property.
+- Added two camera move helpers: `move_world` and `move_screen`.
+
+<a id="changed173"></a>
+### Changed
+- Instead of the highly confusing camera `world_pos` and `local_pos` properties,
+  position has been moved to a `transform` property.
+
+<a id="fixed173"></a>
+### Fixed
+- Improved UI context management.
+- Improved Texture move semantics.
+- Fixed segfault relating to shaders by correcting backend move semantics.
+- Fixed bug with `mouse.is_pressed` function where left clicks counted as both left and right clicks.
+
+
+---
+
+## [1.7.2] - 2026-04-20
 
 <a id="added172"></a>
 ### Added
@@ -356,38 +379,3 @@ loading images that shaders didn't like. Solved by forcing an RGBA32 format on a
 - Removed `clip` attribute from `Sprite` class.
 - `Transform` class no longer contains `pivot`, `size`, or `anchor` attributes.
 - Removed most opaque list types except for tilemap related ones due to... uselessness.
-
-
----
-
-## [1.5.0] - 2025-12-31
-
-<a id="added150"></a>
-### Added
-- Added `build.py` script for automating build and compilation tasks.
-- Added `tilemap` submodule for working with tile maps.
-- Added `Vec2` methods `move_toward` and non-mutating `moved_toward` for moving a vector towards a target vector by a specified maximum distance.
-
-<a id="fixed150"></a>
-### Fixed
-- Most evident with animations and tilemaps, fixed a visual artifact where textures would render slightly offset when using the camera. The fix? Flooring the camera's position before rendering.
-
-<a id="changed150"></a>
-### Changed
-- Completely reworked tile maps in Kraken, supporting:
-    - Tile, Object (of all kinds), and Image layers
-    - Terrains in tilesets
-    - More than one tileset per map
-    - Text properties
-- Binded functions that return or accept references to list types no longer make copies of the list, but use opaque references to the original list.
-- Improved error handling in rendering and draw functions.
-- Rendering and draw operations now properly cull objects outside the current viewport; zero-opacity objects are also culled.
-- Moved `math` functions to `Vec2` class methods:
-    - `math.scale_to_length` -> `Vec2.scaled_to_length`
-    - `math.normalize` -> `Vec2.normalized`
-    - `math.rotate` -> `Vec2.rotated`
-
-<a id="removed150"></a>
-### Removed
-- Removed `<`, `>`, `<=`, `>=` operators from `Vec2` class due to ambiguity with element-wise comparisons.
-- Removed `from_polar` function from the `math` submodule (see "Changed" for other math functions).

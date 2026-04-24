@@ -3,6 +3,7 @@ title: Constants
 description: A comprehensive list of constants used in the Kraken Engine.
 ---
 
+<a id="align"></a>
 ## Align
 | Name | Description | Type |
 | --- | --- | --- |
@@ -11,6 +12,7 @@ description: A comprehensive list of constants used in the Kraken Engine.
 | `END` | Align children to the end of the container. | `Align` |
 | `STRETCH` | Stretch children to fill the container. | `Align` |
 
+<a id="audio-priority"></a>
 ## AudioPriority
 Priority levels used for track acquisition.
 
@@ -20,6 +22,7 @@ Priority levels used for track acquisition.
 | `UI` | Medium priority level. | `AudioPriority` |
 | `SFX` | Standard priority level. | `AudioPriority` |
 
+<a id="character-body-motion-mode"></a>
 ## MotionMode (CharacterBody)
 The motion mode for the character body.
 
@@ -28,12 +31,14 @@ The motion mode for the character body.
 | `GROUNDED` | The character is affected by gravity and can stand on floors. | `CharacterBody.MotionMode` |
 | `FLOATING` | The character is not affected by gravity and can move freely in the air. | `CharacterBody.MotionMode` |
 
+<a id="direction"></a>
 ## Direction
 | Name | Description | Type |
 | --- | --- | --- |
 | `HORIZONTAL` | Layout children horizontally. | `Direction` |
 | `VERTICAL` | Layout children vertically. | `Direction` |
 
+<a id="event-type"></a>
 ## EventType
 SDL event type constants for input and system events.
 
@@ -162,6 +167,7 @@ SDL event type constants for input and system events.
 | `USER` | User event base | `EventType` |
 | `LAST` | Last event value | `EventType` |
 
+<a id="filter-mode"></a>
 ## FilterMode
 Texture scaling and filtering modes.
 
@@ -172,6 +178,7 @@ Texture scaling and filtering modes.
 | `PIXEL_ART` | Pixel-art friendly scaling | `FilterMode` |
 | `DEFAULT` | Renderer default scaling | `FilterMode` |
 
+<a id="font-hint"></a>
 ## FontHint
 Font hinting modes for controlling how fonts are rendered.
 
@@ -183,6 +190,7 @@ Font hinting modes for controlling how fonts are rendered.
 | `LIGHT_SUBPIXEL` | Light subpixel hinting | `FontHint` |
 | `NONE` | No hinting | `FontHint` |
 
+<a id="gamepad-axis"></a>
 ## GamepadAxis
 Gamepad axis identifiers.
 
@@ -195,6 +203,7 @@ Gamepad axis identifiers.
 | `C_LTRIGGER` | Left trigger axis | `GamepadAxis` |
 | `C_RTRIGGER` | Right trigger axis | `GamepadAxis` |
 
+<a id="gamepad-button"></a>
 ## GamepadButton
 Gamepad button identifiers.
 
@@ -216,6 +225,7 @@ Gamepad button identifiers.
 | `C_DPAD_LEFT` | D-pad left | `GamepadButton` |
 | `C_DPAD_RIGHT` | D-pad right | `GamepadButton` |
 
+<a id="gamepad-type"></a>
 ## GamepadType
 Gamepad device type identifiers.
 
@@ -234,6 +244,7 @@ Gamepad device type identifiers.
 | `C_SWITCH_JOYCON_PAIR` | Nintendo Switch Joy-Con pair | `GamepadType` |
 | `C_GAMECUBE` | Nintendo GameCube controller | `GamepadType` |
 
+<a id="keycode"></a>
 ## Keycode
 Keyboard keycodes representing logical keys.
 
@@ -404,6 +415,7 @@ Keyboard keycodes representing logical keys.
 | `K_CALL` | The symbolic Call key | `Keycode` |
 | `K_ENDCALL` | The symbolic End Call key | `Keycode` |
 
+<a id="layer-type"></a>
 ## LayerType
 TMX layer type values.
 
@@ -413,6 +425,7 @@ TMX layer type values.
 | `OBJECT` | Object layer | `LayerType` |
 | `IMAGE` | Image layer | `LayerType` |
 
+<a id="map-object-shape-type"></a>
 ## ShapeType (MapObject)
 TMX object shape types.
 
@@ -425,6 +438,7 @@ TMX object shape types.
 | `POLYLINE` | Polyline shape | `MapObject.ShapeType` |
 | `TEXT` | Text object | `MapObject.ShapeType` |
 
+<a id="map-orientation"></a>
 ## MapOrientation
 TMX map orientation values.
 
@@ -436,6 +450,7 @@ TMX map orientation values.
 | `HEXAGONAL` | Hexagonal orientation | `MapOrientation` |
 | `NONE` | No orientation specified | `MapOrientation` |
 
+<a id="map-render-order"></a>
 ## MapRenderOrder
 Tile render order for TMX maps.
 
@@ -447,6 +462,7 @@ Tile render order for TMX maps.
 | `LEFT_UP` | Render left then up | `MapRenderOrder` |
 | `NONE` | No render order specified | `MapRenderOrder` |
 
+<a id="map-stagger-axis"></a>
 ## MapStaggerAxis
 Stagger axis for staggered/hex maps.
 
@@ -456,6 +472,7 @@ Stagger axis for staggered/hex maps.
 | `Y` | Stagger along the Y axis | `MapStaggerAxis` |
 | `NONE` | No stagger axis | `MapStaggerAxis` |
 
+<a id="map-stagger-index"></a>
 ## MapStaggerIndex
 Stagger index for staggered/hex maps.
 
@@ -465,6 +482,7 @@ Stagger index for staggered/hex maps.
 | `ODD` | Odd rows/columns are staggered | `MapStaggerIndex` |
 | `NONE` | No stagger index | `MapStaggerIndex` |
 
+<a id="mouse-button"></a>
 ## MouseButton
 Mouse button identifiers.
 
@@ -476,6 +494,7 @@ Mouse button identifiers.
 | `M_SIDE1` | First side mouse button | `MouseButton` |
 | `M_SIDE2` | Second side mouse button | `MouseButton` |
 
+<a id="object-group-draw-order"></a>
 ## DrawOrder (ObjectGroup)
 Object drawing order for object layers.
 
@@ -484,6 +503,7 @@ Object drawing order for object layers.
 | `INDEX` | Draw by object index | `ObjectGroup.DrawOrder` |
 | `TOP_DOWN` | Draw top-down by Y | `ObjectGroup.DrawOrder` |
 
+<a id="pen-axis"></a>
 ## PenAxis
 Stylus/pen axis identifiers for pen motion data.
 
@@ -497,6 +517,7 @@ Stylus/pen axis identifiers for pen motion data.
 | `P_SLIDER` | Pen slider axis | `PenAxis` |
 | `P_TANGENTIAL_PRESSURE` | Pen tangential pressure | `PenAxis` |
 
+<a id="render-backend"></a>
 ## RenderBackend
 | Name | Description | Type |
 | --- | --- | --- |
@@ -506,6 +527,7 @@ Stylus/pen axis identifiers for pen motion data.
 | `METAL` | Use the Metal backend. | `RenderBackend` |
 | `DIRECT3D12` | Use the Direct3D 12 backend. | `RenderBackend` |
 
+<a id="scancode"></a>
 ## Scancode
 Keyboard scancodes representing physical key locations.
 
@@ -654,6 +676,7 @@ Keyboard scancodes representing physical key locations.
 | `S_CALL` | The physical Call key | `Scancode` |
 | `S_ENDCALL` | The physical End Call key | `Scancode` |
 
+<a id="scroll-mode"></a>
 ## ScrollMode
 Edge handling behavior for PixelArray scrolling.
 
@@ -663,6 +686,7 @@ Edge handling behavior for PixelArray scrolling.
 | `ERASE` | Erase pixels that scroll out | `ScrollMode` |
 | `REPEAT` | Wrap pixels when scrolling | `ScrollMode` |
 
+<a id="text-align"></a>
 ## TextAlign
 Horizontal alignment options for text.
 
@@ -672,6 +696,7 @@ Horizontal alignment options for text.
 | `CENTER` | Center alignment | `TextAlign` |
 | `RIGHT` | Right alignment | `TextAlign` |
 
+<a id="texture-access"></a>
 ## TextureAccess
 Texture access mode for GPU textures.
 
@@ -680,6 +705,7 @@ Texture access mode for GPU textures.
 | `STATIC` | Static texture | `TextureAccess` |
 | `TARGET` | Render target texture | `TextureAccess` |
 
+<a id="texture-usage"></a>
 ## TextureUsage
 Texture usage flags describing how a texture can be used.
 
@@ -688,6 +714,7 @@ Texture usage flags describing how a texture can be used.
 | `DRAWABLE` | Renderer texture storage | `TextureUsage` |
 | `SHADER_SAMPLED` | GPU shader-sampled texture | `TextureUsage` |
 
+<a id="viewport-mode"></a>
 ## ViewportMode
 Viewport layout mode for split-screen layouts.
 
@@ -696,6 +723,7 @@ Viewport layout mode for split-screen layouts.
 | `VERTICAL` | Split viewports vertically | `ViewportMode` |
 | `HORIZONTAL` | Split viewports horizontally | `ViewportMode` |
 
+<a id="wrap-mode"></a>
 ## WrapMode
 Texture address mode used by shader samplers.
 

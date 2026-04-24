@@ -291,23 +291,10 @@ def mdx_api_sig(name: str, sig: FunctionSig) -> str:
 
 
 def camel_to_kebab(name: str) -> str:
+    name = name.replace(".", "-")
     s1 = re.sub(r"(.)([A-Z][a-z]+)", r"\1-\2", name)
     s2 = re.sub(r"([a-z0-9])([A-Z])", r"\1-\2", s1)
-    return s2.replace("_", "-").lower()
-
-
-def constants_anchor(name: str) -> str:
-    # For enums nested inside classes (e.g. CharacterBody.MotionMode)
-    # produce anchors in the form `motionmode-characterbody` so they
-    # match the constants page anchors used in the docs.
-    if "." in name:
-        parts = name.split(".")
-        last = parts[-1]
-        parent = parts[-2]
-        slug = f"{last}-{parent}".lower().replace(" ", "-")
-    else:
-        slug = name.lower().replace(" ", "-")
-    return re.sub(r"[^a-z0-9-]", "", slug)
+    return re.sub(r"-+", "-", s2.replace("_", "-")).strip("-").lower()
 
 
 def snake_to_title(name: str) -> str:
@@ -400,7 +387,7 @@ def escape_outside_code(text: str) -> str:
     return "".join(out)
 
 
-def format_type_for_table(type_str: str, classes_map: Dict[str, ClassInfo]) -> str:
+def format_type_for_table(type_str: str, linkable_classes: Dict[str, ClassInfo]) -> str:
     # Strip private module prefixes used in stubs
     type_str = type_str.replace("pykraken.", "")
 
@@ -411,10 +398,10 @@ def format_type_for_table(type_str: str, classes_map: Dict[str, ClassInfo]) -> s
         if not part:
             continue
         if re.match(r"^[a-zA-Z_][a-zA-Z0-9_.]*$", part):
-            info = classes_map.get(part)
+            info = linkable_classes.get(part)
             if info:
                 if info.is_enum:
-                    anchor = constants_anchor(info.name)
+                    anchor = camel_to_kebab(info.name)
                     out.append(f'<a href="/docs/manual/constants#{anchor}">{part}</a>')
                 else:
                     slug = camel_to_kebab(part)
@@ -726,7 +713,7 @@ def parse_function_overloads(node: ast.AST, drop_first: bool) -> List[FunctionSi
 
 
 def render_class_page(
-    info: ClassInfo, package_name: str, classes_map: Dict[str, ClassInfo]
+    info: ClassInfo, package_name: str, linkable_classes: Dict[str, ClassInfo]
 ) -> str:
     title = info.name
     if "." in title:
@@ -767,7 +754,7 @@ def render_class_page(
     if info.bases:
         inherited = []
         for base in info.bases:
-            if base in classes_map:
+            if base in linkable_classes:
                 slug = camel_to_kebab(base)
                 inherited.append(f"[{base}](/docs/classes/{slug})")
             else:
@@ -809,7 +796,7 @@ def render_class_page(
 
             type_str = prop.type or "Any"
             # For enums, if type matches class name, it's just the enum type
-            formatted_type = format_type_for_table(type_str, classes_map)
+            formatted_type = format_type_for_table(type_str, linkable_classes)
             lines.append(f"| `{prop.name}` | {desc} | <code>{formatted_type}</code> |")
 
     if info.methods:
@@ -818,7 +805,7 @@ def render_class_page(
         lines.append("---")
         lines.append("")
         for method in info.methods:
-            method_processed = process_sig(method, current_module, classes_map, package_name)
+            method_processed = process_sig(method, current_module, linkable_classes, package_name)
             lines.append(f"### {snake_to_title(method.name)}")
 
             overloads = getattr(method_processed, "overloads", None)
@@ -944,8 +931,9 @@ def render_constants_page(enums: List[ClassInfo]) -> str:
         title = info.name
         if "." in title:
             name_parts = title.split(".")
-            title = f"{name_parts[-1]} ({name_parts[0]})"
+            title = f"{name_parts[-1]} ({'.'.join(name_parts[:-1])})"
 
+        lines.append(f'<a id="{camel_to_kebab(info.name)}"></a>')
         lines.append(f"## {title}")
         if info.doc:
              lines.append(escape_outside_code(summary_from_doc(info.doc, "")))
@@ -1088,7 +1076,7 @@ def write_type_links_file(
     target: Path, class_names: List[str], enum_names: List[str]
 ) -> bool:
     class_items = [(name, f"/docs/classes/{camel_to_kebab(name)}") for name in class_names]
-    enum_items = [(name, f"/docs/manual/constants#{constants_anchor(name)}") for name in enum_names]
+    enum_items = [(name, f"/docs/manual/constants#{camel_to_kebab(name)}") for name in enum_names]
     class_items.extend(enum_items)
     class_items.sort(key=lambda x: x[0].lower())
 
@@ -1183,6 +1171,9 @@ def main() -> int:
         else:
             normal_classes.append(cls)
 
+    linkable_classes = {cls.name: cls for cls in normal_classes}
+    linkable_classes.update({enum.name: enum for enum in enums})
+
     generated_class_dirs: List[str] = []
     for cls in normal_classes:
         slug = camel_to_kebab(cls.name)
@@ -1190,7 +1181,7 @@ def main() -> int:
         target = classes_dir / slug / "index.mdx"
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(
-            render_class_page(cls, pkg, classes_by_name), encoding="utf-8"
+            render_class_page(cls, pkg, linkable_classes), encoding="utf-8"
         )
 
     # Enrich enum member docs from runtime, if available
