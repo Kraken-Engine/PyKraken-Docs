@@ -16,20 +16,22 @@ Represents a 2D camera used for rendering.
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `transform` | The camera transform. `transform.pos` is the world point at the center of the view. | <code><a href="/docs/classes/transform">Transform</a></code> |
+| `angle` | Get or set the camera angle in radians. | <code>float</code> |
+| `local_pos` | Get or set the camera position in camera-local space. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `world_pos` | Get or set the camera's world position. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 
 ## Methods
 ---
 
-### Move Screen
+### Move Local
 <div className="api-card">
-<ApiSig name="move_screen" params={[{ name: "delta", type: "Vec2" }]} returns="None" />
+<ApiSig name="move_local" params={[{ name: "delta", type: "Vec2" }]} returns="None" />
 
-Move the camera by a delta in screen/camera space.
+Move the camera by a delta in camera-local (screen) space.
 
 _**Args**_
 
-- `delta` : Screen-space movement delta.
+- `delta` : Local movement delta.
 
 </div>
 
@@ -45,23 +47,11 @@ _**Args**_
 
 </div>
 
-### Rotate
-<div className="api-card">
-<ApiSig name="rotate" params={[{ name: "delta", type: "float" }]} returns="None" />
-
-Rotate the camera view by a delta in radians.
-
-_**Args**_
-
-- `delta` : Angle delta in radians.
-
-</div>
-
 ### Screen To World
 <div className="api-card">
 <ApiSig name="screen_to_world" params={[{ name: "screen_pos", type: "Vec2" }]} returns="Vec2" />
 
-Convert a screen position to a world position using this camera.
+Convert a screen position to a world position using this camera's translation.
 
 _**Args**_
 
@@ -95,7 +85,7 @@ Unset this camera as the active one for rendering.
 <div className="api-card">
 <ApiSig name="world_to_screen" params={[{ name: "world_pos", type: "Vec2" }]} returns="Vec2" />
 
-Convert a world position to a screen position using this camera.
+Convert a world position to a screen position using this camera's translation.
 
 _**Args**_
 
