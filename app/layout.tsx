@@ -3,7 +3,9 @@ import { ThemeProvider } from "@/components/contexts/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { Space_Mono, Space_Grotesk } from "next/font/google";
 import { Footer } from "@/components/footer";
+import "@docsearch/css";
 import "@/styles/globals.css";
+import "@/styles/syntax.css";
 
 import MainWrapper from "@/components/MainWrapper";
 

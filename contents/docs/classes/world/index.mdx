@@ -27,7 +27,7 @@ A physics world that manages bodies, joints, and collision detection.
 
 ### Debug Draw
 <div className="api-card">
-<ApiSig name="debug_draw" multiline params={[{ name: "color", type: "Color", default: "..." }, { name: "filled_shapes", type: "bool", default: "False" }, { name: "shapes", type: "bool", default: "True" }, { name: "joints", type: "bool", default: "True" }, { name: "joint_extras", type: "bool", default: "True" }, { name: "bounds", type: "bool", default: "False" }, { name: "mass", type: "bool", default: "False" }, { name: "body_names", type: "bool", default: "False" }, { name: "contacts", type: "bool", default: "False" }, { name: "graph_colors", type: "bool", default: "False" }, { name: "contact_normals", type: "bool", default: "False" }, { name: "contact_impulses", type: "bool", default: "False" }, { name: "contact_features", type: "bool", default: "False" }, { name: "friction_impulses", type: "bool", default: "False" }, { name: "islands", type: "bool", default: "False" }]} returns="None" />
+<ApiSig name="debug_draw" params={[{ name: "color", type: "Color", default: "..." }, { name: "filled_shapes", type: "bool", default: "False" }, { name: "shapes", type: "bool", default: "True" }, { name: "joints", type: "bool", default: "True" }, { name: "joint_extras", type: "bool", default: "True" }, { name: "bounds", type: "bool", default: "False" }, { name: "mass", type: "bool", default: "False" }, { name: "body_names", type: "bool", default: "False" }, { name: "contacts", type: "bool", default: "False" }, { name: "graph_colors", type: "bool", default: "False" }, { name: "contact_normals", type: "bool", default: "False" }, { name: "contact_impulses", type: "bool", default: "False" }, { name: "contact_features", type: "bool", default: "False" }, { name: "friction_impulses", type: "bool", default: "False" }, { name: "islands", type: "bool", default: "False" }]} returns="None" />
 
 Draw physics debug geometry. If shapes are disabled, the filled_shapes option is ignored.
 
@@ -53,7 +53,7 @@ _**Args**_
 
 ### From Map Layer
 <div className="api-card">
-<ApiSig name="from_map_layer" multiline params={[{ name: "layer", type: "tilemap.Layer" }]} returns="StaticBody" />
+<ApiSig name="from_map_layer" params={[{ name: "layer", type: "tilemap.Layer" }]} returns="StaticBody" />
 
 Create a single StaticBody from a TileMap ObjectGroup layer.
 
@@ -77,7 +77,7 @@ _**Raises**_
 
 ### Add Fixed Update
 <div className="api-card">
-<ApiSig name="add_fixed_update" multiline params={[{ name: "callback", type: "Callable[[float], None]" }]} returns="None" />
+<ApiSig name="add_fixed_update" params={[{ name: "callback", type: "Callable[[float], None]" }]} returns="None" />
 
 Add a callback function to be executed during each physics step.
 
@@ -85,7 +85,7 @@ Add a callback function to be executed during each physics step.
 
 ### Fixed Callback
 <div className="api-card">
-<ApiSig name="fixed_callback" multiline params={[{ name: "callback", type: "Callable[[float], None]" }]} returns="Callable[[float], None]" />
+<ApiSig name="fixed_callback" params={[{ name: "callback", type: "Callable[[float], None]" }]} returns="Callable[[float], None]" />
 
 A decorator to register a function as a physics update callback.
 
@@ -101,7 +101,7 @@ Remove all registered fixed update callbacks.
 
 ### Create Distance Joint
 <div className="api-card">
-<ApiSig name="create_distance_joint" multiline params={[{ name: "body_a", type: "Body" }, { name: "body_b", type: "Body" }, { name: "anchor_a", type: "Vec2" }, { name: "anchor_b", type: "Vec2" }]} returns="DistanceJoint" />
+<ApiSig name="create_distance_joint" params={[{ name: "body_a", type: "Body" }, { name: "body_b", type: "Body" }, { name: "anchor_a", type: "Vec2" }, { name: "anchor_b", type: "Vec2" }]} returns="DistanceJoint" />
 
 Create a distance joint between two bodies.
 
@@ -154,7 +154,7 @@ _**Returns**_
 
 ### Create Mouse Joint
 <div className="api-card">
-<ApiSig name="create_mouse_joint" multiline params={[{ name: "ground_body", type: "Body" }, { name: "pulled_body", type: "Body" }, { name: "target", type: "Vec2" }]} returns="MouseJoint" />
+<ApiSig name="create_mouse_joint" params={[{ name: "ground_body", type: "Body" }, { name: "pulled_body", type: "Body" }, { name: "target", type: "Vec2" }]} returns="MouseJoint" />
 
 Create a mouse joint between a ground body and a target body.
 
@@ -172,7 +172,7 @@ _**Returns**_
 
 ### Create Prismatic Joint
 <div className="api-card">
-<ApiSig name="create_prismatic_joint" multiline params={[{ name: "body_a", type: "Body" }, { name: "body_b", type: "Body" }, { name: "anchor", type: "Vec2" }, { name: "axis", type: "Vec2" }]} returns="PrismaticJoint" />
+<ApiSig name="create_prismatic_joint" params={[{ name: "body_a", type: "Body" }, { name: "body_b", type: "Body" }, { name: "anchor", type: "Vec2" }, { name: "axis", type: "Vec2" }]} returns="PrismaticJoint" />
 
 Create a prismatic joint between two bodies.
 
@@ -191,7 +191,7 @@ _**Returns**_
 
 ### Create Revolute Joint
 <div className="api-card">
-<ApiSig name="create_revolute_joint" multiline params={[{ name: "body_a", type: "Body" }, { name: "body_b", type: "Body" }, { name: "anchor", type: "Vec2" }]} returns="RevoluteJoint" />
+<ApiSig name="create_revolute_joint" params={[{ name: "body_a", type: "Body" }, { name: "body_b", type: "Body" }, { name: "anchor", type: "Vec2" }]} returns="RevoluteJoint" />
 
 Create a revolute joint between two bodies.
 
@@ -209,7 +209,7 @@ _**Returns**_
 
 ### Create Weld Joint
 <div className="api-card">
-<ApiSig name="create_weld_joint" multiline params={[{ name: "body_a", type: "Body" }, { name: "body_b", type: "Body" }, { name: "anchor", type: "Vec2" }]} returns="WeldJoint" />
+<ApiSig name="create_weld_joint" params={[{ name: "body_a", type: "Body" }, { name: "body_b", type: "Body" }, { name: "anchor", type: "Vec2" }]} returns="WeldJoint" />
 
 Create a weld joint between two bodies.
 
@@ -227,7 +227,7 @@ _**Returns**_
 
 ### Create Wheel Joint
 <div className="api-card">
-<ApiSig name="create_wheel_joint" multiline params={[{ name: "body_a", type: "Body" }, { name: "body_b", type: "Body" }, { name: "anchor", type: "Vec2" }, { name: "axis", type: "Vec2" }]} returns="WheelJoint" />
+<ApiSig name="create_wheel_joint" params={[{ name: "body_a", type: "Body" }, { name: "body_b", type: "Body" }, { name: "anchor", type: "Vec2" }, { name: "axis", type: "Vec2" }]} returns="WheelJoint" />
 
 Create a wheel joint between two bodies.
 
@@ -293,7 +293,7 @@ _**Returns**_
 
 ### Ray Cast
 <div className="api-card">
-<ApiSig name="ray_cast" multiline params={[{ name: "origin", type: "Vec2" }, { name: "translation", type: "Vec2" }]} returns="list[CastHit]" />
+<ApiSig name="ray_cast" params={[{ name: "origin", type: "Vec2" }, { name: "translation", type: "Vec2" }]} returns="list[CastHit]" />
 
 Cast a ray into the world and find all bodies that intersect it.
 
@@ -305,71 +305,5 @@ _**Args**_
 _**Returns**_
 
 `list[RayCastHit]` : A list of hits, sorted by distance (fraction).
-
-</div>
-
-### Shape Cast
-<div className="api-card">
-<ApiSig name="shape_cast" multiline params={[{ name: "circle", type: "Circle" }, { name: "transform", type: "Transform" }, { name: "translation", type: "Vec2" }]} returns="list[CastHit]" />
-
-Cast a circular shape into the world.
-
-_**Args**_
-
-- `circle` : The circular shape.
-- `transform` : The initial transform of the shape.
-- `translation` : The movement vector.
-
-_**Returns**_
-
-`list[ShapeCastHit]` : A list of hits, sorted by distance.
-
----
-
-<ApiSig name="shape_cast" multiline params={[{ name: "capsule", type: "Capsule" }, { name: "transform", type: "Transform" }, { name: "translation", type: "Vec2" }]} returns="list[CastHit]" />
-
-Cast a capsule shape into the world.
-
-_**Args**_
-
-- `capsule` : The capsule shape.
-- `transform` : The initial transform of the shape.
-- `translation` : The movement vector.
-
-_**Returns**_
-
-`list[ShapeCastHit]` : A list of hits, sorted by distance.
-
----
-
-<ApiSig name="shape_cast" multiline params={[{ name: "polygon", type: "Polygon" }, { name: "transform", type: "Transform" }, { name: "translation", type: "Vec2" }]} returns="list[CastHit]" />
-
-Cast a polygonal shape into the world.
-
-_**Args**_
-
-- `polygon` : The polygonal shape.
-- `transform` : The initial transform of the shape.
-- `translation` : The movement vector.
-
-_**Returns**_
-
-`list[ShapeCastHit]` : A list of hits, sorted by distance.
-
----
-
-<ApiSig name="shape_cast" multiline params={[{ name: "rect", type: "Rect" }, { name: "transform", type: "Transform" }, { name: "translation", type: "Vec2" }]} returns="list[CastHit]" />
-
-Cast a rectangular shape into the world.
-
-_**Args**_
-
-- `rect` : The rectangular shape.
-- `transform` : The initial transform of the shape.
-- `translation` : The movement vector.
-
-_**Returns**_
-
-`list[ShapeCastHit]` : A list of hits, sorted by distance.
 
 </div>

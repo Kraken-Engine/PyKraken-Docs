@@ -1,11 +1,18 @@
-import { compileMDX } from "next-mdx-remote/rsc";
+import {
+    getFrontmatterRemote,
+    getTocRemote,
+    parseMdxRemote,
+} from "@ariadocs/react";
 import path from "path";
 import { promises as fs } from "fs";
-import remarkGfm from "remark-gfm";
-import rehypePrism from "rehype-prism-plus";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeSlug from "rehype-slug";
-import rehypeCodeTitles from "rehype-code-titles";
+import {
+    rehypeAutolinkHeadings,
+    rehypeCodeRaw,
+    rehypeCodeTitles,
+    rehypePrism,
+    rehypeSlug,
+    remarkGfm,
+} from "@ariadocs/react/plugins";
 import {
     docs_routes,
     guides_routes,
@@ -85,27 +92,29 @@ function getContentPath(section: ContentSection, slug: string) {
     return path.join(process.cwd(), ...config.baseDir, ...segments, "index.mdx");
 }
 
+const remarkPlugins = [remarkGfm];
+const rehypePlugins = [
+    rehypeCodeRaw,
+    rehypeCodeTitles,
+    rehypeCodeTitlesWithLogo,
+    rehypePrism,
+    rehypeSlug,
+    rehypeAutolinkHeadings,
+];
+
 // can be used for other pages like blogs, Guides etc
 async function parseMdx<Frontmatter>(rawMdx: string) {
-    return await compileMDX<Frontmatter>({
-        source: rawMdx,
-        options: {
-            parseFrontmatter: true,
-            mdxOptions: {
-                rehypePlugins: [
-                    preProcess,
-                    rehypeCodeTitles,
-                    rehypeCodeTitlesWithLogo,
-                    rehypePrism,
-                    rehypeSlug,
-                    rehypeAutolinkHeadings,
-                    postProcess,
-                ],
-                remarkPlugins: [remarkGfm],
-            },
-        },
-        components,
+    const result = await parseMdxRemote<Frontmatter>({
+        raw: rawMdx,
+        rehypePlugins,
+        remarkPlugins,
+        mdxComponents: components,
     });
+
+    return {
+        ...result,
+        content: result.MDX,
+    };
 }
 
 // logic for docs
@@ -122,7 +131,12 @@ export async function getCompiledContentForSlug(
     try {
         const contentPath = getContentPath(section, slug);
         const rawMdx = await fs.readFile(contentPath, "utf-8");
-        return await parseMdx<BaseMdxFrontmatter>(rawMdx);
+        const result = await parseMdx<BaseMdxFrontmatter>(rawMdx);
+
+        return {
+            ...result,
+            content: result.MDX,
+        };
     } catch (err) {
         console.log(err);
     }
@@ -142,35 +156,14 @@ export async function getContentTocs(
 ) {
     const contentPath = getContentPath(section, slug);
     const rawMdx = await fs.readFile(contentPath, "utf-8");
-    const lines = rawMdx.split(/\r?\n/);
-    const extractedHeadings = [] as { level: number; text: string; href: string }[];
-    const headingsRegex = /^(#{2,4})\s(.+)$/;
-    const anchorRegex = /^<a\s+id=["']([^"']+)["']\s*><\/a>$/i;
-    let pendingAnchor: string | null = null;
-
-    for (const line of lines) {
-        const anchorMatch = anchorRegex.exec(line.trim());
-        if (anchorMatch) {
-            pendingAnchor = anchorMatch[1];
-            continue;
-        }
-
-        const headingMatch = headingsRegex.exec(line);
-        if (!headingMatch) continue;
-
-        const headingLevel = headingMatch[1].length;
-        const headingText = headingMatch[2].trim();
-        const slugValue = pendingAnchor ?? sluggify(headingText);
-        pendingAnchor = null;
-
-        extractedHeadings.push({
-            level: headingLevel,
-            text: headingText,
-            href: `#${slugValue}`,
-        });
-    }
-
-    return extractedHeadings;
+    const tocs = await getTocRemote({ raw: rawMdx });
+    return tocs
+        .filter((item) => item.depth >= 2 && item.depth <= 4)
+        .map((item) => ({
+            level: item.depth,
+            text: item.value,
+            href: item.href,
+        }));
 }
 
 export async function getDocsTocs(slug: string) {
@@ -204,12 +197,12 @@ function justGetFrontmatterFromMD<Frontmatter>(rawMd: string): Frontmatter {
 
 export async function getContentFrontmatter(
     section: ContentSection,
-    path: string
+    slug: string
 ) {
     try {
-        const contentPath = getContentPath(section, path);
+        const contentPath = getContentPath(section, slug);
         const rawMdx = await fs.readFile(contentPath, "utf-8");
-        return justGetFrontmatterFromMD<BaseMdxFrontmatter>(rawMdx);
+        return await getFrontmatterRemote<BaseMdxFrontmatter>({ raw: rawMdx });
     } catch {
         return undefined;
     }
@@ -267,27 +260,6 @@ export async function getAllChilds(
         })
     );
 }
-
-// for copying the code in pre
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const preProcess = () => (tree: any) => {
-    visit(tree, (node) => {
-        if (node?.type === "element" && node?.tagName === "pre") {
-            const [codeEl] = node.children;
-            if (codeEl.tagName !== "code") return;
-            node.raw = codeEl.children?.[0].value;
-        }
-    });
-};
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const postProcess = () => (tree: any) => {
-    visit(tree, "element", (node) => {
-        if (node?.type === "element" && node?.tagName === "pre") {
-            node.properties["raw"] = node.raw;
-        }
-    });
-};
 
 export type Author = {
     avatar?: string;

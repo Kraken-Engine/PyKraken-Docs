@@ -17,12 +17,22 @@ Timeline animator for Transform objects.
 | Name | Description | Type |
 | --- | --- | --- |
 | `finalized` | Whether the orchestrator has been finalized. | <code>bool</code> |
-| `playing` | Whether the animation is currently playing. | <code>bool</code> |
 | `finished` | Whether the animation has completed. | <code>bool</code> |
 | `looping` | Whether the animation should loop when finished. | <code>bool</code> |
+| `playing` | Whether the animation is currently playing. | <code>bool</code> |
 
 ## Methods
 ---
+
+### Finalize
+<div className="api-card">
+<ApiSig name="finalize" returns="None" />
+
+Finalize the orchestrator, preventing further edits.
+
+Must be called before play(). Logs a warning if called multiple times.
+
+</div>
 
 ### Parallel
 <div className="api-card">
@@ -40,29 +50,11 @@ _**Returns**_
 
 </div>
 
-### Then
+### Pause
 <div className="api-card">
-<ApiSig name="then" params={[{ name: "effect", type: "fx.Effect" }]} returns="Orchestrator" />
+<ApiSig name="pause" returns="None" />
 
-Add a single effect to the timeline.
-
-_**Args**_
-
-- `effect` : The Effect to add.
-
-_**Returns**_
-
-`Orchestrator` : Self for method chaining.
-
-</div>
-
-### Finalize
-<div className="api-card">
-<ApiSig name="finalize" returns="None" />
-
-Finalize the orchestrator, preventing further edits.
-
-Must be called before play(). Logs a warning if called multiple times.
+Pause the animation at the current position.
 
 </div>
 
@@ -76,19 +68,19 @@ Logs a warning if not finalized or if there are no steps.
 
 </div>
 
-### Pause
-<div className="api-card">
-<ApiSig name="pause" returns="None" />
-
-Pause the animation at the current position.
-
-</div>
-
 ### Resume
 <div className="api-card">
 <ApiSig name="resume" returns="None" />
 
 Resume a paused animation.
+
+</div>
+
+### Rewind
+<div className="api-card">
+<ApiSig name="rewind" returns="None" />
+
+Reset the animation to the beginning without stopping.
 
 </div>
 
@@ -100,10 +92,18 @@ Stop the animation and reset to the beginning.
 
 </div>
 
-### Rewind
+### Then
 <div className="api-card">
-<ApiSig name="rewind" returns="None" />
+<ApiSig name="then" params={[{ name: "effect", type: "fx.Effect" }]} returns="Orchestrator" />
 
-Reset the animation to the beginning without stopping.
+Add a single effect to the timeline.
+
+_**Args**_
+
+- `effect` : The Effect to add.
+
+_**Returns**_
+
+`Orchestrator` : Self for method chaining.
 
 </div>

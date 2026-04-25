@@ -6,7 +6,7 @@ description: A class for animating values over time using easing functions.
 ## Constructor
 <div className="api-card">
 
-- <ApiSig name="Tween" multiline params={[{ name: "ease_func", type: "Callable[[float], float]" }, { name: "duration", type: "float" }]} returns="Tween" />
+- <ApiSig name="Tween" params={[{ name: "ease_func", type: "collections.abc.Callable[[float], float]" }, { name: "duration", type: "float" }]} returns="Tween" />
 
 A class for animating values over time using easing functions.
 </div>
@@ -16,10 +16,10 @@ A class for animating values over time using easing functions.
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `start_pos` | The starting position of the animation. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `current_pos` | Get the current interpolated position snapshot. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `end_pos` | The ending position of the animation. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `is_done` | Check whether the animation has finished. | <code>bool</code> |
-| `current_pos` | Get the current interpolated position snapshot. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `start_pos` | The starting position of the animation. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 
 ## Methods
 ---
@@ -32,19 +32,19 @@ Pause the animation's progression.
 
 </div>
 
-### Resume
-<div className="api-card">
-<ApiSig name="resume" returns="None" />
-
-Resume the animation from its current state.
-
-</div>
-
 ### Restart
 <div className="api-card">
 <ApiSig name="restart" returns="None" />
 
 Restart the animation from the beginning.
+
+</div>
+
+### Resume
+<div className="api-card">
+<ApiSig name="resume" returns="None" />
+
+Resume the animation from its current state.
 
 </div>
 

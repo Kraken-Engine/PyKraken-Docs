@@ -7,7 +7,7 @@ description: Functions for drawing shape objects
 
 ## Point
 <div className="api-card">
-<ApiSig name="point" multiline params={[{ name: "point", type: "Vec2" }, { name: "color", type: "Color" }]} returns="None" />
+<ApiSig name="point" params={[{ name: "point", type: "Vec2" }, { name: "color", type: "Color" }]} returns="None" />
 
 Draw a single point to the renderer.
 
@@ -24,7 +24,7 @@ _**Raises**_
 
 ## Points
 <div className="api-card">
-<ApiSig name="points" multiline params={[{ name: "points", type: "Sequence[Vec2]" }, { name: "color", type: "Color" }]} returns="None" />
+<ApiSig name="points" params={[{ name: "points", type: "Sequence[Vec2]" }, { name: "color", type: "Color" }]} returns="None" />
 
 Batch draw an array of points to the renderer.
 
@@ -41,7 +41,7 @@ _**Raises**_
 
 ## Points From Ndarray
 <div className="api-card">
-<ApiSig name="points_from_ndarray" multiline params={[{ name: "points", type: "NDArray[numpy.float64]" }, { name: "color", type: "Color" }]} returns="None" />
+<ApiSig name="points_from_ndarray" params={[{ name: "points", type: "NDArray[numpy.float64]" }, { name: "color", type: "Color" }]} returns="None" />
 
 Batch draw points from a NumPy array.
 
@@ -63,7 +63,7 @@ _**Raises**_
 
 ## Circle
 <div className="api-card">
-<ApiSig name="circle" multiline params={[{ name: "circle", type: "Circle" }, { name: "color", type: "Color" }, { name: "thickness", type: "float", default: "0" }, { name: "num_segments", type: "int", default: "24" }]} returns="None" />
+<ApiSig name="circle" params={[{ name: "circle", type: "Circle" }, { name: "color", type: "Color" }, { name: "thickness", type: "float", default: "0" }, { name: "num_segments", type: "int", default: "24" }]} returns="None" />
 
 Draw a circle to the renderer.
 
@@ -78,7 +78,7 @@ _**Args**_
 
 ## Circles
 <div className="api-card">
-<ApiSig name="circles" multiline params={[{ name: "circles", type: "Sequence[Circle]" }, { name: "color", type: "Color" }, { name: "thickness", type: "float", default: "0" }, { name: "num_segments", type: "int", default: "24" }]} returns="None" />
+<ApiSig name="circles" params={[{ name: "circles", type: "Sequence[Circle]" }, { name: "color", type: "Color" }, { name: "thickness", type: "float", default: "0" }, { name: "num_segments", type: "int", default: "24" }]} returns="None" />
 
 Draw an array of circles in bulk to the renderer.
 
@@ -93,7 +93,7 @@ _**Args**_
 
 ## Capsule
 <div className="api-card">
-<ApiSig name="capsule" multiline params={[{ name: "capsule", type: "Capsule" }, { name: "color", type: "Color" }, { name: "thickness", type: "float", default: "0" }, { name: "num_segments", type: "int", default: "24" }]} returns="None" />
+<ApiSig name="capsule" params={[{ name: "capsule", type: "Capsule" }, { name: "color", type: "Color" }, { name: "thickness", type: "float", default: "0" }, { name: "num_segments", type: "int", default: "24" }]} returns="None" />
 
 Draw a capsule to the renderer.
 
@@ -108,7 +108,7 @@ _**Args**_
 
 ## Capsules
 <div className="api-card">
-<ApiSig name="capsules" multiline params={[{ name: "capsules", type: "Sequence[Capsule]" }, { name: "color", type: "Color" }, { name: "thickness", type: "float", default: "0" }, { name: "num_segments", type: "int", default: "24" }]} returns="None" />
+<ApiSig name="capsules" params={[{ name: "capsules", type: "Sequence[Capsule]" }, { name: "color", type: "Color" }, { name: "thickness", type: "float", default: "0" }, { name: "num_segments", type: "int", default: "24" }]} returns="None" />
 
 Draw an array of capsules in bulk to the renderer.
 
@@ -123,7 +123,7 @@ _**Args**_
 
 ## Ellipse
 <div className="api-card">
-<ApiSig name="ellipse" multiline params={[{ name: "bounds", type: "Rect" }, { name: "color", type: "Color" }, { name: "thickness", type: "float", default: "0.0" }, { name: "num_segments", type: "int", default: "24" }]} returns="None" />
+<ApiSig name="ellipse" params={[{ name: "bounds", type: "Rect" }, { name: "color", type: "Color" }, { name: "thickness", type: "float", default: "0.0" }, { name: "num_segments", type: "int", default: "24" }]} returns="None" />
 
 Draw an ellipse to the renderer.
 
@@ -138,7 +138,7 @@ _**Args**_
 
 ## Ellipses
 <div className="api-card">
-<ApiSig name="ellipses" multiline params={[{ name: "bounds", type: "Sequence[Rect]" }, { name: "color", type: "Color" }, { name: "thickness", type: "float", default: "0.0" }, { name: "num_segments", type: "int", default: "24" }]} returns="None" />
+<ApiSig name="ellipses" params={[{ name: "bounds", type: "Sequence[Rect]" }, { name: "color", type: "Color" }, { name: "thickness", type: "float", default: "0.0" }, { name: "num_segments", type: "int", default: "24" }]} returns="None" />
 
 Draw an array of ellipses in bulk to the renderer.
 
@@ -153,7 +153,7 @@ _**Args**_
 
 ## Line
 <div className="api-card">
-<ApiSig name="line" multiline params={[{ name: "line", type: "Line" }, { name: "color", type: "Color" }, { name: "thickness", type: "float", default: "1.0" }]} returns="None" />
+<ApiSig name="line" params={[{ name: "line", type: "Line" }, { name: "color", type: "Color" }, { name: "thickness", type: "float", default: "1.0" }]} returns="None" />
 
 Draw a line to the renderer.
 
@@ -167,7 +167,7 @@ _**Args**_
 
 ## Lines
 <div className="api-card">
-<ApiSig name="lines" multiline params={[{ name: "lines", type: "Sequence[Line]" }, { name: "color", type: "Color" }, { name: "thickness", type: "float", default: "1.0" }]} returns="None" />
+<ApiSig name="lines" params={[{ name: "lines", type: "Sequence[Line]" }, { name: "color", type: "Color" }, { name: "thickness", type: "float", default: "1.0" }]} returns="None" />
 
 Batch draw an array of lines to the renderer.
 
@@ -181,7 +181,7 @@ _**Args**_
 
 ## Rect
 <div className="api-card">
-<ApiSig name="rect" multiline params={[{ name: "rect", type: "Rect" }, { name: "color", type: "Color" }, { name: "thickness", type: "int", default: "0" }, { name: "border_radius", type: "float", default: "0.0" }, { name: "radius_top_left", type: "float", default: "-1.0" }, { name: "radius_top_right", type: "float", default: "-1.0" }, { name: "radius_bottom_right", type: "float", default: "-1.0" }, { name: "radius_bottom_left", type: "float", default: "-1.0" }]} returns="None" />
+<ApiSig name="rect" params={[{ name: "rect", type: "Rect" }, { name: "color", type: "Color" }, { name: "thickness", type: "int", default: "0" }, { name: "border_radius", type: "float", default: "0.0" }, { name: "radius_top_left", type: "float", default: "-1.0" }, { name: "radius_top_right", type: "float", default: "-1.0" }, { name: "radius_bottom_right", type: "float", default: "-1.0" }, { name: "radius_bottom_left", type: "float", default: "-1.0" }]} returns="None" />
 
 Draw a rectangle to the renderer.
 
@@ -200,7 +200,7 @@ _**Args**_
 
 ## Rects
 <div className="api-card">
-<ApiSig name="rects" multiline params={[{ name: "rects", type: "Sequence[Rect]" }, { name: "color", type: "Color" }, { name: "thickness", type: "int", default: "0" }, { name: "border_radius", type: "float", default: "0.0" }, { name: "radius_top_left", type: "float", default: "-1.0" }, { name: "radius_top_right", type: "float", default: "-1.0" }, { name: "radius_bottom_right", type: "float", default: "-1.0" }, { name: "radius_bottom_left", type: "float", default: "-1.0" }]} returns="None" />
+<ApiSig name="rects" params={[{ name: "rects", type: "Sequence[Rect]" }, { name: "color", type: "Color" }, { name: "thickness", type: "int", default: "0" }, { name: "border_radius", type: "float", default: "0.0" }, { name: "radius_top_left", type: "float", default: "-1.0" }, { name: "radius_top_right", type: "float", default: "-1.0" }, { name: "radius_bottom_right", type: "float", default: "-1.0" }, { name: "radius_bottom_left", type: "float", default: "-1.0" }]} returns="None" />
 
 Batch draw an array of rectangles to the renderer.
 
@@ -219,7 +219,7 @@ _**Args**_
 
 ## Polygon
 <div className="api-card">
-<ApiSig name="polygon" multiline params={[{ name: "polygon", type: "Polygon" }, { name: "color", type: "Color" }, { name: "filled", type: "bool", default: "True" }]} returns="None" />
+<ApiSig name="polygon" params={[{ name: "polygon", type: "Polygon" }, { name: "color", type: "Color" }, { name: "filled", type: "bool", default: "True" }]} returns="None" />
 
 Draw a polygon to the renderer.
 
@@ -233,7 +233,7 @@ _**Args**_
 
 ## Polygons
 <div className="api-card">
-<ApiSig name="polygons" multiline params={[{ name: "polygons", type: "Sequence[Polygon]" }, { name: "color", type: "Color" }, { name: "filled", type: "bool", default: "True" }]} returns="None" />
+<ApiSig name="polygons" params={[{ name: "polygons", type: "Sequence[Polygon]" }, { name: "color", type: "Color" }, { name: "filled", type: "bool", default: "True" }]} returns="None" />
 
 Draw an array of polygons in bulk to the renderer.
 
@@ -247,7 +247,7 @@ _**Args**_
 
 ## Geometry
 <div className="api-card">
-<ApiSig name="geometry" multiline params={[{ name: "texture", type: "Texture | None" }, { name: "vertices", type: "Sequence[Vertex]" }, { name: "indices", type: "Sequence[int]", default: "[]" }]} returns="None" />
+<ApiSig name="geometry" params={[{ name: "texture", type: "Texture | None" }, { name: "vertices", type: "Sequence[Vertex]" }, { name: "indices", type: "Sequence[int]", default: "[]" }]} returns="None" />
 
 Draw arbitrary geometry using vertices and optional indices.
 
@@ -262,7 +262,7 @@ _**Args**_
 
 ## Bezier
 <div className="api-card">
-<ApiSig name="bezier" multiline params={[{ name: "control_points", type: "Sequence[Vec2]" }, { name: "color", type: "Color" }, { name: "thickness", type: "float", default: "1.0" }, { name: "num_segments", type: "int", default: "24" }]} returns="None" />
+<ApiSig name="bezier" params={[{ name: "control_points", type: "Sequence[Vec2]" }, { name: "color", type: "Color" }, { name: "thickness", type: "float", default: "1.0" }, { name: "num_segments", type: "int", default: "24" }]} returns="None" />
 
 Draw a Bezier curve with 3 or 4 control points.
 
@@ -277,7 +277,7 @@ _**Args**_
 
 ## Sector
 <div className="api-card">
-<ApiSig name="sector" multiline params={[{ name: "circle", type: "Circle" }, { name: "start_angle", type: "float" }, { name: "end_angle", type: "float" }, { name: "color", type: "Color" }, { name: "thickness", type: "float", default: "0.0" }, { name: "num_segments", type: "int", default: "24" }]} returns="None" />
+<ApiSig name="sector" params={[{ name: "circle", type: "Circle" }, { name: "start_angle", type: "float" }, { name: "end_angle", type: "float" }, { name: "color", type: "Color" }, { name: "thickness", type: "float", default: "0.0" }, { name: "num_segments", type: "int", default: "24" }]} returns="None" />
 
 Draw a circular sector or arc.
 
@@ -294,7 +294,7 @@ _**Args**_
 
 ## Polyline
 <div className="api-card">
-<ApiSig name="polyline" multiline params={[{ name: "points", type: "Sequence[Vec2]" }, { name: "color", type: "Color" }, { name: "thickness", type: "float", default: "1.0" }, { name: "closed", type: "bool", default: "False" }]} returns="None" />
+<ApiSig name="polyline" params={[{ name: "points", type: "Sequence[Vec2]" }, { name: "color", type: "Color" }, { name: "thickness", type: "float", default: "1.0" }, { name: "closed", type: "bool", default: "False" }]} returns="None" />
 
 Draw connected line segments through a sequence of points.
 

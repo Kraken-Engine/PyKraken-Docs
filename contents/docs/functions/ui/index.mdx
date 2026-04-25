@@ -11,7 +11,7 @@ description: A declarative UI and layout submodule.
 
 ## Root
 <div className="api-card">
-<ApiSig name="root" multiline params={[{ name: "bounds", type: "Rect" }, { name: "direction", type: "Direction", default: "Direction.VERTICAL" }, { name: "align", type: "Align", default: "Align.START" }, { name: "justify", type: "Align", default: "Align.START" }]} returns="_RootContext" />
+<ApiSig name="root" params={[{ name: "bounds", type: "Rect" }, { name: "direction", type: "Direction", default: "Direction.VERTICAL" }, { name: "align", type: "Align", default: "Align.START" }, { name: "justify", type: "Align", default: "Align.START" }]} returns="_RootContext" />
 
 Create a root UI context for the current frame.
 
@@ -33,7 +33,7 @@ _**Returns**_
 
 ## Row
 <div className="api-card">
-<ApiSig name="row" multiline params={[{ name: "style", type: "Style | None", default: "None" }, { name: "gap", type: "float", default: "0.0" }, { name: "padding", type: "float", default: "0.0" }, { name: "align", type: "Align", default: "Align.START" }, { name: "justify", type: "Align", default: "Align.START" }]} returns="_Context" />
+<ApiSig name="row" params={[{ name: "style", type: "Style | None", default: "None" }, { name: "gap", type: "float", default: "0.0" }, { name: "padding", type: "float", default: "0.0" }, { name: "align", type: "Align", default: "Align.START" }, { name: "justify", type: "Align", default: "Align.START" }]} returns="_Context" />
 
 Create a horizontal container.
 
@@ -56,7 +56,7 @@ _**Returns**_
 
 ## Column
 <div className="api-card">
-<ApiSig name="column" multiline params={[{ name: "style", type: "Style | None", default: "None" }, { name: "gap", type: "float", default: "0.0" }, { name: "padding", type: "float", default: "0.0" }, { name: "align", type: "Align", default: "Align.START" }, { name: "justify", type: "Align", default: "Align.START" }]} returns="_Context" />
+<ApiSig name="column" params={[{ name: "style", type: "Style | None", default: "None" }, { name: "gap", type: "float", default: "0.0" }, { name: "padding", type: "float", default: "0.0" }, { name: "align", type: "Align", default: "Align.START" }, { name: "justify", type: "Align", default: "Align.START" }]} returns="_Context" />
 
 Create a vertical container.
 
@@ -79,7 +79,7 @@ _**Returns**_
 
 ## Stack
 <div className="api-card">
-<ApiSig name="stack" multiline params={[{ name: "style", type: "Style | None", default: "None" }, { name: "padding", type: "float", default: "0.0" }, { name: "align", type: "Align", default: "Align.START" }, { name: "justify", type: "Align", default: "Align.START" }]} returns="_Context" />
+<ApiSig name="stack" params={[{ name: "style", type: "Style | None", default: "None" }, { name: "padding", type: "float", default: "0.0" }, { name: "align", type: "Align", default: "Align.START" }, { name: "justify", type: "Align", default: "Align.START" }]} returns="_Context" />
 
 Create an overlapping container.
 

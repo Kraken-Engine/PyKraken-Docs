@@ -6,7 +6,7 @@ description: A font typeface for rendering text.
 ## Constructor
 <div className="api-card">
 
-- <ApiSig name="Font" multiline params={[{ name: "file_dir", type: "str | os.PathLike[str]" }, { name: "pt_size", type: "int" }]} returns="Font" />
+- <ApiSig name="Font" params={[{ name: "file_dir", type: "str | os.PathLike" }, { name: "pt_size", type: "int" }]} returns="Font" />
 
 A font typeface for rendering text.
 </div>
@@ -17,15 +17,15 @@ A font typeface for rendering text.
 | Name | Description | Type |
 | --- | --- | --- |
 | `alignment` | Get or set the text alignment for wrapped text. | <code><a href="/docs/manual/constants#text-align">TextAlign</a></code> |
-| `hinting` | Get or set the font hinting mode. | <code><a href="/docs/manual/constants#font-hint">FontHint</a></code> |
-| `pt_size` | Get or set the point size of the font. Values below 8 are clamped to 8. | <code>int</code> |
+| `ascent` | Get the pixel ascent of the font. | <code>int</code> |
 | `bold` | Get or set whether bold text style is enabled. | <code>bool</code> |
+| `descent` | Get the pixel descent of the font. | <code>int</code> |
+| `height` | Get the maximum pixel height of all glyphs in the font. | <code>int</code> |
+| `hinting` | Get or set the font hinting mode. | <code><a href="/docs/manual/constants#font-hint">FontHint</a></code> |
 | `italic` | Get or set whether italic text style is enabled. | <code>bool</code> |
-| `underline` | Get or set whether underline text style is enabled. | <code>bool</code> |
-| `strikethrough` | Get or set whether strikethrough text style is enabled. | <code>bool</code> |
+| `kerning` | Get or set whether kerning is enabled. | <code>bool</code> |
 | `line_spacing` | Get or set the spacing between lines of text in pixels. | <code>int</code> |
 | `outline` | Get or set the outline width in pixels (0 for no outline). | <code>int</code> |
-| `kerning` | Get or set whether kerning is enabled. | <code>bool</code> |
-| `height` | Get the maximum pixel height of all glyphs in the font. | <code>int</code> |
-| `ascent` | Get the pixel ascent of the font. | <code>int</code> |
-| `descent` | Get the pixel descent of the font. | <code>int</code> |
+| `pt_size` | Get or set the point size of the font. Values below 8 are clamped to 8. | <code>int</code> |
+| `strikethrough` | Get or set whether strikethrough text style is enabled. | <code>bool</code> |
+| `underline` | Get or set whether underline text style is enabled. | <code>bool</code> |

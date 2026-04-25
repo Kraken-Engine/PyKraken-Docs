@@ -7,7 +7,7 @@ description: Window related functions
 
 ## Create
 <div className="api-card">
-<ApiSig name="create" multiline params={[{ name: "title", type: "str" }, { name: "width", type: "int" }, { name: "height", type: "int" }, { name: "handle_close", type: "bool", default: "True" }]} returns="None" />
+<ApiSig name="create" params={[{ name: "title", type: "str" }, { name: "width", type: "int" }, { name: "height", type: "int" }, { name: "handle_close", type: "bool", default: "True" }]} returns="None" />
 
 Create a window with the requested title and resolution.
 
@@ -147,7 +147,7 @@ _**Raises**_
 
 ## Set Icon
 <div className="api-card">
-<ApiSig name="set_icon" multiline params={[{ name: "path", type: "str | os.PathLike[str]" }]} returns="None" />
+<ApiSig name="set_icon" params={[{ name: "path", type: "str | os.PathLike[str]" }]} returns="None" />
 
 Set the window icon from an image file.
 
@@ -163,7 +163,7 @@ _**Raises**_
 
 ## Save Screenshot
 <div className="api-card">
-<ApiSig name="save_screenshot" multiline params={[{ name: "path", type: "str | os.PathLike[str]" }]} returns="None" />
+<ApiSig name="save_screenshot" params={[{ name: "path", type: "str | os.PathLike[str]" }]} returns="None" />
 
 Save a screenshot of the current frame to a file.
 

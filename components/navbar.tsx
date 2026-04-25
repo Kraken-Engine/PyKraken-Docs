@@ -49,23 +49,21 @@ export function Navbar() {
           </div>
         </div>
 
-        <div className="flex items-center sm:justify-normal justify-between sm:gap-3 ml-1 sm:w-fit w-[90%]">
+        <div className="flex items-center sm:justify-normal justify-between gap-2 sm:gap-3 ml-1 sm:w-fit w-[90%]">
           <AlgoliaSearch {...algolia_props} />
-          <div className="flex items-center justify-between sm:gap-2">
-            <div className="flex ml-4 sm:ml-0">
-              <Link
-                id="nav-github-link"
-                target="_blank"
-                href="https://github.com/Kraken-Engine/PyKraken"
-                className={buttonVariants({
-                  variant: "ghost",
-                  size: "icon",
-                })}
-              >
-                <GithubIcon className="h-[1.1rem] w-[1.1rem]" />
-              </Link>
-              <ModeToggle />
-            </div>
+          <div className="flex items-center gap-2">
+            <Link
+              id="nav-github-link"
+              target="_blank"
+              href="https://github.com/Kraken-Engine/PyKraken"
+              className={buttonVariants({
+                variant: "outline",
+                size: "icon",
+              })}
+            >
+              <GithubIcon className="h-[1.1rem] w-[1.1rem]" />
+            </Link>
+            <ModeToggle />
           </div>
         </div>
       </div>

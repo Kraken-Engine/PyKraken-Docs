@@ -21,18 +21,6 @@ Represents a 2D camera used for rendering.
 ## Methods
 ---
 
-### Move World
-<div className="api-card">
-<ApiSig name="move_world" params={[{ name: "delta", type: "Vec2" }]} returns="None" />
-
-Move the camera by a delta in world space.
-
-_**Args**_
-
-- `delta` : World movement delta.
-
-</div>
-
 ### Move Screen
 <div className="api-card">
 <ApiSig name="move_screen" params={[{ name: "delta", type: "Vec2" }]} returns="None" />
@@ -45,6 +33,18 @@ _**Args**_
 
 </div>
 
+### Move World
+<div className="api-card">
+<ApiSig name="move_world" params={[{ name: "delta", type: "Vec2" }]} returns="None" />
+
+Move the camera by a delta in world space.
+
+_**Args**_
+
+- `delta` : World movement delta.
+
+</div>
+
 ### Rotate
 <div className="api-card">
 <ApiSig name="rotate" params={[{ name: "delta", type: "float" }]} returns="None" />
@@ -54,6 +54,22 @@ Rotate the camera view by a delta in radians.
 _**Args**_
 
 - `delta` : Angle delta in radians.
+
+</div>
+
+### Screen To World
+<div className="api-card">
+<ApiSig name="screen_to_world" params={[{ name: "screen_pos", type: "Vec2" }]} returns="Vec2" />
+
+Convert a screen position to a world position using this camera.
+
+_**Args**_
+
+- `screen_pos` : The screen position to convert.
+
+_**Returns**_
+
+`Vec2` : The resulting world position.
 
 </div>
 
@@ -88,21 +104,5 @@ _**Args**_
 _**Returns**_
 
 `Vec2` : The resulting screen position.
-
-</div>
-
-### Screen To World
-<div className="api-card">
-<ApiSig name="screen_to_world" params={[{ name: "screen_pos", type: "Vec2" }]} returns="Vec2" />
-
-Convert a screen position to a world position using this camera.
-
-_**Args**_
-
-- `screen_pos` : The screen position to convert.
-
-_**Returns**_
-
-`Vec2` : The resulting world position.
 
 </div>

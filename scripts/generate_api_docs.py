@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate MDX API docs for PyKraken from installed type stubs.
+Generate MDX API docs for PyKraken with Griffe.
 
 Usage:
   python scripts/generate_api_docs.py
@@ -15,8 +15,6 @@ Notes:
 from __future__ import annotations
 
 import argparse
-import ast
-import importlib.util
 import importlib
 import re
 import shutil
@@ -24,6 +22,8 @@ import textwrap
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
+
+from griffe import Attribute, Class, Function, Module, load
 
 
 @dataclass
@@ -67,91 +67,6 @@ class ModuleInfo:
     functions: List[FunctionSig] = field(default_factory=list)
 
 
-def find_package_root(package: str) -> Tuple[Path, Path]:
-    spec = importlib.util.find_spec(package)
-    if spec is None:
-        raise RuntimeError(f"Package '{package}' not found in current Python environment.")
-
-    # If a stub file is directly provided
-    if spec.origin and spec.origin.endswith(".pyi"):
-        root = Path(spec.origin).parent
-        return root, Path(spec.origin)
-
-    # If package directory exists
-    if spec.submodule_search_locations:
-        for loc in spec.submodule_search_locations:
-            loc_path = Path(loc)
-            init_pyi = loc_path / "__init__.pyi"
-            if init_pyi.exists():
-                return loc_path, init_pyi
-            init_py = loc_path / "__init__.py"
-            if init_py.exists():
-                return loc_path, init_py
-
-    # Fallback: try same directory as origin
-    if spec.origin:
-        origin_path = Path(spec.origin)
-        return origin_path.parent, origin_path
-
-    raise RuntimeError(f"Unable to locate package root for '{package}'.")
-
-
-def iter_stub_files(pkg_root: Path) -> List[Path]:
-    files: List[Path] = []
-    for path in pkg_root.rglob("*.pyi"):
-        if "__pycache__" in path.parts:
-            continue
-        files.append(path)
-
-    # Also include .py stubs if present (some installs ship .py instead of .pyi)
-    for path in pkg_root.rglob("*.py"):
-        if "__pycache__" in path.parts:
-            continue
-        # Avoid compiled extensions or package __init__ reimports
-        if path.suffix.lower() == ".py":
-            files.append(path)
-
-    # Include specific submodules that need explicit import (fx, shader_uniform)
-    for submodule in ["fx.py", "shader_uniform.py"]:
-        py_file = pkg_root / submodule
-        if py_file.exists():
-            files.append(py_file)
-
-    # For compiled extension modules (e.g. .pyd/.so) sometimes a separate .pyi is placed
-    # next to the compiled file. Look for common compiled extensions and include any
-    # sibling .pyi/.py files that match the stem.
-    for ext in (".pyd", ".so", ".dll"):
-        for bin_path in pkg_root.rglob(f"*{ext}"):
-            stem = bin_path.stem
-            for candidate in (bin_path.with_suffix(".pyi"), bin_path.with_suffix(".py")):
-                if candidate.exists():
-                    files.append(candidate)
-
-    return files
-
-
-def parse_module(path: Path) -> Tuple[ast.Module, List[str]]:
-    source = path.read_text(encoding="utf-8")
-    return ast.parse(source, filename=str(path)), source.splitlines()
-
-
-def decorator_name(node: ast.AST) -> Optional[str]:
-    if isinstance(node, ast.Name):
-        return node.id
-    if isinstance(node, ast.Attribute):
-        return node.attr
-    return None
-
-
-def render_annotation(node: Optional[ast.AST]) -> Optional[str]:
-    if node is None:
-        return None
-    try:
-        return ast.unparse(node)
-    except Exception:
-        return None
-
-
 def clean_floats(text: str) -> str:
     """Detects trailing zeros in decimals (at least two in a row) and cuts them off."""
     if not text:
@@ -177,88 +92,6 @@ def clean_floats(text: str) -> str:
     return re.sub(r"\d+\.\d+", replacer, text)
 
 
-def render_default(node: Optional[ast.AST]) -> Optional[str]:
-    if node is None:
-        return None
-    try:
-        text = ast.unparse(node)
-        return clean_floats(text)
-    except Exception:
-        return None
-
-
-def build_params(args: ast.arguments, drop_first: bool) -> List[Param]:
-    params: List[Param] = []
-
-    pos_args = list(args.posonlyargs) + list(args.args)
-    if drop_first and pos_args:
-        pos_args = pos_args[1:]
-
-    defaults = list(args.defaults)
-    default_pad = [None] * (len(pos_args) - len(defaults))
-    defaults = default_pad + defaults
-
-    for arg, default in zip(pos_args, defaults):
-        params.append(
-            Param(
-                name=arg.arg,
-                type=render_annotation(arg.annotation),
-                default=render_default(default),
-            )
-        )
-
-    if args.vararg:
-        params.append(
-            Param(
-                name=f"*{args.vararg.arg}",
-                type=render_annotation(args.vararg.annotation),
-                default=None,
-            )
-        )
-
-    if args.kwonlyargs:
-        for arg, default in zip(args.kwonlyargs, args.kw_defaults):
-            params.append(
-                Param(
-                    name=arg.arg,
-                    type=render_annotation(arg.annotation),
-                    default=render_default(default),
-                )
-            )
-
-    if args.kwarg:
-        params.append(
-            Param(
-                name=f"**{args.kwarg.arg}",
-                type=render_annotation(args.kwarg.annotation),
-                default=None,
-            )
-        )
-
-    return params
-
-
-def should_multiline(params: List[Param]) -> bool:
-    if len(params) > 3:
-        return True
-
-    for p in params:
-        if p.type and len(p.type) > 18:
-            return True
-
-    # Estimate signature length for readability
-    def render_param(p: Param) -> str:
-        parts = [p.name]
-        if p.type:
-            parts.append(f": {p.type}")
-        if p.default is not None:
-            parts.append(f" = {p.default}")
-        return "".join(parts)
-
-    sig_len = len(", ".join(render_param(p) for p in params))
-    return sig_len > 42
-
-
 def escape_attr(value: str) -> str:
     return value.replace("\\", "\\\\").replace('"', '\\"')
 
@@ -278,11 +111,8 @@ def params_to_mdx(params: List[Param]) -> str:
 
 
 def mdx_api_sig(name: str, sig: FunctionSig) -> str:
-    multiline = should_multiline(sig.params)
     params = params_to_mdx(sig.params) if sig.params else None
     parts = [f'<ApiSig name="{escape_attr(name)}"']
-    if multiline:
-        parts.append("multiline")
     if params is not None and params != "[]":
         parts.append(f"params={{{params}}}")
     if sig.returns:
@@ -309,47 +139,334 @@ def summary_from_doc(doc: Optional[str], fallback: str) -> str:
     return text.splitlines()[0] if text else fallback
 
 
-def parse_stub_file(tree: ast.Module, lines: List[str]) -> Tuple[List[ClassInfo], List[FunctionSig], Optional[str]]:
-    module_doc = ast.get_docstring(tree)
-    classes: List[ClassInfo] = []
-    functions: List[FunctionSig] = []
+def griffe_doc(obj: object) -> Optional[str]:
+    docstring = getattr(obj, "docstring", None)
+    value = getattr(docstring, "value", None)
+    if isinstance(value, str) and value.strip():
+        return value
+    return None
 
-    overload_buckets: Dict[str, List[FunctionSig]] = {}
 
-    for node in tree.body:
-        if isinstance(node, ast.ClassDef):
-            classes.extend(parse_class(node, lines))
-        elif isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
-            sigs = parse_function_overloads(node, drop_first=False)
-            for sig in sigs:
-                overload_buckets.setdefault(sig.name, []).append(sig)
-        else:
+def strip_leading_signature_line(doc: Optional[str], name: str) -> Optional[str]:
+    if not doc:
+        return doc
+
+    lines = textwrap.dedent(doc).strip().splitlines()
+    if not lines:
+        return doc
+
+    escaped_name = re.escape(name)
+    signature_re = re.compile(rf"^{escaped_name}\s*\(.*\)\s*(?:->|→).*$")
+    if not signature_re.match(lines[0].strip()):
+        return doc
+
+    lines = lines[1:]
+    while lines and not lines[0].strip():
+        lines = lines[1:]
+    return "\n".join(lines).strip() or None
+
+
+def split_top_level(text: str, separator: str) -> List[str]:
+    parts: List[str] = []
+    start = 0
+    depth = 0
+    quote: Optional[str] = None
+    escape = False
+
+    for idx, char in enumerate(text):
+        if escape:
+            escape = False
+            continue
+        if char == "\\":
+            escape = True
+            continue
+        if quote:
+            if char == quote:
+                quote = None
+            continue
+        if char in {"'", '"'}:
+            quote = char
+            continue
+        if char in "([{":
+            depth += 1
+            continue
+        if char in ")]}":
+            depth = max(0, depth - 1)
+            continue
+        if char == separator and depth == 0:
+            parts.append(text[start:idx].strip())
+            start = idx + 1
+
+    tail = text[start:].strip()
+    if tail:
+        parts.append(tail)
+    return parts
+
+
+def split_top_level_once(text: str, separator: str) -> Tuple[str, Optional[str]]:
+    parts = split_top_level(text, separator)
+    if len(parts) <= 1:
+        return text.strip(), None
+
+    left = parts[0]
+    right = text[text.find(separator) + 1 :].strip()
+    return left, right
+
+
+def parse_docstring_signature(doc: Optional[str], name: str) -> Tuple[List[Param], Optional[str]]:
+    if not doc:
+        return [], None
+
+    first_line = textwrap.dedent(doc).strip().splitlines()[0].strip()
+    match = re.match(rf"^{re.escape(name)}\s*\((?P<params>.*)\)\s*(?:(?:->|→)\s*(?P<returns>.*))?$", first_line)
+    if not match:
+        return [], None
+
+    params: List[Param] = []
+    for raw_param in split_top_level(match.group("params"), ","):
+        if raw_param in {"", "/", "*", "self", "cls"}:
             continue
 
-    for name, sigs in overload_buckets.items():
-        if name.startswith("_"):
+        left, default = split_top_level_once(raw_param, "=")
+        param_name, param_type = split_top_level_once(left, ":")
+        param_name = param_name.strip()
+        if not param_name or param_name in {"self", "cls"}:
             continue
-        # Keep doc from first signature if present
-        doc = next((s.doc for s in sigs if s.doc), None)
-        merged = FunctionSig(name=name, params=sigs[0].params, returns=sigs[0].returns, doc=doc)
-        if len(sigs) > 1:
-            merged = FunctionSig(name=name, params=sigs[0].params, returns=sigs[0].returns, doc=doc)
-            merged.__dict__["overloads"] = sigs  # type: ignore
-        functions.append(merged)
 
-    return classes, functions, module_doc
+        params.append(
+            Param(
+                name=param_name,
+                type=clean_floats(param_type.strip()) if param_type else None,
+                default=clean_floats(default.strip()) if default else None,
+            )
+        )
+
+    returns = griffe_expr(match.group("returns"), keep_none=True)
+    return params, returns
 
 
-def is_enum_base(base: ast.expr) -> bool:
-    try:
-        name = ast.unparse(base)
-    except Exception:
-        return False
-    name = name.strip()
+def griffe_expr(value: object, keep_none: bool = False) -> Optional[str]:
+    if value is None:
+        return None
+    text = str(value).strip()
+    if not text or (text == "None" and not keep_none):
+        return None
+    return clean_floats(text)
+
+
+def griffe_module_path(obj: object) -> str:
+    path = str(getattr(obj, "path", ""))
+    name = str(getattr(obj, "name", ""))
+    if not path or not name:
+        return ""
+    suffix = f".{name}"
+    return path[: -len(suffix)] if path.endswith(suffix) else path
+
+
+def griffe_class_name(cls: Class, module_name: str) -> str:
+    path = str(cls.path)
+    prefix = f"{module_name}."
+    return path[len(prefix) :] if path.startswith(prefix) else cls.name
+
+
+def griffe_base_name(base: object) -> str:
+    text = str(base).strip()
+    return text.replace("pykraken.", "")
+
+
+def griffe_is_enum(cls: Class) -> bool:
     enum_names = {"Enum", "IntEnum", "Flag", "IntFlag"}
-    if name in enum_names:
-        return True
-    return any(name.endswith(f".{n}") for n in enum_names)
+    for base in getattr(cls, "bases", []) or []:
+        name = str(base).strip()
+        if name in enum_names or any(name.endswith(f".{enum_name}") for enum_name in enum_names):
+            return True
+    return False
+
+
+def griffe_param_to_info(param: object) -> Optional[Param]:
+    name = str(getattr(param, "name", ""))
+    if not name or name in {"self", "cls"}:
+        return None
+
+    kind = str(getattr(param, "kind", ""))
+    if kind.endswith("variadic positional") or "var positional" in kind:
+        name = f"*{name}"
+    elif kind.endswith("variadic keyword") or "var keyword" in kind:
+        name = f"**{name}"
+
+    return Param(
+        name=name,
+        type=griffe_expr(getattr(param, "annotation", None)),
+        default=griffe_expr(getattr(param, "default", None), keep_none=True),
+    )
+
+
+def griffe_function_sig(func: Function) -> FunctionSig:
+    params = [
+        param_info
+        for param in getattr(func, "parameters", [])
+        if (param_info := griffe_param_to_info(param)) is not None
+    ]
+    doc = griffe_doc(func)
+    fallback_params, fallback_returns = parse_docstring_signature(doc, func.name)
+    if not params and fallback_params:
+        params = fallback_params
+
+    return FunctionSig(
+        name=func.name,
+        params=params,
+        returns=griffe_expr(getattr(func, "returns", None), keep_none=True) or fallback_returns,
+        doc=strip_leading_signature_line(doc, func.name),
+    )
+
+
+def griffe_function_with_overloads(func: Function) -> Optional[FunctionSig]:
+    overloads = getattr(func, "overloads", None) or []
+    if overloads:
+        sigs = [griffe_function_sig(overload) for overload in overloads]
+        doc = next((sig.doc for sig in sigs if sig.doc), griffe_doc(func))
+        merged = FunctionSig(
+            name=func.name,
+            params=sigs[0].params,
+            returns=sigs[0].returns,
+            doc=doc,
+        )
+        merged.__dict__["overloads"] = sigs
+        return merged
+
+    sig = griffe_function_sig(func)
+    if any(p.name == "arg0" for p in sig.params):
+        return None
+    return sig
+
+
+def griffe_class_info(cls: Class, module_name: str) -> ClassInfo:
+    full_name = griffe_class_name(cls, module_name)
+    is_enum = griffe_is_enum(cls)
+    bases = [
+        griffe_base_name(base)
+        for base in getattr(cls, "bases", []) or []
+        if griffe_base_name(base) not in ("object", "ABC", "enum.Enum", "Enum")
+    ]
+    if is_enum:
+        bases = []
+
+    info = ClassInfo(
+        name=full_name,
+        doc=griffe_doc(cls),
+        module_name=module_name,
+        is_enum=is_enum,
+        bases=bases,
+    )
+
+    for member in getattr(cls, "members", {}).values():
+        if isinstance(member, Class):
+            continue
+
+        if isinstance(member, Attribute):
+            if member.name.startswith("_"):
+                continue
+            labels = set(getattr(member, "labels", set()) or set())
+            is_property = "property" in labels
+            is_class_attribute = "class-attribute" in labels
+            if is_enum or is_property or is_class_attribute:
+                prop_doc = griffe_doc(member)
+                if (
+                    is_class_attribute
+                    and not is_enum
+                    and not is_property
+                    and prop_doc == info.doc
+                    and getattr(member, "value", None) is not None
+                ):
+                    prop_doc = f"`{clean_floats(str(member.value))}`"
+
+                info.properties.append(
+                    PropertyInfo(
+                        name=member.name,
+                        type=griffe_expr(getattr(member, "annotation", None)) or (full_name if is_enum else None),
+                        doc=prop_doc,
+                    )
+                )
+            continue
+
+        if not isinstance(member, Function):
+            continue
+
+        if member.name == "__init__":
+            init_sig = griffe_function_with_overloads(member)
+            if init_sig is None:
+                continue
+            overloads = getattr(init_sig, "overloads", None)
+            info.init_sigs = list(overloads) if overloads else [init_sig]
+            continue
+
+        if member.name.startswith("_"):
+            continue
+
+        sig = griffe_function_with_overloads(member)
+        if sig is not None:
+            info.methods.append(sig)
+
+    return info
+
+
+def class_preference(info: ClassInfo, package_name: str) -> Tuple[int, int]:
+    module_name = info.module_name or ""
+    if module_name == package_name:
+        return (3, len(module_name))
+    if f"{package_name}._pykraken" not in module_name:
+        return (2, len(module_name))
+    return (1, len(module_name))
+
+
+def collect_griffe_classes(module: Module, package_name: str) -> Dict[str, ClassInfo]:
+    classes: Dict[str, ClassInfo] = {}
+
+    def visit(container: Module | Class, module_name: str) -> None:
+        for member in getattr(container, "members", {}).values():
+            if isinstance(member, Module):
+                visit(member, str(member.path))
+                continue
+
+            if not isinstance(member, Class):
+                continue
+
+            if member.name.startswith("_") or member.name.endswith("List"):
+                continue
+
+            info = griffe_class_info(member, module_name)
+            current = classes.get(info.name)
+            if current is None or class_preference(info, package_name) > class_preference(current, package_name):
+                classes[info.name] = info
+
+            visit(member, module_name)
+
+    visit(module, str(module.path))
+    return classes
+
+
+def collect_griffe_modules(module: Module, package_name: str) -> Dict[str, ModuleInfo]:
+    modules: Dict[str, ModuleInfo] = {}
+
+    for member in getattr(module, "members", {}).values():
+        if not isinstance(member, Module):
+            continue
+        module_name = str(member.path)
+        short_name = member.name
+        if short_name in {package_name, "_pykraken", "cli"} or short_name.startswith("_"):
+            continue
+
+        functions: List[FunctionSig] = []
+        for child in getattr(member, "members", {}).values():
+            if isinstance(child, Function) and not child.name.startswith("_"):
+                sig = griffe_function_with_overloads(child)
+                if sig is not None:
+                    functions.append(sig)
+
+        if functions:
+            modules[module_name] = ModuleInfo(name=short_name, doc=griffe_doc(member), functions=functions)
+
+    return modules
 
 
 def escape_html(text: str) -> str:
@@ -448,8 +565,9 @@ def simplify_type(type_str: Optional[str]) -> str:
     if not type_str:
         return ""
 
-    # Strip private module prefixes from stubs
-    s = type_str.replace("pykraken.", "")
+    # Strip private module prefixes from stubs and compiled-extension docstrings.
+    s = type_str.replace("pykraken._pykraken.", "")
+    s = s.replace("pykraken.", "").replace("_pykraken.", "")
 
     # Simplify Annotated[...] -> keep the first top-level item before the first comma
     if "Annotated[" in s:
@@ -509,133 +627,6 @@ def process_sig(
     return new_sig
 
 
-def parse_class(node: ast.ClassDef, lines: List[str], parent_name: str = "") -> List[ClassInfo]:
-    if node.name.endswith("List"):
-        return []
-    is_enum = False
-    if any(is_enum_base(base) for base in node.bases):
-        is_enum = True
-
-    full_name = f"{parent_name}.{node.name}" if parent_name else node.name
-    doc = ast.get_docstring(node)
-    bases = []
-    for base_node in node.bases:
-        base_name = render_annotation(base_node)
-        if base_name and base_name not in ("object", "ABC", "enum.Enum", "Enum"):
-            if not is_enum_base(base_node):
-                bases.append(base_name)
-
-    info = ClassInfo(name=full_name, doc=doc, is_enum=is_enum, bases=bases)
-    all_classes = [info]
-
-    init_overloads: Dict[str, List[FunctionSig]] = {}
-    method_overloads: Dict[str, List[FunctionSig]] = {}
-
-    body = list(node.body)
-    for idx, item in enumerate(body):
-        if isinstance(item, ast.ClassDef):
-            all_classes.extend(parse_class(item, lines, full_name))
-            continue
-
-        next_item = body[idx + 1] if idx + 1 < len(body) else None
-        next_doc: Optional[str] = None
-        if isinstance(next_item, ast.Expr) and isinstance(next_item.value, ast.Constant):
-            if isinstance(next_item.value.value, str):
-                next_doc = next_item.value.value
-        # Match annotated assignments: name: type = val
-        if isinstance(item, ast.AnnAssign) and isinstance(item.target, ast.Name):
-            if item.target.id.startswith("_"):
-                continue
-            prop_doc = next_doc
-
-            # Extract comment value if no docstring
-            if not prop_doc and not is_enum and hasattr(item, "lineno"):
-                line_idx = item.lineno - 1
-                if 0 <= line_idx < len(lines):
-                    line_content = lines[line_idx]
-                    if "# value =" in line_content:
-                        # Extract the part after "# value ="
-                        val = line_content.split("# value =", 1)[1].strip()
-                        prop_doc = f"`{val}`"
-
-            info.properties.append(
-                PropertyInfo(
-                    name=item.target.id,
-                    type=render_annotation(item.annotation),
-                    doc=prop_doc,
-                )
-            )
-            continue
-
-        # Match plain assignments (common in Enums): name = val
-        if isinstance(item, ast.Assign):
-            # For enums, we want to capture these as properties
-            if not is_enum:
-                continue
-            for target in item.targets:
-                if isinstance(target, ast.Name):
-                    if target.id.startswith("_"):
-                        continue
-                    # For enums, if no annotation, default to class name itself
-                    # or leave empty?
-                    # Stubs for enums often look like: MEMBER = ...
-                    # Let's verify what type to use. Using the class name is safe.
-                    info.properties.append(
-                        PropertyInfo(
-                            name=target.id,
-                            type=full_name,
-                            doc=next_doc,
-                        )
-                    )
-            continue
-
-        if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef)):
-            decorators = [decorator_name(d) for d in item.decorator_list]
-            if any(d in {"setter", "deleter", "getter"} for d in decorators if d):
-                continue
-            if "property" in decorators:
-                if item.name.startswith("_"):
-                    continue
-                info.properties.append(
-                    PropertyInfo(
-                        name=item.name,
-                        type=render_annotation(item.returns),
-                        doc=ast.get_docstring(item),
-                    )
-                )
-                continue
-
-            drop_first = True
-            if "staticmethod" in decorators:
-                drop_first = False
-            sigs = parse_function_overloads(item, drop_first=drop_first)
-
-            if item.name == "__init__":
-                for sig in sigs:
-                    init_overloads.setdefault(sig.name, []).append(sig)
-                continue
-
-            if item.name.startswith("_"):
-                continue
-
-            for sig in sigs:
-                method_overloads.setdefault(item.name, []).append(sig)
-
-    if init_overloads:
-        sigs = init_overloads.get("__init__", [])
-        info.init_sigs = sigs
-
-    for name, sigs in method_overloads.items():
-        if len(sigs) == 1:
-            info.methods.append(sigs[0])
-        else:
-            merged = FunctionSig(name=name, params=sigs[0].params, returns=sigs[0].returns, doc=sigs[0].doc)
-            merged.__dict__["overloads"] = sigs  # type: ignore
-            info.methods.append(merged)
-
-    return all_classes
-
-
 def format_docstring(doc: Optional[str]) -> str:
     if not doc:
         return ""
@@ -689,27 +680,6 @@ def format_docstring(doc: Optional[str]) -> str:
         out_lines.append(escape_outside_code(line))
 
     return "\n".join(out_lines).strip()
-
-
-def parse_function_overloads(node: ast.AST, drop_first: bool) -> List[FunctionSig]:
-    if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
-        return []
-    decorators = [decorator_name(d) for d in node.decorator_list]
-    is_overload = "overload" in decorators
-
-    params = build_params(node.args, drop_first=drop_first)
-    if any(p.name == "arg0" for p in params):
-        return []
-
-    sig = FunctionSig(
-        name=node.name,
-        params=params,
-        returns=render_annotation(node.returns),
-        doc=ast.get_docstring(node),
-    )
-
-    # For stubs, overloads are collected in caller. Still return this signature.
-    return [sig]
 
 
 def render_class_page(
@@ -1002,30 +972,6 @@ def enrich_enum_member_docs(enums: List[ClassInfo], package_name: str) -> None:
                 prop.doc = doc.strip()
 
 
-def module_name_from_path(pkg: str, pkg_root: Path, file_path: Path) -> str:
-    try:
-        rel = file_path.relative_to(pkg_root)
-    except Exception:
-        # If the file isn't under the package root (e.g. stub placed elsewhere),
-        # fall back to using the package name only.
-        return pkg
-
-    if rel.suffix not in (".pyi", ".py"):
-        return pkg
-
-    # Handle __init__ files
-    parts = list(rel.with_suffix("").parts)
-    if rel.name in ("__init__.pyi", "__init__.py"):
-        # If it's the top-level __init__, return just the package name
-        if len(parts) == 1:
-            return pkg
-        # Otherwise, include the parent directory path
-        return ".".join([pkg] + parts[:-1])
-
-    # Regular module files
-    return ".".join([pkg] + parts)
-
-
 def build_routes_items(titles_and_slugs: List[Tuple[str, str]], prepend_overview: bool = False) -> str:
     lines = []
     if prepend_overview:
@@ -1097,7 +1043,7 @@ def write_type_links_file(
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Generate MDX API docs from PyKraken stubs.")
+    parser = argparse.ArgumentParser(description="Generate MDX API docs from PyKraken with Griffe.")
     parser.add_argument("--package", default="pykraken", help="Package name (default: pykraken)")
     parser.add_argument("--out", default=str(Path("contents") / "docs"), help="Docs output directory")
     parser.add_argument("--prune", action="store_true", help="Remove stale class/function directories")
@@ -1112,44 +1058,11 @@ def main() -> int:
     pkg = args.package
     out_dir = Path(args.out)
 
-    pkg_root, entry_file = find_package_root(pkg)
-    stub_files = iter_stub_files(pkg_root)
-    if not stub_files:
-        # Try to fall back to parsing a nearby .pyi/.py sibling to the compiled
-        # extension if present. Avoid trying to read binary extension files directly.
-        candidates = []
-        for cand in (entry_file.with_suffix(".pyi"), entry_file.with_suffix(".py")):
-            if cand.exists():
-                candidates.append(cand)
+    package_module = load(pkg)
+    classes_by_name = collect_griffe_classes(package_module, pkg)
+    modules = collect_griffe_modules(package_module, pkg)
 
-        if candidates:
-            stub_files = candidates
-        else:
-            # If entry_file is a normal .py/.pyi file, use it; otherwise abort with message.
-            if entry_file.suffix in (".py", ".pyi"):
-                stub_files = [entry_file]
-            else:
-                raise RuntimeError(
-                    f"No .pyi/.py stub files found for package '{pkg}' under {pkg_root}"
-                )
-
-    print(f"Found {len(stub_files)} stub file(s) under {pkg_root}")
-
-    classes_by_name: Dict[str, ClassInfo] = {}
-    modules: Dict[str, ModuleInfo] = {}
-
-    for stub in stub_files:
-        tree, lines = parse_module(stub)
-        classes, functions, module_doc = parse_stub_file(tree, lines)
-        module_name = module_name_from_path(pkg, pkg_root, stub)
-
-        for cls in classes:
-            cls.module_name = module_name
-            classes_by_name[cls.name] = cls
-
-        if functions:
-            modules[module_name] = ModuleInfo(name=module_name.split(".")[-1], doc=module_doc, functions=functions)
-
+    print(f"Loaded {pkg} with Griffe")
     print(f"Parsed {len(classes_by_name)} class(es) and {len(modules)} module(s)")
 
     classes_dir = out_dir / "classes"

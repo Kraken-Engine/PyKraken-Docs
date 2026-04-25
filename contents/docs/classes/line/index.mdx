@@ -7,7 +7,7 @@ description: A 2D line segment defined by two points.
 <div className="api-card">
 
 - <ApiSig name="Line" returns="Line" />
-- <ApiSig name="Line" multiline params={[{ name: "ax", type: "float" }, { name: "ay", type: "float" }, { name: "bx", type: "float" }, { name: "by", type: "float" }]} returns="Line" />
+- <ApiSig name="Line" params={[{ name: "ax", type: "float" }, { name: "ay", type: "float" }, { name: "bx", type: "float" }, { name: "by", type: "float" }]} returns="Line" />
 - <ApiSig name="Line" params={[{ name: "ax", type: "float" }, { name: "ay", type: "float" }, { name: "b", type: "Vec2" }]} returns="Line" />
 - <ApiSig name="Line" params={[{ name: "a", type: "Vec2" }, { name: "bx", type: "float" }, { name: "by", type: "float" }]} returns="Line" />
 - <ApiSig name="Line" params={[{ name: "a", type: "Vec2" }, { name: "b", type: "Vec2" }]} returns="Line" />
@@ -21,9 +21,9 @@ A 2D line segment defined by two points.
 | Name | Description | Type |
 | --- | --- | --- |
 | `a` | Get or set point A as a tuple or Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
-| `b` | Get or set point B as a tuple or Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `ax` | X-coordinate of point A. | <code>float</code> |
 | `ay` | Y-coordinate of point A. | <code>float</code> |
+| `b` | Get or set point B as a tuple or Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `bx` | X-coordinate of point B. | <code>float</code> |
 | `by` | Y-coordinate of point B. | <code>float</code> |
 | `length` | The Euclidean length of the line segment. | <code>float</code> |
@@ -36,54 +36,6 @@ A 2D line segment defined by two points.
 <ApiSig name="copy" returns="Line" />
 
 Return a copy of this line.
-
-</div>
-
-### Move
-<div className="api-card">
-<ApiSig name="move" params={[{ name: "offset", type: "Vec2" }]} returns="None" />
-
-Move this line by a Vec2 offset.
-
-_**Args**_
-
-- `offset` : The amount to move.
-
-</div>
-
-### Moved
-<div className="api-card">
-<ApiSig name="moved" params={[{ name: "offset", type: "Vec2" }]} returns="Line" />
-
-Return a new line moved by a Vec2 offset.
-
-_**Args**_
-
-- `offset` : The amount to move.
-
-</div>
-
-### Get Midpoint
-<div className="api-card">
-<ApiSig name="get_midpoint" returns="Vec2" />
-
-Get the midpoint of the line segment.
-
-_**Returns**_
-
-`Vec2` : The midpoint as a Vec2.
-
-</div>
-
-### Get Perpendicular
-<div className="api-card">
-<ApiSig name="get_perpendicular" returns="Line" />
-
-Get a perpendicular bisector line from this line.
-
-_**Returns**_
-
-`Line` : A new perpendicular line.
 
 </div>
 
@@ -112,5 +64,53 @@ _**Args**_
 _**Returns**_
 
 `Vec2` : The closest point on the line as a Vec2.
+
+</div>
+
+### Get Midpoint
+<div className="api-card">
+<ApiSig name="get_midpoint" returns="Vec2" />
+
+Get the midpoint of the line segment.
+
+_**Returns**_
+
+`Vec2` : The midpoint as a Vec2.
+
+</div>
+
+### Get Perpendicular
+<div className="api-card">
+<ApiSig name="get_perpendicular" returns="Line" />
+
+Get a perpendicular bisector line from this line.
+
+_**Returns**_
+
+`Line` : A new perpendicular line.
+
+</div>
+
+### Move
+<div className="api-card">
+<ApiSig name="move" params={[{ name: "offset", type: "Vec2" }]} returns="None" />
+
+Move this line by a Vec2 offset.
+
+_**Args**_
+
+- `offset` : The amount to move.
+
+</div>
+
+### Moved
+<div className="api-card">
+<ApiSig name="moved" params={[{ name: "offset", type: "Vec2" }]} returns="Line" />
+
+Return a new line moved by a Vec2 offset.
+
+_**Args**_
+
+- `offset` : The amount to move.
 
 </div>

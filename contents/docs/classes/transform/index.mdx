@@ -6,8 +6,8 @@ description: Transform represents a 2D transformation with position, rotation, a
 ## Constructor
 <div className="api-card">
 
-- <ApiSig name="Transform" multiline params={[{ name: "pos", type: "Vec2", default: "..." }, { name: "angle", type: "float", default: "0.0" }, { name: "scale", type: "Vec2", default: "..." }]} returns="Transform" />
-- <ApiSig name="Transform" multiline params={[{ name: "pos", type: "Vec2", default: "..." }, { name: "angle", type: "float", default: "0.0" }, { name: "scale", type: "float", default: "1.0" }]} returns="Transform" />
+- <ApiSig name="Transform" params={[{ name: "pos", type: "Vec2", default: "..." }, { name: "angle", type: "float", default: "0.0" }, { name: "scale", type: "Vec2", default: "..." }]} returns="Transform" />
+- <ApiSig name="Transform" params={[{ name: "pos", type: "Vec2", default: "..." }, { name: "angle", type: "float", default: "0.0" }, { name: "scale", type: "float", default: "1.0" }]} returns="Transform" />
 
 Transform represents a 2D transformation with position, rotation, and scale.
 </div>
@@ -17,6 +17,6 @@ Transform represents a 2D transformation with position, rotation, and scale.
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `pos` | The position component as a Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `angle` | The rotation component in radians. | <code>float</code> |
+| `pos` | The position component as a Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `scale` | The scale component as a Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |

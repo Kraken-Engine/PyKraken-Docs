@@ -16,21 +16,21 @@ A text object for rendering text to the active renderer.
 
 | Name | Description | Type |
 | --- | --- | --- |
+| `color` | Get or set the color of the rendered text. | <code><a href="/docs/classes/color">Color</a></code> |
+| `height` | Get the height in pixels of the current text. | <code>int</code> |
 | `shadow_color` | Get or set the shadow color for the text. | <code><a href="/docs/classes/color">Color</a></code> |
 | `shadow_offset` | Get or set the shadow offset for the text. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
-| `wrap_width` | Get or set the wrap width in pixels for text wrapping. | <code>int</code> |
-| `text` | Get or set the text string to be rendered. | <code>str</code> |
-| `color` | Get or set the color of the rendered text. | <code><a href="/docs/classes/color">Color</a></code> |
 | `size` | Get the size (width, height) of the current text as a Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `text` | Get or set the text string to be rendered. | <code>str</code> |
 | `width` | Get the width in pixels of the current text. | <code>int</code> |
-| `height` | Get the height in pixels of the current text. | <code>int</code> |
+| `wrap_width` | Get or set the wrap width in pixels for text wrapping. | <code>int</code> |
 
 ## Methods
 ---
 
 ### Draw
 <div className="api-card">
-<ApiSig name="draw" params={[{ name: "pos", type: "Vec2", default: "..." }, { name: "anchor", type: "Vec2", default: "..." }]} returns="None" />
+<ApiSig name="draw" params={[{ name: "pos", type: "Vec2", default: "Vec2(0.0, 0.0)" }, { name: "anchor", type: "Vec2", default: "Vec2(0.0, 0.0)" }]} returns="None" />
 
 Draw the text to the renderer at the specified position with alignment.
 A shadow is drawn if shadow_color.a &gt; 0 and shadow_offset is not (0, 0).
@@ -47,18 +47,6 @@ _**Raises**_
 
 </div>
 
-### Set Font
-<div className="api-card">
-<ApiSig name="set_font" params={[{ name: "font", type: "Font" }]} returns="None" />
-
-Set the font to use for rendering this text.
-
-_**Args**_
-
-- `font` : The font to use.
-
-</div>
-
 ### Get Rect
 <div className="api-card">
 <ApiSig name="get_rect" returns="Rect" />
@@ -68,5 +56,17 @@ Get the bounding rectangle of the current text.
 _**Returns**_
 
 `Rect` : A rectangle with x=0, y=0, and width/height of the text.
+
+</div>
+
+### Set Font
+<div className="api-card">
+<ApiSig name="set_font" params={[{ name: "font", type: "Font" }]} returns="None" />
+
+Set the font to use for rendering this text.
+
+_**Args**_
+
+- `font` : The font to use.
 
 </div>

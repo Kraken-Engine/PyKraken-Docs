@@ -7,7 +7,7 @@ description: Represents a 2D pixel buffer for image manipulation and blitting op
 <div className="api-card">
 
 - <ApiSig name="PixelArray" params={[{ name: "width", type: "int" }, { name: "height", type: "int" }]} returns="PixelArray" />
-- <ApiSig name="PixelArray" multiline params={[{ name: "file_path", type: "str | os.PathLike[str]" }]} returns="PixelArray" />
+- <ApiSig name="PixelArray" params={[{ name: "file_path", type: "str | os.PathLike[str]" }]} returns="PixelArray" />
 
 Represents a 2D pixel buffer for image manipulation and blitting operations.
 </div>
@@ -17,30 +17,18 @@ Represents a 2D pixel buffer for image manipulation and blitting operations.
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `color_key` | The color key for transparency. | <code><a href="/docs/classes/color">Color</a></code> |
 | `alpha_mod` | The alpha modulation value for the pixel array. | <code>int</code> |
-| `width` | The width of the pixel array. | <code>int</code> |
+| `color_key` | The color key for transparency. | <code><a href="/docs/classes/color">Color</a></code> |
 | `height` | The height of the pixel array. | <code>int</code> |
 | `size` | The size of the pixel array as a Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `width` | The width of the pixel array. | <code>int</code> |
 
 ## Methods
 ---
 
-### Fill
-<div className="api-card">
-<ApiSig name="fill" params={[{ name: "color", type: "Color" }]} returns="None" />
-
-Fill the entire pixel array with a solid color.
-
-_**Args**_
-
-- `color` : The color to fill the pixel array with.
-
-</div>
-
 ### Blit
 <div className="api-card">
-<ApiSig name="blit" multiline params={[{ name: "pixel_array", type: "PixelArray" }, { name: "pos", type: "Vec2" }, { name: "anchor", type: "Vec2", default: "..." }, { name: "src", type: "Rect", default: "..." }]} returns="None" />
+<ApiSig name="blit" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "pos", type: "Vec2" }, { name: "anchor", type: "Vec2", default: "..." }, { name: "src", type: "Rect", default: "..." }]} returns="None" />
 
 Blit (copy) another pixel array onto this pixel array at the specified position with anchor alignment.
 
@@ -57,7 +45,7 @@ _**Raises**_
 
 ---
 
-<ApiSig name="blit" multiline params={[{ name: "pixel_array", type: "PixelArray" }, { name: "dst", type: "Rect" }, { name: "src", type: "Rect", default: "..." }]} returns="None" />
+<ApiSig name="blit" params={[{ name: "pixel_array", type: "PixelArray" }, { name: "dst", type: "Rect" }, { name: "src", type: "Rect", default: "..." }]} returns="None" />
 
 Blit (copy) another pixel array onto this pixel array with specified destination and source rectangles.
 
@@ -70,6 +58,34 @@ _**Args**_
 _**Raises**_
 
 - `RuntimeError` : If the blit operation fails.
+
+</div>
+
+### Copy
+<div className="api-card">
+<ApiSig name="copy" returns="PixelArray" />
+
+Create a copy of this pixel array.
+
+_**Returns**_
+
+`PixelArray` : A new PixelArray that is an exact copy of this one.
+
+_**Raises**_
+
+- `RuntimeError` : If pixel array copying fails.
+
+</div>
+
+### Fill
+<div className="api-card">
+<ApiSig name="fill" params={[{ name: "color", type: "Color" }]} returns="None" />
+
+Fill the entire pixel array with a solid color.
+
+_**Args**_
+
+- `color` : The color to fill the pixel array with.
 
 </div>
 
@@ -91,40 +107,6 @@ _**Returns**_
 _**Raises**_
 
 - `IndexError` : If coordinates are outside the pixel array bounds.
-
-</div>
-
-### Set At
-<div className="api-card">
-<ApiSig name="set_at" params={[{ name: "x", type: "int" }, { name: "y", type: "int" }, { name: "color", type: "Color" }]} returns="None" />
-
-Set the color of a pixel at the specified coordinates.
-
-_**Args**_
-
-- `x` : The x-coordinate of the pixel.
-- `y` : The y-coordinate of the pixel.
-- `color` : The color to set the pixel to.
-
-_**Raises**_
-
-- `IndexError` : If coordinates are outside the pixel array bounds.
-
-</div>
-
-### Copy
-<div className="api-card">
-<ApiSig name="copy" returns="PixelArray" />
-
-Create a copy of this pixel array.
-
-_**Returns**_
-
-`PixelArray` : A new PixelArray that is an exact copy of this one.
-
-_**Raises**_
-
-- `RuntimeError` : If pixel array copying fails.
 
 </div>
 
@@ -154,5 +136,23 @@ _**Args**_
 - `- REPEAT` : Wrap pixels around to the opposite edge.
 - `- ERASE` : Fill scrolled areas with transparent pixels.
 - `- SMEAR` : Extend edge pixels into scrolled areas.
+
+</div>
+
+### Set At
+<div className="api-card">
+<ApiSig name="set_at" params={[{ name: "x", type: "int" }, { name: "y", type: "int" }, { name: "color", type: "Color" }]} returns="None" />
+
+Set the color of a pixel at the specified coordinates.
+
+_**Args**_
+
+- `x` : The x-coordinate of the pixel.
+- `y` : The y-coordinate of the pixel.
+- `color` : The color to set the pixel to.
+
+_**Raises**_
+
+- `IndexError` : If coordinates are outside the pixel array bounds.
 
 </div>
