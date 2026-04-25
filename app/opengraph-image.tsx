@@ -1,5 +1,7 @@
 import { ImageResponse } from "next/og";
 
+/* eslint-disable @next/next/no-img-element */
+
 export const runtime = "edge";
 export const alt = "Kraken Engine - 2D Game Engine for Python";
 export const size = {

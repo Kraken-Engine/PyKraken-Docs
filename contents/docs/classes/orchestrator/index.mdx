@@ -36,7 +36,7 @@ Must be called before play(). Logs a warning if called multiple times.
 
 ### Parallel
 <div className="api-card">
-<ApiSig name="parallel" params={[{ name: "*effects", type: "fx.Effect" }]} returns="Orchestrator" />
+<ApiSig name="parallel" params={[{ name: "*effects", type: "Effect" }]} returns="Orchestrator" />
 
 Add multiple effects to run in parallel.
 
@@ -94,7 +94,7 @@ Stop the animation and reset to the beginning.
 
 ### Then
 <div className="api-card">
-<ApiSig name="then" params={[{ name: "effect", type: "fx.Effect" }]} returns="Orchestrator" />
+<ApiSig name="then" params={[{ name: "effect", type: "Effect" }]} returns="Orchestrator" />
 
 Add a single effect to the timeline.
 

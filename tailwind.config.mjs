@@ -1,14 +1,14 @@
-import type { Config } from "tailwindcss";
 import typography from "@tailwindcss/typography";
 import animate from "tailwindcss-animate";
 
+/** @type {import("tailwindcss").Config} */
 const config = {
   darkMode: "class",
   content: [
-    "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
+    "./lib/**/*.{ts,tsx}",
+    "./contents/**/*.{md,mdx}",
   ],
   prefix: "",
   theme: {
@@ -64,23 +64,9 @@ const config = {
         code: ["var(--font-geist-mono)"],
         regular: ["var(--font-geist-sans)"],
       },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-      },
     },
   },
   plugins: [animate, typography],
-} satisfies Config;
+};
 
 export default config;

@@ -507,6 +507,7 @@ def escape_outside_code(text: str) -> str:
 def format_type_for_table(type_str: str, linkable_classes: Dict[str, ClassInfo]) -> str:
     # Strip private module prefixes used in stubs
     type_str = type_str.replace("pykraken.", "")
+    type_str = shorten_external_qualified_names(type_str)
 
     # Match whole identifiers possibly with dots: MapObject.ShapeType
     parts = re.split(r"(\b[a-zA-Z_][a-zA-Z0-9_]*(?:\.[a-zA-Z_][a-zA-Z0-9_]*)*\b)", type_str)
@@ -568,6 +569,7 @@ def simplify_type(type_str: Optional[str]) -> str:
     # Strip private module prefixes from stubs and compiled-extension docstrings.
     s = type_str.replace("pykraken._pykraken.", "")
     s = s.replace("pykraken.", "").replace("_pykraken.", "")
+    s = shorten_external_qualified_names(s)
 
     # Simplify Annotated[...] -> keep the first top-level item before the first comma
     if "Annotated[" in s:
@@ -606,6 +608,28 @@ def simplify_type(type_str: Optional[str]) -> str:
     if len(s) > 120:
         s = s[:120] + "..."
     return s
+
+
+def shorten_external_qualified_names(type_str: str) -> str:
+    """Collapse external module paths in annotations, e.g. collections.abc.Sequence -> Sequence."""
+
+    def replace(match: re.Match[str]) -> str:
+        name = match.group(0)
+        parts = name.split(".")
+        if len(parts) < 2:
+            return name
+
+        # Keep nested Kraken class/enum names such as MapObject.ShapeType intact.
+        if parts[0] and parts[0][0].isupper():
+            return name
+
+        return parts[-1]
+
+    return re.sub(
+        r"\b[a-z_][a-zA-Z0-9_]*(?:\.[a-zA-Z_][a-zA-Z0-9_]*)+\b",
+        replace,
+        type_str,
+    )
 
 
 def process_sig(
@@ -1156,16 +1180,6 @@ def prune_dirs(root: Path, keep_slugs: List[str]) -> None:
     for entry in root.iterdir():
         if entry.is_dir() and entry.name.lower() not in keep_set:
             shutil.rmtree(entry, ignore_errors=True)
-
-
-def should_skip_file(file_path: Path, root: Path) -> bool:
-    """Check if a file should be skipped during doc generation."""
-    # Skip the classes index file (but not individual class index files)
-    if file_path.name == "index.mdx":
-        rel_path = file_path.relative_to(root)
-        if rel_path == Path("classes/index.mdx"):
-            return True
-    return False
 
 
 if __name__ == "__main__":

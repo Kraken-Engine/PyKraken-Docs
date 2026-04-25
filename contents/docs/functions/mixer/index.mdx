@@ -7,7 +7,7 @@ description: Sound mixer and audio management system.
 
 ## Load Sample
 <div className="api-card">
-<ApiSig name="load_sample" params={[{ name: "path", type: "str | os.PathLike[str]" }, { name: "predecode", type: "bool", default: "True" }]} returns="Sample" />
+<ApiSig name="load_sample" params={[{ name: "path", type: "str | PathLike[str]" }, { name: "predecode", type: "bool", default: "True" }]} returns="Sample" />
 
 Load an audio sample (SFX) from disk.
 
@@ -24,7 +24,7 @@ _**Returns**_
 
 ## Load Stream
 <div className="api-card">
-<ApiSig name="load_stream" params={[{ name: "path", type: "str | os.PathLike[str]" }, { name: "predecode", type: "bool", default: "False" }]} returns="Stream" />
+<ApiSig name="load_stream" params={[{ name: "path", type: "str | PathLike[str]" }, { name: "predecode", type: "bool", default: "False" }]} returns="Stream" />
 
 Load an audio stream (Music) from disk.
 

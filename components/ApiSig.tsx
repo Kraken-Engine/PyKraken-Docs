@@ -58,7 +58,7 @@ export default function ApiSig({
     returns,
     className = "",
     indent = 4,
-}: ApiSigProps & { multiline?: boolean; indent?: number }) {
+}: ApiSigProps & { indent?: number }) {
     const indentSpaces = "&nbsp;".repeat(indent);
     const wrapRef = React.useRef<HTMLSpanElement>(null);
     const measureRef = React.useRef<HTMLElement>(null);

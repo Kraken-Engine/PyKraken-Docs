@@ -1,8 +1,13 @@
 @import "tailwindcss";
-@config "../tailwind.config.ts";
+@config "../tailwind.config.mjs";
 
 :root {
     font-variant-ligatures: none;
+}
+
+#pip-install,
+#pip-install code {
+    font-family: var(--font-geist-mono), var(--font-mono);
 }
 
 @layer base {
@@ -816,6 +821,7 @@ aside>div>div>div>div>div>div>div>div {
 .api-sig-wrap {
     display: block;
     max-width: 100%;
+    position: relative;
 }
 
 .api-sig--inline {

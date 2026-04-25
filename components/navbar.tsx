@@ -55,6 +55,8 @@ export function Navbar() {
             <Link
               id="nav-github-link"
               target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View PyKraken on GitHub"
               href="https://github.com/Kraken-Engine/PyKraken"
               className={buttonVariants({
                 variant: "outline",
