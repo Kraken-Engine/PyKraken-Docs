@@ -5,8 +5,18 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  title: "Kraken Engine - 2D Game Engine for Python",
+  description:
+    "Build powerful 2D games in Python with Kraken Engine. Read the docs, follow guides, and explore the API reference.",
   alternates: {
     canonical: "/",
+  },
+  openGraph: {
+    title: "Kraken Engine - 2D Game Engine for Python",
+    description:
+      "Build powerful 2D games in Python with Kraken Engine. Read the docs, follow guides, and explore the API reference.",
+    url: "/",
+    type: "website",
   },
 };
 
@@ -16,6 +26,7 @@ export default function Home() {
       <Link
         href="https://github.com/Kraken-Engine/PyKraken"
         target="_blank"
+        rel="noopener noreferrer"
         className="mb-5 sm:text-lg flex items-center gap-2 underline underline-offset-4 sm:-mt-12"
         id="view-on-github"
       >

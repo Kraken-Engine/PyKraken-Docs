@@ -3,7 +3,9 @@ import { ThemeProvider } from "@/components/contexts/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { Space_Mono, Space_Grotesk } from "next/font/google";
 import { Footer } from "@/components/footer";
+import "@docsearch/css";
 import "@/styles/globals.css";
+import "@/styles/syntax.css";
 
 import MainWrapper from "@/components/MainWrapper";
 
@@ -22,6 +24,7 @@ const monoFont = Space_Mono({
 });
 
 export const metadata: Metadata = {
+  applicationName: "Kraken Engine Docs",
   title: {
     default: "Kraken Engine - 2D Game Engine for Python",
     template: "%s | Kraken Engine",
@@ -29,12 +32,34 @@ export const metadata: Metadata = {
   description:
     "Kraken Engine - modern, flexible 2D game engine in Python. Docs, tutorials, API reference, and examples for rapid game development.",
   metadataBase: new URL("https://krakenengine.org"),
+  keywords: [
+    "Kraken Engine",
+    "PyKraken",
+    "Python game engine",
+    "2D game engine",
+    "Python game development",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
     title: "Kraken Engine - 2D Game Engine for Python",
     description:
       "Modern, flexible 2D game engine designed for rapid development and creative control.",
     url: "https://krakenengine.org/",
     siteName: "Kraken Engine",
+    locale: "en_US",
     images: [
       {
         url: "https://krakenengine.org/opengraph-image",
@@ -62,9 +87,9 @@ export default function RootLayout({
       <head>
         <meta name="google-site-verification" content="51FuVdeHR3lVbkJUCjnjv7_5yL4qFHENyflOnr8j9Hs" />
         <meta name="algolia-site-verification" content="A64DA3DC7E5E03DB" />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
         <script
           type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
             __html: JSON.stringify([
               {

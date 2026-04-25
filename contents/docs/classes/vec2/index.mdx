@@ -18,23 +18,55 @@ A 2D vector representing Cartesian coordinates.
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `x` | The x component of the vector. | <code>float</code> |
-| `y` | The y component of the vector. | <code>float</code> |
+| `DOWN` | `Vec2(0.0, 1.0)` | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `LEFT` | `Vec2(-1.0, 0.0)` | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `RIGHT` | `Vec2(1.0, 0.0)` | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `UP` | `Vec2(0.0, -1.0)` | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `ZERO` | `Vec2(0.0, 0.0)` | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `angle` | Return the vector angle in radians. | <code>float</code> |
 | `length` | Return the magnitude of this Vec2. | <code>float</code> |
 | `length_squared` | Return the squared magnitude of this Vec2. | <code>float</code> |
-| `angle` | Return the vector angle in radians. | <code>float</code> |
+| `x` | The x component of the vector. | <code>float</code> |
 | `xx` | Return a Vec2 with both components set to x. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `xy` | Access or assign the (x, y) components as a Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `y` | The y component of the vector. | <code>float</code> |
 | `yx` | Access or assign the (y, x) components as a Vec2. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `yy` | Return a Vec2 with both components set to y. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
-| `ZERO` | (0.0, 0.0) | <code><a href="/docs/classes/vec2">Vec2</a></code> |
-| `LEFT` | (-1.0, 0.0) | <code><a href="/docs/classes/vec2">Vec2</a></code> |
-| `RIGHT` | (1.0, 0.0) | <code><a href="/docs/classes/vec2">Vec2</a></code> |
-| `UP` | (0.0, -1.0) | <code><a href="/docs/classes/vec2">Vec2</a></code> |
-| `DOWN` | (0.0, 1.0) | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 
 ## Methods
 ---
+
+### As Ints
+<div className="api-card">
+<ApiSig name="as_ints" returns="tuple[int, int]" />
+
+Return the vector components truncated to integers as a tuple.
+
+_**Returns**_
+
+`tuple[int, int]` : The (x, y) components as integers.
+
+</div>
+
+### Ceil
+<div className="api-card">
+<ApiSig name="ceil" returns="None" />
+
+Ceil both components of this Vec2 in-place.
+
+</div>
+
+### Ceiled
+<div className="api-card">
+<ApiSig name="ceiled" returns="Vec2" />
+
+Return a new Vec2 with both components ceiled to the nearest integer.
+
+_**Returns**_
+
+`Vec2` : A new vector with ceiled components.
+
+</div>
 
 ### Copy
 <div className="api-card">
@@ -45,162 +77,6 @@ Return a copy of this Vec2.
 _**Returns**_
 
 `Vec2` : A duplicated vector with the same components.
-
-</div>
-
-### Is Zero
-<div className="api-card">
-<ApiSig name="is_zero" params={[{ name: "tolerance", type: "float", default: "1e-08" }]} returns="bool" />
-
-Determine whether this Vec2 is effectively zero.
-
-_**Args**_
-
-- `tolerance` : Largest allowed absolute component magnitude.
-
-_**Returns**_
-
-`bool` : True if both components are within the tolerance.
-
-</div>
-
-### Project
-<div className="api-card">
-<ApiSig name="project" params={[{ name: "other", type: "Vec2" }]} returns="Vec2" />
-
-Project this Vec2 onto another Vec2.
-
-_**Args**_
-
-- `other` : The vector to project onto.
-
-_**Returns**_
-
-`Vec2` : Projection of this vector onto the other vector.
-
-</div>
-
-### Reject
-<div className="api-card">
-<ApiSig name="reject" params={[{ name: "other", type: "Vec2" }]} returns="Vec2" />
-
-Compute the rejection of this Vec2 from another Vec2.
-
-_**Args**_
-
-- `other` : The vector defining the projection axis.
-
-_**Returns**_
-
-`Vec2` : Component of this vector orthogonal to the other vector.
-
-</div>
-
-### Reflect
-<div className="api-card">
-<ApiSig name="reflect" params={[{ name: "other", type: "Vec2" }]} returns="Vec2" />
-
-Reflect this Vec2 across another Vec2.
-
-_**Args**_
-
-- `other` : The vector used as the reflection normal.
-
-_**Returns**_
-
-`Vec2` : Reflected vector.
-
-</div>
-
-### Rotate
-<div className="api-card">
-<ApiSig name="rotate" params={[{ name: "radians", type: "float" }]} returns="None" />
-
-Rotate this Vec2 in place.
-
-_**Args**_
-
-- `radians` : Rotation angle in radians.
-
-</div>
-
-### Rotated
-<div className="api-card">
-<ApiSig name="rotated" params={[{ name: "radians", type: "float" }]} returns="Vec2" />
-
-Return a new Vec2 rotated by a specified angle.
-
-_**Args**_
-
-- `radians` : Rotation angle in radians.
-
-_**Returns**_
-
-`Vec2` : A new vector rotated by the given angle.
-
-</div>
-
-### Normalize
-<div className="api-card">
-<ApiSig name="normalize" returns="None" />
-
-Normalize this Vec2 in place.
-
-</div>
-
-### Normalized
-<div className="api-card">
-<ApiSig name="normalized" returns="Vec2" />
-
-Return a new normalized Vec2.
-
-_**Returns**_
-
-`Vec2` : A new vector with unit length.
-
-</div>
-
-### Scale To Length
-<div className="api-card">
-<ApiSig name="scale_to_length" params={[{ name: "length", type: "float" }]} returns="None" />
-
-Scale this Vec2 to a specific magnitude.
-
-_**Args**_
-
-- `length` : Target vector length.
-
-</div>
-
-### Scaled To Length
-<div className="api-card">
-<ApiSig name="scaled_to_length" params={[{ name: "length", type: "float" }]} returns="Vec2" />
-
-Return a new Vec2 scaled to a specific magnitude.
-
-_**Args**_
-
-- `length` : Target vector length.
-
-_**Returns**_
-
-`Vec2` : A new vector scaled to the specified length.
-
-</div>
-
-### Distance To
-<div className="api-card">
-<ApiSig name="distance_to" params={[{ name: "other", type: "Vec2" }]} returns="float" />
-
-Compute the Euclidean distance to another Vec2.
-
-_**Args**_
-
-- `other` : Comparison vector.
-
-_**Returns**_
-
-`float` : Distance between the vectors.
 
 </div>
 
@@ -220,15 +96,55 @@ _**Returns**_
 
 </div>
 
-### To Polar
+### Distance To
 <div className="api-card">
-<ApiSig name="to_polar" returns="PolarCoordinate" />
+<ApiSig name="distance_to" params={[{ name: "other", type: "Vec2" }]} returns="float" />
 
-Convert this Vec2 to polar coordinates.
+Compute the Euclidean distance to another Vec2.
+
+_**Args**_
+
+- `other` : Comparison vector.
 
 _**Returns**_
 
-`PolarCoordinate` : Polar representation with angle and length.
+`float` : Distance between the vectors.
+
+</div>
+
+### Floor
+<div className="api-card">
+<ApiSig name="floor" returns="None" />
+
+Floor both components of this Vec2 in-place.
+
+</div>
+
+### Floored
+<div className="api-card">
+<ApiSig name="floored" returns="Vec2" />
+
+Return a new Vec2 with both components floored to the nearest integer.
+
+_**Returns**_
+
+`Vec2` : A new vector with floored components.
+
+</div>
+
+### Is Zero
+<div className="api-card">
+<ApiSig name="is_zero" params={[{ name: "tolerance", type: "float", default: "1e-08" }]} returns="bool" />
+
+Determine whether this Vec2 is effectively zero.
+
+_**Args**_
+
+- `tolerance` : Largest allowed absolute component magnitude.
+
+_**Returns**_
+
+`bool` : True if both components are within the tolerance.
 
 </div>
 
@@ -262,43 +178,99 @@ _**Returns**_
 
 </div>
 
-### Floor
+### Normalize
 <div className="api-card">
-<ApiSig name="floor" returns="None" />
+<ApiSig name="normalize" returns="None" />
 
-Floor both components of this Vec2 in-place.
+Normalize this Vec2 in place.
 
 </div>
 
-### Floored
+### Normalized
 <div className="api-card">
-<ApiSig name="floored" returns="Vec2" />
+<ApiSig name="normalized" returns="Vec2" />
 
-Return a new Vec2 with both components floored to the nearest integer.
+Return a new normalized Vec2.
 
 _**Returns**_
 
-`Vec2` : A new vector with floored components.
+`Vec2` : A new vector with unit length.
 
 </div>
 
-### Ceil
+### Project
 <div className="api-card">
-<ApiSig name="ceil" returns="None" />
+<ApiSig name="project" params={[{ name: "other", type: "Vec2" }]} returns="Vec2" />
 
-Ceil both components of this Vec2 in-place.
+Project this Vec2 onto another Vec2.
 
-</div>
+_**Args**_
 
-### Ceiled
-<div className="api-card">
-<ApiSig name="ceiled" returns="Vec2" />
-
-Return a new Vec2 with both components ceiled to the nearest integer.
+- `other` : The vector to project onto.
 
 _**Returns**_
 
-`Vec2` : A new vector with ceiled components.
+`Vec2` : Projection of this vector onto the other vector.
+
+</div>
+
+### Reflect
+<div className="api-card">
+<ApiSig name="reflect" params={[{ name: "other", type: "Vec2" }]} returns="Vec2" />
+
+Reflect this Vec2 across another Vec2.
+
+_**Args**_
+
+- `other` : The vector used as the reflection normal.
+
+_**Returns**_
+
+`Vec2` : Reflected vector.
+
+</div>
+
+### Reject
+<div className="api-card">
+<ApiSig name="reject" params={[{ name: "other", type: "Vec2" }]} returns="Vec2" />
+
+Compute the rejection of this Vec2 from another Vec2.
+
+_**Args**_
+
+- `other` : The vector defining the projection axis.
+
+_**Returns**_
+
+`Vec2` : Component of this vector orthogonal to the other vector.
+
+</div>
+
+### Rotate
+<div className="api-card">
+<ApiSig name="rotate" params={[{ name: "radians", type: "float" }]} returns="None" />
+
+Rotate this Vec2 in place.
+
+_**Args**_
+
+- `radians` : Rotation angle in radians.
+
+</div>
+
+### Rotated
+<div className="api-card">
+<ApiSig name="rotated" params={[{ name: "radians", type: "float" }]} returns="Vec2" />
+
+Return a new Vec2 rotated by a specified angle.
+
+_**Args**_
+
+- `radians` : Rotation angle in radians.
+
+_**Returns**_
+
+`Vec2` : A new vector rotated by the given angle.
 
 </div>
 
@@ -322,19 +294,31 @@ _**Returns**_
 
 </div>
 
-### Slide
+### Scale To Length
 <div className="api-card">
-<ApiSig name="slide" params={[{ name: "normal", type: "Vec2" }]} returns="None" />
+<ApiSig name="scale_to_length" params={[{ name: "length", type: "float" }]} returns="None" />
 
-Slide this Vec2 along a surface defined by a normal vector.
+Scale this Vec2 to a specific magnitude.
 
 _**Args**_
 
-- `normal` : The normal vector defining the surface.
+- `length` : Target vector length.
+
+</div>
+
+### Scaled To Length
+<div className="api-card">
+<ApiSig name="scaled_to_length" params={[{ name: "length", type: "float" }]} returns="Vec2" />
+
+Return a new Vec2 scaled to a specific magnitude.
+
+_**Args**_
+
+- `length` : Target vector length.
 
 _**Returns**_
 
-`Vec2` : A new vector slid along the surface.
+`Vec2` : A new vector scaled to the specified length.
 
 </div>
 
@@ -354,14 +338,30 @@ _**Returns**_
 
 </div>
 
-### As Ints
+### Slide
 <div className="api-card">
-<ApiSig name="as_ints" returns="tuple[int, int]" />
+<ApiSig name="slide" params={[{ name: "normal", type: "Vec2" }]} returns="None" />
 
-Return the vector components truncated to integers as a tuple.
+Slide this Vec2 along a surface defined by a normal vector.
+
+_**Args**_
+
+- `normal` : The normal vector defining the surface.
 
 _**Returns**_
 
-`tuple[int, int]` : The (x, y) components as integers.
+`Vec2` : A new vector slid along the surface.
+
+</div>
+
+### To Polar
+<div className="api-card">
+<ApiSig name="to_polar" returns="PolarCoordinate" />
+
+Convert this Vec2 to polar coordinates.
+
+_**Returns**_
+
+`PolarCoordinate` : Polar representation with angle and length.
 
 </div>

@@ -7,7 +7,7 @@ description: Input handling and action binding
 
 ## Bind
 <div className="api-card">
-<ApiSig name="bind" multiline params={[{ name: "name", type: "str" }, { name: "actions", type: "Sequence[InputAction]" }]} returns="None" />
+<ApiSig name="bind" params={[{ name: "name", type: "str" }, { name: "actions", type: "Sequence[InputAction]" }]} returns="None" />
 
 Bind a name to a list of InputActions.
 
@@ -32,7 +32,7 @@ _**Args**_
 
 ## Get Direction
 <div className="api-card">
-<ApiSig name="get_direction" multiline params={[{ name: "up", type: "str" }, { name: "right", type: "str" }, { name: "down", type: "str" }, { name: "left", type: "str" }]} returns="Vec2" />
+<ApiSig name="get_direction" params={[{ name: "up", type: "str" }, { name: "right", type: "str" }, { name: "down", type: "str" }, { name: "left", type: "str" }]} returns="Vec2" />
 
 Get a directional vector based on named input actions.
 

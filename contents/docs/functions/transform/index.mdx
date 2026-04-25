@@ -7,7 +7,7 @@ description: Submodule for Transform-related functionality.
 
 ## Compose
 <div className="api-card">
-<ApiSig name="compose" params={[{ name: "*args" }]} returns="Transform" />
+<ApiSig name="compose" params={[{ name: "args", default: "()" }]} returns="Transform" />
 
 Compose multiple Transform objects in order and return the resulting Transform in world space.
 The first transform is treated as already in world space; each subsequent transform is local to the previous.
@@ -24,7 +24,7 @@ _**Returns**_
 
 ## Compose Chain
 <div className="api-card">
-<ApiSig name="compose_chain" params={[{ name: "*args" }]} returns="list[Transform]" />
+<ApiSig name="compose_chain" params={[{ name: "args", default: "()" }]} returns="list[Transform]" />
 
 Returns a list of cumulative world-space transforms excluding the initial input.
 

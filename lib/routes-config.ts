@@ -108,7 +108,6 @@ export const DOC_ROUTES: EachRoute[] = [
     items: [
       { title: "Overview", href: "", separator: true },
       { title: "Camera", href: "/camera" },
-      { title: "Collision", href: "/collision" },
       { title: "Color", href: "/color" },
       { title: "Draw", href: "/draw" },
       { title: "Ease", href: "/ease" },
@@ -116,7 +115,6 @@ export const DOC_ROUTES: EachRoute[] = [
       { title: "Fx", href: "/fx" },
       { title: "Gamepad", href: "/gamepad" },
       { title: "Input", href: "/input" },
-      { title: "Key", href: "/key" },
       { title: "Log", href: "/log" },
       { title: "Math", href: "/math" },
       { title: "Mixer", href: "/mixer" },

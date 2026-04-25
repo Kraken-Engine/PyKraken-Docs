@@ -8,7 +8,7 @@ description: Represents a polygon shape defined by a sequence of points.
 
 - <ApiSig name="Polygon" returns="Polygon" />
 - <ApiSig name="Polygon" params={[{ name: "points", type: "Sequence[Vec2]" }]} returns="Polygon" />
-- <ApiSig name="Polygon" multiline params={[{ name: "n", type: "int" }, { name: "radius", type: "float" }, { name: "centroid", type: "Vec2", default: "..." }]} returns="Polygon" />
+- <ApiSig name="Polygon" params={[{ name: "n", type: "int" }, { name: "radius", type: "float" }, { name: "centroid", type: "Vec2", default: "..." }]} returns="Polygon" />
 
 Represents a polygon shape defined by a sequence of points.
 </div>
@@ -18,15 +18,27 @@ Represents a polygon shape defined by a sequence of points.
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `points` | The list of Vec2 points that define the polygon vertices. | <code>list[<a href="/docs/classes/vec2">Vec2</a>]</code> |
-| `centroid` | Get or set the centroid of the polygon. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
-| `perimeter` | Get the perimeter of the polygon. | <code>float</code> |
 | `area` | Get the area of the polygon. | <code>float</code> |
-| `is_convex` | Check if the polygon is convex. | <code>bool</code> |
+| `centroid` | Get or set the centroid of the polygon. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `is_concave` | Check if the polygon is concave. | <code>bool</code> |
+| `is_convex` | Check if the polygon is convex. | <code>bool</code> |
+| `perimeter` | Get the perimeter of the polygon. | <code>float</code> |
+| `points` | The list of Vec2 points that define the polygon vertices. | <code>list[<a href="/docs/classes/vec2">Vec2</a>]</code> |
 
 ## Methods
 ---
+
+### Copy
+<div className="api-card">
+<ApiSig name="copy" returns="Polygon" />
+
+Return a copy of the polygon.
+
+_**Returns**_
+
+`Polygon` : A new polygon with the same points.
+
+</div>
 
 ### Get Rect
 <div className="api-card">
@@ -40,15 +52,15 @@ _**Returns**_
 
 </div>
 
-### Copy
+### Move
 <div className="api-card">
-<ApiSig name="copy" returns="Polygon" />
+<ApiSig name="move" params={[{ name: "offset", type: "Vec2" }]} returns="None" />
 
-Return a copy of the polygon.
+Move the polygon by an offset.
 
-_**Returns**_
+_**Args**_
 
-`Polygon` : A new polygon with the same points.
+- `offset` : The offset to move by.
 
 </div>
 
@@ -77,18 +89,6 @@ _**Args**_
 _**Returns**_
 
 `Polygon` : A new polygon that is a rotated version of this polygon.
-
-</div>
-
-### Move
-<div className="api-card">
-<ApiSig name="move" params={[{ name: "offset", type: "Vec2" }]} returns="None" />
-
-Move the polygon by an offset.
-
-_**Args**_
-
-- `offset` : The offset to move by.
 
 </div>
 

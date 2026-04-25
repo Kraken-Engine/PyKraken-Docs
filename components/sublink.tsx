@@ -8,7 +8,7 @@ import {
 import { cn } from "@/lib/utils";
 import { SheetClose } from "@/components/ui/sheet";
 import { ChevronRight } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 
 export default function SubLink({
@@ -22,13 +22,13 @@ export default function SubLink({
   separator,
 }: EachRoute & { level: number; isSheet: boolean }) {
   const path = usePathname();
-  const [isOpen, setIsOpen] = useState(
-    level == 0 && (title === "Preface" || title === "Getting Started")
-  );
-
-  useEffect(() => {
-    if (path == href || path.includes(href)) setIsOpen(true);
-  }, [href, path]);
+  const isActiveBranch = path == href || (href !== "/" && path.startsWith(href));
+  const defaultOpen = level == 0 && (title === "Preface" || title === "Getting Started");
+  const [openState, setOpenState] = useState(() => ({
+    path,
+    open: defaultOpen || isActiveBranch,
+  }));
+  const open = openState.path === path ? openState.open : defaultOpen || isActiveBranch;
 
   const Comp = (
     <Anchor
@@ -73,7 +73,10 @@ export default function SubLink({
 
   return (
     <div className="flex flex-col gap-1 w-full">
-      <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+      <Collapsible
+        open={open}
+        onOpenChange={(nextOpen) => setOpenState({ path, open: nextOpen })}
+      >
         <CollapsibleTrigger className="w-full pr-5">
           <div className="flex items-center justify-between cursor-pointer w-full">
             <span className="w-[95%] overflow-hidden text-ellipsis text-start">
@@ -83,7 +86,7 @@ export default function SubLink({
               <ChevronRight
                 className={cn(
                   "h-[0.9rem] w-[0.9rem] transition-transform duration-200",
-                  isOpen && "rotate-90"
+                  open && "rotate-90"
                 )}
               />
             </span>

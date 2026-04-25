@@ -6,7 +6,7 @@ description: Encapsulates a GPU shader and its associated render state. Access v
 ## Constructor
 <div className="api-card">
 
-- <ApiSig name="Shader" multiline params={[{ name: "fragment_base_path", type: "str | os.PathLike[str]" }, { name: "uniform_buffer_count", type: "int", default: "0" }, { name: "sampler_count", type: "int", default: "1" }]} returns="Shader" />
+- <ApiSig name="Shader" params={[{ name: "fragment_base_path", type: "str | PathLike[str]" }, { name: "uniform_buffer_count", type: "int", default: "0" }, { name: "sampler_count", type: "int", default: "1" }]} returns="Shader" />
 
 Encapsulates a GPU shader and its associated render state.
 </div>
@@ -54,7 +54,7 @@ _**Raises**_
 
 ### Set Texture Sampler
 <div className="api-card">
-<ApiSig name="set_texture_sampler" multiline params={[{ name: "binding", type: "int" }, { name: "texture", type: "Texture" }, { name: "sampler", type: "Sampler" }]} returns="None" />
+<ApiSig name="set_texture_sampler" params={[{ name: "binding", type: "int" }, { name: "texture", type: "Texture" }, { name: "sampler", type: "Sampler" }]} returns="None" />
 
 Set the texture and sampler used for a fragment shader texture binding.
 

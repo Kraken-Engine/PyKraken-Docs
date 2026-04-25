@@ -7,7 +7,7 @@ description: Predefined effects for use with the Orchestrator.
 
 ## Move To
 <div className="api-card">
-<ApiSig name="move_to" multiline params={[{ name: "pos", type: "Vec2" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float] | None", default: "None" }]} returns="Effect" />
+<ApiSig name="move_to" params={[{ name: "pos", type: "Vec2" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float] | None", default: "None" }]} returns="Effect" />
 
 Create a move-to effect.
 
@@ -25,7 +25,7 @@ _**Returns**_
 
 ## Scale To
 <div className="api-card">
-<ApiSig name="scale_to" multiline params={[{ name: "scale", type: "Vec2" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float] | None", default: "None" }]} returns="Effect" />
+<ApiSig name="scale_to" params={[{ name: "scale", type: "Vec2" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float] | None", default: "None" }]} returns="Effect" />
 
 Create a scale-to effect.
 
@@ -43,7 +43,7 @@ _**Returns**_
 
 ## Scale By
 <div className="api-card">
-<ApiSig name="scale_by" multiline params={[{ name: "scale", type: "float" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float] | None", default: "None" }]} returns="Effect" />
+<ApiSig name="scale_by" params={[{ name: "scale", type: "float" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float] | None", default: "None" }]} returns="Effect" />
 
 Create a scale-by effect.
 
@@ -61,7 +61,7 @@ _**Returns**_
 
 ## Rotate To
 <div className="api-card">
-<ApiSig name="rotate_to" multiline params={[{ name: "angle", type: "float" }, { name: "clockwise", type: "bool", default: "True" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float] | None", default: "None" }]} returns="Effect" />
+<ApiSig name="rotate_to" params={[{ name: "angle", type: "float" }, { name: "clockwise", type: "bool", default: "True" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float] | None", default: "None" }]} returns="Effect" />
 
 Create a rotate-to effect.
 
@@ -80,7 +80,7 @@ _**Returns**_
 
 ## Rotate By
 <div className="api-card">
-<ApiSig name="rotate_by" multiline params={[{ name: "delta", type: "float" }, { name: "clockwise", type: "bool", default: "True" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float] | None", default: "None" }]} returns="Effect" />
+<ApiSig name="rotate_by" params={[{ name: "delta", type: "float" }, { name: "clockwise", type: "bool", default: "True" }, { name: "dur", type: "float", default: "0.0" }, { name: "ease", type: "Callable[[float], float] | None", default: "None" }]} returns="Effect" />
 
 Create a rotate-by effect.
 

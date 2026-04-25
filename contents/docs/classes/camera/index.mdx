@@ -16,9 +16,9 @@ Represents a 2D camera used for rendering.
 
 | Name | Description | Type |
 | --- | --- | --- |
-| `world_pos` | Get or set the camera's world position. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
-| `local_pos` | Get or set the camera position in camera-local space. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 | `angle` | Get or set the camera angle in radians. | <code>float</code> |
+| `local_pos` | Get or set the camera position in camera-local space. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
+| `world_pos` | Get or set the camera's world position. | <code><a href="/docs/classes/vec2">Vec2</a></code> |
 
 ## Methods
 ---
@@ -44,6 +44,22 @@ Move the camera by a delta in world space.
 _**Args**_
 
 - `delta` : World movement delta.
+
+</div>
+
+### Screen To World
+<div className="api-card">
+<ApiSig name="screen_to_world" params={[{ name: "screen_pos", type: "Vec2" }]} returns="Vec2" />
+
+Convert a screen position to a world position using this camera's translation.
+
+_**Args**_
+
+- `screen_pos` : The screen position to convert.
+
+_**Returns**_
+
+`Vec2` : The resulting world position.
 
 </div>
 
@@ -78,21 +94,5 @@ _**Args**_
 _**Returns**_
 
 `Vec2` : The resulting screen position.
-
-</div>
-
-### Screen To World
-<div className="api-card">
-<ApiSig name="screen_to_world" params={[{ name: "screen_pos", type: "Vec2" }]} returns="Vec2" />
-
-Convert a screen position to a world position using this camera's translation.
-
-_**Args**_
-
-- `screen_pos` : The screen position to convert.
-
-_**Returns**_
-
-`Vec2` : The resulting world position.
 
 </div>

@@ -2,38 +2,28 @@
 
 import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 export default function MainWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const { theme, resolvedTheme } = useTheme();
-  const [isHome, setIsHome] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    setIsHome(pathname === '/');
-  }, [pathname]);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const isHome = pathname === '/';
 
   // Ensure video plays after mount
   useEffect(() => {
-    if (mounted && isHome && videoRef.current) {
+    if (isHome && videoRef.current) {
       videoRef.current.play().catch(() => {
         // Silently handle autoplay issues
       });
     }
-  }, [mounted, isHome]);
+  }, [isHome]);
 
-  // Use resolvedTheme which accounts for 'system' theme, and only after component is mounted
-  const isDark = mounted ? (resolvedTheme === 'dark' || theme === 'dark') : true;
+  const isDark = resolvedTheme === 'dark' || theme === 'dark' || (!resolvedTheme && !theme);
 
   return (
     <div className={`relative w-full ${isHome ? 'h-[calc(100vh-4rem)] overflow-hidden home-background' : ''}`}>
-      {isHome && mounted && (
+      {isHome && (
         <>
           <video
             ref={videoRef}

@@ -6,7 +6,7 @@ description: A TMX map with access to its layers and tilesets. Access via the 't
 ## Constructor
 <div className="api-card">
 
-- <ApiSig name="Map" params={[{ name: "tmx_path", type: "str | os.PathLike", default: "''" }]} returns="Map" />
+- <ApiSig name="Map" params={[{ name: "tmx_path", type: "str | PathLike", default: "''" }]} returns="Map" />
 
 A TMX map with access to its layers and tilesets.
 </div>
@@ -36,7 +36,7 @@ A TMX map with access to its layers and tilesets.
 
 ### Load
 <div className="api-card">
-<ApiSig name="load" multiline params={[{ name: "tmx_path", type: "str | os.PathLike[str]" }]} returns="None" />
+<ApiSig name="load" params={[{ name: "tmx_path", type: "str | PathLike[str]" }]} returns="None" />
 
 Load a TMX file from path.
 
@@ -48,7 +48,7 @@ _**Args**_
 
 ### Draw
 <div className="api-card">
-<ApiSig name="draw" multiline params={[{ name: "angle", type: "float", default: "0.0" }, { name: "pivot", type: "Vec2", default: "..." }]} returns="None" />
+<ApiSig name="draw" params={[{ name: "angle", type: "float", default: "0.0" }, { name: "pivot", type: "Vec2", default: "..." }]} returns="None" />
 
 Draw all layers.
 

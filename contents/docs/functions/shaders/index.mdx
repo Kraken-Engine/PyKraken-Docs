@@ -7,7 +7,7 @@ description: Functions in shaders.
 
 ## Bake
 <div className="api-card">
-<ApiSig name="bake" multiline params={[{ name: "fragment_path", type: "str | os.PathLike[str]" }, { name: "output_base_path", type: "str | os.PathLike[str]" }]} returns="None" />
+<ApiSig name="bake" params={[{ name: "fragment_path", type: "str | PathLike[str]" }, { name: "output_base_path", type: "str | PathLike[str]" }]} returns="None" />
 
 Bake a shader from HLSL source to SPIR-V, DXIL, and MSL formats.
 

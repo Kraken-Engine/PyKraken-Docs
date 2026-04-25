@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { TYPE_LINKS } from '@/lib/type-links';
 
@@ -15,7 +17,6 @@ type ApiSigProps = {
 };
 
 const S = {
-    t: (s: string) => <span>{s}</span>,                           // text (wrapped to avoid MDX raw text)
     sp: () => <span className="space">{' '}</span>,
     p: (s: string) => <span className="punct">{s}</span>,          // punctuation
     arrow: () => <span className="arrow">{"\u2192"}</span>,
@@ -56,58 +57,32 @@ export default function ApiSig({
     params = [],
     returns,
     className = "",
-    multiline = false,
     indent = 4,
-}: ApiSigProps & { multiline?: boolean; indent?: number }) {
+}: ApiSigProps & { indent?: number }) {
     const indentSpaces = "&nbsp;".repeat(indent);
+    const wrapRef = React.useRef<HTMLSpanElement>(null);
+    const measureRef = React.useRef<HTMLElement>(null);
+    const [useBlock, setUseBlock] = React.useState(false);
 
-    if (multiline) {
-        return (
-            <div className={`api-sig api-sig--block ${className}`}>
-                <code>
-                    <span className="keyword">{name}</span>
-                    {S.p("(")}
-                    <br />
-                    {params.map((p, i) => (
-                        <React.Fragment key={i}>
-                            <span dangerouslySetInnerHTML={{ __html: indentSpaces }} />
-                            <span className="param">
-                                <span className="param-name">{p.name}</span>
-                                {p.type && (
-                                    <>
-                                        <span className="punct">:</span>
-                                        {S.sp()}
-                                        {renderType(p.type)}
-                                    </>
-                                )}
-                                {p.default && (
-                                    <>
-                                        {S.sp()}
-                                        <span className="punct">=</span>
-                                        {S.sp()}
-                                        <span className="literal">{p.default}</span>
-                                    </>
-                                )}
-                            </span>
-                            {i < params.length - 1 && <span className="punct">,</span>}
-                            <br />
-                        </React.Fragment>
-                    ))}
-                    {S.p(")")}
-                    {returns && (
-                        <>
-                            {S.sp()}<S.arrow />{S.sp()}
-                            {renderType(returns)}
-                        </>
-                    )}
-                </code>
-            </div>
-        );
-    }
+    React.useLayoutEffect(() => {
+        const wrap = wrapRef.current;
+        const measure = measureRef.current;
+        if (!wrap || !measure) return;
 
-    // --- SINGLE LINE ---
-    return (
-        <code className={`api-sig ${className}`}>
+        const update = () => {
+            setUseBlock(measure.scrollWidth > wrap.clientWidth + 1);
+        };
+
+        update();
+        const observer = new ResizeObserver(update);
+        observer.observe(wrap);
+        observer.observe(measure);
+
+        return () => observer.disconnect();
+    }, [name, params, returns]);
+
+    const inlineSig = (measure = false) => (
+        <code ref={measure ? measureRef : undefined} className={`api-sig api-sig--inline${measure ? " api-sig--measure" : ""}`}>
             <span className="keyword">{name}</span>
             {S.p("(")}
             {params.map((p, i) => (
@@ -142,5 +117,52 @@ export default function ApiSig({
                 </>
             )}
         </code>
+    );
+
+    return (
+        <span ref={wrapRef} className={`api-sig-wrap ${className}`}>
+            {inlineSig(true)}
+            {!useBlock && inlineSig()}
+
+            {useBlock && <span className="api-sig api-sig--block">
+                <code>
+                <span className="keyword">{name}</span>
+                {S.p("(")}
+                <br />
+                {params.map((p, i) => (
+                    <React.Fragment key={i}>
+                        <span dangerouslySetInnerHTML={{ __html: indentSpaces }} />
+                        <span className="param">
+                            <span className="param-name">{p.name}</span>
+                            {p.type && (
+                                <>
+                                    <span className="punct">:</span>
+                                    {S.sp()}
+                                    {renderType(p.type)}
+                                </>
+                            )}
+                            {p.default && (
+                                <>
+                                    {S.sp()}
+                                    <span className="punct">=</span>
+                                    {S.sp()}
+                                    <span className="literal">{p.default}</span>
+                                </>
+                            )}
+                        </span>
+                        {i < params.length - 1 && <span className="punct">,</span>}
+                        <br />
+                    </React.Fragment>
+                ))}
+                {S.p(")")}
+                {returns && (
+                    <>
+                        {S.sp()}<S.arrow />{S.sp()}
+                        {renderType(returns)}
+                    </>
+                )}
+                </code>
+            </span>}
+        </span>
     );
 }
