@@ -6,7 +6,7 @@ description: Encapsulates a GPU shader and its associated render state. Access v
 ## Constructor
 <div className="api-card">
 
-- <ApiSig name="Shader" params={[{ name: "fragment_base_path", type: "str | PathLike[str]" }, { name: "uniform_buffer_count", type: "int", default: "0" }, { name: "sampler_count", type: "int", default: "1" }]} returns="Shader" />
+- <ApiSig name="Shader" params={[{ name: "fragment_base_path", type: "str | PathLike[str]" }, { name: "uniform_buffer_count", type: "int", default: "0" }, { name: "sampler_count", type: "int", default: "1" }, { name: "storage_buffer_sizes", type: "Sequence[int]", default: "[]" }]} returns="Shader" />
 
 Encapsulates a GPU shader and its associated render state.
 </div>
@@ -49,6 +49,26 @@ _**Raises**_
 
 - `TypeError` : If the object does not provide compatible uniform data.
 - `RuntimeError` : If the uniform data cannot be set.
+
+</div>
+
+### Set Storage Buffer Data
+<div className="api-card">
+<ApiSig name="set_storage_buffer_data" params={[{ name: "binding", type: "int" }, { name: "data", type: "Buffer" }]} returns="None" />
+
+Sets the data for a data storage buffer for the fragment shader at the specified binding.
+
+Currently untested with GLSL.
+
+_**Args**_
+
+- `binding` : Shader storage buffer binding.
+- `data` : Buffer-compatible object containing the bytes to be given to the shader buffer.
+
+_**Raises**_
+
+- `TypeError` : If the object does not provide compatible storage buffer data.
+- `RuntimeError` : If the storage buffer data cannot be set.
 
 </div>
 
