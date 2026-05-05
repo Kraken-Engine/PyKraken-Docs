@@ -1,12 +1,10 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { useTheme } from 'next-themes';
 import React, { useEffect, useRef } from 'react';
 
 export default function MainWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const { theme, resolvedTheme } = useTheme();
   const videoRef = useRef<HTMLVideoElement>(null);
   const isHome = pathname === '/';
 
@@ -19,8 +17,6 @@ export default function MainWrapper({ children }: { children: React.ReactNode })
     }
   }, [isHome]);
 
-  const isDark = resolvedTheme === 'dark' || theme === 'dark' || (!resolvedTheme && !theme);
-
   return (
     <div className={`relative w-full ${isHome ? 'h-[calc(100vh-4rem)] overflow-hidden home-background' : ''}`}>
       {isHome && (
@@ -32,20 +28,13 @@ export default function MainWrapper({ children }: { children: React.ReactNode })
             loop
             playsInline
             poster="/images/bg-thumbnail.webp"
-            className={`fixed top-0 left-0 w-screen h-screen object-cover z-[-1] pointer-events-none ${isDark ? 'opacity-20' : 'opacity-15'
-              }`}
+            className="fixed top-0 left-0 w-screen h-screen object-cover z-[-1] pointer-events-none opacity-[0.15] dark:opacity-20"
           >
             <source src="/videos/doc-bg.webm" type="video/webm" />
             <source src="/videos/doc-bg.mp4" type="video/mp4" />
           </video>
           <div
-            key={`gradient-${resolvedTheme || theme}`}
-            className="fixed top-0 left-0 w-screen h-screen z-[-1] pointer-events-none"
-            style={{
-              background: isDark
-                ? 'radial-gradient(ellipse, rgba(200, 200, 200, 0.05) 2%, rgba(0, 0, 0, 0.4) 100%)'
-                : 'radial-gradient(ellipse at center, rgba(255, 255, 255, 0.3) 0%, rgba(220, 225, 235, 0.6) 100%)'
-            }}
+            className="fixed top-0 left-0 w-screen h-screen z-[-1] pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.3)_0%,rgba(220,225,235,0.6)_100%)] dark:bg-[radial-gradient(ellipse,rgba(200,200,200,0.05)_2%,rgba(0,0,0,0.4)_100%)]"
           />
         </>
       )}
