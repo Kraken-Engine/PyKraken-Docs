@@ -140,6 +140,7 @@ export const GUIDE_ROUTES: EachRoute[] = [
     items: [
       { title: "Installation", href: "/installation" },
       { title: "Creating a Window", href: "/create-window" },
+      { title: "Building an Executable", href: "/build-executable" },
     ],
   },
   {

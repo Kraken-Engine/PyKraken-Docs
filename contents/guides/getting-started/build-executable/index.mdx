@@ -1,0 +1,71 @@
+---
+title: Building an Executable
+description: Package your Kraken Engine app as a distributable executable with PyInstaller.
+---
+
+After your Kraken app runs from Python, you can package it as an executable for distribution with the `pykraken build` command.
+
+The build command uses [PyInstaller](https://pyinstaller.org/) under the hood,
+so PyInstaller must be installed in the same Python environment as Kraken Engine before you build.
+
+## Install PyInstaller
+
+```bash
+pip install pyinstaller
+```
+
+If Kraken Engine is installed in a virtual environment, install PyInstaller there too.
+The build command needs both `kraken-engine` and `pyinstaller` available from the same environment.
+
+## Build Your App
+
+From the folder that contains your main script, run:
+
+```bash
+pykraken build main.py
+```
+
+This packages `main.py` into a distributable executable.
+After the build finishes, look for the generated output folder created by PyInstaller.
+
+<Note title="Important" >
+  Upon successfully building, you'll want to move the generated executable file in the same directory that your `main.py` is in.
+  Relative paths to assets are still taken into consideration.
+</Note>
+
+Once ready to distribute, you ONLY need the executable file and any necessary assets.
+
+### Naming the Executable
+
+Use `-n` or `--name` to choose the executable name:
+
+```bash
+pykraken build main.py --name MyGame
+```
+
+### Adding an Icon
+
+Use `-i` or `--icon` to provide an icon file:
+
+```bash
+pykraken build main.py --icon assets/icon.ico
+```
+
+The icon path should point to an `.ico` file.
+
+### Showing Build Details
+
+Use `-v` or `--verbose` when you need to see PyInstaller's detailed output:
+
+```bash
+pykraken build main.py --verbose
+```
+
+Verbose output is useful when a build fails because of a missing file, missing dependency, or packaging issue.
+
+## Distribution Checklist
+
+Before sharing the executable, test it outside your editor from the generated output folder.
+
+Make sure any assets your app loads, such as images, audio, fonts, or level files, are available where the executable expects them.
+If your app uses relative paths like `assets/player.png`, keep that asset folder with the packaged output unless your build process bundles it another way.
