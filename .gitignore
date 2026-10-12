@@ -45,3 +45,7 @@ next-env.d.ts
 # sitemaps
 public/sitemap*.xml
 public/robots.txt
+
+/dist
+/.astro
+/.cache

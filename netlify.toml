@@ -1,2 +1,16 @@
-[[plugins]]
-package = "@netlify/plugin-nextjs"
+[build]
+command = "pnpm build"
+publish = "dist"
+
+[build.environment]
+NODE_VERSION = "24"
+PNPM_VERSION = "11.1.1"
+
+[[headers]]
+for = "/_astro/*"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+# Keep the redesign branch on GitHub without deploying it.
+[context."codex/astro-docs-rebuild"]
+ignore = "exit 0"

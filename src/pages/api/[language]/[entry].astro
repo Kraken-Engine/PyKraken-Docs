@@ -1,0 +1,38 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Sidebar from '../../../components/Sidebar.astro';
+import {api, url, signatureHTML, memberLabel, memberText} from '../../../lib/content';
+import {docHTML} from '../../../lib/docstrings';
+export function getStaticPaths() { return api.pages.map(page=>({params:{language:page.language,entry:page.slug},props:{page}})); }
+const {page} = Astro.props;
+const label = page.language==='python'?'Python':'C++';
+const [summary, ...notes] = page.doc.split(/\n\s*\n/);
+const separator = page.language==='python'?'.':'::';
+const children = api.pages.filter(p=>p.language===page.language && p.qualified.startsWith(page.qualified+separator) && !p.qualified.slice(page.qualified.length+separator.length).includes(separator));
+---
+<Layout title={`${page.name} · ${label} API`} section="api" language={page.language} counterpart={page.counterpart ?? undefined} pageSlug={page.slug}>
+  <div class="docs-shell"><Sidebar section="api" language={page.language} current={page.slug}/>
+    <main id="main" class="api-main" data-pagefind-body>
+      <div class="breadcrumbs"><a href={url(`api/${page.language}/`)}>{label} API</a><span>/</span><span>{page.name}</span></div>
+      <header class="page-heading api-heading"><span class="eyebrow">{page.kind.toUpperCase()} <span class="version-tag">v{api.versions[page.language]}</span></span><h1>{page.name}</h1><code class="qualified-name">{page.qualified}</code>
+        {summary && <div class="api-description prose" set:html={docHTML(summary)} />}
+        {notes.length>0 && <details class="api-notes"><summary>More about {page.name}</summary><div class="prose" set:html={docHTML(notes.join('\n\n'))} /></details>}
+        {page.bases && page.bases.length>0 && <p>Inherits <code set:html={signatureHTML(page.bases.join(', '),page)} /></p>}
+        {page.source && <p class="source-location">Declared in <code>{page.source}</code></p>}
+      </header>
+      {page.slug==='core' && <p class="availability-note">For engine constants and their meanings, see the <a href={url('docs/manual/constants/')}>Constants manual</a>.</p>}
+      {!page.counterpart && <p class="availability-note">This entry has no direct match in the other language. Switching opens that language's reference.</p>}
+      {children.length>0 && <div class="related-types"><h2>Related types & modules</h2><div class="type-directory">{children.map(p=><a href={url(`api/${p.language}/${p.slug}/`)}><code>{p.name}</code><span>{p.kind}</span></a>)}</div></div>}
+      <div class="member-index"><div class="member-index-heading"><h2>At a glance</h2><span>{page.members.length} members</span></div><div class="member-links">{page.members.map(m=><a href={`#${m.id}`}><code>{memberLabel(m)}</code><span>{m.kind}</span></a>)}</div></div>
+      <div class="reference-section-heading"><h2>Reference</h2><span>{label.toUpperCase()} API</span></div>
+      {page.members.map(member=><section class="api-member" id={member.id}>
+        <div class="member-heading"><h2><a href={`#${member.id}`}>{memberLabel(member)}</a></h2><span class="kind-tag">{member.kind}</span>{member.signatures.length>1 && <span class="overload-count">{member.signatures.length} overloads</span>}</div>
+        <div class="signatures">{member.signatures.map(signature=><div class="signature-row"><pre><code set:html={signatureHTML(memberText(signature,member,page),page)} /></pre><button data-copy={memberText(signature,member,page)} aria-label={`Copy ${memberLabel(member)} signature`}>Copy</button></div>)}</div>
+        {member.doc ? <div class="member-description prose" set:html={docHTML(memberText(member.doc,member,page))} /> : <p class="undocumented">{page.language==='cpp'?'No description in the source header.':'No description supplied by the module.'}</p>}
+        {member.values && <div class="table-scroll"><table><thead><tr><th>Value</th><th>Initializer</th><th>Description</th></tr></thead><tbody>{member.values.map(v=><tr><td><code>{v.name}</code></td><td><code>{v.value || 'Automatic'}</code></td><td>{v.doc || '—'}</td></tr>)}</tbody></table></div>}
+      </section>)}
+      {page.members.length===0 && <p>There are no directly declared public members in this namespace. Browse its related types in the sidebar.</p>}
+    </main>
+    <aside class="on-this-page"><span class="eyebrow">IN THIS {page.kind.toUpperCase()}</span>{page.members.map(m=><a href={`#${m.id}`}><code>{memberLabel(m)}</code></a>)}</aside>
+  </div>
+</Layout>

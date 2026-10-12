@@ -1,0 +1,9 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import {url} from '../../lib/content';
+---
+<Layout title="API reference" section="api"><main id="main" class="simple-page"><span class="eyebrow">THE ENGINE REFERENCE</span><h1>Choose your language.</h1><p>Explore the engine's modules, classes, and constants.</p><div class="hero-buttons"><a class="button primary" href={url('api/python/')}>Python →</a><a class="button secondary" href={url('api/cpp/')}>C++ →</a></div></main></Layout>
+<script>
+  const language = document.documentElement.dataset.language || 'python';
+  location.replace(`${import.meta.env.BASE_URL.replace(/\/$/,'')}/api/${language}/`);
+</script>

@@ -1,13 +1,8 @@
-FROM node:25-bookworm
-
+FROM node:24-bookworm
 WORKDIR /app
-
-RUN npm install -g pnpm@10.27.0
-
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install
-
+RUN npm install -g pnpm@11.1.1
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN pnpm install --frozen-lockfile
 COPY . .
-
-EXPOSE 3000
-CMD ["pnpm", "dev"]
+EXPOSE 4321
+CMD ["pnpm", "exec", "astro", "dev", "--host", "0.0.0.0"]

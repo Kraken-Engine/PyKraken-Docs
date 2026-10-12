@@ -1,0 +1,25 @@
+---
+import { api, apiUrl, guides, guideGroups, manualGroups, url } from '../lib/content';
+const { section, current='', language='python' } = Astro.props;
+const reference = api.pages.filter(p=>p.language===language);
+---
+<aside class="sidebar">
+  <details class="sidebar-container" open>
+    <summary>Browse the {section === 'api' ? 'reference' : section==='manual' ? 'manual' : 'guides'} <span>⌄</span></summary>
+    <div class="sidebar-inner">
+      <a class="sidebar-home" href={url(section==='api' ? `api/${language}/` : section==='manual' ? 'docs/manual/' : 'guides/')}>{section==='api' ? 'API overview' : section==='manual' ? 'Manual overview' : 'Your field guide'} <span>↗</span></a>
+      {section==='api' ? <>
+        <label class="sidebar-filter"><span>Jump to a topic</span><input type="search" id="api-filter" placeholder="Filter the API…" /></label>
+        {['module','class','enum'].map(kind=><details class="nav-group" open={kind==='module' || reference.some(p=>p.slug===current && (p.kind===kind || kind==='class' && p.kind==='struct'))}>
+          <summary>{kind==='module' ? 'Modules' : kind==='class' ? 'Classes & structures' : 'Enumerations'}</summary>
+          {reference.filter(p=>p.kind===kind || kind==='class' && p.kind==='struct').map(p=><a data-filter-name={p.name.toLowerCase()} href={apiUrl(p)} aria-current={p.slug===current?'page':undefined}>{p.name}<span>{p.members.length}</span></a>)}
+        </details>)}
+      </> : section==='manual' ? <>
+        {manualGroups.map(group=><details class="nav-group" open><summary>{group.title}</summary>{group.paths.map(path=>guides.find(g=>g.path===path)).filter(Boolean).map(g=><a href={url(g!.path+'/')} aria-current={g!.path===current?'page':undefined}>{g!.title}</a>)}</details>)}
+      </> : <>
+        {guideGroups.map(group=><div class="nav-group"><h3><i class={group.color}></i>{group.title}</h3>{guides.filter(g=>g.path.startsWith(`guides/${group.slug}/`)).map(g=><a href={url(g.path+'/')} aria-current={g.path===current?'page':undefined}>{g.title}</a>)}</div>)}
+      </>}
+      <a class="sidebar-bottom" href="https://github.com/Kraken-Engine/PyKraken/issues">Found something odd? ↗</a>
+    </div>
+  </details>
+</aside>

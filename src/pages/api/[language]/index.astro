@@ -1,0 +1,20 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Sidebar from '../../../components/Sidebar.astro';
+import {api, apiUrl, url, friendly, moduleGroups} from '../../../lib/content';
+export function getStaticPaths() { return ['python','cpp'].map(language=>({params:{language}})); }
+const language = Astro.params.language!;
+const pages = api.pages.filter(p=>p.language===language);
+const label = language==='python'?'Python':'C++';
+---
+<Layout title={`${label} API reference`} section="api" language={language} counterpart="">
+  <div class="docs-shell api-shell"><Sidebar section="api" language={language} />
+    <main id="main" class="api-main"><div class="breadcrumbs"><a href={url('')}>Kraken Engine</a><span>/</span>Reference</div>
+      <header class="page-heading"><span class="eyebrow">{label.toUpperCase()} · v{api.versions[language]}</span><h1>Your engine, at a glance.</h1><p>Find a module, look up a type, and get back to making things.</p></header>
+      <div class="api-stats"><span><strong>{pages.filter(p=>p.kind==='module').length}</strong> modules</span><span><strong>{pages.filter(p=>p.kind!=='module').length}</strong> types</span><span>Generated from {language==='python'?'the installed module':'C++ headers'}</span></div>
+      <h2 class="reference-section-heading">Modules <span>THE BUILDING BLOCKS</span></h2>
+      <div class="module-grid">{moduleGroups.flatMap(group=>pages.filter(p=>p.kind==='module' && group.modules.includes(p.name)).map(p=><a href={apiUrl(p)}><span class={`module-glyph ${group.color}`} aria-hidden="true">{p.name==='core'?'⚙':p.name==='log'?'≡':group.icon}</span><div><h3>{friendly(p.name)}</h3><code>{p.qualified}</code></div><span class="module-count">{p.members.length} <span>→</span></span></a>))}</div>
+      <h2 class="reference-section-heading">Types <span>CLASSES, STRUCTURES & ENUMS</span></h2><div class="type-directory">{pages.filter(p=>p.kind!=='module').map(p=><a href={apiUrl(p)}><code>{p.name}</code><span>{p.kind}</span></a>)}</div>
+    </main>
+  </div>
+</Layout>

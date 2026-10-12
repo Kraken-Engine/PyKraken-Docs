@@ -1,0 +1,48 @@
+---
+import '@fontsource/fredoka/500.css';
+import '@fontsource/fredoka/600.css';
+import '@fontsource-variable/nunito';
+import '../styles/site.css';
+import { url } from '../lib/content';
+const {title='Kraken Engine', description='The Kraken Engine manual. Build 2D games in Python and C++.', section='home', language, counterpart, pageSlug} = Astro.props;
+---
+<!doctype html>
+<html lang="en" data-language="python">
+  <head>
+    <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title === 'Kraken Engine' ? title + ' — Make something playable.' : title + ' · Kraken Engine'}</title>
+    <meta name="description" content={description} /><meta name="theme-color" content="#faf7ee" />
+    <link rel="icon" type="image/svg+xml" href={url('images/knicon.svg')} />
+    <script is:inline define:vars={{language}}>
+      const saved = document.cookie.match(/(?:^|; )kraken_language=(python|cpp)(?:;|$)/)?.[1] || 'python';
+      document.documentElement.dataset.language = language || saved;
+      if (language) document.cookie = `kraken_language=${language}; Path=/; Max-Age=31536000; SameSite=Lax`;
+      document.documentElement.dataset.theme = localStorage.getItem('kraken-theme') || 'light';
+    </script>
+  </head>
+  <body data-section={section} data-api-language={language} data-counterpart={counterpart} data-page-slug={pageSlug} data-base={url('')}>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href={url('')} aria-label="Kraken Engine home"><img src={url('images/knicon.svg')} width="42" height="42" alt="" /><span>KRAKEN<span class="brand-sub">ENGINE / FIELD GUIDE</span></span></a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href={url('guides/')} aria-current={section==='guides' ? 'page':undefined}>Learn <span>↗</span></a>
+        <a href={url('api/')} data-api-link aria-current={section==='api' ? 'page':undefined}>API reference <span>↗</span></a>
+        <a href={url('docs/manual/')} aria-current={section==='manual' ? 'page':undefined}>Manual <span>↗</span></a>
+      </nav>
+      <div class="header-actions">
+        <button class="search-open" aria-label="Search documentation"><span>⌕</span><span class="search-word">Search docs</span><kbd>/</kbd></button>
+        <div class="language-switch" role="group" aria-label="API language"><button data-language-choice="python" aria-pressed="true">Python</button><button data-language-choice="cpp" aria-pressed="false">C++</button></div>
+        <button class="theme-button" aria-label="Switch color theme">◐</button>
+      </div>
+    </header>
+    <slot />
+    <footer class="site-footer"><a class="footer-brand" href={url('')}>KRAKEN ENGINE</a><span>A little curiosity goes a long way. Make something.</span><a href={url('showcase/')}>Made with Kraken ↗</a><a href="https://github.com/Kraken-Engine/PyKraken">Source on GitHub ↗</a></footer>
+    <dialog class="search-dialog" aria-labelledby="search-title">
+      <div class="search-top"><h2 id="search-title">Find your next step</h2><button data-search-close aria-label="Close search">✕</button></div>
+      <label for="search-input">Guides, classes, functions, and constants</label><input id="search-input" type="search" placeholder="Try “window”, “Vec2”, or “shaders”…" autocomplete="off" />
+      <p id="search-status" role="status">Start typing to search the manual.</p><ul id="search-results"></ul>
+    </dialog>
+    <div id="announcement" class="sr-only" aria-live="polite"></div>
+    <script src="../scripts/site.ts"></script>
+  </body>
+</html>
