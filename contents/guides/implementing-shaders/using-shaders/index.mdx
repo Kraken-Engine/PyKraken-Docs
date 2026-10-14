@@ -25,22 +25,22 @@ Kraken picks the platform file it needs at runtime.
 The recommended workflow is:
 
 1. Write the fragment shader in HLSL.
-2. Bake it with `pykraken bake`.
+2. Bake it with `kraken bake`.
 3. Load the baked shader by base path with `Shader`.
 4. Bind any texture samplers and uniforms before drawing with it.
 
 ```powershell
-pykraken bake shaders/invert.frag.hlsl -o assets/shaders
+kraken bake shaders/invert.frag.hlsl -o assets/shaders
 ```
 
 The CLI accepts one input file and an optional output directory:
 
 ```text
-pykraken bake [-h] [-o OUT] [-v] input
+kraken bake [-h] [-o OUT] [-v] input
 ```
 
 <Note>
-`pykraken bake` currently works for HLSL only. GLSL shaders are still allowed,
+`kraken bake` currently works for HLSL only. GLSL shaders are still allowed,
 but you must compile them yourself and place the compiled output
 where `Shader` can load it by base path.
 </Note>

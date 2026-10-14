@@ -1,0 +1,225 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { url, guideGroups, api } from "../lib/content";
+---
+
+<Layout>
+  <main id="main">
+    <aside class="development-banner" aria-label="Documentation status">
+      <p>
+        <strong>These docs are still a work in progress.</strong>
+        They're published early to keep the API reference and guides up to date
+        while the site takes shape. Thanks for bearing with the rough edges.
+      </p>
+    </aside>
+    <section class="home-hero">
+      <div class="hero-copy">
+        <div class="eyebrow">
+          <span class="status-dot"></span> THE KRAKEN ENGINE MANUAL <span
+            class="version-tag">v{api.versions.python}</span
+          >
+        </div>
+        <h1>
+          Build the game,<br /><span class="highlight">not the groundwork.</span
+          >
+        </h1>
+        <p>Build your next 2D game with Kraken, in Python or C++.</p>
+        <div class="hero-buttons">
+          <a
+            class="button primary"
+            href={url("guides/getting-started/create-window/")}
+            >Make your first window <span>↗</span></a
+          ><a class="button secondary" href={url("api/")} data-api-link
+            >Explore the API <span>→</span></a
+          >
+        </div>
+        <div class="install-line">
+          <span>$</span><code>pip install kraken-engine</code><button
+            data-copy="pip install kraken-engine"
+            aria-label="Copy installation command">Copy</button
+          >
+        </div>
+      </div>
+      <div class="hero-art">
+        <span class="sticker sticker-top">YOUR NEXT SIDE QUEST</span>
+        <div class="game-window">
+          <div class="window-bar">
+            <span><i></i><i></i><i></i></span><span>hello_world.py</span><span
+              >✦</span
+            >
+          </div>
+          <div
+            class="game-scene"
+            aria-label="An illustrated little island with the Kraken mascot"
+          >
+            <svg
+              viewBox="0 0 640 390"
+              role="img"
+              aria-label="Kraken on a grassy floating island under a sunny sky"
+            >
+              <rect width="640" height="390" fill="#bcdfdd"></rect>
+              <g fill="#f9f6e9"
+                ><path d="M37 101h22V82h51V68h36v14h27v19h31v20H37z"
+                ></path><path d="M432 74h30V53h53v12h27v22h38v21H432z"
+                ></path></g
+              >
+              <circle cx="366" cy="72" r="32" fill="#f8d966"></circle>
+              <g fill="#99c9b8"
+                ><path d="M0 262l105-102 97 102z"></path><path
+                  d="M410 266l100-119 130 119z"></path></g
+              >
+              <path
+                d="M93 278l226-77 220 73-219 93z"
+                fill="#85b97d"
+                stroke="#253d3d"
+                stroke-width="3"></path>
+              <path
+                d="M93 278v27l226 76 220-82v-25l-219 77z"
+                fill="#c39165"
+                stroke="#253d3d"
+                stroke-width="3"></path>
+              <path d="M93 278l226 73 220-77v14l-219 76-227-74z" fill="#56885c"
+              ></path>
+              <path d="M196 314l98-37 124 42-37 14-87-29-60 22z" fill="#eed696"
+              ></path>
+              <g stroke="#253d3d" stroke-width="3"
+                ><path d="M465 271v-73"></path><path
+                  d="M442 191l23-41 24 41h-12l20 34h-67l21-34z"
+                  fill="#477f66"></path><path d="M150 249v-47"></path><path
+                  d="M126 209l24-45 26 45z"
+                  fill="#578c68"></path></g
+              >
+              <g fill="#f4df77"
+                ><rect x="194" y="268" width="7" height="7"></rect><rect
+                  x="409"
+                  y="288"
+                  width="7"
+                  height="7"></rect><rect x="376" y="246" width="7" height="7"
+                ></rect></g
+              >
+              <g fill="#f3987b"
+                ><rect x="223" y="241" width="8" height="8"></rect><rect
+                  x="423"
+                  y="258"
+                  width="8"
+                  height="8"></rect></g
+              >
+              <ellipse
+                cx="309"
+                cy="278"
+                rx="50"
+                ry="13"
+                fill="#284638"
+                opacity=".2"></ellipse>
+              <image
+                href={url("images/knicon.svg")}
+                x="258"
+                y="167"
+                width="105"
+                height="105"
+              />
+              <path
+                d="M278 144h60v-29h-60v29l10 10v-10"
+                fill="#fffdf5"
+                stroke="#253d3d"
+                stroke-width="2"></path>
+              <text
+                x="308"
+                y="135"
+                text-anchor="middle"
+                font-family="monospace"
+                font-size="14"
+                fill="#253d3d">hello!</text
+              >
+              <g fill="#fffdf5"
+                ><path d="M212 146h4v8h8v4h-8v8h-4v-8h-8v-4h8z"></path><path
+                  d="M402 166h3v6h6v3h-6v6h-3v-6h-6v-3h6z"></path></g
+              >
+            </svg>
+          </div>
+          <div class="window-bottom">
+            <span class="status-dot"></span> A good place to begin <span
+              >Python / C++</span
+            >
+          </div>
+        </div>
+        <span class="sticker sticker-bottom">made of small beginnings ✧</span>
+      </div>
+    </section>
+    <div class="chapter-strip">
+      <span>OPEN THE MANUAL</span><span>01 / LEARN</span><span
+        >02 / EXPERIMENT</span
+      ><span>03 / MAKE IT YOURS</span><span>↓</span>
+    </div>
+    <section class="home-chapters">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">PICK A STARTING POINT</span><h2>
+            A little help along the way.
+          </h2>
+        </div><a class="text-link" href={url("guides/")}
+          >All guides <span>↗</span></a
+        >
+      </div>
+      <div class="chapter-grid">
+        {
+          guideGroups.map((group, i) => (
+            <a
+              class={`chapter-card ${group.color}`}
+              href={url(`guides/${group.slug}/`)}
+            >
+              <>
+                <span class="chapter-number">CHAPTER 0{i + 1}</span>
+                <span class="chapter-icon" aria-hidden="true">
+                  {["↗", "▧", "✳", "✦"][i]}
+                </span>
+                <h3>{group.title}</h3>
+                <p>
+                  {
+                    [
+                      "Set things up, open a window, and draw your first frame.",
+                      "Put shapes, textures, and a little color on the screen.",
+                      "Give your world movement, text, and animation.",
+                      "Get to know the small programs behind your pixels.",
+                    ][i]
+                  }
+                </p>
+                <span class="card-arrow" aria-hidden="true">
+                  ↗
+                </span>
+              </>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+    <section class="reference-banner">
+      <span class="reference-symbol" aria-hidden="true">{"{ }"}</span><div>
+        <span class="eyebrow">ALREADY KNOW WHAT YOU NEED?</span><h2>
+          Keep the reference close.
+        </h2><p>
+          Signatures, parameters, and return types. Straight from the engine.
+        </p>
+      </div><a class="button secondary" href={url("api/")} data-api-link
+        >Open API reference →</a
+      >
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .development-banner {
+    padding: 16px clamp(24px, 5vw, 72px);
+    border-bottom: 1px solid var(--line);
+    background: var(--yellow);
+    color: var(--ink);
+  }
+
+  .development-banner p {
+    max-width: 85ch;
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: center;
+  }
+</style>

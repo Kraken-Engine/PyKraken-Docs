@@ -61,7 +61,7 @@ Animation behavior comes from the controller:
 
 ```python
 controller = kn.AnimationController()
-controller.add_sheet(
+controller.add_strips(
     frame_width=32,
     frame_height=32,
     strips=[
@@ -89,17 +89,13 @@ controller.play("walk")
 ```
 
 The controller handles timing automatically.
-To draw the correct frame, assign the active frame area to the texture's `clip_area` property before rendering:
+To draw the correct frame, pass the active frame area as the draw call's source rectangle:
 
 ```python
 while kn.window.is_open():
-    kn.event.poll()
-
-    sheet.clip_area = controller.frame_area
-
-    kn.renderer.clear()
-    kn.renderer.draw(sheet)
-    kn.renderer.present()
+    ...
+    kn.renderer.draw(sheet, source=controller.frame_area)
+    ...
 ```
 
 The important idea is that the controller decides which part of the atlas is active, and the renderer draws only that region.
@@ -109,13 +105,14 @@ The important idea is that the controller decides which part of the atlas is act
 ```python
 import pykraken as kn
 
+kn.init()
 kn.window.create("Spritesheet Animation", 800, 450)
 
 sheet = kn.Texture("assets/player_sheet.png")
 player_xf = kn.Transform(pos=kn.Vec2(384, 208))
 
 controller = kn.AnimationController()
-controller.add_sheet(
+controller.add_strips(
     frame_width=32,
     frame_height=32,
     strips=[
@@ -124,21 +121,18 @@ controller.add_sheet(
         kn.SheetStrip("attack", frame_count=4, fps=8),
     ]
 )
-
 controller.play("idle")
 
 while kn.window.is_open():
     kn.event.poll()
 
-    if kn.input.is_pressed(kn.K_RIGHT) or kn.input.is_pressed(kn.K_LEFT):
-        controller.set("walk")
+    if kn.key.is_pressed(kn.K_RIGHT) or kn.key.is_pressed(kn.K_LEFT):
+        controller.play("walk")
     else:
-        controller.set("idle")
-
-    sheet.clip_area = controller.frame_area
+        controller.play("idle")
 
     kn.renderer.clear()
-    kn.renderer.draw(sheet, player_xf)
+    kn.renderer.draw(sheet, player_xf, source=controller.frame_area)
     kn.renderer.present()
 
 kn.quit()
@@ -149,7 +143,7 @@ kn.quit()
 In real games, animation usually changes because game state changes.
 A player might use idle when standing still, walk when moving, jump while airborne, and attack during an attack.
 
-A simple state-driven setup might look like this:
+After defining all the animations you use (including a `"jump"` strip), a simple state-driven setup might look like this:
 
 ```python
 if attacking:
@@ -157,12 +151,14 @@ if attacking:
 elif not on_floor:
     controller.play("jump")
 elif velocity.x != 0:
-    controller.set("walk")
+    controller.play("walk")
 else:
-    controller.set("idle")
+    controller.play("idle")
 ```
 
-Here, `play` is useful for actions like attack or jump when you want the animation to restart from the first frame, while `set` is useful for looping states like idle and walk.
+`play(name)` restarts and resumes playback when you select a different animation. Calling it every frame with the same name lets that animation continue uninterrupted. `set(name)` changes the selection while preserving the current frame and playback state.
+
+To restart the currently selected animation, call `replay(name)` once when the action is triggered. Calling `replay` every frame would keep resetting it to the first frame. Set `controller.looping = False` for a one-shot action and restore it to `True` for looping states; looping applies to the controller, not to individual strips.
 
 ---
 

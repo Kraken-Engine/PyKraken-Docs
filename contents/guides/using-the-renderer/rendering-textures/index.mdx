@@ -15,7 +15,7 @@ It's best to **load once and reuse** rather than creating textures on the fly:
 ```py
 texture = kn.Texture("image.png")
 while kn.window.is_open():
-    # Use texture in here
+    # Reuse texture here
 ```
 <Note title="Beginner Tip">
 If you need the same image multiple times (e.g. many enemies), reuse the same `Texture` object.
@@ -31,7 +31,7 @@ kn.renderer.draw(texture)
 # Draw with custom transform
 transform = kn.Transform(
     pos=kn.Vec2(150, 100),
-    angle=kn.math.to_rad(30)
+    angle=30 * kn.math.DEG2RAD
 )
 kn.renderer.draw(texture, transform)
 ```
@@ -76,12 +76,9 @@ power_transform = kn.Transform(pos=kn.Vec2(32, 32))
 while kn.window.is_open():
     ...
     # Draw heart icon from atlas
-    atlas_texture.clip_area = heart_src
-    kn.renderer.draw(atlas_texture, heart_transform)
-
+    kn.renderer.draw(atlas_texture, heart_transform, source=heart_src)
     # Draw power icon from atlas
-    atlas_texture.clip_area = power_src
-    kn.renderer.draw(atlas_texture, power_transform)
+    kn.renderer.draw(atlas_texture, power_transform, source=power_src)
     ...
 ```
 

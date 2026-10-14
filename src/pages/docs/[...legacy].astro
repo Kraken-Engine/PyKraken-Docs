@@ -1,0 +1,20 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import {api, apiUrl, url} from '../../lib/content';
+export function getStaticPaths() {
+  const paths=[{params:{legacy:undefined},props:{target:url('api/')}},{params:{legacy:'classes'},props:{target:url('api/python/')}},{params:{legacy:'functions'},props:{target:url('api/python/')}}];
+  const normalize=(s:string)=>s.replace(/[^a-z0-9]/gi,'').toLowerCase();
+  for(const kind of ['classes','functions']){
+    const folder=path.join(process.cwd(),'contents/docs',kind);
+    for(const name of fs.readdirSync(folder,{withFileTypes:true}).filter(d=>d.isDirectory()).map(d=>d.name)){
+      const candidates=api.pages.filter(p=>p.language==='python'&&(p.kind==='module')===(kind==='functions'));
+      const match=candidates.find(p=>normalize(p.name)===normalize(name)) || candidates.find(p=>normalize(p.name.split('.').slice(-2).join('.'))===normalize(name)) || candidates.find(p=>normalize(p.name.split('.').pop()!)===normalize(name));
+      paths.push({params:{legacy:`${kind}/${name}`},props:{target:match?apiUrl(match):url('api/python/')}});
+    }
+  }
+  return paths;
+}
+const {target}=Astro.props;
+---
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta http-equiv="refresh" content={`0;url=${target}`}/><link rel="canonical" href={target}/><title>Reference moved · Kraken Engine</title></head><body><p>This reference has moved. <a href={target}>Continue to the current API.</a></p></body></html>

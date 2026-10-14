@@ -55,11 +55,11 @@ The output is a single color for the pixel being rendered.
 
 ## Shader Languages
 
-Kraken's shader baker, `pykraken bake`, accepts **HLSL** input and produces the platform shader files Kraken needs.
+Kraken's shader baker, `kraken bake`, accepts **HLSL** input and produces the platform shader files Kraken needs.
 This is the recommended path.
 
 ```powershell
-pykraken bake shaders/simple.frag.hlsl -o assets/shaders
+kraken bake shaders/simple.frag.hlsl -o assets/shaders
 ```
 
 You can still write GLSL, but Kraken does not bake GLSL for you.
@@ -67,7 +67,7 @@ If you choose GLSL, compile it yourself into the format your target platform nee
 then load the resulting shader by its base path with `kn.shaders.Shader`.
 
 <Note title="Use HLSL unless you have a reason not to">
-HLSL gives you the smoothest Kraken workflow because `pykraken bake` can generate the runtime shader files for you. GLSL is for users who already have their own shader compilation step.
+HLSL gives you the smoothest Kraken workflow because `kraken bake` can generate the runtime shader files for you. GLSL is for users who already have their own shader compilation step.
 </Note>
 
 ## Binding Rules Matter
