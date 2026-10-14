@@ -44,7 +44,7 @@ orch.then(fx.move_to(kn.Vec2(400, 100), dur=0.5))
     .then(fx.move_to(kn.Vec2(400, 500), dur=0.5))
     .then(fx.scale_to(kn.Vec2(1.2, 0.8), dur=0.1))  # Squash
     .then(fx.scale_to(kn.Vec2(0.8, 1.2), dur=0.1))  # Stretch
-    .then(fx.scale_to(1.0, dur=0.1))
+    .then(fx.scale_to(kn.Vec2(1.0), dur=0.1))
 )
 ```
 
@@ -119,7 +119,7 @@ orch.then(fx.move_to(
 
 # Elastic overshoot
 orch.then(fx.scale_to(
-    1.5,
+    kn.Vec2(1.5),
     dur=1.0,
     ease=kn.ease.out_elastic
 ))

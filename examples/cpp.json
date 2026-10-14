@@ -1,7 +1,4 @@
 {
-  "guides/getting-started/installation": [
-    "#include <kraken/KrakenEngine.hpp>\n// Link your application to the installed Kraken C++ library.\n// Engine symbols live in the kn namespace."
-  ],
   "guides/using-the-renderer/drawing-shapes": [
     "kn::Rect rect(100, 100, 50, 30);\nkn::draw::rect(rect, kn::Color::WHITE);",
     "// Draw a green line from (0, 0) to (200, 200).\nkn::Line line(0, 0, 200, 200);\nkn::draw::line(line, kn::Color::GREEN);\n\nkn::Vec2 point(400, 300);\nkn::draw::point(point, kn::Color::YELLOW);",
@@ -14,7 +11,7 @@
   ],
   "guides/using-the-renderer/rendering-textures": [
     "kn::Texture texture(\"image.png\");\nwhile (kn::window::isOpen()) {\n    // Reuse texture here\n}",
-    "// Draw at origin with default transform\nkn::renderer::draw(texture);\n\n// Draw with custom transform\nkn::Transform transform = {\n    .pos = kn::Vec2(150, 100)\n    .angle = kn::math::toRadians(30);\n}\nkn::renderer::draw(texture, transform);",
+    "// Draw at origin with default transform\nkn::renderer::draw(texture);\n\n// Draw with custom transform\nkn::Transform transform = {\n    .pos = {150, 100},\n    .angle = kn::math::toRadians(30)\n};\nkn::renderer::draw(texture, transform);",
     "// Group calls that use the same texture.\nfor (int i = 0; i < 5; ++i) {\n    kn::Transform transform = { .pos = {i * 40, 100} };\n    kn::renderer::draw(texture, transform);\n}\n\n// Changing textures may interrupt batching.\nkn::renderer::draw(texA);\nkn::renderer::draw(texB);\nkn::renderer::draw(texA);",
     "// Load the atlas texture\nkn::Texture atlasTexture(\"atlas.png\");\n\nkn::Rect heartSrc(0, 0, 32, 32);\nkn::Transform heartTransform = { .pos = {16, 16} };\n\nkn::Rect powerSrc(32, 0, 32, 32);\nkn::Transform powerTransform = { .pos = {32, 32} };\n\nwhile (kn::window::isOpen()) {\n    ...\n    // Draw heart icon from atlas\n    kn::renderer::draw(atlasTexture, heartTransform, { .source = heartSrc });\n    // Draw power icon from atlas\n    kn::renderer::draw(atlasTexture, powerTransform, { .source = powerSrc });\n    ...\n}"
   ],
@@ -27,26 +24,26 @@
     "kn::Vec2 a(1, 0);\nkn::Vec2 b(0, 1);\ndouble cross = kn::math::cross(a, b); // Positive."
   ],
   "guides/game-essentials/using-orchestrator": [
-    "kn::Transform transform;\ntransform.pos = kn::Vec2(100, 300);\nkn::Orchestrator orch(transform);",
-    "orch.then(kn::fx::moveTo(kn::Vec2(400, 100), 0.5))\n    .then(kn::fx::moveTo(kn::Vec2(400, 500), 0.5))\n    .then(kn::fx::scaleTo(kn::Vec2(1.2, 0.8), 0.1))\n    .then(kn::fx::scaleTo(kn::Vec2(0.8, 1.2), 0.1))\n    .then(kn::fx::scaleTo(kn::Vec2(1.0), 0.1));",
-    "std::vector<std::unique_ptr<kn::Effect>> effects;\neffects.push_back(kn::fx::moveTo(kn::Vec2(600, 300), 1.0));\neffects.push_back(kn::fx::rotateTo(kn::math::toRadians(180), true, 1.2));\norch.parallel(std::move(effects));",
-    "orch.then(kn::fx::moveTo(kn::Vec2(400, 100), 0.5));\norch.then(kn::fx::moveTo(kn::Vec2(100, 300), 0.5));",
-    "auto hop = kn::fx::moveTo(kn::Vec2(400, 100), 0.5);\norch.then(std::move(hop));\n// hop is now empty. Do not pass it to then() again.",
-    "auto hop = kn::fx::moveTo(kn::Vec2(400, 100), 0.5);\norch.then(hop->clone());\norch.then(hop->clone());",
-    "orch.then(kn::fx::moveTo(kn::Vec2(700, 300), 1.0, kn::ease::inOutQuad));\norch.then(kn::fx::moveTo(kn::Vec2(100, 300), 1.0, kn::ease::outBounce));\norch.then(kn::fx::scaleTo(kn::Vec2(1.5), 1.0, kn::ease::outElastic));",
+    "// Create a transform to animate\nkn::Transform transform = { .pos = {100, 300} };\n\n// Create orchestrator targeting the transform\nkn::Orchestrator orch(transform);",
+    "namespace fx = kn::fx;\n\n// Create a bouncing ball animation\norch.then(fx::moveTo(kn::Vec2(400, 100), 0.5))\n    .then(fx::moveTo(kn::Vec2(400, 500), 0.5))\n    .then(fx::scaleTo(kn::Vec2(1.2, 0.8), 0.1))  // Squash\n    .then(fx::scaleTo(kn::Vec2(0.8, 1.2), 0.1))  // Stretch\n    .then(fx::scaleTo(kn::Vec2(1.0), 0.1));",
+    "namespace fx = kn::fx;\n\n// Effects are owned by move-only unique_ptrs. A vector initializer list\n// would copy them from const elements, so parallel({...}) cannot be used.\n// push_back moves each effect; std::move transfers the vector to parallel.\nstd::vector<std::unique_ptr<kn::Effect>> effects;\neffects.push_back(fx::moveTo(kn::Vec2(600, 300), 1.0));\neffects.push_back(fx::rotateTo(kn::math::toRadians(180), true, 1.2));\norch.parallel(std::move(effects));",
+    "orch.then(fx::moveTo(kn::Vec2(400, 100), 0.5));\norch.then(fx::moveTo(kn::Vec2(100, 300), 0.5));",
+    "auto hop = fx::moveTo(kn::Vec2(400, 100), 0.5);\norch.then(std::move(hop));\n// hop is now empty. Do not pass it to then() again.",
+    "auto hop = fx::moveTo(kn::Vec2(400, 100), 0.5);\norch.then(hop->clone());\norch.then(hop->clone());",
+    "namespace fx = kn::fx;\n\n// Smooth start and end\norch.then(fx::moveTo(kn::Vec2(700, 300), 1.0, kn::ease::inOutQuad));\n\n// Bouncy ending\norch.then(fx::moveTo(kn::Vec2(100, 300), 1.0, kn::ease::outBounce));\n\n// Elastic overshoot\norch.then(fx::scaleTo(kn::Vec2(1.5), 1.0, kn::ease::outElastic));",
     "orch.finalize();\norch.play();",
-    "while (kn::window::isOpen()) {\n    kn::event::poll();\n    kn::renderer::clear();\n    kn::renderer::draw(texture, transform);\n    kn::renderer::present();\n}",
-    "if (orch.isPlaying()) std::cout << \"Animation is running\\n\";\nif (orch.isFinished()) std::cout << \"Animation completed\\n\";",
+    "while (kn::window::isOpen()) {\n    kn::event::poll();\n\n    // Render using the animated transform\n    kn::renderer::clear();\n    kn::renderer::draw(texture, transform);\n    kn::renderer::present();\n}",
+    "if (orch.isPlaying())\n    std::cout << \"Animation is running\\n\";\n\nif (orch.isFinished())\n    std::cout << \"Animation completed\\n\";",
     "orch.pause();   // Pause at the current position.\norch.resume();  // Continue from the paused position.\norch.stop();    // Stop and reset.\norch.rewind();  // Reset without stopping.",
     "orch.setLooping(true);\norch.finalize();\norch.play();"
   ],
   "guides/game-essentials/spritesheet-animation": [
     "kn::Texture sheet(\"assets/player_sheet.png\");",
-    "kn::AnimationController controller;\ncontroller.addStrips(32, 32, {\n    {\"idle\", 6, 6},\n    {\"walk\", 6, 8},\n    {\"attack\", 4, 8},\n});",
+    "kn::AnimationController controller;\ncontroller.addStrips(32, 32, {\n    { .name = \"idle\", .frameCount = 6, .fps = 6 },\n    { .name = \"walk\", .frameCount = 6, .fps = 8 },\n    { .name = \"attack\", .frameCount = 4, .fps = 8 },\n});",
     "controller.play(\"walk\");",
-    "while (kn::window::isOpen()) {\n    kn::event::poll();\n    kn::DrawOptions options;\n    options.source = controller.getFrameArea();\n    kn::renderer::clear();\n    kn::renderer::draw(sheet, kn::Transform{}, options);\n    kn::renderer::present();\n}",
-    "#include <kraken/KrakenEngine.hpp>\n\nint main() {\n    kn::init();\n    kn::window::create(\"Spritesheet Animation\", 800, 450);\n    { // Destroy GPU resources before quitting the engine.\n        kn::Texture sheet(\"assets/player_sheet.png\");\n        kn::Transform player;\n        player.pos = kn::Vec2(384, 208);\n        kn::AnimationController controller;\n        controller.addStrips(32, 32, {\n            {\"idle\", 6, 6}, {\"walk\", 6, 8}, {\"attack\", 4, 8}\n        });\n        controller.play(\"idle\");\n        while (kn::window::isOpen()) {\n            kn::event::poll();\n            if (kn::key::isPressed(kn::Keycode::Right) ||\n                kn::key::isPressed(kn::Keycode::Left)) {\n                controller.set(\"walk\");\n            } else {\n                controller.set(\"idle\");\n            }\n            kn::DrawOptions options;\n            options.source = controller.getFrameArea();\n            kn::renderer::clear();\n            kn::renderer::draw(sheet, player, options);\n            kn::renderer::present();\n        }\n    }\n    kn::quit();\n}",
-    "if (attacking) controller.play(\"attack\");\nelse if (!onFloor) controller.play(\"jump\");\nelse if (velocity.x != 0) controller.set(\"walk\");\nelse controller.set(\"idle\");"
+    "while (kn::window::isOpen()) {\n    ...\n    kn::renderer::draw(sheet, {}, { .source = controller.getFrameArea() });\n    ...\n}",
+    "#include <kraken/KrakenEngine.hpp>\n\nint main() {\n    kn::init();\n    kn::window::create(\"Spritesheet Animation\", 800, 450);\n\n    kn::Texture sheet(\"assets/player_sheet.png\");\n    kn::Transform playerXf = { .pos = {384, 208} };\n\n    kn::AnimationController controller;\n    controller.addStrips(32, 32, {\n        { .name = \"idle\", .frameCount = 6, .fps = 6 },\n        { .name = \"walk\", .frameCount = 6, .fps = 8 },\n        { .name = \"attack\", .frameCount = 4, .fps = 8 }\n    });\n    controller.play(\"idle\");\n\n    while (kn::window::isOpen()) {\n        kn::event::poll();\n\n        if (kn::key::isPressed(kn::Keycode::Right) ||\n            kn::key::isPressed(kn::Keycode::Left)) {\n            controller.play(\"walk\");\n        } else {\n            controller.play(\"idle\");\n        }\n\n        kn::renderer::clear();\n        kn::renderer::draw(sheet, player, { .source = controller.getFrameArea() });\n        kn::renderer::present();\n    }\n\n    kn::quit();\n}",
+    "if (attacking)\n    controller.play(\"attack\");\nelse if (!onFloor)\n    controller.play(\"jump\");\nelse if (velocity.x != 0)\n    controller.play(\"walk\");\nelse\n    controller.play(\"idle\");"
   ],
   "guides/game-essentials/fonts-and-text": [
     "kn::Font font(\"fonts/arial.ttf\", 24);\nkn::Font titleFont(\"fonts/arial.ttf\", 48);\nkn::Font retroFont(\"kraken-retro\", 16);",
@@ -79,7 +76,7 @@
     "#include <array>\n\nstd::array<float, 4> packWindUniform(float time, float strength, float scale) {\n    return {time, strength, scale, 0.0f};\n}",
     "struct alignas(16) WindUniform {\n    float time = 0.0f;\n    float strength = 1.0f;\n    float scale = 0.1f;\n    float padding = 0.0f;\n};\nstatic_assert(sizeof(WindUniform) == 16);",
     "kn::shaders::Shader windShader(\"assets/shaders/wind.frag\", 1, 2);",
-    "WindUniform wind;\nwind.strength = 0.8f;\nwind.scale = 0.1f;\nwind.time = static_cast<float>(kn::time::getElapsed());\nwindShader.setUniform(0, wind);",
+    "WindUniform wind = {\n    .time = static_cast<float>(kn::time::getElapsed()),\n    .strength = 0.8f,\n    .scale = 0.1f,\n};\nwindShader.setUniform(0, wind);",
     "kn::shaders::Shader shader(\"assets/shaders/effect.frag\", 2, 1);\nshader.setUniform(0, windUniform);\nshader.setUniform(1, tintUniform);"
   ]
 }

@@ -1,61 +1,111 @@
 ---
 title: Installation
-description: Step-by-step instructions to install Kraken Engine on your system.
+description: Set up Kraken Engine for Python or C++ and create your first project.
 ---
 
-Before starting, ensure you have a [Python](https://www.python.org/downloads/) version installed that is supported by Kraken Engine,
-which is Python 3.11 and above, if you wish to use the Kraken Python module. For C++ users, ensure you have a CXX20-capable compiler installed.
+Kraken supports both Python and C++. Choose the setup for your project:
 
-## Create a Virtual Environment
+- [Python](#python): install the package and import `pykraken`.
+- [C++](#c): create a CMake project that builds and links the native engine.
 
-This step is optional and you can skip to [installation](#install-via-pypi) if you wish.
-Using a virtual environment helps keep Python project dependencies isolated.
+## Python
 
-*On Linux:*
-```plaintext
+You'll need [Python 3.11 or newer](https://www.python.org/downloads/).
+
+### Create a Virtual Environment
+
+A virtual environment keeps your project's Python dependencies separate. This step is recommended but optional.
+
+**macOS and Linux:**
+
+```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-*On Windows (PowerShell):*
-```plaintext
+**Windows (PowerShell):**
+
+```powershell
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 ```
 
-## Install via PyPI
-To get started, install Kraken Engine from PyPI.
-<Stepper>
-  <StepperItem title="Download and Install From PyPI">
-    Use the command for your operating system:
+### Install Kraken
 
-    ```plaintext
-    # Windows and Linux
-    pip install kraken-engine
+With your environment activated, install the package:
 
-    # macOS
-    pip3 install kraken-engine
-    ```
-  </StepperItem>
-  <StepperItem title="Import Module Into an Editor">
-    After installing, import the module into a code editor as `pykraken` in Python or as `<kraken/KrakenEngine.hpp>` in C++:
-
-    ```py
-    import pykraken
-    # Or the recommended way -> import pykraken as kn
-    ```
-  </StepperItem>
-</Stepper>
-
-You're now ready to start writing your first Kraken script!
-
-### Updating
-To update Kraken Engine to the latest version, use the following command:
-
-```plaintext
-# Windows and Linux
-pip install --upgrade kraken-engine
-
-# macOS
-pip3 install --upgrade kraken-engine
+```bash
+python -m pip install kraken-engine
 ```
+
+If you skipped the virtual environment, use `python3` instead of `python` on systems where that is your Python command.
+
+In your Python files, use `import pykraken as kn`. The package is named `kraken-engine`, the import is `pykraken`, and the command-line tool is `kraken`.
+
+### Create a Python Project
+
+```bash
+kraken init my-game
+cd my-game
+python main.py
+```
+
+The generated project includes a working window and render loop. Continue with [Creating a Window](/guides/getting-started/create-window/) to learn how it works.
+
+### Update the Python Package
+
+Run this in the same environment where you installed Kraken:
+
+```bash
+python -m pip install --upgrade kraken-engine
+```
+
+## C++
+
+You'll need a C++20-capable compiler, CMake 3.24 or newer, and Git for the source-build setup below. The `kraken` project generator also requires Python 3.11 or newer; your C++ application runs as a native executable.
+
+### Install the Project Generator
+
+Install the Python package to get the `kraken` command. You can use the [virtual environment instructions above](#create-a-virtual-environment) to keep it isolated.
+
+```bash
+python -m pip install kraken-engine
+```
+
+Use `python3` if that is your Python command. If you already installed the package for Python, the same `kraken` command can create C++ projects.
+
+### Create a C++ Project
+
+```bash
+kraken init my-game --cpp
+cd my-game
+```
+
+This creates a CMake project with `src/main.cpp`. Its first build downloads and builds the matching Kraken version and native dependencies from source, so allow extra time for that build.
+
+<Note title="Prebuilt SDK option">
+On macOS ARM64 or Windows x64/ARM64, you can create the project with `kraken init my-game --cpp --sdk` to download the matching prebuilt SDK instead. Windows ARM64 support is experimental. Use the source-build setup on other platforms.
+</Note>
+
+### Build and Run
+
+From the generated project directory:
+
+```bash
+cmake --preset dev
+cmake --build --preset dev
+```
+
+Run the generated executable from the project directory so relative asset paths resolve correctly. It is usually under `build/`; multi-configuration generators such as Visual Studio place it in a configuration subdirectory such as `build/Debug/` or `build/Release/`.
+
+The generated CMake configuration links your application to `Kraken::Kraken`. Include the engine header in your C++ files:
+
+```cpp
+#include <kraken/KrakenEngine.hpp>
+```
+
+Engine symbols live in the `kn` namespace. The guides provide Python and C++ versions of their examples; choose the C++ tab as you read.
+
+### Update a C++ Project
+
+Updating the Python package updates the project generator. Existing C++ projects keep the engine version recorded in their CMake configuration or downloaded SDK. To upgrade one, update its engine source tag or SDK as well, then configure and build again.
