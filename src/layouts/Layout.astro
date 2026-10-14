@@ -80,6 +80,11 @@ const {
           aria-current={section === "manual" ? "page" : undefined}
           >Manual <span>↗</span></a
         >
+        <a
+          href={url("showcase/")}
+          aria-current={section === "showcase" ? "page" : undefined}
+          >Showcase <span>↗</span></a
+        >
       </nav>
       <div class="header-actions">
         <button class="search-open" aria-label="Search documentation"
@@ -98,14 +103,15 @@ const {
     <footer class="site-footer">
       <a class="footer-brand" href={url("")}>KRAKEN ENGINE</a><a
         href={url("showcase/")}>Made with Kraken ↗</a
-      ><a href="https://github.com/Kraken-Engine/PyKraken"
-        >Source on GitHub ↗</a>
+      ><a href="https://github.com/Kraken-Engine/PyKraken">Source on GitHub ↗</a
+      >
     </footer>
     <dialog class="search-dialog" aria-labelledby="search-title">
       <div class="search-top">
         <h2 id="search-title">Find your next step</h2><button
           data-search-close
-          aria-label="Close search">✕</button>
+          aria-label="Close search">✕</button
+        >
       </div>
       <label for="search-input">Guides, classes, functions, and constants</label
       ><input

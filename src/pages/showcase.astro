@@ -1,10 +1,42 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import projects from '../data/showcase.json';
-import {url} from '../lib/content';
+import Layout from "../layouts/Layout.astro";
+import projects from "../data/showcase.json";
+import { url } from "../lib/content";
 ---
-<Layout title="Made with Kraken" description="Games from the Kraken Engine community.">
-  <main id="main" class="showcase-main"><header class="page-heading"><span class="eyebrow">FROM THE COMMUNITY</span><h1>Ideas you can play.</h1><p>A few things people have made with Kraken Engine.</p></header>
-    <div class="showcase-grid">{projects.map(project=><a href={project.url}><img src={url(project.image)} alt={project.title} loading="lazy" width="640" height="360"/><div><h2>{project.title} ↗</h2><p>{project.description}</p></div></a>)}</div>
+
+<Layout
+  title="Showcase"
+  description="Games from the Kraken Engine community."
+  section="showcase"
+>
+  <main id="main" class="showcase-main">
+    <header class="page-heading">
+      <span class="eyebrow">MADE WITH KRAKEN</span><h1>Showcase</h1><p>
+        Explore games made by the Kraken Engine community.
+      </p>
+    </header>
+    <div class="showcase-grid">
+      {
+        projects.map((project) => (
+          <a href={project.url}>
+            <>
+              <img
+                src={url(project.image)}
+                alt={project.title}
+                loading="lazy"
+                width="640"
+                height="360"
+              />
+              <div>
+                <>
+                  <h2>{project.title} ↗</h2>
+                  <p>{project.description}</p>
+                </>
+              </div>
+            </>
+          </a>
+        ))
+      }
+    </div>
   </main>
 </Layout>
