@@ -1,32 +1,89 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Sidebar from '../components/Sidebar.astro';
-import Note from '../components/Note.astro';
-import Stepper from '../components/Stepper.astro';
-import StepperItem from '../components/StepperItem.astro';
-import Tabs from '../components/Tabs.astro';
-import TabsList from '../components/TabsList.astro';
-import TabsTrigger from '../components/TabsTrigger.astro';
-import TabsContent from '../components/TabsContent.astro';
-import { guides, url, guideGroups } from '../lib/content';
-export function getStaticPaths() { return guides.map(guide=>({params:{path:guide.path},props:{guide}})); }
+import Layout from "../layouts/Layout.astro";
+import Sidebar from "../components/Sidebar.astro";
+import Note from "../components/Note.astro";
+import Stepper from "../components/Stepper.astro";
+import StepperItem from "../components/StepperItem.astro";
+import Tabs from "../components/Tabs.astro";
+import TabsList from "../components/TabsList.astro";
+import TabsTrigger from "../components/TabsTrigger.astro";
+import TabsContent from "../components/TabsContent.astro";
+import { guides, url, guideGroups } from "../lib/content";
+export function getStaticPaths() {
+  return guides.map((guide) => ({
+    params: { path: guide.path },
+    props: { guide },
+  }));
+}
 const { guide } = Astro.props;
 const { Content } = guide;
-const section = guide.path.startsWith('guides') ? 'guides' : 'manual';
-const components = {Note,Stepper,StepperItem,Tabs,TabsList,TabsTrigger,TabsContent};
-const siblings = guides.filter(g=>g.path.startsWith(guide.path.split('/').slice(0,-1).join('/')+'/'));
-const next = siblings[siblings.findIndex(g=>g.path===guide.path)+1];
+const headings = guide.headings.filter((h: any) => h.depth <= 3);
+const section = guide.path.startsWith("guides") ? "guides" : "manual";
+const components = {
+  Note,
+  Stepper,
+  StepperItem,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+};
+const siblings = guides.filter((g) =>
+  g.path.startsWith(guide.path.split("/").slice(0, -1).join("/") + "/"),
+);
+const next = siblings[siblings.findIndex((g) => g.path === guide.path) + 1];
 ---
+
 <Layout title={guide.title} description={guide.description} section={section}>
-  <div class="docs-shell"><Sidebar section={section} current={guide.path} />
+  <div class="docs-shell">
+    <Sidebar section={section} current={guide.path} />
     <main id="main" class="guide-main" data-pagefind-body>
-      <div class="breadcrumbs"><a href={url(section==='manual'?'docs/manual/':'guides/')}>{section==='manual'?'Manual':'Field guide'}</a><span>/</span><span>{guide.title}</span></div>
-      <header class="page-heading"><span class="eyebrow">{section === 'guides' ? 'LEARN BY MAKING' : 'THE ENGINE MANUAL'}</span><h1>{guide.title}</h1><p>{guide.description}</p></header>
-      {guide.path==='guides' && <div class="guide-directory">{guideGroups.map((g,i)=><a class={g.color} href={url(`guides/${g.slug}/`)}><span>0{i+1}</span><strong>{g.title}</strong><span>↗</span></a>)}</div>}
-      {section==='guides' && guide.path.split('/').length>2 && <p class="guide-edition">Original guide text and Python examples are preserved. C++ examples use the current engine API.</p>}
+      <div class="breadcrumbs">
+        <a href={url(section === "manual" ? "docs/manual/" : "guides/")}
+          >{section === "manual" ? "Manual" : "Field guide"}</a
+        ><span>/</span><span>{guide.title}</span>
+      </div>
+      <header class="page-heading">
+        <span class="eyebrow"
+          >{
+            section === "guides" ? "LEARN BY MAKING" : "THE ENGINE MANUAL"
+          }</span
+        ><h1>{guide.title}</h1><p>{guide.description}</p>
+      </header>
+      {
+        guide.path === "guides" && (
+          <div class="guide-directory">
+            {guideGroups.map((g, i) => (
+              <a class={g.color} href={url(`guides/${g.slug}/`)}>
+                <span>0{i + 1}</span>
+                <strong>{g.title}</strong>
+                <span>↗</span>
+              </a>
+            ))}
+          </div>
+        )
+      }
       <article class="prose"><Content components={components} /></article>
-      {next && <a class="next-guide" href={url(next.path+'/')}><span>KEEP EXPLORING</span><strong>{next.title} →</strong></a>}
+      {
+        next && (
+          <a class="next-guide" href={url(next.path + "/")}>
+            <>
+              <span>KEEP EXPLORING</span>
+              <strong>{next.title} →</strong>
+            </>
+          </a>
+        )
+      }
     </main>
-    <aside class="on-this-page"><span class="eyebrow">ON THIS PAGE</span>{guide.headings.filter((h:any)=>h.depth<=3).map((h:any)=><a class={h.depth===3?'nested':''} href={`#${h.slug}`}>{h.text}</a>)}<div class="margin-note">Small steps.<br />Real progress. ✧</div></aside>
+    <aside class="on-this-page">
+      <span class="eyebrow">ON THIS PAGE</span>
+      {
+        headings.map((h: any) => (
+          <a class={h.depth === 3 ? "nested" : ""} href={`#${h.slug}`}>
+            {h.text}
+          </a>
+        ))
+      }
+    </aside>
   </div>
 </Layout>

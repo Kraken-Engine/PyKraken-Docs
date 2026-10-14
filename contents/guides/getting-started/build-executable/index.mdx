@@ -3,7 +3,11 @@ title: Building an Executable
 description: Package your Kraken Engine app as a distributable executable with PyInstaller.
 ---
 
-After your Kraken app runs from Python, you can package it as an executable for distribution with the `pykraken build` command.
+<Note title="Note">
+This page is for Python developers only; C++ developers already get an executable when they build their app.
+</Note>
+
+After your Kraken app runs from Python, you can package it as an executable for distribution with the `kraken build` command.
 
 The build command uses [PyInstaller](https://pyinstaller.org/) under the hood,
 so PyInstaller must be installed in the same Python environment as Kraken Engine before you build.
@@ -22,7 +26,7 @@ The build command needs both `kraken-engine` and `pyinstaller` available from th
 From the folder that contains your main script, run:
 
 ```bash
-pykraken build main.py
+kraken build main.py
 ```
 
 This packages `main.py` into a distributable executable.
@@ -40,7 +44,7 @@ Once ready to distribute, you ONLY need the executable file and any necessary as
 Use `-n` or `--name` to choose the executable name:
 
 ```bash
-pykraken build main.py --name MyGame
+kraken build main.py --name MyGame
 ```
 
 ### Adding an Icon
@@ -48,7 +52,7 @@ pykraken build main.py --name MyGame
 Use `-i` or `--icon` to provide an icon file:
 
 ```bash
-pykraken build main.py --icon assets/icon.ico
+kraken build main.py --icon assets/icon.ico
 ```
 
 The icon path should point to an `.ico` file.
@@ -58,7 +62,7 @@ The icon path should point to an `.ico` file.
 Use `-v` or `--verbose` when you need to see PyInstaller's detailed output:
 
 ```bash
-pykraken build main.py --verbose
+kraken build main.py --verbose
 ```
 
 Verbose output is useful when a build fails because of a missing file, missing dependency, or packaging issue.

@@ -4,12 +4,12 @@ description: Step-by-step instructions to install Kraken Engine on your system.
 ---
 
 Before starting, ensure you have a [Python](https://www.python.org/downloads/) version installed that is supported by Kraken Engine,
-which is Python 3.12 and above.
+which is Python 3.11 and above, if you wish to use the Kraken Python module. For C++ users, ensure you have a CXX20-capable compiler installed.
 
 ## Create a Virtual Environment
 
 This step is optional and you can skip to [installation](#install-via-pypi) if you wish.
-Using a virtual environment helps keep project dependencies isolated.
+Using a virtual environment helps keep Python project dependencies isolated.
 
 *On Linux:*
 ```plaintext
@@ -38,7 +38,7 @@ To get started, install Kraken Engine from PyPI.
     ```
   </StepperItem>
   <StepperItem title="Import Module Into an Editor">
-    After installing, import the module into a code editor as `pykraken`:
+    After installing, import the module into a code editor as `pykraken` in Python or as `<kraken/KrakenEngine.hpp>` in C++:
 
     ```py
     import pykraken

@@ -5,7 +5,7 @@
   "guides/using-the-renderer/drawing-shapes": [
     "kn::Rect rect(100, 100, 50, 30);\nkn::draw::rect(rect, kn::Color::WHITE);",
     "// Draw a green line from (0, 0) to (200, 200).\nkn::Line line(0, 0, 200, 200);\nkn::draw::line(line, kn::Color::GREEN);\n\nkn::Vec2 point(400, 300);\nkn::draw::point(point, kn::Color::YELLOW);",
-    "while (kn::window::isOpen()) {\n    kn::event::poll();\n    kn::renderer::clear();\n    kn::draw::rect(kn::Rect(20, 20, 100, 100), kn::Color::GREEN);\n    kn::draw::rect(kn::Rect(60, 60, 100, 100), kn::Color::ORANGE);\n    kn::renderer::present();\n}"
+    "while (kn::window::isOpen()) {\n    ...\n    kn::renderer::clear();\n    kn::draw::rect(kn::Rect(20, 20, 100, 100), kn::Color::GREEN);\n    kn::draw::rect(kn::Rect(60, 60, 100, 100), kn::Color::ORANGE);\n    kn::renderer::present();\n}"
   ],
   "guides/using-the-renderer/how-it-works": [
     "kn::window::create(\"Game Window\", 800, 600); // Also creates the renderer.",
@@ -13,10 +13,10 @@
     "while (kn::window::isOpen()) {\n    kn::event::poll();\n    kn::renderer::clear(kn::Color::PURPLE);\n    // Drawing operations here.\n    kn::renderer::present();\n}"
   ],
   "guides/using-the-renderer/rendering-textures": [
-    "kn::Texture texture(\"image.png\");\nwhile (kn::window::isOpen()) {\n    kn::event::poll();\n    // Reuse texture here.\n}",
-    "kn::renderer::draw(texture);\n\nkn::Transform transform;\ntransform.pos = kn::Vec2(150, 100);\ntransform.angle = kn::math::toRadians(30);\nkn::renderer::draw(texture, transform);",
-    "// Group calls that use the same texture.\nfor (int i = 0; i < 5; ++i) {\n    kn::Transform transform;\n    transform.pos = kn::Vec2(i * 40, 100);\n    kn::renderer::draw(texture, transform);\n}\n\n// Changing textures may interrupt batching.\nkn::renderer::draw(texA);\nkn::renderer::draw(texB);\nkn::renderer::draw(texA);",
-    "kn::Texture atlasTexture(\"atlas.png\");\nkn::Transform heartTransform;\nheartTransform.pos = kn::Vec2(16, 16);\nkn::Transform powerTransform;\npowerTransform.pos = kn::Vec2(32, 32);\n\n// In 1.8.0, source rectangles belong to DrawOptions.\nkn::DrawOptions heartOptions;\nheartOptions.source = kn::Rect(0, 0, 32, 32);\nkn::DrawOptions powerOptions;\npowerOptions.source = kn::Rect(32, 0, 32, 32);\n\nwhile (kn::window::isOpen()) {\n    kn::event::poll();\n    kn::renderer::clear();\n    kn::renderer::draw(atlasTexture, heartTransform, heartOptions);\n    kn::renderer::draw(atlasTexture, powerTransform, powerOptions);\n    kn::renderer::present();\n}"
+    "kn::Texture texture(\"image.png\");\nwhile (kn::window::isOpen()) {\n    // Reuse texture here\n}",
+    "// Draw at origin with default transform\nkn::renderer::draw(texture);\n\n// Draw with custom transform\nkn::Transform transform = {\n    .pos = kn::Vec2(150, 100)\n    .angle = kn::math::toRadians(30);\n}\nkn::renderer::draw(texture, transform);",
+    "// Group calls that use the same texture.\nfor (int i = 0; i < 5; ++i) {\n    kn::Transform transform = { .pos = {i * 40, 100} };\n    kn::renderer::draw(texture, transform);\n}\n\n// Changing textures may interrupt batching.\nkn::renderer::draw(texA);\nkn::renderer::draw(texB);\nkn::renderer::draw(texA);",
+    "// Load the atlas texture\nkn::Texture atlasTexture(\"atlas.png\");\n\nkn::Rect heartSrc(0, 0, 32, 32);\nkn::Transform heartTransform = { .pos = {16, 16} };\n\nkn::Rect powerSrc(32, 0, 32, 32);\nkn::Transform powerTransform = { .pos = {32, 32} };\n\nwhile (kn::window::isOpen()) {\n    ...\n    // Draw heart icon from atlas\n    kn::renderer::draw(atlasTexture, heartTransform, { .source = heartSrc });\n    // Draw power icon from atlas\n    kn::renderer::draw(atlasTexture, powerTransform, { .source = powerSrc });\n    ...\n}"
   ],
   "guides/game-essentials/vector-physics": [
     "kn::Vec2 position(100, 200);\nkn::Vec2 velocity(-3); // (-3, -3)\nkn::Vec2 zero = kn::Vec2::ZERO;",
