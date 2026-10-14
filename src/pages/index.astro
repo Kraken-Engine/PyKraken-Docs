@@ -5,6 +5,13 @@ import { url, guideGroups, api } from "../lib/content";
 
 <Layout>
   <main id="main">
+    <aside class="development-banner" aria-label="Documentation status">
+      <p>
+        <strong>These docs are still a work in progress.</strong>
+        They're published early to keep the API reference and guides up to date
+        while the site takes shape. Thanks for bearing with the rough edges.
+      </p>
+    </aside>
     <section class="home-hero">
       <div class="hero-copy">
         <div class="eyebrow">
@@ -129,11 +136,10 @@ import { url, guideGroups, api } from "../lib/content";
                   d="M402 166h3v6h6v3h-6v6h-3v-6h-6v-3h6z"></path></g
               >
             </svg>
-            <span class="scene-label">ONE WINDOW. ENDLESS POSSIBILITIES.</span>
           </div>
           <div class="window-bottom">
             <span class="status-dot"></span> A good place to begin <span
-              >Python + C++</span
+              >Python / C++</span
             >
           </div>
         </div>
@@ -200,3 +206,20 @@ import { url, guideGroups, api } from "../lib/content";
     </section>
   </main>
 </Layout>
+
+<style>
+  .development-banner {
+    padding: 16px clamp(24px, 5vw, 72px);
+    border-bottom: 1px solid var(--line);
+    background: var(--yellow);
+    color: var(--ink);
+  }
+
+  .development-banner p {
+    max-width: 85ch;
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: center;
+  }
+</style>
