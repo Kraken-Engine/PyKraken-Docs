@@ -1,4 +1,5 @@
 ---
+import Icon from "../components/Icon.astro";
 import Layout from "../layouts/Layout.astro";
 import Sidebar from "../components/Sidebar.astro";
 import Note from "../components/Note.astro";
@@ -57,7 +58,7 @@ const next = siblings[siblings.findIndex((g) => g.path === guide.path) + 1];
               <a class={g.color} href={url(`guides/${g.slug}/`)}>
                 <span>0{i + 1}</span>
                 <strong>{g.title}</strong>
-                <span>↗</span>
+                <span><Icon name="arrow-up-right" /></span>
               </a>
             ))}
           </div>
@@ -69,7 +70,7 @@ const next = siblings[siblings.findIndex((g) => g.path === guide.path) + 1];
           <a class="next-guide" href={url(next.path + "/")}>
             <>
               <span>KEEP EXPLORING</span>
-              <strong>{next.title} →</strong>
+              <strong>{next.title} <Icon name="arrow-right" /></strong>
             </>
           </a>
         )

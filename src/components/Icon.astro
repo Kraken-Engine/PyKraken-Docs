@@ -1,0 +1,35 @@
+---
+import {
+  ArrowUpRight, ArrowRight, ArrowDown, Search, SunMoon, X,
+  ChevronDown, Sparkles, Layers, MoveUpRight, Clock, Gamepad2,
+  Volume2, Settings, List, BookOpen, Code,
+} from '@lucide/astro';
+
+const icons = {
+  'arrow-up-right': ArrowUpRight,
+  'arrow-right': ArrowRight,
+  'arrow-down': ArrowDown,
+  search: Search,
+  theme: SunMoon,
+  close: X,
+  'chevron-down': ChevronDown,
+  sparkles: Sparkles,
+  rendering: Layers,
+  physics: MoveUpRight,
+  animation: Clock,
+  input: Gamepad2,
+  audio: Volume2,
+  settings: Settings,
+  list: List,
+  book: BookOpen,
+  code: Code,
+};
+interface Props {
+  name: keyof typeof icons;
+  size?: number | string;
+  class?: string;
+}
+const { name, size = '1em', class: className } = Astro.props;
+const Glyph = icons[name];
+---
+<Glyph size={size} class:list={['ui-icon', className]} aria-hidden="true" focusable="false" />

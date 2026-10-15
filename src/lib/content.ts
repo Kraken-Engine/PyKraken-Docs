@@ -28,11 +28,11 @@ export const manualGroups = [
   {title:'About these docs', color:'yellow', paths:['docs/preface','docs/preface/building']},
 ];
 export const moduleGroups = [
-  {title:'Rendering', color:'mint', icon:'▧', modules:['camera','color','draw','font','pixel_array','renderer','shaders','text','tilemap','ui','viewport','window']},
-  {title:'Math & physics', color:'yellow', icon:'↗', modules:['math','transform','collision','physics']},
-  {title:'Animation & time', color:'lilac', icon:'◷', modules:['animation_controller','orchestrator','ease','fx','time']},
-  {title:'Input & events', color:'peach', icon:'✥', modules:['event','gamepad','input','key','mouse']},
-  {title:'Engine & audio', color:'blue', icon:'♫', modules:['core','log','mixer']},
+  {title:'Rendering', color:'mint', icon:'rendering' as const, modules:['camera','color','draw','font','pixel_array','renderer','shaders','text','tilemap','ui','viewport','window']},
+  {title:'Math & physics', color:'yellow', icon:'physics' as const, modules:['math','transform','collision','physics']},
+  {title:'Animation & time', color:'lilac', icon:'animation' as const, modules:['animation_controller','orchestrator','ease','fx','time']},
+  {title:'Input & events', color:'peach', icon:'input' as const, modules:['event','gamepad','input','key','mouse']},
+  {title:'Engine & audio', color:'blue', icon:'audio' as const, modules:['core','log','mixer']},
 ];
 export const memberLabel = (member: Member) => member.name==='__init__' ? 'Constructor' : member.name;
 export function memberText(text: string, member: Member, page: ApiPage) {

@@ -1,4 +1,5 @@
 ---
+import Icon from "../components/Icon.astro";
 import "@fontsource/fredoka/500.css";
 import "@fontsource/fredoka/600.css";
 import "@fontsource-variable/nunito";
@@ -67,50 +68,55 @@ const {
         <a
           href={url("guides/")}
           aria-current={section === "guides" ? "page" : undefined}
-          >Learn <span>↗</span></a
+          >Learn <span><Icon name="arrow-up-right" /></span></a
         >
         <a
           href={url("api/")}
           data-api-link
           aria-current={section === "api" ? "page" : undefined}
-          >API reference <span>↗</span></a
+          >API reference <span><Icon name="arrow-up-right" /></span></a
         >
         <a
           href={url("docs/manual/")}
           aria-current={section === "manual" ? "page" : undefined}
-          >Manual <span>↗</span></a
+          >Manual <span><Icon name="arrow-up-right" /></span></a
         >
         <a
           href={url("showcase/")}
           aria-current={section === "showcase" ? "page" : undefined}
-          >Showcase <span>↗</span></a
+          >Showcase <span><Icon name="arrow-up-right" /></span></a
         >
       </nav>
       <div class="header-actions">
         <button class="search-open" aria-label="Search documentation"
-          ><span>⌕</span><span class="search-word">Search docs</span><kbd>/</kbd
-          ></button
+          ><span style=""><Icon name="search" /></span><span class="search-word"
+            >Search docs</span
+          ><kbd>/</kbd></button
         >
         <div class="language-switch" role="group" aria-label="API language">
           <button data-language-choice="python" aria-pressed="true"
             >Python</button
           ><button data-language-choice="cpp" aria-pressed="false">C++</button>
         </div>
-        <button class="theme-button" aria-label="Switch color theme">◐</button>
+        <button class="theme-button" aria-label="Switch color theme"
+          ><Icon name="theme" /></button
+        >
       </div>
     </header>
     <slot />
     <footer class="site-footer">
       <a class="footer-brand" href={url("")}>KRAKEN ENGINE</a><a
-        href={url("showcase/")}>Made with Kraken ↗</a
-      ><a href="https://github.com/Kraken-Engine/PyKraken">Source on GitHub ↗</a
+        href={url("showcase/")}
+        >Made with Kraken <Icon name="arrow-up-right" /></a
+      ><a href="https://github.com/Kraken-Engine/PyKraken"
+        >Source on GitHub <Icon name="arrow-up-right" /></a
       >
     </footer>
     <dialog class="search-dialog" aria-labelledby="search-title">
       <div class="search-top">
         <h2 id="search-title">Find your next step</h2><button
           data-search-close
-          aria-label="Close search">✕</button
+          aria-label="Close search"><Icon name="close" /></button
         >
       </div>
       <label for="search-input">Guides, classes, functions, and constants</label

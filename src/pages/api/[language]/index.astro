@@ -1,4 +1,5 @@
 ---
+import Icon from "../../../components/Icon.astro";
 import Layout from "../../../layouts/Layout.astro";
 import Sidebar from "../../../components/Sidebar.astro";
 import { api, apiUrl, url, friendly, moduleGroups } from "../../../lib/content";
@@ -57,11 +58,7 @@ const label = language === "python" ? "Python" : "C++";
                       class={`module-glyph ${group.color}`}
                       aria-hidden="true"
                     >
-                      {p.name === "core"
-                        ? "⚙"
-                        : p.name === "log"
-                          ? "≡"
-                          : group.icon}
+                      <Icon name={p.name === "core" ? "settings" : p.name === "log" ? "list" : group.icon} />
                     </span>
                     <div>
                       <>
@@ -70,7 +67,7 @@ const label = language === "python" ? "Python" : "C++";
                       </>
                     </div>
                     <span class="module-count">
-                      {p.members.length} <span>→</span>
+                      {p.members.length} <span><Icon name="arrow-right" /></span>
                     </span>
                   </>
                 </a>

@@ -1,4 +1,5 @@
 ---
+import Icon from "./Icon.astro";
 import {
   api,
   apiUrl,
@@ -21,7 +22,7 @@ const reference = api.pages.filter((p) => p.language === language);
             ? "manual"
             : "guides"
       }
-      <span>⌄</span></summary
+      <span><Icon name="chevron-down" /></span></summary
     >
     <div class="sidebar-inner">
       <a
@@ -40,7 +41,7 @@ const reference = api.pages.filter((p) => p.language === language);
               ? "Manual overview"
               : "Guide overview"
         }
-        <span>↗</span></a
+        <span><Icon name="arrow-up-right" /></span></a
       >
       {
         section === "api" ? (
@@ -139,7 +140,7 @@ const reference = api.pages.filter((p) => p.language === language);
       <a
         class="sidebar-bottom"
         href="https://github.com/Kraken-Engine/PyKraken/issues"
-        >Found something odd? ↗</a
+        >Found something odd? <Icon name="arrow-up-right" /></a
       >
     </div>
   </details>

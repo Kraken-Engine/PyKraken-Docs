@@ -13,3 +13,9 @@
 .showcase-main{padding:55px 5%}.showcase-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}.showcase-grid>a{border:1px solid var(--line);border-radius:8px;background:var(--surface);overflow:hidden}.showcase-grid img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}.showcase-grid>a>div{padding:22px}.showcase-grid h2{font-size:23px}.showcase-grid p{font-size:13px;line-height:1.7;color:var(--muted)}.guide-edition{font-size:11px;color:var(--muted);border-left:2px solid var(--line);padding-left:12px;margin-bottom:25px}@media(max-width:700px){.showcase-grid{grid-template-columns:1fr}}
 @media(max-width:430px){.brand-sub{font-size:6px;letter-spacing:1.3px}.site-header{padding-inline:14px;gap:8px}.header-actions{gap:4px}.language-switch button{font-size:10px;padding:6px}.main-nav{gap:30px}.theme-button{padding:4px}.search-open{padding:0 2px}}
 @media(max-width:700px){html{scroll-padding-top:140px}.api-member,.prose h2,.prose h3{scroll-margin-top:140px}}
+/* Shared Lucide sizing keeps icons aligned with text in both themes. */
+.ui-icon{display:inline-block;vertical-align:-0.15em;flex-shrink:0}
+.search-open .ui-icon{width:18px}
+.theme-button{display:inline-flex;align-items:center;justify-content:center}
+.theme-button>.ui-icon{width:23px;height:23px}
+.search-top button>.ui-icon{width:18px;height:18px}
