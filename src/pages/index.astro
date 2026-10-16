@@ -45,103 +45,27 @@ import { url, guideGroups, api } from "../lib/content";
         <span class="sticker sticker-top">YOUR NEXT SIDE QUEST</span>
         <div class="game-window">
           <div class="window-bar">
-            <span><i></i><i></i><i></i></span><span>hello_world.py</span><span
+            <span><i></i><i></i><i></i></span><span>demo.py</span><span
               ><Icon name="sparkles" /></span
             >
           </div>
-          <div
-            class="game-scene"
-            aria-label="An illustrated little island with the Kraken mascot"
-          >
-            <svg
-              viewBox="0 0 640 390"
-              role="img"
-              aria-label="Kraken on a grassy floating island under a sunny sky"
-            >
-              <rect width="640" height="390" fill="#bcdfdd"></rect>
-              <g fill="#f9f6e9"
-                ><path d="M37 101h22V82h51V68h36v14h27v19h31v20H37z"
-                ></path><path d="M432 74h30V53h53v12h27v22h38v21H432z"
-                ></path></g
-              >
-              <circle cx="366" cy="72" r="32" fill="#f8d966"></circle>
-              <g fill="#99c9b8"
-                ><path d="M0 262l105-102 97 102z"></path><path
-                  d="M410 266l100-119 130 119z"></path></g
-              >
-              <path
-                d="M93 278l226-77 220 73-219 93z"
-                fill="#85b97d"
-                stroke="#253d3d"
-                stroke-width="3"></path>
-              <path
-                d="M93 278v27l226 76 220-82v-25l-219 77z"
-                fill="#c39165"
-                stroke="#253d3d"
-                stroke-width="3"></path>
-              <path d="M93 278l226 73 220-77v14l-219 76-227-74z" fill="#56885c"
-              ></path>
-              <path d="M196 314l98-37 124 42-37 14-87-29-60 22z" fill="#eed696"
-              ></path>
-              <g stroke="#253d3d" stroke-width="3"
-                ><path d="M465 271v-73"></path><path
-                  d="M442 191l23-41 24 41h-12l20 34h-67l21-34z"
-                  fill="#477f66"></path><path d="M150 249v-47"></path><path
-                  d="M126 209l24-45 26 45z"
-                  fill="#578c68"></path></g
-              >
-              <g fill="#f4df77"
-                ><rect x="194" y="268" width="7" height="7"></rect><rect
-                  x="409"
-                  y="288"
-                  width="7"
-                  height="7"></rect><rect x="376" y="246" width="7" height="7"
-                ></rect></g
-              >
-              <g fill="#f3987b"
-                ><rect x="223" y="241" width="8" height="8"></rect><rect
-                  x="423"
-                  y="258"
-                  width="8"
-                  height="8"></rect></g
-              >
-              <ellipse
-                cx="309"
-                cy="278"
-                rx="50"
-                ry="13"
-                fill="#284638"
-                opacity=".2"></ellipse>
-              <image
-                href={url("images/knicon.svg")}
-                x="258"
-                y="167"
-                width="105"
-                height="105"
-              />
-              <path
-                d="M278 144h60v-29h-60v29l10 10v-10"
-                fill="#fffdf5"
-                stroke="#253d3d"
-                stroke-width="2"></path>
-              <text
-                x="308"
-                y="135"
-                text-anchor="middle"
-                font-family="monospace"
-                font-size="14"
-                fill="#253d3d">hello!</text
-              >
-              <g fill="#fffdf5"
-                ><path d="M212 146h4v8h8v4h-8v8h-4v-8h-8v-4h8z"></path><path
-                  d="M402 166h3v6h6v3h-6v6h-3v-6h-6v-3h6z"></path></g
-              >
-            </svg>
+          <div class="game-scene">
+            <video
+              id="hero-demo"
+              width="960"
+              height="585"
+              poster={url("images/kraken-tidepool.png")}
+              data-src={url("videos/kraken-tidepool.mp4")}
+              muted
+              loop
+              playsinline
+              preload="none"
+              aria-label="A kraken follows a paper boat beneath rippling teal water, rendered with Kraken."
+            ></video>
           </div>
           <div class="window-bottom">
-            <span class="status-dot"></span> A good place to begin <span
-              >Python / C++</span
-            >
+            <span class="status-dot"></span> Rendered with Kraken
+            <button id="hero-playback" aria-controls="hero-demo" hidden>Pause animation</button>
           </div>
         </div>
         <span class="sticker sticker-bottom">made of small beginnings <Icon name="sparkles" /></span>
@@ -212,7 +136,16 @@ import { url, guideGroups, api } from "../lib/content";
   .development-banner {
     padding: 16px clamp(24px, 5vw, 72px);
     border-bottom: 1px solid var(--line);
-    background: var(--yellow);
+    background: var(--notice-background, var(--yellow));
+    color: var(--ink);
+  }
+
+  :global(html[data-theme="dark"]) .development-banner {
+    --notice-background: #233330;
+    color: var(--muted);
+  }
+
+  :global(html[data-theme="dark"]) .development-banner strong {
     color: var(--ink);
   }
 
@@ -222,5 +155,56 @@ import { url, guideGroups, api } from "../lib/content";
     font-size: 14px;
     line-height: 1.6;
     text-align: center;
+  }
+</style>
+
+<script>
+  const video = document.querySelector<HTMLVideoElement>("#hero-demo");
+  const playback = document.querySelector<HTMLButtonElement>("#hero-playback");
+  if (video && playback) {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateLabel = () => {
+      playback.textContent = video.paused ? "Play animation" : "Pause animation";
+    };
+    const applyMotionPreference = () => {
+      playback.hidden = reducedMotion.matches;
+      if (reducedMotion.matches) {
+        video.pause();
+        video.removeAttribute("src");
+        video.load();
+      } else {
+        video.muted = true;
+        video.src = video.dataset.src!;
+        void video.play().catch(updateLabel);
+      }
+    };
+    video.addEventListener("play", updateLabel);
+    video.addEventListener("pause", updateLabel);
+    playback.addEventListener("click", () => {
+      if (video.paused) void video.play().catch(updateLabel);
+      else video.pause();
+    });
+    reducedMotion.addEventListener("change", applyMotionPreference);
+    applyMotionPreference();
+  }
+</script>
+
+<style>
+  .game-scene video {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 640 / 390;
+    object-fit: cover;
+    background: #2b504f;
+  }
+  #hero-playback {
+    margin-left: auto;
+    padding: 0;
+    background: transparent;
+    color: var(--muted);
+    font-size: 10px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 </style>

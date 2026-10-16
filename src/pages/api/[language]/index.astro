@@ -52,7 +52,7 @@ const label = language === "python" ? "Python" : "C++";
                 (p) => p.kind === "module" && group.modules.includes(p.name),
               )
               .map((p) => (
-                <a href={apiUrl(p)}>
+                <a href={apiUrl(p)} class={group.color}>
                   <>
                     <span
                       class={`module-glyph ${group.color}`}
