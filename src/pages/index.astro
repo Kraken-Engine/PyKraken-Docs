@@ -9,16 +9,14 @@ import { url, guideGroups, api } from "../lib/content";
     <aside class="development-banner" aria-label="Documentation status">
       <p>
         <strong>These docs are still a work in progress.</strong>
-        They're published early to keep the API reference and guides up to date
-        while the site takes shape. Thanks for bearing with the rough edges.
+        They're published early to keep the API reference and guides up to date while
+        the site takes shape. Thanks for bearing with the rough edges.
       </p>
     </aside>
     <section class="home-hero">
       <div class="hero-copy">
         <div class="eyebrow">
-          <span class="status-dot"></span> THE KRAKEN ENGINE MANUAL <span
-            class="version-tag">v{api.versions.python}</span
-          >
+          <span class="version-tag">v{api.versions.python}</span>
         </div>
         <h1>
           Build the game,<br /><span class="highlight">not the groundwork.</span
@@ -29,7 +27,8 @@ import { url, guideGroups, api } from "../lib/content";
           <a
             class="button primary"
             href={url("guides/getting-started/create-window/")}
-            >Make your first window <span><Icon name="arrow-up-right" /></span></a
+            >Make your first window <span><Icon name="arrow-up-right" /></span
+            ></a
           ><a class="button secondary" href={url("api/")} data-api-link
             >Explore the API <span><Icon name="arrow-right" /></span></a
           >
@@ -42,12 +41,9 @@ import { url, guideGroups, api } from "../lib/content";
         </div>
       </div>
       <div class="hero-art">
-        <span class="sticker sticker-top">YOUR NEXT SIDE QUEST</span>
         <div class="game-window">
           <div class="window-bar">
-            <span><i></i><i></i><i></i></span><span>demo.py</span><span
-              ><Icon name="sparkles" /></span
-            >
+            <span><i></i><i></i><i></i></span><span>demo.py</span>
           </div>
           <div class="game-scene">
             <video
@@ -64,11 +60,12 @@ import { url, guideGroups, api } from "../lib/content";
             ></video>
           </div>
           <div class="window-bottom">
-            <span class="status-dot"></span> Rendered with Kraken
-            <button id="hero-playback" aria-controls="hero-demo" hidden>Pause animation</button>
+            Rendered with Kraken
+            <button id="hero-playback" aria-controls="hero-demo" hidden
+              >Pause animation</button
+            >
           </div>
         </div>
-        <span class="sticker sticker-bottom">made of small beginnings <Icon name="sparkles" /></span>
       </div>
     </section>
     <div class="chapter-strip">
@@ -96,7 +93,9 @@ import { url, guideGroups, api } from "../lib/content";
               <>
                 <span class="chapter-number">CHAPTER 0{i + 1}</span>
                 <span class="chapter-icon" aria-hidden="true">
-                  <Icon name={(["book", "rendering", "input", "code"] as const)[i]} />
+                  <Icon
+                    name={(["book", "rendering", "input", "code"] as const)[i]}
+                  />
                 </span>
                 <h3>{group.title}</h3>
                 <p>
@@ -119,7 +118,9 @@ import { url, guideGroups, api } from "../lib/content";
       </div>
     </section>
     <section class="reference-banner">
-      <span class="reference-symbol" aria-hidden="true"><Icon name="code" /></span><div>
+      <span class="reference-symbol" aria-hidden="true"
+        ><Icon name="code" /></span
+      ><div>
         <span class="eyebrow">ALREADY KNOW WHAT YOU NEED?</span><h2>
           Keep the reference close.
         </h2><p>
@@ -164,7 +165,9 @@ import { url, guideGroups, api } from "../lib/content";
   if (video && playback) {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const updateLabel = () => {
-      playback.textContent = video.paused ? "Play animation" : "Pause animation";
+      playback.textContent = video.paused
+        ? "Play animation"
+        : "Pause animation";
     };
     const applyMotionPreference = () => {
       playback.hidden = reducedMotion.matches;
